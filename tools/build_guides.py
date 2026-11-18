@@ -962,6 +962,11 @@ def build_html():
         <div>
             <h2>Lingua IA · IHC</h2>
             <p>Guía de Evaluación en Vivo</p>
+            <div style="margin-top: 10px;">
+                <a href="index.html" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 12px; background: var(--teal); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 13px; box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);">
+                    🚀 Probar Prototipo
+                </a>
+            </div>
         </div>
         <nav class="nav-group">
             <a href="#dashboard" class="nav-link">📊 Dashboard de Cobertura</a>
@@ -1095,7 +1100,10 @@ def build_html():
     full_html = html_head + "".join(html_body)
     with open(HTML_PATH, "w", encoding="utf-8") as f:
         f.write(full_html)
-    print(f"Generado exitosamente: {HTML_PATH}")
+    short_html_path = os.path.join(BASE_DIR, "guia.html")
+    with open(short_html_path, "w", encoding="utf-8") as f:
+        f.write(full_html)
+    print(f"Generado exitosamente: {HTML_PATH} y {short_html_path}")
 
 if __name__ == "__main__":
     build_markdown()
