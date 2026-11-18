@@ -962,9 +962,12 @@ def build_html():
         <div>
             <h2>Lingua IA · IHC</h2>
             <p>Guía de Evaluación en Vivo</p>
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
                 <a href="index.html" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 12px; background: var(--teal); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 13px; box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);">
                     🚀 Probar Prototipo
+                </a>
+                <a href="GUIA_PRINCIPIOS_IHC.pdf" download style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 12px; background: #fff; color: var(--teal-dark); border: 1px solid var(--border); text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 12.5px;">
+                    📥 Descargar PDF (22 págs)
                 </a>
             </div>
         </div>
