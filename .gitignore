@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+harness_temp.html
+raw_temp.png
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
