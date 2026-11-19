@@ -49,6 +49,7 @@ Este documento (`agents.md`) sirve como fuente de verdad y memoria técnica para
 ├── GUIA_PRINCIPIOS_IHC.md       # Guía de evaluación docente en Markdown (71 principios)
 ├── GUIA_PRINCIPIOS_IHC.html     # Guía interactiva/imprimible con sidebar adhesivo y checklist
 ├── Informe_principios_Lingua_IA (1).docx # Informe original previo (auditoría base)
+├── usuarios.md                  # Análisis de usuarios objetivo y especificación de tareas (HTA)
 ├── guia.md / guiaPapers.md / plan.md / reference.md # Documentación interna de alcance
 └── agents.md                    # Este documento de contexto para agentes
 ```
