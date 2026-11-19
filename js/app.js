@@ -26,15 +26,24 @@
     /* ---------------- Render ---------------- */
     function renderHeader() {
         const st = S.get();
+        const historyButton = $('[data-action="toggle-history"]');
+        if (historyButton) {
+            historyButton.setAttribute('aria-expanded', String(st.historyOpen));
+            historyButton.setAttribute('aria-controls', 'history-drawer');
+        }
         const pageTitle = $('#page-title');
-        if (pageTitle) pageTitle.textContent = `Lingua IA · ${D.modes[st.mode].title}`;
+        if (pageTitle) pageTitle.textContent = st.homeOpen ? 'Dudas rápidas' : `Tutor de inglés · ${D.modes[st.mode].title}`;
         $$('#mode-nav .mode-pill').forEach((btn) => {
-            const active = btn.dataset.mode === st.mode;
+            const active = btn.dataset.view === 'quickstart'
+                ? st.homeOpen
+                : !st.homeOpen && btn.dataset.mode === st.mode;
             btn.classList.toggle('is-active', active);
             if (active) btn.setAttribute('aria-current', 'true');
             else btn.removeAttribute('aria-current');
             btn.setAttribute('aria-pressed', String(active));
-            btn.title = active ? `Actividad actual: ${D.modes[btn.dataset.mode].label}` : `Cambiar a ${D.modes[btn.dataset.mode].label} y ver sus chats`;
+            btn.title = btn.dataset.view === 'quickstart'
+                ? 'Inicio: escribe una consulta para elegir una actividad'
+                : active ? `Actividad actual: ${D.modes[btn.dataset.mode].label}` : `Cambiar a ${D.modes[btn.dataset.mode].label}`;
         });
 
         const pop = $('#suggestions-popover');
@@ -97,16 +106,6 @@
     }
 
 
-    function renderDrawer() {
-        const st = S.get();
-        const drawer = $('#drawer');
-        const overlay = $('#drawer-overlay');
-        if (!drawer || !overlay) return;
-        drawer.hidden = !st.drawerOpen;
-        overlay.hidden = !st.drawerOpen;
-        if (st.drawerOpen) drawer.innerHTML = Panels.renderDrawer();
-    }
-
     function renderHistory() {
         const st = S.get();
         const drawer = $('#history-drawer');
@@ -117,9 +116,15 @@
         if (st.historyOpen) drawer.innerHTML = Panels.renderHistoryDrawer();
     }
 
-    function renderFooter() {
-        const el = $('#recent-footer');
-        if (el) el.innerHTML = Panels.renderFooter();
+    function renderQuickstart() {
+        const feedback = $('#quickstart-feedback');
+        const input = $('#quickstart-input');
+        const st = S.get();
+        if (feedback) {
+            feedback.textContent = st.quickstartFeedback;
+            feedback.hidden = !st.quickstartFeedback;
+        }
+        if (input && input.value !== st.quickstartDraft) input.value = st.quickstartDraft || '';
     }
 
     function renderAside() {
@@ -132,6 +137,7 @@
     function renderAll() {
         const st = S.get();
         const detailLevel = st.detailsLevel;
+        document.body.classList.toggle('quickstart-mode', Boolean(st.homeOpen));
         document.body.classList.toggle('learner-mode', detailLevel === 0);
         document.body.classList.toggle('overview-mode', detailLevel === 1);
         document.body.classList.toggle('research-menu-mode', detailLevel === 2);
@@ -140,14 +146,13 @@
         const supportOverlay = $('#mobile-support-overlay');
         if (supportOverlay) supportOverlay.hidden = !st.supportOpen;
         renderHeader();
+        renderQuickstart();
         renderStagebar();
         const supportToggle = $('.mobile-support-toggle');
         if (supportToggle) supportToggle.setAttribute('aria-expanded', String(Boolean(st.supportOpen)));
         renderHelpLevels();
-        renderDrawer();
         renderHistory();
         renderAside();
-        renderFooter();
         Chat.render();
     }
 
@@ -197,7 +202,7 @@
     function setCorrection(id, status) {
         const st = S.get();
         const statuses = Object.assign({}, st.statuses, { [id]: status });
-        const patch = { statuses };
+        const patch = { statuses, version: 'final' };
         S.set(patch);
         toast(status === 'accepted' ? 'Corrección aceptada · la reescritura se actualizó.' : status === 'rejected' ? 'Corrección rechazada · se mantiene tu versión.' : 'Corrección devuelta a pendiente.');
     }
@@ -207,7 +212,7 @@
         if (!rule) return;
         openModal(rule.title, `
             <div class="modal-body">
-                <div class="badge-row"><span class="type-badge ${rule.kind}">${rule.label}</span><span class="paper-tag">Gu et al. · regla visible</span></div>
+                <div class="badge-row"><span class="type-badge ${rule.kind}">${rule.label}</span></div>
                 <p class="modal-text">${rule.body}</p>
                 <div class="rule-example good"><span>Correcto</span>${rule.good}</div>
                 <div class="rule-example bad"><span>Evitar</span>${rule.bad}</div>
@@ -289,7 +294,7 @@
                 </div>
                 <div class="modal-actions"><button class="btn" data-action="modal-close">Cerrar</button></div>
             </div>
-        `, 'Gu et al. · side query de vocabulario');
+        `, 'Sinónimos y alternativas');
     }
 
     function openLessonHint(word) {
@@ -309,7 +314,45 @@
                     <button class="btn" data-action="modal-close">Cerrar</button>
                 </div>
             </div>
-        `, 'Kazemitabaar · side query');
+        `, 'Vocabulario en contexto');
+    }
+
+    function openReadingModal() {
+        const st = S.get();
+        openModal('Usar mi lectura', `
+            <div class="modal-body">
+                <p class="modal-text">Pega el texto que estás leyendo y escribe la palabra que quieres entender.</p>
+                <label for="custom-reading-input">Lectura</label>
+                <textarea id="custom-reading-input" class="custom-reading-input" rows="8" placeholder="Pega aquí tu lectura">${escapeHtml(st.customReading || '')}</textarea>
+                <label for="custom-reading-word">Palabra que quiero consultar</label>
+                <input id="custom-reading-word" class="custom-reading-word" value="${escapeHtml(st.customWord || '')}" placeholder="Ej.: dedicated">
+                <div class="modal-actions">
+                    <button class="btn btn-primary" data-action="save-custom-reading">Usar esta lectura</button>
+                    <button class="btn" data-action="modal-close">Cancelar</button>
+                </div>
+            </div>
+        `, 'Lectura y vocabulario');
+    }
+
+    function classifyQuickPrompt(text) {
+        const q = String(text || '').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        if (/entrevista|conversacion|dialogo|practicar hablar|responder en ingles|speak|interview/.test(q)) return 'conversation';
+        if (/vocabulario|palabra|significa|significado|lectura|leer|articulo|dedicated|productive|flexibility/.test(q)) return 'lessons';
+        if (/redact|revis|corrig|correo|email|gramatica|tono|ensayo|frase|oracion|formal/.test(q)) return 'writing';
+        return null;
+    }
+
+    function submitQuickPrompt(prompt) {
+        const clean = String(prompt || '').trim();
+        if (!clean) return;
+        const target = classifyQuickPrompt(clean);
+        if (!target) {
+            S.set({ quickstartDraft: clean, quickstartFeedback: 'No identifiqué la actividad. Elige Redacción, Lecciones y repaso o Conversación; también puedes precisar tu consulta.' });
+            return;
+        }
+        switchMode(target);
+        S.set({ quickstartDraft: '', quickstartFeedback: '' });
+        Chat.send(clean);
     }
 
     function nextPrompt() {
@@ -319,7 +362,7 @@
         st.promptIndex = idx;
         st.messages.conversation.push({
             role: 'ai',
-            label: 'INTERVIEWER IA · SPEAKING',
+            label: 'Tutor · conversación escrita',
             text: scenario.prompts[idx],
             chips: [{ icon: 'lightbulb', text: 'Pista: responde con una razón', kind: 'info' }]
         });
@@ -368,9 +411,11 @@
         }[mode] || m.tabs[0].id;
         S.set({
             mode,
+            homeOpen: false,
+            quickstartFeedback: '',
+            quickstartDraft: '',
             activeStage: m.activeStage,
             tab: defaultAsideTab,
-            drawerOpen: false,
             supportOpen: false,
             suggestionsOpen: false,
             detailsLevel: 0,
@@ -388,11 +433,10 @@
         const st = S.get();
 
         switch (action) {
-            case 'open-drawer': S.set({ drawerOpen: true, historyOpen: false, supportOpen: false }); break;
-            case 'close-drawer': S.set({ drawerOpen: false }); break;
-            case 'toggle-history': S.set({ historyOpen: !st.historyOpen, drawerOpen: false, supportOpen: false }); break;
+            case 'open-quickstart': S.set({ homeOpen: true, quickstartFeedback: '', supportOpen: false, historyOpen: false }); break;
+            case 'toggle-history': S.set({ historyOpen: !st.historyOpen, supportOpen: false }); break;
             case 'close-history': S.set({ historyOpen: false }); break;
-            case 'open-mobile-support': S.set({ supportOpen: true, drawerOpen: false, historyOpen: false }); break;
+            case 'open-mobile-support': S.set({ supportOpen: true, historyOpen: false }); break;
             case 'close-mobile-support': S.set({ supportOpen: false }); break;
             case 'toggle-suggestions': S.set({ suggestionsOpen: !st.suggestionsOpen }); break;
             case 'advance-details': {
@@ -400,7 +444,8 @@
                 S.set({ detailsLevel: next, tab: next === 0 ? D.modes[st.mode].tabs[0].id : st.tab });
                 break;
             }
-            case 'open-progress-view': S.set({ detailsLevel: 0, tab: 'progress', supportOpen: true, drawerOpen: false, historyOpen: false }); break;
+            case 'open-progress-view': S.set({ detailsLevel: 0, tab: 'progress', supportOpen: true, historyOpen: false }); break;
+            case 'open-changes-view': S.set({ detailsLevel: 0, tab: 'changes', supportOpen: true, historyOpen: false }); break;
             case 'open-aside-tools': S.set({ detailsLevel: 2 }); break;
             case 'open-detail-tab': {
                 S.set({ detailsLevel: 3, tab: el.dataset.tab });
@@ -414,7 +459,11 @@
             case 'set-tab': S.set({ tab: el.dataset.tab }); break;
             case 'open-tab': S.set({ tab: el.dataset.tab }); break;
             case 'set-version': S.set({ version: el.dataset.version }); break;
-            case 'set-help': S.set({ help: el.dataset.help }); break;
+            case 'set-help': {
+                const help = el.dataset.help;
+                S.set({ help, version: help === 'reescritura' ? 'suggested' : st.version === 'suggested' ? 'draft' : st.version });
+                break;
+            }
             case 'set-stage': {
                 const index = Number(el.dataset.stage);
                 const stages = D.modes[st.mode].stages;
@@ -441,7 +490,7 @@
                 const selected = st.sessions.find((s) => s.id === el.dataset.session);
                 S.set({ sessions, historyOpen: false, historyMode: selected ? selected.mode : st.historyMode });
                 if (selected && selected.mode) switchMode(selected.mode);
-                toast('Sesión cargada (mock).');
+                toast('Sesión cargada.');
                 break;
             }
             case 'select-scenario': {
@@ -456,14 +505,22 @@
             case 'save-word': saveWord(el.dataset.word); break;
             case 'hint-word': openLessonHint(st.selectedWord || 'productive'); break;
             case 'open-word-examples': openLessonHint(el.dataset.word || st.selectedWord || 'productive'); break;
-            case 'use-reading-prompt': {
-                const input = $('#chat-input');
-                if (input) {
-                    input.value = 'Te paso esta lectura. ¿Qué significa "dedicated" aquí? Dame dos ejemplos en inglés y dime cuándo se usa.';
-                    input.focus();
-                }
+            case 'open-reading-modal': openReadingModal(); break;
+            case 'save-custom-reading': {
+                const reading = ($('#custom-reading-input')?.value || '').trim();
+                const word = ($('#custom-reading-word')?.value || '').trim();
+                if (!reading || !word) { toast('Pega la lectura y escribe una palabra para continuar.'); break; }
+                S.set({ customReading: reading, customWord: word, selectedWord: null, tab: 'vocabulary' });
+                closeModal();
+                toast(`Lectura cargada. Ahora puedes consultar “${word}”.`);
                 break;
             }
+            case 'ask-about-reading': {
+                const word = st.customWord || el.dataset.word || '';
+                Chat.send(`En la lectura que pegué, ¿qué significa “${word}”? Dame dos ejemplos en inglés y explícame cuándo se usa.`);
+                break;
+            }
+            case 'submit-quick-prompt': submitQuickPrompt($('#quickstart-input')?.value || ''); break;
             case 'focus-composer': {
                 const input = $('#chat-input');
                 if (input) input.focus();
@@ -475,7 +532,7 @@
             case 'correction-accept': setCorrection(el.dataset.id, 'accepted'); break;
             case 'correction-reject': setCorrection(el.dataset.id, 'rejected'); break;
             case 'correction-undo': setCorrection(el.dataset.id, 'pending'); break;
-            case 'correction-explain': S.set({ help: 'explicacion' }); break;
+            case 'correction-explain': S.set({ help: 'explicacion', version: st.version === 'suggested' ? 'draft' : st.version }); break;
             case 'correction-rule': {
                 const c = D.corrections.find((x) => x.id === el.dataset.id);
                 if (c) openRule(c.ruleId);
@@ -483,7 +540,7 @@
             }
             case 'correction-confused': {
                 const c = D.corrections.find((x) => x.id === el.dataset.id);
-                S.set({ help: 'explicacion' });
+                S.set({ help: 'explicacion', version: st.version === 'suggested' ? 'draft' : st.version });
                 toast('Te muestro la explicación paso a paso.');
                 const card = document.querySelector(`[data-card="${c ? c.id : ''}"]`);
                 if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -504,7 +561,7 @@
                 S.set({ criteria });
                 break;
             }
-            case 'regenerate-plan': toast('Plan regenerado · revisa los pasos actualizados (mock).'); break;
+            case 'regenerate-plan': toast('El plan de esta demostración no se regenera automáticamente. Puedes editar sus pasos aquí.'); break;
             case 'open-vocabulary': S.set({ tab: 'vocabulary' }); break;
             case 'remove-word': removeWord(el.dataset.word); break;
 
@@ -521,7 +578,7 @@
             case 'open-synonyms': openSynonyms(); break;
             case 'open-rule': openRule(el.dataset.id); break;
             case 'modal-close': closeModal(); break;
-            case 'pick-synonym': closeModal(); toast(`“${el.dataset.word}” añadido a criterios (mock).`); break;
+            case 'pick-synonym': closeModal(); toast(`Alternativa seleccionada: “${el.dataset.word}”.`); break;
 
             /* Side query */
             case 'close-side-query': S.set({ sideOpen: false, sideAnswer: null }); break;
@@ -536,7 +593,7 @@
                 toast('Añadido a criterios · consulta lateral.');
                 break;
             }
-            case 'side-insert': toast('Fragmento insertado en el borrador (mock).'); break;
+            case 'side-insert': toast('La inserción automática no está disponible en esta demostración.'); break;
 
             default: {
                 if (action.indexOf('open-rule-') === 0) openRule(action.replace('open-rule-', ''));
@@ -592,6 +649,14 @@
             });
         }
 
+        const quickstartForm = $('#quickstart-form');
+        if (quickstartForm) {
+            quickstartForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                submitQuickPrompt($('#quickstart-input')?.value || '');
+            });
+        }
+
         const input = $('#chat-input');
         if (input) {
             input.addEventListener('input', () => {
@@ -610,7 +675,9 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 if (modalOpen) closeModal();
-                else if (S.get().drawerOpen) S.set({ drawerOpen: false });
+                else if (S.get().historyOpen) S.set({ historyOpen: false });
+                else if (S.get().supportOpen) S.set({ supportOpen: false });
+                else if (S.get().sideOpen) S.set({ sideOpen: false, sideAnswer: null });
                 else if (S.get().suggestionsOpen) S.set({ suggestionsOpen: false });
             }
         });

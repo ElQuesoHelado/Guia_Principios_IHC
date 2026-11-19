@@ -231,11 +231,11 @@ Best regards`;
         lessons: [
             {
                 role: 'ai',
-                label: 'TUTOR IA · READING',
+                label: 'Tutor · lecciones',
                 text: 'Lee el artículo y selecciona una palabra que no conozcas. Yo te ayudo con el significado en contexto, sin darte la respuesta completa.',
                 chips: [
                     { icon: 'book', text: 'Artículo: The future of remote work', kind: 'info' },
-                    { icon: 'lightbulb', text: 'Toca una palabra resaltada', kind: 'info' }
+                    { icon: 'lightbulb', text: 'Elige una palabra de la lista', kind: 'info' }
                 ]
             }
         ],

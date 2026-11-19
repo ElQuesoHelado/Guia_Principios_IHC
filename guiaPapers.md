@@ -12,7 +12,7 @@ Las dudas puntuales se envían en el chat de la actividad correspondiente. La co
 
 | Aporte de lectura | Uso en Lingua IA | Por qué ayuda al aprendizaje |
 |---|---|---|
-| Gu et al., CHI 2024: hacer verificables las respuestas de la IA | Mostrar texto original, propuesta y explicación; permitir aceptar o rechazar | El estudiante compara, comprende el cambio y conserva la decisión. |
+| Gu et al., CHI 2024: hacer verificables las respuestas de la IA | Mostrar desde el inicio texto original y propuesta, añadir explicación según el nivel de ayuda y permitir aceptar o rechazar | El estudiante compara, comprende el cambio y conserva la decisión. |
 | Kazemitabaar et al., UIST 2024: dividir tareas y permitir intervención del usuario | Etapas breves y ayuda gradual en la tarea actual | Orienta el siguiente paso sin exponer un proceso técnico innecesario. |
 | LightVA: representar el avance y hacer visibles los pasos relevantes | Una secuencia breve de etapas y un botón “Ver progreso” que abre directamente el avance de la tarea; en lectura, el resumen incluye palabras guardadas | Ayuda a saber dónde está el estudiante y qué puede hacer después. |
 | WaitGPT: facilitar el control de cambios y versiones | Correcciones por fragmento e historial de versiones cuando se necesita | Permite recuperar una opción y revisar cómo cambió el texto. |

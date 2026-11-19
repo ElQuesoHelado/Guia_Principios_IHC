@@ -1,5 +1,5 @@
 /* ============================================================
-   Panels · tabs del aside, footer, sugerencias y drawer
+   Panels · tabs de apoyo, historial y sugerencias
    Papers: Gu (workflows), Kazemitabaar (supuestos), LightVA (task flow)
    ============================================================ */
 (function () {
@@ -45,6 +45,11 @@
 
         const ordered = D.corrections.slice().sort((a, b) => b.before.length - a.before.length);
 
+        if (version === 'suggested') {
+            ordered.forEach((c) => { text = text.split(c.before).join(c.after); });
+            return text.split('\n\n').map((p) => `<p>${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('');
+        }
+
         if (version === 'final') {
             ordered.forEach((c) => {
                 if (st.statuses[c.id] === 'accepted') {
@@ -75,6 +80,36 @@
             </div>`;
     }
 
+    function renderWritingDraft() {
+        const st = S.get();
+        const decided = Object.values(st.statuses).filter((status) => status !== 'pending').length;
+        const total = D.corrections.length;
+        const version = st.version;
+        const versions = [
+            { id: 'original', label: 'Original' },
+            { id: 'draft', label: 'Borrador' },
+            { id: 'final', label: 'Versión actual' }
+        ];
+        if (st.help === 'reescritura') versions.push({ id: 'suggested', label: 'Propuesta completa' });
+        const renderedVersion = st.help === 'reescritura' && version === 'draft' ? 'suggested' : version;
+        return `
+            <section class="writing-draft-preview" aria-label="Texto que se está revisando">
+                <div class="writing-draft-head">
+                    <div><h3>${renderedVersion === 'suggested' ? 'Reescritura completa propuesta' : 'Tu texto'}</h3><p>Correo de ejemplo · solicitud de prórroga</p></div>
+                    <div class="writing-draft-actions">
+                        <button class="text-btn" data-action="open-version-history">Versiones</button>
+                        <button class="btn" data-action="open-changes-view">Ver cambios <span>${decided}/${total}</span></button>
+                    </div>
+                </div>
+                <div class="version-tabs" role="group" aria-label="Versiones del texto">
+                    ${versions.map((item) => `<button class="version-tab ${renderedVersion === item.id ? 'is-active' : ''}" data-action="set-version" data-version="${item.id}">${item.label}</button>`).join('')}
+                </div>
+                <div class="text-box" data-doc>${textWithHighlights(renderedVersion)}</div>
+                ${renderedVersion === 'suggested' ? '' : legend()}
+            </section>
+        `;
+    }
+
     /* ---------------- Tabs del aside ---------------- */
     function renderTabs() {
         const st = S.get();
@@ -91,13 +126,13 @@
             return `<span class="aside-context-label">Herramientas</span><button class="aside-more" data-action="advance-details">Volver al tutor</button>`;
         }
         const tabs = st.detailsLevel === 0
-            ? available.filter((tab) => tab.id === defaultTab || (st.tab === 'progress' && tab.id === 'progress'))
+            ? available.filter((tab) => tab.id === defaultTab || (['progress', 'changes'].includes(st.tab) && tab.id === st.tab))
             : st.detailsLevel === 1
                 ? available.filter((tab) => allowed.includes(tab.id))
                 : available.filter((tab) => tab.id === st.tab);
         return tabs.map((tab) => `
             <button class="aside-tab ${st.tab === tab.id ? 'is-active' : ''}" role="tab" aria-selected="${st.tab === tab.id}" data-action="set-tab" data-tab="${tab.id}">
-                ${tab.label}${tab.id === 'changes' ? ' <span class="tab-count">4</span>' : ''}
+                ${tab.label}${tab.id === 'changes' ? ` <span class="tab-count">${Object.values(st.statuses).filter((status) => status !== 'pending').length}</span>` : ''}
             </button>
         `).join('') + `<button class="aside-more" data-action="${st.detailsLevel === 3 ? 'open-aside-tools' : 'advance-details'}">${st.detailsLevel === 0 ? 'Más apoyo' : st.detailsLevel === 1 ? 'Herramientas avanzadas' : 'Más vistas'}</button>`;
     }
@@ -173,7 +208,7 @@
         return `
             <div class="panel-head">
                 <div><h3>Reglas y ejemplos</h3><p>El criterio detrás de cada corrección</p></div>
-                <span class="paper-tag">Gu et al. · procedure</span>
+                
             </div>
             <div class="stack">
                 ${D.rules.map((r) => `
@@ -197,7 +232,7 @@
         return `
             <div class="panel-head">
                 <div><h3>Criterios editables</h3><p>La IA los usa para explicar y reescribir</p></div>
-                <span class="paper-tag">Kazemitabaar · UIST'24</span>
+                
             </div>
             <p class="panel-note">Edita un supuesto y vuelve a revisar el texto cuando estés listo. Tus versiones anteriores permanecen disponibles en “Versiones”.</p>
             <div class="stack">
@@ -224,7 +259,7 @@
         return `
             <div class="panel-head">
                 <div><h3>Plan de escritura</h3><p>Pasos en lenguaje natural</p></div>
-                <span class="paper-tag">LightVA · plan</span>
+                
             </div>
             <p class="panel-note">Marca los pasos opcionales. La IA no avanza de etapa sin tu confirmación.</p>
             <div class="stack">
@@ -245,19 +280,21 @@
 
     function renderChangesPanel() {
         const st = S.get();
+        const decided = Object.values(st.statuses).filter((status) => status !== 'pending').length;
         return `
             <div class="panel-head">
-                <div><h3>Cambios</h3><p>Historial de decisiones</p></div>
-                <span class="paper-tag">WaitGPT · granular</span>
+                <div><h3>Cambios</h3><p>${decided} de ${D.corrections.length} revisados</p></div>
+                
             </div>
             <div class="stack">
                 ${D.corrections.map((c) => {
-                    const s = st.statuses[c.id];
+                    const s = st.statuses[c.id] || 'pending';
+                    const label = { pending: 'Pendiente', accepted: 'Aceptada', rejected: 'Rechazada' }[s];
                     return `
                         <article class="change-row status-${s}">
                             <div class="change-top">
                                 <span class="type-badge ${c.kind}">${c.label}</span>
-                                <span class="status-pill ${s}">${s}</span>
+                                <span class="status-pill ${s}">${label}</span>
                             </div>
                             <strong>${c.title}</strong>
                             <p class="mono small">${c.before} → ${c.after}</p>
@@ -275,7 +312,7 @@
         return `
             <div class="panel-head">
                 <div><h3>Escenario</h3><p>Contexto de la conversación</p></div>
-                <span class="paper-tag">Gu et al. · contexto</span>
+                
             </div>
             <div class="stack">
                 ${D.scenarios.map((s) => `
@@ -309,7 +346,7 @@
         return `
             <div class="panel-head">
                 <div><h3>${isSavedWords ? 'Palabras guardadas' : 'Vocabulario'}</h3><p>${isSavedWords ? 'Acceso directo de esta tarea' : 'Palabras clave del contexto'}</p></div>
-                <span class="paper-tag">LightVA · insights</span>
+                
             </div>
             ${isSavedWords && !words.length ? `
                 <div class="empty-support">
@@ -376,7 +413,7 @@
         return `
             <div class="panel-head">
                 <div><h3>${D.article.title}</h3><p>${D.article.source}</p></div>
-                <span class="paper-tag">LightVA · data lens</span>
+                
             </div>
             <div class="article-box">
                 ${D.article.paragraphs.map((p, pi) => `<p>${pi === 0 ? p : p}</p>`).join('')}
@@ -405,7 +442,7 @@
         return `
             <div class="panel-head">
                 <div><h3>Respuestas rápidas</h3><p>Explicaciones cortas y ejemplos</p></div>
-                <span class="paper-tag">Gu et al. · workflow</span>
+                
             </div>
             <div class="stack">
                 <article class="qa-card"><strong>¿Cuándo uso “agree” sin “am”?</strong><p>“Agree” ya es un verbo: I agree, she agrees. Nunca “I am agree”.</p></article>
@@ -420,12 +457,11 @@
         return `
             <div class="panel-head">
                 <div><h3>Fuentes</h3><p>De dónde sale cada respuesta</p></div>
-                <span class="paper-tag">WoZ · rigor</span>
+                
             </div>
             <div class="stack">
                 <div class="source-card"><strong>Cambridge Grammar</strong><span>Uso de “agree” y verbos estativos.</span><span class="source-tag">verificado</span></div>
                 <div class="source-card"><strong>Longman Dictionary</strong><span>Matices entre “important” y “relevant”.</span><span class="source-tag">verificado</span></div>
-                <div class="source-card"><strong>British Council</strong><span>Pronunciación de “comfortable” en inglés británico.</span><span class="source-tag">mock</span></div>
             </div>
         `;
     }
@@ -455,20 +491,7 @@
         return (map[activeTab] || renderVocabularyPanel)();
     }
 
-    /* ---------------- Footer / drawer / sugerencias ---------------- */
-    function renderFooter() {
-        const st = S.get();
-        const active = st.sessions.find((s) => s.active) || st.sessions[0];
-        return `
-            <button class="history-toggle" data-action="toggle-history" aria-expanded="${st.historyOpen}" aria-controls="history-drawer">
-                <span class="history-toggle-icon">${I.message(16)}</span>
-                <span><strong>Chats recientes</strong><small>Organizados por actividad</small></span>
-            </button>
-            <div class="history-current"><span>Sesión actual</span><strong>${active.title}</strong><small>${active.meta}</small></div>
-            <button class="history-open-btn" data-action="toggle-history">Ver chats ${I.arrowRight(15)}</button>
-        `;
-    }
-
+    /* ---------------- Historial y sugerencias ---------------- */
     function renderHistoryDrawer() {
         const st = S.get();
         const groups = [
@@ -503,31 +526,6 @@
         `;
     }
 
-    function renderDrawer() {
-        const st = S.get();
-        return `
-            <div class="drawer-head">
-                <div class="brand">
-                    <img class="drawer-brand-logo" src="images/lingua-ia-logo.png" alt="Lingua IA">
-                </div>
-                <button class="icon-btn" data-action="close-drawer" aria-label="Cerrar menú">${I.close(18)}</button>
-            </div>
-            <p class="drawer-eyebrow">Selector de tareas y modos de práctica</p>
-            <button class="mobile-history-link" data-action="toggle-history">Ver chats recientes</button>
-            <div class="drawer-grid">
-                ${Object.keys(D.modes).map((key) => {
-                    const m = D.modes[key];
-                    return `
-                        <button class="drawer-mode ${st.mode === key ? 'is-active' : ''}" data-action="set-mode" data-mode="${key}">
-                            <span class="drawer-mode-icon">${(I[{ writing: 'doc', conversation: 'message', lessons: 'book' }[key]] || I.doc)(20)}</span>
-                            <strong>${m.label}</strong>
-                            <span>${m.subtitle}</span>
-                        </button>`;
-                }).join('')}
-            </div>
-        `;
-    }
-
     function renderSuggestions() {
         const st = S.get();
         if (st.detailsLevel < 3) {
@@ -545,7 +543,7 @@
         }
         return `
             <div class="popover-head">
-                <span class="paper-tag strong">Yang et al. · CHI'26 · WoZ</span>
+                
                 <button class="icon-btn tiny" data-action="toggle-suggestions" aria-label="Cerrar sugerencias">${I.close(15)}</button>
             </div>
             <h4>Sugerencias para este paso</h4>
@@ -563,9 +561,8 @@
     window.Panels = {
         renderTabs,
         renderAsideContent,
-        renderFooter,
+        renderWritingDraft,
         renderHistoryDrawer,
-        renderDrawer,
         renderSuggestions
     };
 })();

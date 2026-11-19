@@ -14,7 +14,7 @@
 
         <!-- ============ HEADER ============ -->
         <header class="app-header">
-            <button class="icon-btn" data-action="open-drawer" aria-label="Menú: selector de tareas y modos" title="Selector de tareas">
+            <button class="icon-btn" data-action="toggle-history" aria-label="Abrir chats recientes" title="Chats recientes" aria-expanded="false" aria-controls="history-drawer">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
             </button>
             <div class="brand-lockup" aria-label="Lingua IA" title="Lingua IA">
@@ -23,17 +23,15 @@
             <span class="header-divider" aria-hidden="true"></span>
 
             <nav class="mode-nav" id="mode-nav" aria-label="Modos de práctica">
+                <button class="mode-pill is-active" data-action="open-quickstart" data-view="quickstart" aria-current="page">Dudas rápidas</button>
                 <button class="mode-pill" data-action="set-mode" data-mode="conversation">Conversación escrita</button>
                 <button class="mode-pill" data-action="set-mode" data-mode="lessons">Lecciones y repaso</button>
-                <button class="mode-pill is-active" data-action="set-mode" data-mode="writing" aria-current="true">Redacción asistida</button>
+                <button class="mode-pill" data-action="set-mode" data-mode="writing">Redacción asistida</button>
             </nav>
 
             <div class="header-spacer"></div>
 
-            <a href="guia.html" target="_blank" class="suggestion-btn" title="Abrir Guía de Principios de IHC en pestaña nueva" style="text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                <span>Guía IHC</span>
-            </a>
+            
 
             <button class="suggestion-btn" id="suggestions-btn" data-action="toggle-suggestions" aria-expanded="false" aria-controls="suggestions-popover" aria-label="Sugerencias para este paso" title="Sugerencias para este paso">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0012 3z"/></svg>
@@ -43,6 +41,25 @@
             <div class="popover" id="suggestions-popover" hidden></div>
         </header>
 
+        <main class="quickstart-view" id="quickstart-view">
+            <section class="quickstart-content" aria-labelledby="quickstart-title">
+                <p class="quickstart-eyebrow">Inicio</p>
+                <h1 id="quickstart-title">¿Qué necesitas practicar?</h1>
+                <p class="quickstart-intro">Escribe tu duda y te dirigimos a la actividad que corresponde. También puedes elegir una tarea arriba.</p>
+                <form class="quickstart-form" id="quickstart-form">
+                    <label class="sr-only" for="quickstart-input">Escribe tu duda en español o inglés</label>
+                    <textarea id="quickstart-input" rows="2" placeholder="Ej.: ¿Puedes revisar este correo? ¿Qué significa “dedicated”? Quiero practicar una entrevista."></textarea>
+                    <button class="btn btn-primary" type="submit">Continuar</button>
+                </form>
+                <p class="quickstart-feedback" id="quickstart-feedback" role="status" hidden></p>
+                <div class="quickstart-options" role="group" aria-label="Elegir una actividad">
+                    <button class="quickstart-option" data-action="set-mode" data-mode="writing"><strong>Redacción asistida</strong><span>Revisar un texto y decidir qué cambios conservar.</span></button>
+                    <button class="quickstart-option" data-action="set-mode" data-mode="lessons"><strong>Lecciones y repaso</strong><span>Consultar vocabulario en una lectura y ver ejemplos.</span></button>
+                    <button class="quickstart-option" data-action="set-mode" data-mode="conversation"><strong>Conversación escrita</strong><span>Practicar respuestas en un escenario breve.</span></button>
+                </div>
+            </section>
+        </main>
+
         <!-- ============ WORKSPACE ============ -->
         <div class="workspace">
             <main class="chat-column">
@@ -50,7 +67,7 @@
                 <div class="stagebar" id="stagebar"></div>
 
                 <div class="chat-scroll" id="chat-scroll">
-                    <div class="chat-messages" id="chat-messages" aria-live="polite"></div>
+                    <div class="chat-messages" id="chat-messages"></div>
                 </div>
 
                 <div class="side-query" id="side-query" hidden></div>
@@ -78,13 +95,9 @@
             </aside>
         </div>
 
-        <!-- ============ FOOTER ============ -->
-        <footer class="recent-footer" id="recent-footer" aria-label="Chats recientes"></footer>
     </div>
 
     <!-- Overlays -->
-    <div class="drawer-overlay" id="drawer-overlay" data-action="close-drawer" hidden></div>
-    <aside class="drawer" id="drawer" hidden aria-label="Selector de tareas"></aside>
     <div class="history-overlay" id="history-overlay" data-action="close-history" hidden></div>
     <aside class="history-drawer" id="history-drawer" hidden aria-label="Chats recientes organizados por tarea"></aside>
     <div class="mobile-support-overlay" id="mobile-support-overlay" data-action="close-mobile-support" hidden></div>

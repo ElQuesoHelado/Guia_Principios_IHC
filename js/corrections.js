@@ -25,11 +25,14 @@
             return parts.join('');
         }
         parts.push(`<div class="hint-box"><strong>Pista:</strong> ${c.hint}</div>`);
-        if (help === 'explicacion' || help === 'ejemplo' || help === 'reescritura') {
+        if (help === 'explicacion' || help === 'ejemplo') {
             parts.push(`<p class="why"><strong>Por qué:</strong> ${c.why}</p>`);
         }
-        if (help === 'ejemplo' || help === 'reescritura') {
+        if (help === 'ejemplo') {
             parts.push(`<div class="example-box"><span class="example-label">Ejemplo</span>${c.example}</div>`);
+        }
+        if (help === 'reescritura') {
+            parts.push(`<p class="why"><strong>Reescritura completa:</strong> arriba puedes revisar el texto completo con todas las propuestas aplicadas. Después decide cuáles conservar.</p>`);
         }
         return parts.join('');
     }
@@ -41,11 +44,11 @@
         const isAccepted = status === 'accepted';
         const isRejected = status === 'rejected';
 
-        const diff = S.get().help === 'pista'
-            ? ''
-            : `<div class="diff-line">
+        const diff = `<div class="diff-line">
+                    <span class="diff-label">Original:</span>
                     <span class="diff-before">${c.before}</span>
                     <span class="diff-arrow" aria-hidden="true">→</span>
+                    <span class="diff-label">Propuesta:</span>
                     <span class="diff-after">${c.after}</span>
                </div>`;
 
@@ -76,7 +79,7 @@
                     <div class="badge-row">
                         <span class="type-badge ${c.kind}">${c.label}</span>
                     </div>
-                    <span class="correction-count">${simple ? 'Paso' : 'Corrección'} ${c.correctionNo} de 4</span>
+                    <span class="correction-count">${simple ? 'Paso' : 'Corrección'} ${c.correctionNo} de ${D.corrections.length}</span>
                 </div>
 
                 <div class="correction-title-row">

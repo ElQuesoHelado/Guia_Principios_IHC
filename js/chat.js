@@ -1,5 +1,5 @@
 /* ============================================================
-   Chat · mensajes, composer, side queries y respuestas mock
+   Chat · mensajes, composer y consultas laterales
    Papers: Gu (workflows), Kazemitabaar (side queries)
    ============================================================ */
 (function () {
@@ -41,7 +41,7 @@
     function typingHtml() {
         return `
             <div class="bubble ai typing-bubble" aria-label="El tutor está escribiendo">
-                <div class="bubble-label">TUTOR IA · ESCRIBIENDO</div>
+                <div class="bubble-label">El tutor está escribiendo…</div>
                 <div class="typing-dots"><span></span><span></span><span></span></div>
             </div>`;
     }
@@ -53,6 +53,7 @@
         const rest = msgs.slice(2).map((msg, index) => messageHtml(msg, index + 2)).join('');
         return `
             ${initial}
+            ${Panels.renderWritingDraft()}
             ${window.Corrections.renderAnalysis()}
             ${rest}
             ${st.typing ? typingHtml() : ''}
@@ -72,7 +73,7 @@
             </div>
             <div class="chat-context-note">
                 ${I.info(14)}
-                <span class="context-copy"><b>Objetivo:</b> ${scenario.goal} <span class="paper-tag">Gu et al. · workflow</span></span>
+                <span class="context-copy"><b>Objetivo:</b> ${scenario.goal}</span>
                 <button class="text-btn" data-action="next-prompt">Siguiente pregunta ${I.arrowRight(13)}</button>
             </div>
             ${st.messages.conversation.map((msg, index) => messageHtml(msg, index)).join('')}
@@ -83,19 +84,19 @@
     function lessonsChat() {
         const st = S.get();
         const selected = st.selectedWord ? D.article.words.find((w) => w.word === st.selectedWord) : null;
+        const paragraphs = st.customReading ? st.customReading.split(/\n\s*\n/) : D.article.paragraphs;
         return `
             <div class="reading-card">
                 <div class="section-head">
                     <div class="section-title-wrap">
-                        <h4>${D.article.title}</h4>
-                        <span class="paper-tag">LightVA · data lens</span>
+                        <h4>${st.customReading ? 'Mi lectura' : D.article.title}</h4>
                     </div>
-                    <span class="muted-text">${D.article.source}</span>
+                    <button class="text-btn" data-action="open-reading-modal">${st.customReading ? 'Cambiar lectura' : 'Usar mi lectura'}</button>
                 </div>
-                ${D.article.paragraphs.map((p) => `<p>${p}</p>`).join('')}
-                <div class="word-picker">
-                    ${D.article.words.map((w) => `<button class="word-chip ${st.selectedWord === w.word ? 'is-active' : ''}" data-action="select-word" data-word="${w.word}">${w.word}</button>`).join('')}
-                </div>
+                ${paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}
+                ${st.customReading
+                    ? `<div class="custom-reading-word"><span>Palabra a consultar: <strong>${escapeHtml(st.customWord)}</strong></span><button class="btn btn-primary" data-action="ask-about-reading" data-word="${escapeHtml(st.customWord)}">Preguntar al tutor</button></div>`
+                    : `<div class="word-picker" aria-label="Palabras para explorar">${D.article.words.map((w) => `<button class="word-chip ${st.selectedWord === w.word ? 'is-active' : ''}" data-action="select-word" data-word="${w.word}">${w.word}</button>`).join('')}</div>`}
                 ${selected ? `
                     <div class="inline-word-detail">
                         <div class="word-detail-head"><strong>${selected.word}</strong><span>Significado en este artículo</span></div>
@@ -126,10 +127,7 @@
         }
         el.innerHTML = `
             <div class="side-query-head">
-                <div>
-                    <strong>Consulta lateral</strong>
-                    <span class="paper-tag">Kazemitabaar · UIST'24 · side query</span>
-                </div>
+                <div><strong>Consulta lateral</strong></div>
                 <button class="icon-btn tiny" data-action="close-side-query" aria-label="Cerrar consulta lateral">${I.close(15)}</button>
             </div>
             <div class="side-examples">
@@ -143,11 +141,10 @@
             </form>
             ${st.sideAnswer ? `
                 <div class="side-answer">
-                    <p><strong>Respuesta mock:</strong> ${st.sideAnswer.text}</p>
+                    <p><strong>Respuesta del tutor:</strong> ${st.sideAnswer.text}</p>
                     ${st.sideAnswer.rows ? `<div class="mini-table-wrap compact"><table class="mini-table"><tbody>${st.sideAnswer.rows.map((r) => `<tr><td class="mono">${r[0]}</td><td>${r[1]}</td></tr>`).join('')}</tbody></table></div>` : ''}
                     <div class="modal-actions">
                         <button class="text-btn" data-action="side-add-criterion">${I.plus(13)} Añadir a criterios</button>
-                        <button class="text-btn" data-action="side-insert">${I.arrowRight(13)} Insertar en el texto</button>
                     </div>
                 </div>
             ` : ''}
@@ -216,9 +213,11 @@
             const mode = st.mode;
             window.setTimeout(() => {
                 const reply = replyFor(mode, clean);
-                const label = { writing: 'TUTOR IA · REDACCIÓN', conversation: 'TUTOR IA · CONVERSACIÓN ESCRITA', lessons: 'TUTOR IA · LECTURA' }[mode];
+                const label = { writing: 'Tutor IA · Redacción', conversation: 'Tutor IA · Conversación', lessons: 'Tutor IA · Lecciones' }[mode];
                 st.messages[mode].push({ role: 'ai', label, text: reply.text, chips: reply.chips || [] });
                 S.set({ typing: false });
+                const live = document.getElementById('live-region');
+                if (live) live.textContent = reply.text;
                 window.Chat.scrollToBottom();
             }, 850);
         }

@@ -9,6 +9,9 @@
 
     const initial = {
         mode: 'writing',
+        homeOpen: true,
+        quickstartFeedback: '',
+        quickstartDraft: '',
         help: 'pista',                 // pista | explicacion | ejemplo | reescritura
         tab: 'criteria',
         version: 'draft',              // original | draft | final
@@ -22,6 +25,8 @@
         messages: clone(D.initialMessages),
         scenario: 'interview',
         selectedWord: null,
+        customReading: '',
+        customWord: '',
         savedWords: [],
         plan: clone(D.plan),
         criteria: clone(D.criteria),
@@ -32,7 +37,6 @@
         ],
         sessions: clone(D.sessions),
         suggestionsOpen: false,
-        drawerOpen: false,
         historyOpen: false,
         supportOpen: false,
         historyMode: null,
