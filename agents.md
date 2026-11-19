@@ -42,12 +42,16 @@ Este documento (`agents.md`) sirve como fuente de verdad y memoria técnica para
 │   ├── chat.js                  # Lógica de renderizado de mensajes de chat y respuestas simuladas
 │   └── app.js                   # Bootstrap, orquestación global y delegación de eventos [data-action]
 ├── docs/
-│   └── screenshots/             # 14 miniaturas recortadas para la documentación y guía
+│   ├── screenshots/             # 14 miniaturas recortadas para la documentación y guía
+│   └── screenshots/principles/  # 44 capturas dedicadas y precisas para cada principio de diseño cumplido
 ├── tools/
 │   ├── generate_screenshots.py  # Script automatizado con Firefox Headless y Pillow
+│   ├── build_doc_with_precise_screenshots.py # Generador del DOCX con las 44 capturas precisas insertadas
 │   └── test_guide_integrity.py  # Test automatizado de integridad referencial y anti-alucinación
 ├── GUIA_PRINCIPIOS_IHC.md       # Guía de evaluación docente en Markdown (71 principios)
 ├── GUIA_PRINCIPIOS_IHC.html     # Guía interactiva/imprimible con sidebar adhesivo y checklist
+├── Evaluacion_detallada_reglas_Lingua_IA.docx # Documento original de evaluación de las 71 reglas (intacto)
+├── Evaluacion_detallada_reglas_Lingua_IA_con_capturas.docx # Copia oficial con las 44 capturas insertadas en los que cumplen
 ├── Informe_principios_Lingua_IA (1).docx # Informe original previo (auditoría base)
 ├── usuarios.md                  # Análisis de usuarios objetivo y especificación de tareas (HTA)
 ├── guia.md / guiaPapers.md / plan.md / reference.md # Documentación interna de alcance
