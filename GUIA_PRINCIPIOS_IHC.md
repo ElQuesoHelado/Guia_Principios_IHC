@@ -5,6 +5,8 @@
 
 ---
 
+Actualización pedagógica: se conservan los 71 principios y la clasificación de la auditoría anterior. El recorrido actual ofrece sugerencias opcionales de producción propia, autoevaluación y transferencia. Se entra directamente al correo con Original, Borrador, Versión actual y Ver cambios. Ver ejemplos de correo abre el modelo sin requisitos; Guardar mis notas admite notas parciales. Las cifras de cobertura no representan una nueva validación con usuarios ni resultados de aprendizaje.
+
 ## 1. Resumen Ejecutivo y Dashboard de Cobertura
 
 Esta guía permite evaluar en tiempo real la aplicación práctica de los principios de Interacción Humano-Computador en **Lingua IA**.
@@ -29,15 +31,15 @@ Para asegurar la máxima veracidad y erradicar cualquier alucinación documental
 Para comprobar interactivamente la coherencia del diseño sin recorrer los 71 principios uno a uno, siga esta secuencia guiada:
 
 ### Paso 1: Barra superior y persistencia
-- **Acción:** Haga clic en los 3 botones superiores ('Conversación escrita', 'Lecciones y repaso', 'Redacción asistida'). Compruebe que el cambio es instantáneo (1 clic), el botón activo se resalta en verde-teal y el pie del chat confirma el modo activo.
+- **Acción:** Haga clic en los 3 botones superiores ('Conversación escrita', 'Aprender vocabulario', 'Aprender a escribir correos'). Compruebe que el cambio es instantáneo (1 clic), el botón activo se resalta en verde-teal y el pie del chat confirma el modo activo.
 - **Principios demostrados:** `C1.1, C1.2, C7.5, C7.8`
 
 ### Paso 2: Tarjeta de corrección y decisiones
-- **Acción:** En 'Redacción asistida', examine la tarjeta central. Compruebe que muestra la categoría con badge de color y texto ('Gramática'), la frase original tachada en rojo suave y la propuesta en verde suave. Pruebe pulsar 'Usar esta sugerencia' y luego 'Deshacer'.
+- **Acción:** En 'Aprender a escribir correos', abra la etapa Revisar y examine la tarjeta central. Compruebe que muestra la categoría con badge de color y texto ('Gramática'), la frase original tachada en rojo suave y la propuesta en verde suave. Pruebe pulsar 'Usar esta sugerencia' y luego 'Deshacer'.
 - **Principios demostrados:** `C2.1, C4.1, C4.5, C5.1, C8.2, C8.8`
 
 ### Paso 3: Niveles de ayuda graduada
-- **Acción:** Bajo el chat, alterne entre 'Pista', 'Explicación', 'Ejemplo' y 'Reescritura completa'. Observe cómo la tarjeta revela progresivamente más contenido sin recargar la página.
+- **Acción:** Bajo el chat, alterne entre 'Pista', 'Explicación', 'Ejemplo' y 'Ver modelo revisado'. Observe cómo la tarjeta revela progresivamente más contenido sin recargar la página.
 - **Principios demostrados:** `C1.3, C3.7, C6.10, C7.10`
 
 ### Paso 4: Ver progreso y panel contextual
@@ -45,7 +47,7 @@ Para comprobar interactivamente la coherencia del diseño sin recorrer los 71 pr
 - **Principios demostrados:** `C3.5, C7.1, C7.8, C8.3, C8.5`
 
 ### Paso 5: Lectura y guardado léxico
-- **Acción:** Cambie a 'Lecciones y repaso'. En el artículo central, toque la palabra 'productive'. Observe cómo se abre la definición en contexto y pulse 'Guardar palabra'. Vaya a la pestaña 'Vocabulario' para verla archivada.
+- **Acción:** Cambie a 'Aprender vocabulario'. En el artículo central, toque la palabra 'productive'. Observe cómo se abre la definición en contexto y pulse 'Guardar palabra'. Vaya a la pestaña 'Vocabulario' para verla archivada.
 - **Principios demostrados:** `C3.4, C8.4, C8.7`
 
 ### Paso 6: Historial inmutable y drawer
@@ -65,7 +67,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** ✅ **Aplicado**
 - **Regla:** Cada elemento de la interfaz debe tener una sola interpretación plausible para el usuario objetivo.
 - **Ubicación en la interfaz:** `Barra superior (#mode-nav) y botones de acción en tarjetas (.correction-actions)`
-- **Cómo comprobarlo en vivo:** 1. Observar la barra superior: los 3 botones tienen nombres directos ('Conversación escrita', 'Lecciones y repaso', 'Redacción asistida'). 2. En la tarjeta de corrección central, los botones no usan etiquetas ambiguas como 'OK', sino verbos claros: 'Usar esta sugerencia' y 'Mantener mi frase'.
+- **Cómo comprobarlo en vivo:** 1. Observar la barra superior: los 3 botones tienen nombres directos ('Conversación escrita', 'Aprender vocabulario', 'Aprender a escribir correos'). 2. En la tarjeta de corrección central, los botones no usan etiquetas ambiguas como 'OK', sino verbos claros: 'Usar esta sugerencia' y 'Mantener mi frase'.
 - **Evidencia visual:**
   ![Barra superior con botones claros y sin ambigüedad](docs/screenshots/01_header_nav.png)
 - **Justificación de IHC:** Elimina el costo cognitivo de adivinar el resultado de una acción, permitiendo que la atención del estudiante se enfoque en aprender inglés y no en interpretar la interfaz.
@@ -83,7 +85,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** ✅ **Aplicado**
 - **Regla:** La información necesaria para el objetivo del usuario debe estar disponible, ser prominente y estar ligada a la acción siguiente.
 - **Ubicación en la interfaz:** `Columna central de trabajo (.chat-column) y selector de niveles de ayuda (#help-levels)`
-- **Cómo comprobarlo en vivo:** 1. En 'Redacción asistida', el foco principal es el correo y la sugerencia activa. 2. Justo debajo del chat, los botones 'Pista', 'Explicación', 'Ejemplo' y 'Reescritura completa' permiten al estudiante ajustar el nivel de asistencia según su meta de aprendizaje inmediata.
+- **Cómo comprobarlo en vivo:** 1. En 'Aprender a escribir correos', el foco es comprender un modelo, escribir, revisar y transferir. En la etapa Revisar aparece el correo de práctica y la sugerencia activa. 2. Justo debajo del chat, los botones 'Pista', 'Explicación', 'Ejemplo' y 'Ver modelo revisado' permiten al estudiante ajustar el nivel de asistencia según su meta de aprendizaje inmediata.
 - **Evidencia visual:**
   ![Selector de nivel de ayuda situado junto a la meta del estudiante](docs/screenshots/05_help_levels.png)
 - **Justificación de IHC:** El estudiante busca comprender un error o redactar un texto; ofrecer ayuda graduada en el centro de atención apoya directamente su objetivo cognitivo sin pasos intermedios.
@@ -179,7 +181,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** 🟡 **Parcial**
 - **Regla:** Los encabezados deben usar elementos y niveles semánticos reales (h1–h6) para lectores de pantalla.
 - **Ubicación en la interfaz:** `index.html (#page-title) y títulos de sección (h3, h4)`
-- **Cómo comprobarlo en vivo:** En el código HTML existe un `<h1 class='sr-only' id='page-title'>Lingua IA · Redacción asistida</h1>` que se actualiza dinámicamente con el modo activo. Los módulos usan `<h3>` y `<h4>`. Es parcial porque falta completar la auditoría con NVDA/VoiceOver de toda la jerarquía intermedia.
+- **Cómo comprobarlo en vivo:** En el código HTML existe un `<h1 class='sr-only' id='page-title'>Lingua IA · Aprender a escribir correos</h1>` que se actualiza dinámicamente con el modo activo. Los módulos usan `<h3>` y `<h4>`. Es parcial porque falta completar la auditoría con NVDA/VoiceOver de toda la jerarquía intermedia.
 - **Evidencia visual:**
   ![Encabezado principal accesible para lectores de pantalla](docs/screenshots/01_header_nav.png)
 - **Justificación de IHC:** Permite a usuarios con tecnologías asistivas navegar directamente a los hitos de la página sin tener que recorrer todo el árbol del DOM.
@@ -197,7 +199,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** ✅ **Aplicado**
 - **Regla:** Los datos deben agruparse en fragmentos comprensibles, evitando cadenas largas indivisas.
 - **Ubicación en la interfaz:** `Panel de Progreso (.stat-grid) y plan de redacción (.plan-step)`
-- **Cómo comprobarlo en vivo:** Observar el panel de progreso: en vez de mostrar un párrafo denso con cifras, se fragmenta en 2 bloques limpios: 'Etapas completadas' (ej. 2/4) y 'Sugerencias revisadas' (ej. 0/4). El plan de redacción se divide en 5 pasos numerados e independientes.
+- **Cómo comprobarlo en vivo:** Observar el panel de progreso: en vez de mostrar un párrafo denso con cifras, se fragmenta en 2 bloques limpios: 'Etapas con notas guardadas' (ej. 2/4) y 'Sugerencias revisadas' (ej. 0/4). El plan de redacción se divide en 5 pasos numerados e independientes.
 - **Evidencia visual:**
   ![Fragmentación de métricas en tarjetas separadas](docs/screenshots/07_side_progress.png)
 - **Justificación de IHC:** Respeta la capacidad finita de la memoria de trabajo humana (regla de Miller, 4 a 7 fragmentos de información simultánea).
@@ -215,7 +217,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** ✅ **Aplicado**
 - **Regla:** Cada etiqueta debe estar arriba o a la izquierda de su valor; la proximidad debe dejar claro a qué dato pertenece.
 - **Ubicación en la interfaz:** `Badges de corrección (.badge-row), Criterios (.criterion-label) y métricas de progreso`
-- **Cómo comprobarlo en vivo:** En el panel de criterios, la etiqueta ('DESTINATARIA', 'TONO') se ubica inmediatamente encima del campo de entrada. En las métricas de progreso, el número grande ('2/4') tiene su descripción ('Etapas completadas') justo debajo, formando un bloque indivisible.
+- **Cómo comprobarlo en vivo:** En el panel de criterios, la etiqueta ('DESTINATARIA', 'TONO') se ubica inmediatamente encima del campo de entrada. En las métricas de progreso, el número grande ('2/4') tiene su descripción ('Etapas con notas guardadas') justo debajo, formando un bloque indivisible.
 - **Evidencia visual:**
   ![Etiquetas inmediatas sobre sus valores en tarjetas de criterios](docs/screenshots/06_side_criteria.png)
 - **Justificación de IHC:** Evita movimientos oculares de vaivén (saccades) innecesarios entre el dato y su descripción semántica.
@@ -452,7 +454,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** ✅ **Aplicado**
 - **Regla:** Si una acción produce efectos distintos según el estado del sistema, el modo actual debe ser visible de forma persistente.
 - **Ubicación en la interfaz:** `Píldora activa en header (.mode-pill.is-active) y composer hint (#composer-mode-hint)`
-- **Cómo comprobarlo en vivo:** 1. El modo activo se resalta en el header en color teal sólido con atributo `aria-current='true'`. 2. Al pie del campo de texto de chat, una etiqueta fija indica explícitamente: 'Modo: Redacción asistida' o 'Modo: Conversación', recordando el contexto de la IA.
+- **Cómo comprobarlo en vivo:** 1. El modo activo se resalta en el header en color teal sólido con atributo `aria-current='true'`. 2. Al pie del campo de texto de chat, una etiqueta fija indica explícitamente la actividad actual, recordando el contexto de la IA.
 - **Evidencia visual:**
   ![Indicador permanente del modo activo al pie del campo de entrada](docs/screenshots/14_composer_hints.png)
 - **Justificación de IHC:** Previene errores de modo (intentar hacer preguntas de gramática cuando el sistema espera una respuesta en inglés para la entrevista de trabajo).
@@ -509,7 +511,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** ✅ **Aplicado**
 - **Regla:** Indicar claramente qué ha hecho el usuario y qué queda pendiente en el flujo de trabajo.
 - **Ubicación en la interfaz:** `Contador de tarjeta ('Paso 1 de 4') y barra de etapas (#stagebar)`
-- **Cómo comprobarlo en vivo:** 1. Cada tarjeta de sugerencia indica 'Paso 1 de 4'. 2. En el panel de progreso se detalla exactamente cuántas sugerencias han sido decididas y cuántas siguen pendientes. 3. Las etapas diferencian estado completado, actual y futuro.
+- **Cómo comprobarlo en vivo:** 1. El apoyo opcional indica la sugerencia seleccionada; las sugerencias tienen su propio contador. 2. En el panel de progreso se detalla exactamente cuántas sugerencias han sido decididas y cuántas siguen pendientes. 3. Las etapas diferencian estado completado, actual y futuro.
 - **Evidencia visual:**
   ![Indicadores de completitud y pasos restantes](docs/screenshots/02_stagebar.png)
 - **Justificación de IHC:** Genera una sensación de avance tangible y activa el efecto Zeigarnik positivo (motivación intrínseca por completar tareas pendientes).
@@ -518,7 +520,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** 🟡 **Parcial**
 - **Regla:** Permitir que el usuario marque o clasifique elementos para indicar qué ya trabajó y qué no.
 - **Ubicación en la interfaz:** `Guardado de vocabulario en lecciones ([data-action='save-word'])`
-- **Cómo comprobarlo en vivo:** En 'Lecciones y repaso', el estudiante puede pulsar 'Guardar palabra' para archivar términos como 'productive' o 'flexibility'. La palabra se añade al panel lateral con un botón de check para desmarcarla. Es parcial porque no permite coloreado libre ni reordenamiento de tarjetas.
+- **Cómo comprobarlo en vivo:** En 'Aprender vocabulario', el estudiante puede pulsar 'Guardar palabra' para archivar términos como 'productive' o 'flexibility'. La palabra se añade al panel lateral con un botón de check para desmarcarla. Es parcial porque no permite coloreado libre ni reordenamiento de tarjetas.
 - **Evidencia visual:**
   ![Acción de guardar términos seleccionados para repaso posterior](docs/screenshots/09_lessons_reading.png)
 - **Justificación de IHC:** Permite al estudiante personalizar su inventario léxico activo según sus debilidades individuales.
@@ -527,7 +529,7 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 - **Estado:** ✅ **Aplicado**
 - **Regla:** En cada punto de decisión, las opciones deben indicar claramente a qué meta conducen.
 - **Ubicación en la interfaz:** `Etiquetas de navegación y botón de progreso`
-- **Cómo comprobarlo en vivo:** El botón 'Ver progreso' indica inequívocamente que abrirá las estadísticas de la sesión. El botón 'Apoyo' en móviles indica acceso a la ayuda. Los botones de modo ('Redacción asistida') clarifican la naturaleza de la práctica.
+- **Cómo comprobarlo en vivo:** El botón 'Ver progreso' indica inequívocamente que abrirá las estadísticas de la sesión. El botón 'Apoyo' en móviles indica acceso a la ayuda. Los botones de modo ('Aprender a escribir correos') clarifican la naturaleza de la práctica.
 - **Evidencia visual:**
   ![Rastro informativo evidente en botones de acción y avance](docs/screenshots/02_stagebar.png)
 - **Justificación de IHC:** Satisface la teoría del forrajeo de información (information foraging): el usuario sigue pistas semánticas fuertes para llegar a su meta sin perder tiempo.
@@ -571,8 +573,8 @@ A continuación se presenta la ficha técnica de cada uno de los **55 principios
 #### C8.10 · Gestionar los pasos de cierre
 - **Estado:** ✅ **Aplicado**
 - **Regla:** Recordar o facilitar los pasos que el usuario tiende a olvidar al terminar la tarea principal.
-- **Ubicación en la interfaz:** `Lógica de avance de etapas en app.js (handleAction: set-stage)`
-- **Cómo comprobarlo en vivo:** Al hacer clic en la etapa final 'Cerrar': si el estudiante omitió alguna etapa previa, el sistema emite un toast informando: 'Etapa Cerrar seleccionada. Quedan X etapas por completar'. Si ya completó todo, confirma: 'Actividad terminada. Tus cambios siguen disponibles en el panel de apoyo'.
+- **Ubicación en la interfaz:** `Registro de evidencias en learning.js (Learning.save) y navegación en app.js (set-stage)`
+- **Cómo comprobarlo en vivo:** En Transferir, el estudiante escribe una nueva producción y reflexiona. Guardar mis notas permite conservar notas parciales y saltar o retomar las sugerencias libremente. Navegar no marca etapas como terminadas. Ver progreso conserva visibles los pasos pendientes; el registro no acredita dominio del idioma.
 - **Evidencia visual:**
   ![Gestión guiada de la culminación de la tarea](docs/screenshots/02_stagebar.png)
 - **Justificación de IHC:** Previene errores de post-culminación (abandonar la tarea creyendo haber finalizado cuando quedaban pasos críticos pendientes).

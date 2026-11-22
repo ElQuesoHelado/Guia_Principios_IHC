@@ -1,53 +1,26 @@
 # Alcance y tareas de Lingua IA
 
-## Propósito
+## Usuario y propósito
 
-Acompañar la práctica autónoma del inglés con tres actividades breves. La interfaz responde a selecciones y acciones del estudiante, pero usa contenido de demostración y no conecta con un modelo de IA ni con servicios externos.
+Estudiante universitario hispanohablante, aproximadamente B1–B2, que necesita comprender vocabulario, escribir con intención propia y practicar respuestas en sesiones breves. El objetivo es construir conocimiento del inglés mediante producción, comparación y transferencia.
 
-## Usuario previsto
+## Tres tareas sin IA y su adaptación
 
-Estudiante universitario de nivel intermedio B1–B2 que practica en sesiones cortas desde una laptop o un celular. Necesita reconocer qué cambió, entender la razón y decidir cómo continuar sin recibir una lista extensa de correcciones.
+1. **Aprender a escribir un correo formal.** Sin IA: analizar modelos, planificar, redactar, autoevaluar con una lista de comprobación, consultar una guía o persona y escribir otro correo. Interfaz: Comprender → Escribir → Revisar → Transferir. La guía es opcional y se puede abrir, ocultar, saltar o retomar; el correo y sus cuatro sugerencias localizadas siempre están accesibles. El borrador propio se conserva separado del ejemplo; el estudiante justifica un cambio, revisa su borrador y produce un correo para otra situación.
+2. **Practicar conversación escrita.** Sin IA: preparar recursos, conversar por mensajes con otra persona, reformular y reflexionar. Interfaz: Preparar → Conversar → Revisar → Transferir. Escenarios predefinidos, mensajes, pistas y avance voluntario; revisión razonada y diálogo nuevo.
+3. **Aprender vocabulario en contexto.** Sin IA: leer, inferir, contrastar con diccionario y ejemplos, registrar y recuperar. Interfaz: Leer → Descubrir → Registrar → Practicar. Notas de hipótesis, comparación, registro contextual y oración propia.
 
-## Actividades incluidas
+## Evidencias y progreso
 
-### 1. Redacción asistida
+`js/learning.js` presenta una actividad contextual por etapa. Las notas sobreviven al cambio de actividad en memoria. “Guardar mis notas” permite registrar una nota parcial, sin exigir todos los campos ni la autoevaluación. Editar las notas invalida el registro de ese paso; navegar nunca lo completa. El progreso distingue pasos registrados, notas, palabras guardadas y decisiones sobre sugerencias. Ningún indicador acredita dominio ni corrección lingüística.
 
-1. El estudiante revisa un correo de ejemplo o escribe una consulta sobre su propio texto.
-2. La interfaz señala un cambio por vez, identifica su categoría y muestra el fragmento original, la propuesta y una razón breve.
-3. El estudiante acepta o rechaza la sugerencia; el texto y el estado de la decisión se actualizan.
-4. Puede consultar reglas y ejemplos, comparar versiones, editar los criterios o el plan y abrir el progreso desde el panel de apoyo.
+## Ideas y principios conservados
 
-### 2. Lecciones y repaso
+Se mantienen comparación original/propuesta, reglas y ejemplos, ayuda graduada en la revisión, criterios y plan editables, decisiones localizadas y reversibles, versiones del ejemplo, consultas contextuales y turnos controlados. La relación con cada paper se documenta en `guiaPapers.md`; el catálogo de 71 principios se mantiene en `GUIA_PRINCIPIOS_IHC`.
 
-1. El estudiante lee el artículo de ejemplo o pega una lectura propia en el chat.
-2. Selecciona una palabra y consulta su significado en contexto, su uso y ejemplos adicionales.
-3. Puede guardar o quitar la palabra y volver al panel de vocabulario.
-4. El panel contextual indica la etapa de la actividad y las palabras guardadas en la sesión.
+## Alcance técnico
 
-### 3. Conversación escrita
+Demo frontend con contenido predefinido y estado en memoria, sin evaluación de textos libres ni envío de correos. Las notas y mensajes desaparecen al recargar. La conversación se realiza por texto; los hallazgos sobre voz de las entrevistas no son funciones implementadas.
 
-1. El estudiante elige un escenario, como una entrevista.
-2. Responde por escrito en inglés a turnos breves y puede solicitar una pista.
-3. Revisa vocabulario relacionado y el avance de la sesión.
 
-## Elementos compartidos
-
-- Navegación superior con las tres actividades; el cambio de tarea requiere un clic.
-- Etapas de tarea con estado actual y etapas completadas.
-- Chat escrito con indicación de envío y campo de consulta específico al modo.
-- Ayuda graduada: pista, explicación, ejemplo y reescritura completa cuando la tarea lo admite.
-- Panel de apoyo que cambia según la actividad y evita repetir el contenido central.
-- Historial de conversaciones agrupado por actividad y con orden estable.
-- Acceso “Ver progreso” que muestra el progreso del modo activo con un clic.
-
-## Límites de la demo
-
-- Las sugerencias, reglas, escenarios y artículo son datos de demostración; no hay generación real con IA, persistencia en servidor ni sincronización entre dispositivos.
-- Los indicadores de progreso se derivan del estado local visible: decisiones de corrección, palabras guardadas, respuestas escritas y etapas marcadas.
-- La conversación es solo por texto. No hay micrófono, grabación, pronunciación ni minutos hablados.
-
-## Ideas retiradas o fuera del alcance
-
-La lluvia de ideas inicial incluía cuatro modos, incluida una sección independiente de dudas; conversación oral con micrófono y grabación; pronunciación; reseñas de películas o series; métricas de minutos hablados; y una experiencia que mezclaba funciones de lectura, escritura y listening. Esta versión conserva tres actividades: las dudas se escriben en el chat del modo activo, la conversación se realiza por texto y la reseña no forma parte del prototipo actual.
-
-También se retiraron del recorrido del estudiante las ramas técnicas, la vista por procedimiento/datos, gráficos de operaciones, controles de protocolo y etiquetas de papers. Esos elementos explicaban métodos de investigación o implementación, pero no ayudaban a comprender inglés ni a decidir sobre una sugerencia.
+El apoyo pedagógico es opcional: se accede directamente a correo, lectura o conversación. Las sugerencias están inicialmente ocultas y pueden abrirse u ocultarse en cualquier momento. En el correo, “Ver ejemplos de correo” abre el modelo directamente; Original, Borrador, Versión actual, Ver cambios, Versiones y Deshacer siguen accesibles al cambiar de sugerencia.

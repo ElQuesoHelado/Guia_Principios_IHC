@@ -9,7 +9,7 @@
 
     const initial = {
         mode: 'writing',
-        homeOpen: true,
+        homeOpen: false,
         quickstartFeedback: '',
         quickstartDraft: '',
         help: 'pista',                 // pista | explicacion | ejemplo | reescritura
@@ -21,7 +21,10 @@
         sideAnswer: null,
         typing: false,
         activeStage: 2,
-        completedStages: { writing: [0, 1], conversation: [0], lessons: [0] },
+        completedStages: { writing: [], conversation: [], lessons: [] },
+        learning: { writing: {}, conversation: {}, lessons: {} },
+        stageByMode: { writing: 2, conversation: 1, lessons: 0 },
+        learningOpen: { writing: false, conversation: false, lessons: false },
         messages: clone(D.initialMessages),
         scenario: 'interview',
         selectedWord: null,

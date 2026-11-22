@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutor IA · Inglés asistido</title>
+    <title>Lingua IA · Aprende y aplica inglés</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,10 +23,9 @@
             <span class="header-divider" aria-hidden="true"></span>
 
             <nav class="mode-nav" id="mode-nav" aria-label="Modos de práctica">
-                <button class="mode-pill is-active" data-action="open-quickstart" data-view="quickstart" aria-current="page">Dudas rápidas</button>
+                <button class="mode-pill" data-action="set-mode" data-mode="writing">Aprender a escribir correos</button>
                 <button class="mode-pill" data-action="set-mode" data-mode="conversation">Conversación escrita</button>
-                <button class="mode-pill" data-action="set-mode" data-mode="lessons">Lecciones y repaso</button>
-                <button class="mode-pill" data-action="set-mode" data-mode="writing">Redacción asistida</button>
+                <button class="mode-pill" data-action="set-mode" data-mode="lessons">Aprender vocabulario</button>
             </nav>
 
             <div class="header-spacer"></div>
@@ -45,7 +44,7 @@
             <section class="quickstart-content" aria-labelledby="quickstart-title">
                 <p class="quickstart-eyebrow">Inicio</p>
                 <h1 id="quickstart-title">¿Qué necesitas practicar?</h1>
-                <p class="quickstart-intro">Escribe tu duda y te dirigimos a la actividad que corresponde. También puedes elegir una tarea arriba.</p>
+                <p class="quickstart-intro">Elige una de las tres actividades. Primero intenta resolverla; después consulta pistas, compara y aplica lo aprendido.</p>
                 <form class="quickstart-form" id="quickstart-form">
                     <label class="sr-only" for="quickstart-input">Escribe tu duda en español o inglés</label>
                     <textarea id="quickstart-input" rows="2" placeholder="Ej.: ¿Puedes revisar este correo? ¿Qué significa “dedicated”? Quiero practicar una entrevista."></textarea>
@@ -53,9 +52,9 @@
                 </form>
                 <p class="quickstart-feedback" id="quickstart-feedback" role="status" hidden></p>
                 <div class="quickstart-options" role="group" aria-label="Elegir una actividad">
-                    <button class="quickstart-option" data-action="set-mode" data-mode="writing"><strong>Redacción asistida</strong><span>Revisar un texto y decidir qué cambios conservar.</span></button>
-                    <button class="quickstart-option" data-action="set-mode" data-mode="lessons"><strong>Lecciones y repaso</strong><span>Consultar vocabulario en una lectura y ver ejemplos.</span></button>
-                    <button class="quickstart-option" data-action="set-mode" data-mode="conversation"><strong>Conversación escrita</strong><span>Practicar respuestas en un escenario breve.</span></button>
+                    <button class="quickstart-option" data-action="set-mode" data-mode="writing"><strong>Aprender a escribir correos</strong><span>Analizar un modelo, escribir y aplicar lo aprendido en otro correo.</span></button>
+                    <button class="quickstart-option" data-action="set-mode" data-mode="lessons"><strong>Aprender vocabulario</strong><span>Inferir significados, comparar ejemplos y crear una oración propia.</span></button>
+                    <button class="quickstart-option" data-action="set-mode" data-mode="conversation"><strong>Conversación escrita</strong><span>Preparar respuestas, conversar por escrito y reflexionar.</span></button>
                 </div>
             </section>
         </main>
@@ -63,7 +62,7 @@
         <!-- ============ WORKSPACE ============ -->
         <div class="workspace">
             <main class="chat-column">
-                <h1 class="sr-only" id="page-title">Lingua IA · Redacción asistida</h1>
+                <h1 class="sr-only" id="page-title">Lingua IA · Aprender a escribir correos</h1>
                 <div class="stagebar" id="stagebar"></div>
 
                 <div class="chat-scroll" id="chat-scroll">
@@ -83,7 +82,7 @@
                     </form>
                     <div class="composer-hint">
                         <span>Enter envía · Shift + Enter salto de línea</span>
-                        <span id="composer-mode-hint">Modo: Redacción asistida</span>
+                        <span id="composer-mode-hint">Modo: Aprender a escribir correos</span>
                     </div>
                 </div>
             </main>
@@ -112,6 +111,7 @@
     <script src="js/state.js"></script>
     <script src="js/corrections.js"></script>
     <script src="js/panels.js"></script>
+    <script src="js/learning.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/app.js"></script>
 </body>

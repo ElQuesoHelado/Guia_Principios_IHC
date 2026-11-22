@@ -35,13 +35,13 @@ Best regards`;
             id: 'c2',
             kind: 'vocab',
             label: 'Vocabulario',
-            title: 'Palabra poco precisa',
+            title: 'Una alternativa según la intención',
             correctionNo: 2,
             before: 'important',
-            after: 'relevant',
-            hint: 'Mira “important”. Para hablar de lo que afecta tu nota, ¿hay una palabra más precisa?',
-            why: '“Relevant” expresa que el plazo es pertinente para tu evaluación; “important” es más general.',
-            example: 'This deadline is relevant for my final grade.',
+            after: 'crucial',
+            hint: '“Important” ya es correcto. ¿Quieres enfatizar que el plazo es decisivo o conservar una expresión más general?',
+            why: '“Crucial” destaca que algo es decisivo. Es una alternativa de énfasis, no la corrección de un error: conserva “important” si ese era tu sentido.',
+            example: 'Submitting on time is crucial for my final grade.',
             ruleId: 'r2',
             control: 'comunicación',
             risk: 'validez ecológica',
@@ -93,10 +93,11 @@ Best regards`;
             bad: 'I am agree with the deadline.'
         },
         {
-            id: 'r2', kind: 'vocab', label: 'Vocabulario', title: 'Important vs. relevant',
-            body: '“Important” indica valor general. “Relevant” indica que algo es pertinente para el tema o la evaluación.',
-            good: 'This deadline is relevant for my final grade.',
-            bad: 'This deadline is important for my final grade.'
+            id: 'r2', kind: 'vocab', label: 'Vocabulario', title: 'Important / crucial',
+            body: '“Important” indica importancia; “crucial” añade un énfasis decisivo. Elige según tu intención: el original también puede ser correcto.',
+            good: 'Submitting on time is crucial for my final grade.',
+            bad: 'This deadline is important for my final grade.',
+            goodLabel: 'Alternativa con más énfasis', badLabel: 'Original válido'
         },
         {
             id: 'r3', kind: 'tone', label: 'Tono', title: 'Peticiones formales',
@@ -106,9 +107,10 @@ Best regards`;
         },
         {
             id: 'r4', kind: 'clarity', label: 'Claridad', title: 'Una idea por oración',
-            body: 'Si una oración tiene dos ideas unidas por “and”, sepáralas o usa un conector de consecuencia.',
+            body: 'Unir ideas con “and” puede ser correcto. Si la relación de causa y consecuencia no queda clara, puedes dividir la oración o usar un conector.',
             good: 'I had to work on a project. As a result, I could not finish on time.',
-            bad: 'I had to work on a project and I could not finish on time.'
+            bad: 'I had to work on a project and I could not finish on time.',
+            goodLabel: 'Relación explícita', badLabel: 'También es gramatical'
         }
     ];
 
@@ -148,11 +150,11 @@ Best regards`;
     /* ---------- Modos ---------- */
     const modes = {
         writing: {
-            label: 'Redacción asistida',
-            title: 'Redacción asistida',
+            label: 'Aprender a escribir correos',
+            title: 'Aprender a escribir correos',
             subtitle: 'Correo · solicitud de prórroga',
-            stages: ['Planificar', 'Borrador', 'Revisar', 'Cerrar'],
-            activeStage: 2,
+            stages: ['Comprender', 'Escribir', 'Revisar', 'Transferir'],
+            activeStage: 0,
             tabs: [
                 { id: 'text', label: 'Tu texto', paper: 'WaitGPT · data lens' },
                 { id: 'rules', label: 'Reglas', paper: 'Gu et al. · procedimiento' },
@@ -162,14 +164,14 @@ Best regards`;
                 { id: 'progress', label: 'Progreso', paper: 'Seguimiento de esta tarea' }
             ],
             placeholder: 'Pregunta sobre tu texto, vocabulario o una regla…',
-            modeHint: 'Modo: Redacción asistida'
+            modeHint: 'Actividad: Aprender a escribir correos'
         },
         conversation: {
             label: 'Conversación escrita',
             title: 'Conversación escrita',
             subtitle: 'Conversación por chat · entrevista de trabajo',
-            stages: ['Preparar', 'Responder', 'Revisar', 'Cerrar'],
-            activeStage: 1,
+            stages: ['Preparar', 'Conversar', 'Revisar', 'Transferir'],
+            activeStage: 0,
             tabs: [
                 { id: 'scenario', label: 'Escenario', paper: 'Gu et al. · contexto' },
                 { id: 'vocabulary', label: 'Vocabulario', paper: 'LightVA · insights' },
@@ -180,11 +182,11 @@ Best regards`;
             modeHint: 'Modo: Conversación'
         },
         lessons: {
-            label: 'Lecciones y repaso',
-            title: 'Lecciones y repaso',
+            label: 'Aprender vocabulario',
+            title: 'Aprender vocabulario',
             subtitle: 'Artículo corto · vocabulario en contexto',
             stages: ['Leer', 'Descubrir', 'Registrar', 'Practicar'],
-            activeStage: 1,
+            activeStage: 0,
             tabs: [
                 { id: 'article', label: 'Artículo', paper: 'LightVA · data lens' },
                 { id: 'vocabulary', label: 'Vocabulario', paper: 'Kazemitabaar · side query' },
@@ -193,7 +195,7 @@ Best regards`;
                 { id: 'changes', label: 'Cambios', paper: 'WaitGPT · granular' }
             ],
             placeholder: 'Pega tu lectura y escribe la palabra que necesitas…',
-            modeHint: 'Modo: Lecciones y repaso'
+            modeHint: 'Actividad: Aprender vocabulario'
         },
 
     };
@@ -203,12 +205,12 @@ Best regards`;
         writing: [
             {
                 role: 'user',
-                text: 'Revisa mi correo para pedir una prórroga. Por ahora solo dame pistas y déjame verificar.'
+                text: 'Quiero aprender a pedir una prórroga en inglés y entender cómo usar un tono formal.'
             },
             {
                 role: 'ai',
                 label: 'TUTOR IA · REDACCIÓN',
-                text: 'Terminé de revisar tu correo y marqué 4 cosas. Empecemos por la primera; tú decides qué aceptar.',
+                text: 'Analiza el modelo y escribe tu propio borrador. En Revisar podrás comparar cuatro sugerencias sobre un correo de práctica; tu borrador se conserva aparte.',
                 chips: [
                     { icon: 'alert', text: 'Gramática: 1', kind: 'grammar' },
                     { icon: 'book', text: 'Vocabulario: 1', kind: 'vocab' },
@@ -329,12 +331,12 @@ Best regards`;
         conversation: [
             { match: /pista|ayuda|hint/i, text: 'Pista: empieza con una estructura segura. “I have experience in…” + un ejemplo concreto. No necesitas una respuesta perfecta, solo clara.', chips: [{ icon: 'book', text: 'Ver vocabulario', action: 'open-vocabulary', kind: 'info' }] },
             { match: /nervios|miedo|no sé/i, text: 'Puedes tomarte un momento y escribir una idea sencilla. Por ejemplo: “I have experience in…” Luego añade una razón o un ejemplo.', chips: [{ icon: 'lightbulb', text: 'Ver una estructura', action: 'open-vocabulary', kind: 'info' }] },
-            { match: /.*/, text: 'Good answer. Ahora intenta añadir una razón: “because I enjoy…” o “for example, in my last project…”. Así tu respuesta gana detalle.', chips: [{ icon: 'arrowRight', text: 'Siguiente pregunta', action: 'next-prompt', kind: 'info' }] }
+            { match: /.*/, text: 'Para revisar tu respuesta, intenta añadir una razón: “because I enjoy…” o “for example, in my last project…”. Así tu respuesta gana detalle.', chips: [{ icon: 'arrowRight', text: 'Siguiente pregunta', action: 'next-prompt', kind: 'info' }] }
         ],
         lessons: [
             { match: /productiv/i, text: '“Productive” significa que produces buenos resultados. En el artículo: “employees can be productive at home”. ¿Puedes escribir una oración con “productive”?', chips: [{ icon: 'plus', text: 'Guardar palabra', action: 'save-word-productive', kind: 'info' }] },
             { match: /flexib/i, text: '“Flexibility” es la capacidad de adaptarse. Se usa mucho para horarios: “flexible hours”. En español sería “flexibilidad”.', chips: [{ icon: 'plus', text: 'Guardar palabra', action: 'save-word-flexibility', kind: 'info' }] },
-            { match: /.*/, text: 'Buena elección. Para entender una palabra en contexto, mira la oración completa antes de traducirla. ¿Quieres que te dé una pista o el significado directo?', chips: [{ icon: 'lightbulb', text: 'Dame una pista', action: 'hint-word', kind: 'info' }] }
+            { match: /.*/, text: 'Veamos el contexto. Para entender una palabra en contexto, mira la oración completa antes de traducirla. ¿Quieres que te dé una pista o el significado directo?', chips: [{ icon: 'lightbulb', text: 'Dame una pista', action: 'hint-word', kind: 'info' }] }
         ],
 
     };

@@ -114,3 +114,15 @@ python3 tools/build_guides.py
    - Si te preguntan por qué no se implementó un principio como C2.7 (movimiento) o C7.2 (salida de voz), defiende la decisión en términos de **carga cognitiva, reducción de distracciones y delimitación de alcance** según se documenta en la Sección 4 de `GUIA_PRINCIPIOS_IHC.md`.
 3. **Mantenimiento de Imágenes:**
    - Si realizas cambios visuales en el CSS o HTML que alteren la posición de componentes, vuelve a ejecutar `python3 tools/generate_screenshots.py` y `python3 tools/test_guide_integrity.py` para asegurar que las capturas sigan alineadas con el código.
+
+
+## Actualización del enfoque pedagógico · 22/11/2026
+
+La instrucción del usuario prioriza construir conocimiento. Las tres actividades ahora son aprender a escribir correos, conversación escrita y aprender vocabulario. `js/learning.js` incorpora modelos, planificación, producción propia, autoevaluación, explicación y transferencia. Las cuatro etapas del correo son Comprender, Escribir, Revisar y Transferir; las sugerencias del correo de práctica y las vistas de original/cambios están disponibles desde cualquier etapa. El borrador libre se conserva aparte y no recibe evaluación automática.
+
+`completedStages` registra etapas con notas opcionales mediante `Learning.save`; navegar no completa pasos. `stageByMode` conserva la ubicación y `learning` conserva las notas en memoria. Los indicadores no acreditan aprendizaje. La clasificación de 71 principios se conserva de la auditoría anterior, sin afirmar una nueva validación empírica.
+
+El documento DOCX se revisó para describir exactamente tres tareas sin IA y separar las adaptaciones de papers. El original se conserva en `docs/originales/`. Las capturas usan Firefox con perfil temporal y recorte por selector mediante ImageMagick (`tools/browser_capture.py` y `tools/generate_screenshots.py`), sin requerir Pillow. La prueba funcional `python3 tools/test_learning_flow.py` verifica en escritorio y móvil navegación libre, notas opcionales y vistas de original y cambios. Ejecutar las capturas y la prueba secuencialmente porque comparten `harness_temp.html`.
+
+
+El apoyo pedagógico es opcional: se accede directamente a correo, lectura o conversación. Las sugerencias están inicialmente ocultas y pueden abrirse u ocultarse en cualquier momento. En el correo, “Ver ejemplos de correo” abre el modelo directamente; Original, Borrador, Versión actual, Ver cambios, Versiones y Deshacer siguen accesibles al cambiar de sugerencia.

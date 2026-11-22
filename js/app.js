@@ -81,7 +81,7 @@
         const el = $('#stagebar');
         if (!el) return;
         el.innerHTML = `
-            <div class="stages" aria-label="Etapas de la tarea">${stages}</div>
+            <div class="stages" aria-label="Sugerencias de aprendizaje: elige cualquier etapa">${stages}</div>
             <div class="stage-actions">
                 <button class="details-toggle" data-action="${detailAction}">${detailLabel}</button>
                 <button class="mobile-support-toggle" data-action="open-mobile-support" aria-controls="side-panel" aria-expanded="${Boolean(st.supportOpen)}">${I.book(14)} Apoyo</button>
@@ -95,10 +95,11 @@
             { id: 'pista', label: 'Pista' },
             { id: 'explicacion', label: 'Explicación' },
             { id: 'ejemplo', label: 'Ejemplo' },
-            { id: 'reescritura', label: 'Reescritura completa' }
+            { id: 'reescritura', label: 'Ver modelo revisado' }
         ];
         const el = $('#help-levels');
         if (!el) return;
+        el.hidden = st.mode !== 'writing';
         el.innerHTML = `
             <span class="help-label">Nivel de ayuda</span>
             ${levels.map((l) => `<button class="help-pill ${st.help === l.id ? 'is-active' : ''}" data-action="set-help" data-help="${l.id}" aria-pressed="${st.help === l.id}">${l.label}</button>`).join('')}
@@ -214,8 +215,8 @@
             <div class="modal-body">
                 <div class="badge-row"><span class="type-badge ${rule.kind}">${rule.label}</span></div>
                 <p class="modal-text">${rule.body}</p>
-                <div class="rule-example good"><span>Correcto</span>${rule.good}</div>
-                <div class="rule-example bad"><span>Evitar</span>${rule.bad}</div>
+                <div class="rule-example good"><span>${rule.goodLabel || 'Correcto'}</span>${rule.good}</div>
+                <div class="rule-example bad"><span>${rule.badLabel || 'Evitar'}</span>${rule.bad}</div>
                 <div class="modal-note">${I.info(14)} La regla se muestra en lenguaje simple para que puedas decidir, no solo aceptar.</div>
                 <div class="modal-actions">
                     <button class="btn btn-primary" data-action="modal-close">Entendido</button>
@@ -414,7 +415,7 @@
             homeOpen: false,
             quickstartFeedback: '',
             quickstartDraft: '',
-            activeStage: m.activeStage,
+            activeStage: S.get().stageByMode[mode],
             tab: defaultAsideTab,
             supportOpen: false,
             suggestionsOpen: false,
@@ -433,6 +434,15 @@
         const st = S.get();
 
         switch (action) {
+            case 'learning-save': Learning.save(); break;
+            case 'toggle-learning': S.set({ learningOpen: Object.assign({}, st.learningOpen, { [st.mode]: !st.learningOpen[st.mode] }) }); break;
+            case 'open-learning-examples': {
+                S.set({ activeStage: 0, stageByMode: Object.assign({}, st.stageByMode, { [st.mode]: 0 }), learningOpen: Object.assign({}, st.learningOpen, { [st.mode]: true }) });
+                const model = document.querySelector('.learning-card details');
+                if (model) model.open = true;
+                Chat.scrollToTop();
+                break;
+            }
             case 'open-quickstart': S.set({ homeOpen: true, quickstartFeedback: '', supportOpen: false, historyOpen: false }); break;
             case 'toggle-history': S.set({ historyOpen: !st.historyOpen, supportOpen: false }); break;
             case 'close-history': S.set({ historyOpen: false }); break;
@@ -466,18 +476,9 @@
             }
             case 'set-stage': {
                 const index = Number(el.dataset.stage);
-                const stages = D.modes[st.mode].stages;
-                const completedStages = Object.assign({}, st.completedStages);
-                const completed = new Set(completedStages[st.mode] || []);
-                if (index > st.activeStage) completed.add(st.activeStage);
-                if (index === st.activeStage && index === stages.length - 1) completed.add(index);
-                completedStages[st.mode] = Array.from(completed).sort((a, b) => a - b);
-                S.set({ activeStage: index, completedStages });
-                const allDone = stages.every((_, i) => completed.has(i));
-                const missing = stages.filter((_, i) => !completed.has(i)).length;
-                if (allDone) toast(`Actividad terminada: ${D.modes[st.mode].label}. Tus cambios siguen disponibles en el panel de apoyo.`);
-                else if (index === stages.length - 1) toast(`Etapa ${stages[index]} seleccionada. Quedan ${missing} etapa${missing === 1 ? '' : 's'} por completar.`);
-                else toast(`Etapa: ${stages[index]}.`);
+                const stageByMode = Object.assign({}, st.stageByMode, { [st.mode]: index });
+                S.set({ activeStage: index, stageByMode, learningOpen: Object.assign({}, st.learningOpen, { [st.mode]: true }) });
+                Chat.scrollToTop();
                 break;
             }
             case 'scroll-sessions': {
@@ -619,7 +620,11 @@
             if (modalOpen && !e.target.closest('.modal')) closeModal();
         });
 
+        document.addEventListener('input', (e) => {
+            if (e.target.matches('[data-learning-field]')) Learning.capture(e.target);
+        });
         document.addEventListener('change', (e) => {
+            if (e.target.matches('[data-learning-field]')) { Learning.capture(e.target); return; }
             const planCheck = e.target.closest('[data-plan-check]');
             if (planCheck) {
                 const st = S.get();

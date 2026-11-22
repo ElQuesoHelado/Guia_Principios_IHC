@@ -1,40 +1,25 @@
-# Lingua IA — alcance actualizado del prototipo
+# Lingua IA · guía del recorrido de aprendizaje
 
-## Propósito
+La interfaz acompaña tres tareas para comprender y aplicar inglés: correo formal, conversación escrita y vocabulario contextual. Las preguntas se hacen dentro de la actividad; no existe un cuarto modo de dudas rápidas en la navegación.
 
-Prototipo de nivel medio para acompañar el aprendizaje del inglés mediante tareas con respuesta a eventos. La interfaz es una demo visual con datos simulados; no conecta con servicios de IA ni envía mensajes reales.
+## Correo formal
 
-## Actividades principales
+1. En **Comprender**, compara dos formas de pedir y analiza la estructura de un modelo. Planifica destinatario, propósito, motivo y fecha.
+2. En **Escribir**, redacta tu borrador y autoevalúa estructura, sentido y cortesía.
+3. En **Revisar**, justifica un cambio y revisa tu borrador. Abajo puedes estudiar un correo de práctica: original/propuesta, reglas, ejemplos, aceptar/rechazar, deshacer y versiones. Las sugerencias pertenecen al ejemplo, no evalúan tu texto libre. “Important” y una oración con “and” no se clasifican automáticamente como errores: las alternativas dependen de la intención.
+4. En **Transferir**, escribe a una galería con menos ayuda y registra expresiones, un error que evitarás y una comparación con el primer correo.
 
-1. **Redacción asistida:** revisar un texto en inglés; observar una pista, comparar el fragmento original con una propuesta, leer la explicación y aceptar o rechazar el cambio.
-2. **Lecciones y repaso:** leer un texto de ejemplo o pegar uno propio; seleccionar una palabra, revisar su significado en contexto y ejemplos adicionales, y guardarla para repasar.
-3. **Conversación escrita:** elegir un escenario, responder por chat a preguntas breves y solicitar pistas cuando hagan falta.
+## Conversación escrita
 
-Las preguntas puntuales se escriben en el chat de la actividad activa. La conversación es únicamente por texto: no hay micrófono, grabación, evaluación de pronunciación ni métricas de minutos hablados.
+Prepara vocabulario y una estrategia de aclaración; usa el chat con turnos voluntarios; reformula una respuesta y explica qué mejora; escribe después un diálogo para otra situación.
 
-## Organización de la interfaz
+## Vocabulario
 
-- El selector principal muestra solo las tres actividades anteriores; cada una se alcanza desde la barra superior con un clic. El menú también ofrece el selector como ruta alternativa.
-- La barra de etapas muestra la etapa actual y conserva el estado completado por tarea. “Ver progreso” abre directamente el resumen contextual; en el móvil también abre el panel de apoyo.
-- El área central contiene la lectura o conversación y el contenido que el estudiante debe revisar.
-- El panel lateral ofrece únicamente apoyo relacionado con la actividad activa: criterios, reglas, escenarios, vocabulario, historial o progreso.
-- El panel de apoyo ofrece vistas contextuales. En redacción, el plan y el progreso aparecen como pestañas del mismo panel; el contenido central que se repite se filtra. “Ver progreso” abre esa pestaña directamente en un clic sin cambiar el nivel de la interfaz; para editar el plan desde esa vista, se abre “Más apoyo” y luego “Plan” (3 clics en total).
-- El historial se abre desde su propio control y agrupa chats por actividad. En escritorio se abre en dos acciones (abrir historial y elegir chat); en móvil, en tres (menú, chats recientes y selección).
+Lee e infiere antes de consultar; contrasta tu hipótesis con significado y ejemplos; guarda una nota contextual y la palabra; recupérala en una oración propia y reflexiona sobre su uso.
 
-## Criterios de diseño derivados de las lecturas
+## Registro y apoyo
 
-- Mostrar la frase original, la propuesta y la razón del cambio; el estudiante conserva la decisión.
-- Entregar ayuda gradual: primero una pista, luego explicación o ejemplos si se solicitan.
-- Permitir revisar ejemplos en contexto y guardar vocabulario.
-- Mantener un flujo corto con progreso ligado a los eventos de la sesión, sin métricas semanales simuladas que parezcan datos reales ni diagramas de operaciones, relaciones AND/DOWN, datos de protocolo o etiquetas académicas en la experiencia del estudiante.
-- Ofrecer el historial de versiones cuando el estudiante necesite recuperar una redacción anterior.
+“Guardar mis notas” conserva las notas parciales que el estudiante quiera escribir, sin calificar su contenido ni exigir completar formularios. Cambiar de etapa no acredita aprendizaje. Las notas se conservan durante la sesión y se pierden al recargar. El progreso muestra actividad y evidencias, sin afirmar dominio. Criterios, plan, reglas, historial, apoyo móvil y etiquetas además del color siguen disponibles. Las capturas se generan con `python3 tools/generate_screenshots.py`; el flujo se verifica con `python3 tools/test_learning_flow.py`.
 
-## Paleta de apoyo
 
-- Rojo coral: gramática.
-- Azul: vocabulario.
-- Gris azulado neutro: tono.
-- Amarillo ámbar: claridad.
-- Verde azulado: avance y acciones principales.
-
-Los colores se acompañan de etiquetas de texto e iconos para que la distinción no dependa únicamente del color.
+El apoyo pedagógico es opcional: se accede directamente a correo, lectura o conversación. Las sugerencias están inicialmente ocultas y pueden abrirse u ocultarse en cualquier momento. En el correo, “Ver ejemplos de correo” abre el modelo directamente; Original, Borrador, Versión actual, Ver cambios, Versiones y Deshacer siguen accesibles al cambiar de sugerencia.
