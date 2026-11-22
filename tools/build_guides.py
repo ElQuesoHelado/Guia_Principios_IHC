@@ -16,7 +16,7 @@ PRINCIPLES_DATA = [
         "status": "Aplicado",
         "rule": "Cada elemento de la interfaz debe tener una sola interpretación plausible para el usuario objetivo.",
         "location": "Barra superior (#mode-nav) y botones de acción en tarjetas (.correction-actions)",
-        "how_to_check": "1. Observar la barra superior: los 3 botones tienen nombres directos ('Conversación escrita', 'Lecciones y repaso', 'Redacción asistida'). 2. En la tarjeta de corrección central, los botones no usan etiquetas ambiguas como 'OK', sino verbos claros: 'Usar esta sugerencia' y 'Mantener mi frase'.",
+        "how_to_check": "1. Observar la barra superior: los 3 botones tienen nombres directos ('Conversación escrita', 'Aprender vocabulario', 'Aprender a escribir correos'). 2. En la tarjeta de corrección central, los botones no usan etiquetas ambiguas como 'OK', sino verbos claros: 'Usar esta sugerencia' y 'Mantener mi frase'.",
         "image": "docs/screenshots/01_header_nav.png",
         "img_alt": "Barra superior con botones claros y sin ambigüedad",
         "justification": "Elimina el costo cognitivo de adivinar el resultado de una acción, permitiendo que la atención del estudiante se enfoque en aprender inglés y no en interpretar la interfaz."
@@ -36,7 +36,7 @@ PRINCIPLES_DATA = [
         "status": "Aplicado",
         "rule": "La información necesaria para el objetivo del usuario debe estar disponible, ser prominente y estar ligada a la acción siguiente.",
         "location": "Columna central de trabajo (.chat-column) y selector de niveles de ayuda (#help-levels)",
-        "how_to_check": "1. En 'Redacción asistida', el foco principal es el correo y la sugerencia activa. 2. Justo debajo del chat, los botones 'Pista', 'Explicación', 'Ejemplo' y 'Reescritura completa' permiten al estudiante ajustar el nivel de asistencia según su meta de aprendizaje inmediata.",
+        "how_to_check": "1. En 'Aprender a escribir correos', el foco es comprender un modelo, escribir, revisar y transferir. En la etapa Revisar aparece el correo de práctica y la sugerencia activa. 2. Justo debajo del chat, los botones 'Pista', 'Explicación', 'Ejemplo' y 'Ver modelo revisado' permiten al estudiante ajustar el nivel de asistencia según su meta de aprendizaje inmediata.",
         "image": "docs/screenshots/05_help_levels.png",
         "img_alt": "Selector de nivel de ayuda situado junto a la meta del estudiante",
         "justification": "El estudiante busca comprender un error o redactar un texto; ofrecer ayuda graduada en el centro de atención apoya directamente su objetivo cognitivo sin pasos intermedios."
@@ -140,7 +140,7 @@ PRINCIPLES_DATA = [
         "status": "Parcial",
         "rule": "Los encabezados deben usar elementos y niveles semánticos reales (h1–h6) para lectores de pantalla.",
         "location": "index.html (#page-title) y títulos de sección (h3, h4)",
-        "how_to_check": "En el código HTML existe un `<h1 class='sr-only' id='page-title'>Lingua IA · Redacción asistida</h1>` que se actualiza dinámicamente con el modo activo. Los módulos usan `<h3>` y `<h4>`. Es parcial porque falta completar la auditoría con NVDA/VoiceOver de toda la jerarquía intermedia.",
+        "how_to_check": "En el código HTML existe un `<h1 class='sr-only' id='page-title'>Lingua IA · Aprender a escribir correos</h1>` que se actualiza dinámicamente con el modo activo. Los módulos usan `<h3>` y `<h4>`. Es parcial porque falta completar la auditoría con NVDA/VoiceOver de toda la jerarquía intermedia.",
         "image": "docs/screenshots/01_header_nav.png",
         "img_alt": "Encabezado principal accesible para lectores de pantalla",
         "justification": "Permite a usuarios con tecnologías asistivas navegar directamente a los hitos de la página sin tener que recorrer todo el árbol del DOM."
@@ -160,7 +160,7 @@ PRINCIPLES_DATA = [
         "status": "Aplicado",
         "rule": "Los datos deben agruparse en fragmentos comprensibles, evitando cadenas largas indivisas.",
         "location": "Panel de Progreso (.stat-grid) y plan de redacción (.plan-step)",
-        "how_to_check": "Observar el panel de progreso: en vez de mostrar un párrafo denso con cifras, se fragmenta en 2 bloques limpios: 'Etapas completadas' (ej. 2/4) y 'Sugerencias revisadas' (ej. 0/4). El plan de redacción se divide en 5 pasos numerados e independientes.",
+        "how_to_check": "Observar el panel de progreso: en vez de mostrar un párrafo denso con cifras, se fragmenta en 2 bloques limpios: 'Etapas con notas guardadas' (ej. 2/4) y 'Sugerencias revisadas' (ej. 0/4). El plan de redacción se divide en 5 pasos numerados e independientes.",
         "image": "docs/screenshots/07_side_progress.png",
         "img_alt": "Fragmentación de métricas en tarjetas separadas",
         "justification": "Respeta la capacidad finita de la memoria de trabajo humana (regla de Miller, 4 a 7 fragmentos de información simultánea)."
@@ -180,7 +180,7 @@ PRINCIPLES_DATA = [
         "status": "Aplicado",
         "rule": "Cada etiqueta debe estar arriba o a la izquierda de su valor; la proximidad debe dejar claro a qué dato pertenece.",
         "location": "Badges de corrección (.badge-row), Criterios (.criterion-label) y métricas de progreso",
-        "how_to_check": "En el panel de criterios, la etiqueta ('DESTINATARIA', 'TONO') se ubica inmediatamente encima del campo de entrada. En las métricas de progreso, el número grande ('2/4') tiene su descripción ('Etapas completadas') justo debajo, formando un bloque indivisible.",
+        "how_to_check": "En el panel de criterios, la etiqueta ('DESTINATARIA', 'TONO') se ubica inmediatamente encima del campo de entrada. En las métricas de progreso, el número grande ('2/4') tiene su descripción ('Etapas con notas guardadas') justo debajo, formando un bloque indivisible.",
         "image": "docs/screenshots/06_side_criteria.png",
         "img_alt": "Etiquetas inmediatas sobre sus valores en tarjetas de criterios",
         "justification": "Evita movimientos oculares de vaivén (saccades) innecesarios entre el dato y su descripción semántica."
@@ -438,7 +438,7 @@ PRINCIPLES_DATA = [
         "status": "Aplicado",
         "rule": "Si una acción produce efectos distintos según el estado del sistema, el modo actual debe ser visible de forma persistente.",
         "location": "Píldora activa en header (.mode-pill.is-active) y composer hint (#composer-mode-hint)",
-        "how_to_check": "1. El modo activo se resalta en el header en color teal sólido con atributo `aria-current='true'`. 2. Al pie del campo de texto de chat, una etiqueta fija indica explícitamente: 'Modo: Redacción asistida' o 'Modo: Conversación', recordando el contexto de la IA.",
+        "how_to_check": "1. El modo activo se resalta en el header en color teal sólido con atributo `aria-current='true'`. 2. Al pie del campo de texto de chat, una etiqueta fija indica explícitamente la actividad actual, recordando el contexto de la IA.",
         "image": "docs/screenshots/14_composer_hints.png",
         "img_alt": "Indicador permanente del modo activo al pie del campo de entrada",
         "justification": "Previene errores de modo (intentar hacer preguntas de gramática cuando el sistema espera una respuesta en inglés para la entrevista de trabajo)."
@@ -500,7 +500,7 @@ PRINCIPLES_DATA = [
         "status": "Aplicado",
         "rule": "Indicar claramente qué ha hecho el usuario y qué queda pendiente en el flujo de trabajo.",
         "location": "Contador de tarjeta ('Paso 1 de 4') y barra de etapas (#stagebar)",
-        "how_to_check": "1. Cada tarjeta de sugerencia indica 'Paso 1 de 4'. 2. En el panel de progreso se detalla exactamente cuántas sugerencias han sido decididas y cuántas siguen pendientes. 3. Las etapas diferencian estado completado, actual y futuro.",
+        "how_to_check": "1. El apoyo opcional indica la sugerencia seleccionada; las sugerencias tienen su propio contador. 2. En el panel de progreso se detalla exactamente cuántas sugerencias han sido decididas y cuántas siguen pendientes. 3. Las etapas diferencian estado completado, actual y futuro.",
         "image": "docs/screenshots/02_stagebar.png",
         "img_alt": "Indicadores de completitud y pasos restantes",
         "justification": "Genera una sensación de avance tangible y activa el efecto Zeigarnik positivo (motivación intrínseca por completar tareas pendientes)."
@@ -510,7 +510,7 @@ PRINCIPLES_DATA = [
         "status": "Parcial",
         "rule": "Permitir que el usuario marque o clasifique elementos para indicar qué ya trabajó y qué no.",
         "location": "Guardado de vocabulario en lecciones ([data-action='save-word'])",
-        "how_to_check": "En 'Lecciones y repaso', el estudiante puede pulsar 'Guardar palabra' para archivar términos como 'productive' o 'flexibility'. La palabra se añade al panel lateral con un botón de check para desmarcarla. Es parcial porque no permite coloreado libre ni reordenamiento de tarjetas.",
+        "how_to_check": "En 'Aprender vocabulario', el estudiante puede pulsar 'Guardar palabra' para archivar términos como 'productive' o 'flexibility'. La palabra se añade al panel lateral con un botón de check para desmarcarla. Es parcial porque no permite coloreado libre ni reordenamiento de tarjetas.",
         "image": "docs/screenshots/09_lessons_reading.png",
         "img_alt": "Acción de guardar términos seleccionados para repaso posterior",
         "justification": "Permite al estudiante personalizar su inventario léxico activo según sus debilidades individuales."
@@ -520,7 +520,7 @@ PRINCIPLES_DATA = [
         "status": "Aplicado",
         "rule": "En cada punto de decisión, las opciones deben indicar claramente a qué meta conducen.",
         "location": "Etiquetas de navegación y botón de progreso",
-        "how_to_check": "El botón 'Ver progreso' indica inequívocamente que abrirá las estadísticas de la sesión. El botón 'Apoyo' en móviles indica acceso a la ayuda. Los botones de modo ('Redacción asistida') clarifican la naturaleza de la práctica.",
+        "how_to_check": "El botón 'Ver progreso' indica inequívocamente que abrirá las estadísticas de la sesión. El botón 'Apoyo' en móviles indica acceso a la ayuda. Los botones de modo ('Aprender a escribir correos') clarifican la naturaleza de la práctica.",
         "image": "docs/screenshots/02_stagebar.png",
         "img_alt": "Rastro informativo evidente en botones de acción y avance",
         "justification": "Satisface la teoría del forrajeo de información (information foraging): el usuario sigue pistas semánticas fuertes para llegar a su meta sin perder tiempo."
@@ -569,8 +569,8 @@ PRINCIPLES_DATA = [
         "id": "C8.10", "chapter": "C8 — Los límites de la atención moldean pensamiento y acción", "name": "Gestionar los pasos de cierre",
         "status": "Aplicado",
         "rule": "Recordar o facilitar los pasos que el usuario tiende a olvidar al terminar la tarea principal.",
-        "location": "Lógica de avance de etapas en app.js (handleAction: set-stage)",
-        "how_to_check": "Al hacer clic en la etapa final 'Cerrar': si el estudiante omitió alguna etapa previa, el sistema emite un toast informando: 'Etapa Cerrar seleccionada. Quedan X etapas por completar'. Si ya completó todo, confirma: 'Actividad terminada. Tus cambios siguen disponibles en el panel de apoyo'.",
+        "location": "Registro de evidencias en learning.js (Learning.save) y navegación en app.js (set-stage)",
+        "how_to_check": "En Transferir, el estudiante escribe una nueva producción y reflexiona. Guardar mis notas permite conservar notas parciales y saltar o retomar las sugerencias libremente. Navegar no marca etapas como terminadas. Ver progreso conserva visibles los pasos pendientes; el registro no acredita dominio del idioma.",
         "image": "docs/screenshots/02_stagebar.png",
         "img_alt": "Gestión guiada de la culminación de la tarea",
         "justification": "Previene errores de post-culminación (abandonar la tarea creyendo haber finalizado cuando quedaban pasos críticos pendientes)."
@@ -708,6 +708,7 @@ def build_markdown():
     lines.append("**Versión:** Verificada contra código fuente (`index.html`, `js/*.js`, `css/style.css`)  \n")
 
     lines.append("---\n")
+    lines.append('Actualización pedagógica: se conservan los 71 principios y la clasificación de la auditoría anterior. El recorrido actual ofrece sugerencias opcionales de producción propia, autoevaluación y transferencia. Se entra directamente al correo con Original, Borrador, Versión actual y Ver cambios. Ver ejemplos de correo abre el modelo sin requisitos; Guardar mis notas admite notas parciales. Las cifras de cobertura no representan una nueva validación con usuarios ni resultados de aprendizaje.\n')
     lines.append("## 1. Resumen Ejecutivo y Dashboard de Cobertura\n")
     lines.append("Esta guía permite evaluar en tiempo real la aplicación práctica de los principios de Interacción Humano-Computador en **Lingua IA**.")
     lines.append("Para asegurar la máxima veracidad y erradicar cualquier alucinación documental:")
@@ -729,11 +730,11 @@ def build_markdown():
     lines.append("Para comprobar interactivamente la coherencia del diseño sin recorrer los 71 principios uno a uno, siga esta secuencia guiada:\n")
     
     quick_steps = [
-        ("Paso 1: Barra superior y persistencia", "Haga clic en los 3 botones superiores ('Conversación escrita', 'Lecciones y repaso', 'Redacción asistida'). Compruebe que el cambio es instantáneo (1 clic), el botón activo se resalta en verde-teal y el pie del chat confirma el modo activo.", "C1.1, C1.2, C7.5, C7.8"),
-        ("Paso 2: Tarjeta de corrección y decisiones", "En 'Redacción asistida', examine la tarjeta central. Compruebe que muestra la categoría con badge de color y texto ('Gramática'), la frase original tachada en rojo suave y la propuesta en verde suave. Pruebe pulsar 'Usar esta sugerencia' y luego 'Deshacer'.", "C2.1, C4.1, C4.5, C5.1, C8.2, C8.8"),
-        ("Paso 3: Niveles de ayuda graduada", "Bajo el chat, alterne entre 'Pista', 'Explicación', 'Ejemplo' y 'Reescritura completa'. Observe cómo la tarjeta revela progresivamente más contenido sin recargar la página.", "C1.3, C3.7, C6.10, C7.10"),
+        ("Paso 1: Barra superior y persistencia", "Haga clic en los 3 botones superiores ('Conversación escrita', 'Aprender vocabulario', 'Aprender a escribir correos'). Compruebe que el cambio es instantáneo (1 clic), el botón activo se resalta en verde-teal y el pie del chat confirma el modo activo.", "C1.1, C1.2, C7.5, C7.8"),
+        ("Paso 2: Tarjeta de corrección y decisiones", "En 'Aprender a escribir correos', abra la etapa Revisar y examine la tarjeta central. Compruebe que muestra la categoría con badge de color y texto ('Gramática'), la frase original tachada en rojo suave y la propuesta en verde suave. Pruebe pulsar 'Usar esta sugerencia' y luego 'Deshacer'.", "C2.1, C4.1, C4.5, C5.1, C8.2, C8.8"),
+        ("Paso 3: Niveles de ayuda graduada", "Bajo el chat, alterne entre 'Pista', 'Explicación', 'Ejemplo' y 'Ver modelo revisado'. Observe cómo la tarjeta revela progresivamente más contenido sin recargar la página.", "C1.3, C3.7, C6.10, C7.10"),
         ("Paso 4: Ver progreso y panel contextual", "Junto a las etapas numeradas (1-4), pulse el botón 'Ver progreso'. Compruebe que en exactamente 1 clic abre el panel lateral derecho con las métricas de etapas y sugerencias.", "C3.5, C7.1, C7.8, C8.3, C8.5"),
-        ("Paso 5: Lectura y guardado léxico", "Cambie a 'Lecciones y repaso'. En el artículo central, toque la palabra 'productive'. Observe cómo se abre la definición en contexto y pulse 'Guardar palabra'. Vaya a la pestaña 'Vocabulario' para verla archivada.", "C3.4, C8.4, C8.7"),
+        ("Paso 5: Lectura y guardado léxico", "Cambie a 'Aprender vocabulario'. En el artículo central, toque la palabra 'productive'. Observe cómo se abre la definición en contexto y pulse 'Guardar palabra'. Vaya a la pestaña 'Vocabulario' para verla archivada.", "C3.4, C8.4, C8.7"),
         ("Paso 6: Historial inmutable y drawer", "En el pie de página, pulse 'Ver chats'. Observe cómo las sesiones pasadas están agrupadas en orden fijo por actividad, sin reordenarse arbitrariamente.", "C1.2, C5.9, C7.1")
     ]
 
@@ -992,7 +993,7 @@ def build_html():
     html_body.append("""
         <div class="header-hero">
             <h1>Guía de Principios de IHC para Evaluación Docente</h1>
-            <p>Instrumento técnico de contrastación empírica en tiempo real sobre el prototipo interactivo.</p>
+            <p>Actualización pedagógica: se conservan los 71 principios y la clasificación de la auditoría anterior. El recorrido actual ofrece sugerencias opcionales de producción propia, autoevaluación y transferencia. Se entra directamente al correo con Original, Borrador, Versión actual y Ver cambios. Ver ejemplos de correo abre el modelo sin requisitos; Guardar mis notas admite notas parciales. Las cifras de cobertura no representan una nueva validación con usuarios ni resultados de aprendizaje.</p>
             <div class="meta-tags">
                 <span class="meta-tag">71 Principios Auditados</span>
                 <span class="meta-tag">Jeff Johnson (Designing with the Mind in Mind)</span>
@@ -1023,11 +1024,11 @@ def build_html():
             <div class="card" style="background: #F9FBFC;">
                 <p style="margin-bottom: 16px;">Siga este itinerario de 6 pasos en el navegador con <code>index.html</code> abierto:</p>
                 <ol style="padding-left: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
-                    <li><strong>1. Header persistente (1 clic):</strong> Alterne entre 'Conversación escrita', 'Lecciones y repaso' y 'Redacción asistida'. Verifique que el modo se resalta y el pie del chat lo confirma <em>(C1.1, C1.2, C7.5, C7.8)</em>.</li>
-                    <li><strong>2. Corrección foveal con diff:</strong> En 'Redacción asistida', examine la tarjeta central con texto original tachado y propuesta verde. Pulse 'Usar esta sugerencia' y observe el cambio a resuelto con botón 'Deshacer' <em>(C2.1, C4.1, C4.5, C5.1, C8.2, C8.8)</em>.</li>
+                    <li><strong>1. Header persistente (1 clic):</strong> Alterne entre 'Conversación escrita', 'Aprender vocabulario' y 'Aprender a escribir correos'. Verifique que el modo se resalta y el pie del chat lo confirma <em>(C1.1, C1.2, C7.5, C7.8)</em>.</li>
+                    <li><strong>2. Corrección foveal con diff:</strong> En 'Aprender a escribir correos', abra la etapa Revisar y examine la tarjeta central con texto original tachado y propuesta verde. Pulse 'Usar esta sugerencia' y observe el cambio a resuelto con botón 'Deshacer' <em>(C2.1, C4.1, C4.5, C5.1, C8.2, C8.8)</em>.</li>
                     <li><strong>3. Ayuda graduada a demanda:</strong> Bajo el chat, pulse 'Pista', 'Explicación' y 'Ejemplo'. La tarjeta adapta su prosa sin recargar <em>(C1.3, C3.7, C6.10, C7.10)</em>.</li>
                     <li><strong>4. Acceso al progreso en 1 clic:</strong> Pulse 'Ver progreso' junto a las etapas numeradas. Se despliega inmediatamente el resumen en el panel lateral <em>(C3.5, C7.1, C7.8, C8.3, C8.5)</em>.</li>
-                    <li><strong>5. Lectura y guardado léxico:</strong> En 'Lecciones y repaso', pulse la palabra 'productive' en el artículo y luego 'Guardar palabra'. Aparece en el panel de vocabulario <em>(C3.4, C8.4, C8.7)</em>.</li>
+                    <li><strong>5. Lectura y guardado léxico:</strong> En 'Aprender vocabulario', pulse la palabra 'productive' en el artículo y luego 'Guardar palabra'. Aparece en el panel de vocabulario <em>(C3.4, C8.4, C8.7)</em>.</li>
                     <li><strong>6. Historial inmutable:</strong> En el footer, abra 'Ver chats' y compruebe el orden taxonómico estable <em>(C1.2, C5.9, C7.1)</em>.</li>
                 </ol>
             </div>

@@ -30,3 +30,21 @@ Las dudas puntuales se envían en el chat de la actividad correspondiente. La co
 ## Criterio de diseño
 
 La interfaz conserva las ideas de verificación, control del estudiante, ejemplos contextuales y progreso. Cada una aparece cuando es pertinente para la actividad. El progreso refleja el estado local de la sesión (etapas, respuestas, sugerencias o palabras), no estadísticas semanales de uso. La literatura guía el diseño, pero las etiquetas y mecanismos propios del análisis de datos no se presentan como herramientas de aprendizaje de idiomas.
+
+
+## Adaptación a construcción de conocimiento (22 de noviembre de 2026)
+
+Las ideas se conservan y se sitúan en las tres tareas del HTA. El análisis sin IA describe acciones con modelos, diccionario, apuntes y otras personas; los papers informan el diseño posterior de la ayuda.
+
+| Aporte conservado | Interacción verificable | Evidencia que produce el estudiante |
+|---|---|---|
+| Gu: comparar y verificar con evidencias | `.diff-line`, `correction-rule`, significado contextual | Explicación de un cambio; contraste entre hipótesis y significado |
+| Kazemitabaar: pasos, criterios e intervención | `#stagebar`, `[data-criterion]`, `[data-plan]`, decisiones de corrección | Plan, autoevaluación y decisión razonada |
+| LightVA: plan visible y avance | `learning-save`, `open-progress-view` | Etapas con notas opcionales, diferenciadas de dominio del idioma |
+| WaitGPT y análisis de versiones: edición localizada y recuperación | `correction-undo`, `set-version`, `open-version-history` | Comparación reversible del ejemplo; borrador y revisión propios en campos separados |
+| Yang: escenarios, transparencia y turnos | `select-scenario`, `next-prompt`, `#chat-form` | Preparación, mensajes, respuesta reformulada y diálogo de transferencia |
+
+El título de Kazemitabaar recogido en el documento del equipo es *Improving Steering and Verification in AI-Assisted Data Analysis with Interactive Task Decomposition*. Se usa ese análisis como referencia interna; no se verificaron aquí las citas o resultados de los papers. El progreso cuantifica evidencias y actividad, no adquisición demostrada. El prototipo no ofrece evaluación de textos libres, audio, ramas completas de versiones ni persistencia entre recargas.
+
+
+El apoyo pedagógico es opcional: se accede directamente a correo, lectura o conversación. Las sugerencias están inicialmente ocultas y pueden abrirse u ocultarse en cualquier momento. En el correo, “Ver ejemplos de correo” abre el modelo directamente; Original, Borrador, Versión actual, Ver cambios, Versiones y Deshacer siguen accesibles al cambiar de sugerencia.

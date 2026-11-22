@@ -52,7 +52,7 @@
         const initial = msgs.slice(0, 2).map((msg, index) => messageHtml(msg, index)).join('');
         const rest = msgs.slice(2).map((msg, index) => messageHtml(msg, index + 2)).join('');
         return `
-            ${initial}
+            ${Learning.render()}
             ${Panels.renderWritingDraft()}
             ${window.Corrections.renderAnalysis()}
             ${rest}
@@ -64,6 +64,7 @@
         const st = S.get();
         const scenario = D.scenarios.find((s) => s.id === st.scenario) || D.scenarios[0];
         return `
+            ${Learning.render()}
             <div class="scenario-strip" role="group" aria-label="Escenario activo">
                 ${D.scenarios.map((s) => `
                     <button class="scenario-chip ${s.id === st.scenario ? 'is-active' : ''}" data-action="select-scenario" data-scenario="${s.id}">
@@ -86,6 +87,7 @@
         const selected = st.selectedWord ? D.article.words.find((w) => w.word === st.selectedWord) : null;
         const paragraphs = st.customReading ? st.customReading.split(/\n\s*\n/) : D.article.paragraphs;
         return `
+            ${Learning.render()}
             <div class="reading-card">
                 <div class="section-head">
                     <div class="section-title-wrap">

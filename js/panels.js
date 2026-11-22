@@ -95,7 +95,7 @@
         return `
             <section class="writing-draft-preview" aria-label="Texto que se está revisando">
                 <div class="writing-draft-head">
-                    <div><h3>${renderedVersion === 'suggested' ? 'Reescritura completa propuesta' : 'Tu texto'}</h3><p>Correo de ejemplo · solicitud de prórroga</p></div>
+                    <div><h3>${renderedVersion === 'suggested' ? 'Reescritura completa propuesta' : 'Correo de práctica'}</h3><p>Ejemplo guiado · las sugerencias solo afectan este texto</p></div>
                     <div class="writing-draft-actions">
                         <button class="text-btn" data-action="open-version-history">Versiones</button>
                         <button class="btn" data-action="open-changes-view">Ver cambios <span>${decided}/${total}</span></button>
@@ -123,7 +123,7 @@
         const available = supportTabs(st.mode);
         const defaultTab = defaultAsideTabs[st.mode] || available[0]?.id;
         if (st.detailsLevel === 2) {
-            return `<span class="aside-context-label">Herramientas</span><button class="aside-more" data-action="advance-details">Volver al tutor</button>`;
+            return `<span class="aside-context-label">Recursos de aprendizaje</span><button class="aside-more" data-action="advance-details">Volver al tutor</button>`;
         }
         const tabs = st.detailsLevel === 0
             ? available.filter((tab) => tab.id === defaultTab || (['progress', 'changes'].includes(st.tab) && tab.id === st.tab))
@@ -134,7 +134,7 @@
             <button class="aside-tab ${st.tab === tab.id ? 'is-active' : ''}" role="tab" aria-selected="${st.tab === tab.id}" data-action="set-tab" data-tab="${tab.id}">
                 ${tab.label}${tab.id === 'changes' ? ` <span class="tab-count">${Object.values(st.statuses).filter((status) => status !== 'pending').length}</span>` : ''}
             </button>
-        `).join('') + `<button class="aside-more" data-action="${st.detailsLevel === 3 ? 'open-aside-tools' : 'advance-details'}">${st.detailsLevel === 0 ? 'Más apoyo' : st.detailsLevel === 1 ? 'Herramientas avanzadas' : 'Más vistas'}</button>`;
+        `).join('') + `<button class="aside-more" data-action="${st.detailsLevel === 3 ? 'open-aside-tools' : 'advance-details'}">${st.detailsLevel === 0 ? 'Más apoyo' : st.detailsLevel === 1 ? 'Más recursos' : 'Más vistas'}</button>`;
     }
 
     function advancedDescription(id) {
@@ -183,7 +183,7 @@
         return `
             <div class="panel-head">
                 <div>
-                    <h3>Tu texto</h3>
+                    <h3>Correo de práctica</h3>
                     <p>Correo · solicitud de prórroga</p>
                 </div>
                 <div class="panel-head-actions">
@@ -218,8 +218,8 @@
                         </div>
                         <h4>${r.title}</h4>
                         <p>${r.body}</p>
-                        <div class="rule-example good"><span>Correcto</span>${r.good}</div>
-                        <div class="rule-example bad"><span>Evitar</span>${r.bad}</div>
+                        <div class="rule-example good"><span>${r.goodLabel || 'Correcto'}</span>${r.good}</div>
+                        <div class="rule-example bad"><span>${r.badLabel || 'Evitar'}</span>${r.bad}</div>
                         <button class="text-btn" data-action="open-rule" data-id="${r.id}">${I.book(14)} Ver regla completa</button>
                     </article>
                 `).join('')}
@@ -231,7 +231,7 @@
         const st = S.get();
         return `
             <div class="panel-head">
-                <div><h3>Criterios editables</h3><p>La IA los usa para explicar y reescribir</p></div>
+                <div><h3>Criterios editables</h3><p>Criterios para tu autoevaluación</p></div>
                 
             </div>
             <p class="panel-note">Edita un supuesto y vuelve a revisar el texto cuando estés listo. Tus versiones anteriores permanecen disponibles en “Versiones”.</p>
@@ -400,10 +400,11 @@
                 <div><h3>Tu progreso</h3><p>${D.modes[mode].label}</p></div>
             </div>
             <div class="stat-grid">
-                <div class="stat-card"><strong>${completedCount}/${stages.length}</strong><span>Etapas completadas</span></div>
+                <div class="stat-card"><strong>${completedCount}/${stages.length}</strong><span>Etapas con notas guardadas</span></div>
                 <div class="stat-card"><strong>${escapeHtml(metricValue)}</strong><span>${escapeHtml(metricLabel)}</span></div>
             </div>
             <p class="panel-note">Etapa actual: ${escapeHtml(stages[stageIndex])}. ${escapeHtml(note)}</p>
+            <p class="panel-note">${Learning.evidenceSummary(mode)} La actividad registrada no acredita dominio del inglés.</p>
         `;
     }
 
