@@ -32,7 +32,7 @@
             historyButton.setAttribute('aria-controls', 'history-drawer');
         }
         const pageTitle = $('#page-title');
-        if (pageTitle) pageTitle.textContent = st.homeOpen ? 'Dudas rápidas' : `Tutor de inglés · ${D.modes[st.mode].title}`;
+        if (pageTitle) pageTitle.textContent = st.homeOpen ? 'Inicio' : `Tutor de inglés · ${D.modes[st.mode].title}`;
         $$('#mode-nav .mode-pill').forEach((btn) => {
             const active = btn.dataset.view === 'quickstart'
                 ? st.homeOpen
@@ -48,6 +48,7 @@
 
         const pop = $('#suggestions-popover');
         const btn = $('#suggestions-btn');
+        if (btn) btn.hidden = st.homeOpen;
         if (pop) {
             pop.hidden = !st.suggestionsOpen;
             if (st.suggestionsOpen) pop.innerHTML = Panels.renderSuggestions();
@@ -434,7 +435,37 @@
         const st = S.get();
 
         switch (action) {
+            case 'learning-go': {
+                const target = el.dataset.target;
+                const panels = { criteria: 'criteria', saved: 'vocabulary' };
+                if (panels[target]) {
+                    S.set({ tab: panels[target], detailsLevel: 3, supportOpen: true, suggestionsOpen: false, historyOpen: false });
+                    requestAnimationFrame(() => {
+                        const panel = $('#aside-content');
+                        panel?.scrollTo(0, 0);
+                        const control = $('input, button', panel);
+                        if (control) control.focus({ preventScroll: true });
+                    });
+                    break;
+                }
+                const selectors = { corrections: '.correction-card', scenario: '.scenario-strip', chat: '#chat-input', words: '.word-picker, .custom-reading-word' };
+                if (target !== 'practice' && !selectors[target]) break;
+                S.set({ suggestionsOpen: false, supportOpen: false, historyOpen: false, ...(target === 'practice' ? { learningOpen: Object.assign({}, st.learningOpen, { [st.mode]: true }) } : {}) });
+                requestAnimationFrame(() => {
+                    const destination = $(target === 'practice' ? '#learning-content' : selectors[target]);
+                    if (!destination) return;
+                    destination.scrollIntoView({ block: 'center' });
+                    const control = destination.matches('textarea, input, button') ? destination : $('textarea, input, button, summary', destination);
+                    if (control) control.focus({ preventScroll: true });
+                });
+                break;
+            }
             case 'learning-save': Learning.save(); break;
+            case 'open-learning': {
+                S.set({ learningOpen: Object.assign({}, st.learningOpen, { [st.mode]: true }), suggestionsOpen: false });
+                Chat.scrollToTop();
+                break;
+            }
             case 'toggle-learning': S.set({ learningOpen: Object.assign({}, st.learningOpen, { [st.mode]: !st.learningOpen[st.mode] }) }); break;
             case 'open-learning-examples': {
                 S.set({ activeStage: 0, stageByMode: Object.assign({}, st.stageByMode, { [st.mode]: 0 }), learningOpen: Object.assign({}, st.learningOpen, { [st.mode]: true }) });
@@ -443,7 +474,7 @@
                 Chat.scrollToTop();
                 break;
             }
-            case 'open-quickstart': S.set({ homeOpen: true, quickstartFeedback: '', supportOpen: false, historyOpen: false }); break;
+            case 'open-quickstart': S.set({ homeOpen: true, quickstartFeedback: '', supportOpen: false, historyOpen: false, suggestionsOpen: false }); break;
             case 'toggle-history': S.set({ historyOpen: !st.historyOpen, supportOpen: false }); break;
             case 'close-history': S.set({ historyOpen: false }); break;
             case 'open-mobile-support': S.set({ supportOpen: true, historyOpen: false }); break;
@@ -471,7 +502,7 @@
             case 'set-version': S.set({ version: el.dataset.version }); break;
             case 'set-help': {
                 const help = el.dataset.help;
-                S.set({ help, version: help === 'reescritura' ? 'suggested' : st.version === 'suggested' ? 'draft' : st.version });
+                S.set({ help, suggestionsOpen: false, version: help === 'reescritura' ? 'suggested' : st.version === 'suggested' ? 'draft' : st.version });
                 break;
             }
             case 'set-stage': {

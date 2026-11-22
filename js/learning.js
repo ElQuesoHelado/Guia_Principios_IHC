@@ -7,54 +7,83 @@
         writing: {
             goal: 'Aprender a organizar un correo formal, justificar tus decisiones y usar las expresiones en una nueva situación.',
             steps: [
-                { title: 'Reconoce cómo se construye una petición formal', prompt: 'Compara “Give me more time” con “Could you please give me more time?”. ¿Cuál usarías con una docente y por qué?', model: 'Subject: Request for a meeting\nDear Professor Ramos,\nI am a student in your English course. Could we arrange a meeting on Friday to discuss my project?\nThank you for your time.\nBest regards,\nAlex', fields: [['structure', 'Identifica saludo, contexto, petición y cierre del modelo.'], ['purpose', 'Planifica tu correo: destinatario, solicitud, motivo y fecha.']] },
-                { title: 'Escribe y autoevalúa tu primer correo', prompt: 'Pide una prórroga para entregar un ensayo. Conserva tus ideas y escribe con el inglés que ya conoces antes de pedir ayuda.', fields: [['draft', 'Tu borrador en inglés'], ['doubt', '¿Qué frase te genera dudas y cómo intentarías mejorarla?']], checks: [['structureCheck', 'Incluí asunto, saludo, contexto, solicitud, cierre y firma.'], ['meaningCheck', 'Mi petición es clara, cortés e incluye una fecha.']] },
-                { title: 'Compara, explica y decide', prompt: 'Las cuatro sugerencias siguientes pertenecen al correo de práctica. Compáralas con tus dudas: aceptar un cambio es una decisión, explicar por qué ayuda a comprenderlo.', fields: [['reason', 'Explica un cambio y su efecto. ¿Qué mantendrías y por qué?'], ['revised', 'Revisa tu propio borrador usando los criterios y las reglas.']] },
-                { title: 'Usa lo aprendido con menos ayuda', prompt: 'Ahora escribe a una galería para pedir información sobre una exposición. Cambia destinatario y propósito; usa una petición cortés sin copiar el correo anterior.', fields: [['transfer', 'Nuevo correo en inglés'], ['reflection', 'Anota tres expresiones útiles, un error que evitarás y qué mejoró respecto al primer correo.']] }
+                { title: 'Prepara tu correo', prompt: 'Compara “Give me more time” y “Could you please give me more time?”. ¿Cuál usarías con una docente?', model: 'Subject: Request for a meeting\nDear Professor Ramos,\nI am a student in your English course. Could we arrange a meeting on Friday to discuss my project?\nThank you for your time.\nBest regards,\nAlex', fields: [['structure', '¿Qué hace que el modelo sea una petición cortés?']] },
+                { title: 'Escribe tu correo', prompt: 'Pide una prórroga para entregar un ensayo. Este texto es tuyo; las correcciones de abajo pertenecen al correo de ejemplo.', fields: [['draft', 'Mi correo · escritura libre, sin corrección automática']] },
+                { title: 'Revisa un cambio', prompt: 'Compara una sugerencia con el correo de práctica. Decide si la conservarías y explica por qué.', fields: [['reason', 'Explica una decisión que tomaste en las correcciones']] },
+                { title: 'Prueba con otro correo', prompt: 'Escribe a una galería para pedir información sobre una exposición. Usa una petición cortés.', fields: [['transfer', 'Nuevo correo en inglés'], ['reflection', '¿Qué expresión reutilizaste?']] }
             ]
         },
         conversation: {
             goal: 'Aprender a responder, pedir aclaraciones y reformular ideas en una conversación escrita.',
             steps: [
-                { title: 'Prepara tus recursos para conversar', prompt: 'Elige un escenario abajo. Observa este intercambio: “Could you clarify what you mean?” → “Of course. Can you give an example of your experience?”. La aclaración permite continuar sin adivinar.', fields: [['goal', '¿Qué quieres practicar y qué vocabulario necesitas?'], ['preparation', 'Prepara una respuesta y una frase para pedir aclaración.']] },
-                { title: 'Construye tus respuestas por escrito', prompt: 'Responde en el chat con tus propias ideas. Puedes pedir una pista o una aclaración; tú decides cuándo pasar a la siguiente pregunta.', fields: [['strategy', 'Anota una expresión que hayas usado para aclarar o ampliar una respuesta.']] },
-                { title: 'Revisa una respuesta concreta', prompt: 'Relee una respuesta del chat y compárala con tu objetivo. Las respuestas del tutor son ejemplos de apoyo; no califican tu inglés.', fields: [['original', 'Copia una respuesta tuya que quieras mejorar.'], ['revision', 'Reformúlala y explica qué mejora en claridad, vocabulario o estructura.']] },
-                { title: 'Transfiere una estrategia', prompt: 'Imagina que hablas por chat con una nueva compañera de clase. Preséntate, pregunta por su proyecto y pide una aclaración.', fields: [['transfer', 'Escribe un diálogo breve en inglés.'], ['reflection', '¿Qué estrategia pudiste reutilizar y qué practicarás después?']] }
+                { title: 'Prepara una respuesta', prompt: 'Elige un escenario. Para pedir una aclaración puedes usar “Could you clarify what you mean?”.', fields: [] },
+                { title: 'Responde en el chat', prompt: 'Responde en inglés. Si necesitas ayuda, pide una pista en el chat.', fields: [] },
+                { title: 'Mejora una respuesta', prompt: 'Mejora una respuesta de tu conversación. Los ejemplos del tutor no califican tu inglés.', fields: [['revision', 'Una versión mejorada y qué cambiaste']] },
+                { title: 'Prueba otro diálogo', prompt: 'Escribe un diálogo con una compañera: preséntate, pregunta por su proyecto y pide una aclaración.', fields: [['transfer', 'Escribe un diálogo breve en inglés.'], ['reflection', '¿Qué expresión pudiste reutilizar?']] }
             ]
         },
         lessons: {
             goal: 'Inferir el significado de palabras en contexto y recuperarlas en una producción propia.',
             steps: [
-                { title: 'Comprende antes de consultar', prompt: 'Lee el artículo de abajo. Identifica el tema general y elige una palabra; intenta inferir su sentido a partir de la oración antes de abrir su significado.', fields: [['topic', '¿De qué trata el artículo?'], ['inference', 'Palabra elegida, oración original e hipótesis de significado.']] },
-                { title: 'Contrasta tu hipótesis con ejemplos', prompt: 'Selecciona una palabra en el artículo y consulta su significado y uso. ¿Qué pistas del texto apoyan esa acepción?', fields: [['comparison', 'Compara tu hipótesis con el significado contextual. ¿Qué cambió y por qué?']] },
-                { title: 'Registra para recordar', prompt: 'Guarda una palabra con el botón del artículo y completa una nota propia. Guardar una palabra prepara el repaso; comprueba después si puedes usarla.', fields: [['record', 'Palabra, significado en este contexto, oración del artículo y una nota de uso.']] },
-                { title: 'Recupera y aplica el vocabulario', prompt: 'Escribe una oración nueva con la palabra que elegiste antes de volver a consultar los ejemplos. Después compara el sentido y el uso.', fields: [['transfer', 'Oración propia en inglés'], ['reflection', '¿Encaja con el significado contextual? ¿Qué estrategia te ayudó y qué necesitas repasar?']] }
+                { title: 'Lee y elige una palabra', prompt: 'Lee el artículo e intenta deducir una palabra antes de consultar su significado.', fields: [['inference', 'Antes de consultar: palabra y significado que imaginas']] },
+                { title: 'Comprueba el significado', prompt: 'Elige una palabra de la lista y compara su significado con lo que imaginabas.', fields: [] },
+                { title: 'Guarda una palabra', prompt: 'Selecciona una palabra y pulsa “Guardar palabra” para repasarla después.', fields: [] },
+                { title: 'Usa la palabra', prompt: 'Escribe una oración con la palabra elegida. Después compárala con los ejemplos.', fields: [['transfer', 'Oración propia en inglés'], ['reflection', '¿Usaste la palabra con el mismo significado?']] }
             ]
         }
     };
+    // Cada orientación lleva al único lugar donde se realiza la acción.
+    const destinations = {
+        writing: [
+            { target: 'criteria', label: 'Ver criterios del correo' },
+            { target: 'practice', label: 'Escribir mi correo' },
+            { target: 'corrections', label: 'Ir a las correcciones del ejemplo' },
+            { target: 'practice', label: 'Escribir otro correo' }
+        ],
+        conversation: [
+            { target: 'scenario', label: 'Elegir escenario' },
+            { target: 'chat', label: 'Responder en el chat' },
+            { target: 'practice', label: 'Revisar una respuesta propia' },
+            { target: 'practice', label: 'Escribir otro diálogo' }
+        ],
+        lessons: [
+            { target: 'practice', label: 'Anotar el significado que imagino' },
+            { target: 'words', label: 'Explorar palabras de la lectura' },
+            { target: 'words', label: 'Elegir una palabra para guardar' },
+            { target: 'practice', label: 'Escribir una oración propia' }
+        ]
+    };
+    function actionButton(destination) {
+        return `<button class="btn" data-action="learning-go" data-target="${destination.target}">${destination.label}</button>`;
+    }
     function render() {
         const st = S.get();
-        const task = tasks[st.mode];
-        const step = task.steps[st.activeStage];
+        const step = tasks[st.mode].steps[st.activeStage];
+        const destination = destinations[st.mode][st.activeStage];
         const values = st.learning[st.mode];
         const done = (st.completedStages[st.mode] || []).includes(st.activeStage);
+        const hasFields = step.fields.length > 0;
         if (!st.learningOpen[st.mode]) {
             return `<section class="learning-suggestion" aria-label="Apoyo opcional para aprender">
-                <div><strong>Aprende a tu ritmo</strong><p>Puedes consultar ejemplos, escribir o practicar cuando quieras.</p></div>
-                <button class="btn" data-action="toggle-learning" aria-expanded="false" aria-controls="learning-content">Ver sugerencias de aprendizaje</button>
+                ${hasFields ? '<button class="text-btn" data-action="toggle-learning" aria-expanded="false" aria-controls="learning-content">Abrir mis notas opcionales</button>' : actionButton(destination)}
                 ${st.mode === 'writing' ? '<button class="text-btn" data-action="open-learning-examples">Ver ejemplos de correo</button>' : ''}
             </section>`;
         }
+        const lastReply = st.mode === 'conversation' && st.activeStage === 2
+            ? st.messages.conversation.filter(message => message.role === 'user').slice(-1)[0] : null;
         return `<section id="learning-content" class="learning-card" aria-labelledby="learning-title">
-            <p class="learning-eyebrow">Actividad ${ {writing: 1, conversation: 2, lessons: 3}[st.mode]} · Sugerencia opcional</p>
-            <div class="learning-actions"><button class="text-btn" data-action="toggle-learning" aria-expanded="true" aria-controls="learning-content">Ocultar sugerencias</button>${st.mode === 'writing' ? '<button class="text-btn" data-action="open-learning-examples">Volver a los ejemplos de correo</button>' : ''}</div>
+            <p class="learning-eyebrow">${hasFields ? 'Notas opcionales' : 'Orientación'} · ${window.DemoData.modes[st.mode].stages[st.activeStage]}</p>
+            <div class="learning-actions"><button class="text-btn" data-action="toggle-learning" aria-expanded="true" aria-controls="learning-content">Cerrar apoyo</button></div>
             <h2 id="learning-title">${step.title}</h2>
-            <p class="learning-goal"><strong>Meta de aprendizaje:</strong> ${task.goal}</p>
             <p>${step.prompt}</p>
+            ${destination.target !== 'practice' ? actionButton(destination) : ''}
+            ${st.mode === 'lessons' && st.activeStage === 2 ? actionButton({ target: 'saved', label: 'Ver palabras guardadas' }) : ''}
             ${step.model ? `<details><summary>Ver modelo de correo</summary><pre class="learning-model" lang="en">${step.model}</pre></details>` : ''}
+            ${st.mode === 'conversation' && st.activeStage === 2 ? (lastReply
+                ? `<div class="learning-source"><strong>Tu última respuesta</strong><p>${esc(lastReply.text)}</p></div>`
+                : '<p>Responde primero en el chat para tener un ejemplo propio.</p>') : ''}
             ${step.fields.map(([key, label]) => `<label class="learning-field" for="learn-${key}">${label}<textarea id="learn-${key}" data-learning-field="${key}" rows="3">${esc(values[key])}</textarea></label>`).join('')}
-            ${(step.checks || []).map(([key, label]) => `<label class="learning-check"><input type="checkbox" data-learning-field="${key}" ${values[key] ? 'checked' : ''}>${label}</label>`).join('')}
-            <div class="learning-actions"><button class="btn btn-primary" data-action="learning-save">Guardar mis notas</button>${st.activeStage < 3 ? `<button class="btn" data-action="set-stage" data-stage="${st.activeStage + 1}">Ver otra sugerencia</button>` : ''}<span id="learning-status" role="status">${done ? 'Notas guardadas en esta sesión.' : 'Estas propuestas son opcionales. Puedes saltarlas o volver a ellas sin perder tus notas.'}</span></div>
+            <div class="learning-actions">${hasFields ? '<button class="btn btn-primary" data-action="learning-save">Guardar mis notas</button>' : ''}${st.activeStage < 3 ? `<button class="btn" data-action="set-stage" data-stage="${st.activeStage + 1}">Siguiente etapa</button>` : ''}${hasFields ? `<span id="learning-status" role="status">${done ? 'Notas guardadas en esta sesión.' : 'Notas opcionales · solo en esta sesión.'}</span>` : ''}</div>
         </section>`;
     }
     function capture(el) {
@@ -64,15 +93,16 @@
         const completed = st.completedStages[st.mode] || [];
         st.completedStages[st.mode] = completed.filter(i => i !== st.activeStage);
         const status = document.getElementById('learning-status');
-        if (status) status.textContent = 'Notas modificadas en esta sesión. Puedes guardar lo que quieras conservar.';
+        if (status) status.textContent = 'Tienes cambios sin registrar.';
     }
     function save() {
         const st = S.get();
         const step = tasks[st.mode].steps[st.activeStage];
         const values = st.learning[st.mode];
+        if (!step.fields.length) return;
         const hasNotes = step.fields.some(([key]) => String(values[key] || '').trim());
         if (!hasNotes) {
-            document.getElementById('learning-status').textContent = 'Puedes escribir una nota, consultar otra sugerencia o continuar practicando.';
+            document.getElementById('learning-status').textContent = 'Escribe una nota para guardarla.';
             return;
         }
         const completed = new Set(st.completedStages[st.mode]);
@@ -83,5 +113,10 @@
         const values = S.get().learning[mode];
         return `${Object.values(values).filter(v => typeof v === 'string' && v.trim()).length} notas de aprendizaje escritas. Las sugerencias y sus notas son opcionales.`;
     }
-    window.Learning = { render, capture, save, evidenceSummary };
+    function currentTip() {
+        const st = S.get();
+        const step = tasks[st.mode].steps[st.activeStage];
+        return { title: step.title, text: step.prompt, destination: destinations[st.mode][st.activeStage] };
+    }
+    window.Learning = { render, capture, save, evidenceSummary, currentTip };
 })();

@@ -225,8 +225,7 @@ Best regards`;
                 label: 'TUTOR IA · CONVERSACIÓN ESCRITA',
                 text: 'Good morning! Thanks for coming. To start, could you tell me a little about yourself and why you are interested in this position?',
                 chips: [
-                    { icon: 'lightbulb', text: 'Pista: usa “I have experience in…”', kind: 'info' },
-                    { icon: 'lightbulb', text: 'Puedes responder por escrito y pedir una pista', kind: 'info' }
+                    { icon: 'lightbulb', text: 'Pista: usa “I have experience in…”', kind: 'info' }
                 ]
             }
         ],
@@ -234,11 +233,7 @@ Best regards`;
             {
                 role: 'ai',
                 label: 'Tutor · lecciones',
-                text: 'Lee el artículo y selecciona una palabra que no conozcas. Yo te ayudo con el significado en contexto, sin darte la respuesta completa.',
-                chips: [
-                    { icon: 'book', text: 'Artículo: The future of remote work', kind: 'info' },
-                    { icon: 'lightbulb', text: 'Elige una palabra de la lista', kind: 'info' }
-                ]
+                text: 'Selecciona una palabra para ver su significado y ejemplos.'
             }
         ],
 
