@@ -2,6 +2,8 @@
 
 Este documento (`agents.md`) sirve como fuente de verdad y memoria técnica para cualquier agente de IA o desarrollador que trabaje en este repositorio. Describe la arquitectura del software, las decisiones de diseño de Interacción Humano-Computador (IHC), los artefactos generados y las pautas para mantener la integridad del proyecto.
 
+> **Feedback docente recibido el 24/11/2026:** antes de revisar el HTA o proponer cambios de interfaz, consultar las [tres transcripciones y la guía de la siguiente mejora](docs/feedback_docente/2026-11-24/README.md). Las descripciones de alcance y diseño de este archivo documentan el estado o las decisiones previas del prototipo; no acreditan aprobación docente ni prevalecen sobre ese feedback y las instrucciones actuales del usuario.
+
 ---
 
 ## 1. Visión General del Proyecto
@@ -126,3 +128,11 @@ El documento DOCX se revisó para describir exactamente tres tareas sin IA y sep
 
 
 El apoyo pedagógico es opcional: se accede directamente a correo, lectura o conversación. Las sugerencias están inicialmente ocultas y pueden abrirse u ocultarse en cualquier momento. En el correo, “Ver ejemplos de correo” abre el modelo directamente; Original, Borrador, Versión actual, Ver cambios, Versiones y Deshacer siguen accesibles al cambiar de sugerencia.
+
+## Feedback docente y próxima revisión · recibido el 24/11/2026
+
+Se incorporaron las transcripciones completas proporcionadas por el usuario en [docs/feedback_docente/2026-11-24/](docs/feedback_docente/2026-11-24/README.md). La fecha es de recepción; no se conoce la fecha de grabación. El Audio 1 contiene el feedback directo sobre correos; los Audios 2 y 3 desarrollan criterios de HTA y de la interacción con IA. Las fuentes conservan sus hablantes y tiempos. La síntesis y el trabajo pendiente se presentan por separado en el índice.
+
+La siguiente mejora debe revisar el aprendizaje lingüístico concreto, una raíz y una descomposición coherentes, dependencias y planes condicionales, y la ayuda contextual para formular y afinar prompts. El análisis debe partir de cómo trabaja actualmente el usuario con sus recursos habituales y luego derivar la interfaz. No reconstruir las tareas solo para hacerlas coincidir con el prototipo existente.
+
+La reducción del alcance hacia correos y el rediseño de la interacción se registran como propuestas pendientes. Este cambio documental no los implementa. Al retomar el trabajo, distinguir instrucciones explícitas de la profesora, evidencia de usuarios e hipótesis de diseño; citar audio y tiempo para cada observación. No tratar los documentos anteriores como fuente de verdad que invalide este feedback ni atribuir al prototipo predicción, persistencia o evaluación de aprendizaje que el código no demuestre.
