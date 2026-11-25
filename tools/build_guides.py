@@ -6,17 +6,17 @@ BASE=Path(__file__).resolve().parent.parent
 # Estado, evidencia de implementación, selector DOM, captura reproducible.
 APPLIED={
 'C1.1':('Acciones con resultado explícito: Añadir a mi mensaje, Conservar mi frase y Recuperar una versión.','[data-action="use-prompt"]','02'),
-'C1.2':('El compositor y las acciones de cabecera conservan estilo y función entre correo y vocabulario.','.app-header','01'),
+'C1.2':('La cabecera permanece visible durante el desplazamiento; el compositor y las acciones conservan estilo y función entre correo y vocabulario.','.app-header','01'),
 'C1.3':('Se comienza con una intención libre y la ayuda se deriva de destinatario, contexto y propósito de aprendizaje.','#prompt-assist','02'),
 'C2.1':('Cada revisión agrupa fragmento, propuesta, motivo y decisión; la consulta léxica conserva su oración.','.correction-card','04'),
 'C2.2':('Botones, tarjetas y estados equivalentes reutilizan componentes y estilos.','.card','04'),
 'C2.3':('Lectura, comparación y acciones comparten ejes; la ruta mantiene el orden de las sugerencias.','#stagebar','03'),
 'C2.4':('Iconos lineales simples acompañan etiquetas; el envío tiene un nombre accesible.','#send-btn','01'),
 'C2.5':('Columna central y comparaciones de igual peso; en móvil las alternativas se apilan sin perder su asociación.','.comparison','03'),
-'C2.6':('Los paneles solicitados se abren en dialog con fondo separado, foco modal y cierre.','#workspace-dialog','07'),
+'C2.6':('Conversaciones se abre en un panel lateral izquierdo de alto completo; los paneles solicitados usan dialog con fondo separado, foco modal y cierre.','#workspace-dialog','07'),
 'C3.1':('Explicaciones breves; detalles de reglas y ejemplos se revelan bajo demanda.','.rule','05'),
 'C3.2':('La intención precede a los mensajes; las propuestas y acciones se distinguen por tamaño, espacio y contraste.','.conversation-heading','03'),
-'C3.4':('Correo, vocabulario y chats por explorar se agrupan por tarea; las palabras permanecen junto al contexto.','.history-group','08'),
+'C3.4':('El panel lateral izquierdo agrupa correo, vocabulario y chats por explorar por tarea; las palabras permanecen junto al contexto.','.history-group','08'),
 'C3.5':('Las métricas separan aportes y palabras. Las revisiones se dividen en antes, propuesta, motivo y decisión.','.metrics','07'),
 'C3.7':('Texto libre para producir y razonar; botones para aceptar, conservar, guardar o mostrar apoyos. No se convierte la tarea en una ficha.','#chat-input','04'),
 'C3.8':('Tu frase, Propuesta y la categoría se encuentran junto a sus valores, también en la comparación léxica.','.diff-line','04'),
@@ -38,13 +38,13 @@ APPLIED={
 'C6.10':('El inicio contiene una invitación, un compositor y dos ideas; la ruta y las explicaciones extensas se despliegan a petición.','#welcome','01'),
 'C6.11':('No hay panel lateral permanente que repita texto o progreso; la información auxiliar se consulta cuando se necesita.','#learning-plan','01'),
 'C7.1':('Contexto, mensajes, borrador y versiones se conservan por conversación y se recuperan desde el historial local.','.session-link','08'),
-'C7.5':('La tarea aparece en el encabezado y junto al mensaje; Cambiar tarea permite corregir la ubicación. No hay cambios silenciosos entre actividades al escribir.','#task-label','03'),
+'C7.5':('La tarea y la etapa actual permanecen en una franja fija bajo el menú; Cambiar tarea permite corregir la ubicación. No hay cambios silenciosos entre actividades al escribir.','#task-label','03'),
 'C7.7':('Enviar es la acción principal del compositor; cada propuesta distingue su opción de uso de las alternativas secundarias.','#send-btn','04'),
 'C7.8':('Dos ideas de inicio y acceso directo al historial, ruta y notas; no hay un asistente secuencial obligatorio.','#starter-actions','01'),
 'C7.10':('Reglas, ejemplos y versiones siguen accesibles. La recuperación sin apoyo es una práctica explícita y voluntaria, con opción de consultar.','#recall-banner','06'),
 'C8.1':('La intención, la lectura y la producción propia ocupan el centro. La ruta permanece plegada inicialmente.','#main','01'),
 'C8.2':('Cambios aceptados o conservados muestran estado en su tarjeta y confirmación junto al compositor; las versiones anteriores no se borran.','#composer-notice','04'),
-'C8.3':('La ruta diferencia ubicación, Aporte guardado y Por explorar. Abrir una etapa no registra una producción ni certifica dominio.','#stagebar','07'),
+'C8.3':('El indicador siempre visible muestra Etapa actual de cuatro. La ruta distingue Actual, Aporte guardado y Sin aporte aún. Cambiar de actividad actualiza la etapa; abrirla no registra una producción ni certifica dominio.','#stagebar','11'),
 'C8.5':('Las opciones nombran el resultado: Comparar dos peticiones, Ver significado ahora y Probar sin definición.','[data-action="definition"]','05'),
 'C8.6':('Confirmaciones y decisiones usan verbos concretos, incluida la acción de deshacer o usar una versión.','[data-action="undo-correction"]','04'),
 'C8.7':('Las rutas responden a comparar registro, inferir, contrastar, recuperar y transferir expresiones del HTA seleccionado.','#learning-plan','06'),
@@ -79,7 +79,7 @@ OTHER={
 'C8.9':('Aplicado','Se usan Enter para enviar, Shift+Enter para otra línea y Escape nativo para cerrar dialog. El compositor muestra los atajos familiares.','.composer-footnote'),
 'C8.11':('Parcial','La práctica sin modelo se indica de forma explícita y permite salir con Consultar el apoyo anterior. No expira por tiempo: una salida automática interrumpiría la recuperación al ritmo del estudiante.','#recall-banner'),
 }
-CAPTURES={'01':'01_inicio.png','02':'02_sugerencia.png','03':'03_comparar.png','04':'04_revision.png','05':'05_vocabulario.png','06':'06_recuperar.png','07':'07_aprendizaje.png','08':'08_historial.png'}
+CAPTURES={'01':'01_inicio.png','02':'02_sugerencia.png','03':'03_comparar.png','04':'04_revision.png','05':'05_vocabulario.png','06':'06_recuperar.png','07':'07_aprendizaje.png','08':'08_historial.png','11':'11_etapas.png'}
 INTRO='''La guía conserva los 71 principios y sus nombres de la matriz original. La columna de origen mantiene su clasificación binaria (44 cumplen y 27 no cumplen). El estado actual se revisa contra el prototipo conversacional: aplicado significa una decisión de diseño inspeccionable, no aprobación docente ni validación experimental. Parcial, pendiente, excluido y no aplica explican límites distintos; ninguno se cuenta como cumplimiento total.
 
 Los originales anteriores al rediseño se conservan en docs/originales/principios-anterior/. El PDF y DOCX de la matriz de entrada permanecen intactos. Las capturas actuales se generan con tools/generate_screenshots.py; los recorridos completos están en guia.md y la correspondencia con el HTA en docs/REVISION_HTA_Y_TRAZABILIDAD.md.'''

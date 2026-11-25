@@ -1,4 +1,5 @@
 :root {
+  --header-height:84px;
   --ink:#202c2c;
   --muted:#596968;
   --teal:#0b665d;
@@ -137,14 +138,16 @@ small,.small {
   color:white
 }
 .app-header {
-  height:84px;
+  height:var(--header-height);
   padding:0 32px;
   display:flex;
   align-items:center;
   gap:24px;
   background:white;
-  position:relative;
-  z-index:2
+  position:sticky;
+  top:0;
+  z-index:5;
+  box-shadow:0 1px 0 var(--line)
 }
 .header-start,.header-actions {
   display:flex;
@@ -378,18 +381,27 @@ textarea::placeholder {
   padding:3px 8px
 }
 .active-chat {
-  padding-top:24px;
+  padding-top:0;
   padding-bottom:0;
   min-height:calc(100svh - 148px);
   display:flex;
   flex-direction:column
+}
+.task-navigation {
+  position:sticky;
+  top:var(--header-height);
+  z-index:3;
+  background:var(--bg);
+  padding-top:20px;
+  margin-bottom:24px;
+  box-shadow:0 8px 12px white
 }
 .conversation-heading {
   display:flex;
   gap:16px;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:20px
+  margin-bottom:14px
 }
 .conversation-heading h1 {
   font-size:1.55rem;
@@ -406,16 +418,47 @@ textarea::placeholder {
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
   padding:12px 0;
-  margin-bottom:30px;
+  margin-bottom:0;
   font-size:.875rem
 }
 .learning-plan summary {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:30px;
+  list-style:none;
   cursor:pointer;
   font-weight:500
 }
-.learning-plan summary span {
+.learning-plan summary::-webkit-details-marker {
+  display:none
+}
+#stage-position {
+  color:var(--teal);
+  flex:1;
+  min-width:0
+}
+.route-toggle {
   color:var(--muted);
-  font-weight:400
+  white-space:nowrap
+}
+.learning-plan[open] .route-toggle {
+  display:none
+}
+.route-symbol::before {
+  content:'+';
+  font-size:1.25rem;
+  color:var(--teal)
+}
+.learning-plan[open] .route-symbol::before {
+  content:'−'
+}
+.route-content {
+  max-height:min(35svh,260px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable;
+  padding:0 4px 4px
 }
 .learning-plan p {
   margin:12px 0 0
@@ -461,7 +504,7 @@ textarea::placeholder {
 .message {
   margin-bottom:26px;
   overflow-wrap:anywhere;
-  scroll-margin-top:20px
+  scroll-margin-top:calc(var(--header-height) + 180px)
 }
 .message.user {
   display:flex;
@@ -726,6 +769,35 @@ dialog::backdrop {
   background:#112b2855;
   backdrop-filter:blur(2px)
 }
+dialog.conversation-drawer {
+  position:fixed;
+  inset:0 auto 0 0;
+  margin:0;
+  width:min(360px,calc(100vw - 28px));
+  max-width:none;
+  height:100dvh;
+  max-height:100dvh;
+  padding:24px;
+  border-top:0;
+  border-bottom:0;
+  border-left:0;
+  border-radius:0 18px 18px 0;
+  box-shadow:12px 0 60px #102c2330
+}
+dialog.conversation-drawer[open] {
+  display:flex;
+  flex-direction:column
+}
+.conversation-drawer .dialog-header {
+  flex-shrink:0
+}
+.conversation-drawer #dialog-content {
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding-right:4px
+}
 .dialog-header {
   display:flex;
   justify-content:space-between;
@@ -766,8 +838,10 @@ dialog::backdrop {
   }
 }
 @media(max-width:650px) {
+  :root {
+    --header-height:70px
+  }
   .app-header {
-    height:70px;
     padding:0 14px;
     gap:8px
   }
@@ -840,7 +914,11 @@ dialog::backdrop {
     padding:17px
   }
   .active-chat {
-    padding-top:14px
+    padding-top:0
+  }
+  .task-navigation {
+    padding-top:12px;
+    margin-bottom:18px
   }
   .conversation-heading {
     gap:6px
@@ -852,9 +930,11 @@ dialog::backdrop {
     font-size:.8125rem;
     padding:6px
   }
-  .learning-plan summary span {
-    display:block;
-    margin-left:15px
+  .learning-plan summary {
+    gap:8px
+  }
+  .route-toggle {
+    font-size:.8125rem
   }
   .user-text {
     max-width:94%

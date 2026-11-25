@@ -38,7 +38,7 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 
 #### C1.2 · Mantener consistencia de ubicación y apariencia
 - Matriz original: **Cumple**. Estado actual: **Aplicado**.
-- Evidencia / razón: El compositor y las acciones de cabecera conservan estilo y función entre correo y vocabulario.
+- Evidencia / razón: La cabecera permanece visible durante el desplazamiento; el compositor y las acciones conservan estilo y función entre correo y vocabulario.
 - Localización real: `.app-header`.
 - Captura del escenario: [01_inicio.png](docs/screenshots/actual/01_inicio.png).
 
@@ -82,7 +82,7 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 
 #### C2.6 · Figura/fondo: separar planos
 - Matriz original: **Cumple**. Estado actual: **Aplicado**.
-- Evidencia / razón: Los paneles solicitados se abren en dialog con fondo separado, foco modal y cierre.
+- Evidencia / razón: Conversaciones se abre en un panel lateral izquierdo de alto completo; los paneles solicitados usan dialog con fondo separado, foco modal y cierre.
 - Localización real: `#workspace-dialog`.
 - Captura del escenario: [07_aprendizaje.png](docs/screenshots/actual/07_aprendizaje.png).
 
@@ -117,7 +117,7 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 
 #### C3.4 · Agrupar contenido similar
 - Matriz original: **Cumple**. Estado actual: **Aplicado**.
-- Evidencia / razón: Correo, vocabulario y chats por explorar se agrupan por tarea; las palabras permanecen junto al contexto.
+- Evidencia / razón: El panel lateral izquierdo agrupa correo, vocabulario y chats por explorar por tarea; las palabras permanecen junto al contexto.
 - Localización real: `.history-group`.
 - Captura del escenario: [08_historial.png](docs/screenshots/actual/08_historial.png).
 
@@ -342,7 +342,7 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 
 #### C7.5 · Evitar modos o hacer visible el modo actual
 - Matriz original: **Cumple**. Estado actual: **Aplicado**.
-- Evidencia / razón: La tarea aparece en el encabezado y junto al mensaje; Cambiar tarea permite corregir la ubicación. No hay cambios silenciosos entre actividades al escribir.
+- Evidencia / razón: La tarea y la etapa actual permanecen en una franja fija bajo el menú; Cambiar tarea permite corregir la ubicación. No hay cambios silenciosos entre actividades al escribir.
 - Localización real: `#task-label`.
 - Captura del escenario: [03_comparar.png](docs/screenshots/actual/03_comparar.png).
 
@@ -395,9 +395,9 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 
 #### C8.3 · Mostrar lo hecho y lo pendiente
 - Matriz original: **Cumple**. Estado actual: **Aplicado**.
-- Evidencia / razón: La ruta diferencia ubicación, Aporte guardado y Por explorar. Abrir una etapa no registra una producción ni certifica dominio.
+- Evidencia / razón: El indicador siempre visible muestra Etapa actual de cuatro. La ruta distingue Actual, Aporte guardado y Sin aporte aún. Cambiar de actividad actualiza la etapa; abrirla no registra una producción ni certifica dominio.
 - Localización real: `#stagebar`.
-- Captura del escenario: [07_aprendizaje.png](docs/screenshots/actual/07_aprendizaje.png).
+- Captura del escenario: [11_etapas.png](docs/screenshots/actual/11_etapas.png).
 
 #### C8.4 · Permitir marcar, mover o colorear elementos
 - Matriz original: **No cumple**. Estado actual: **Parcial**.
@@ -460,6 +460,8 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 ![Escenario actual 07](docs/screenshots/actual/07_aprendizaje.png)
 
 ![Escenario actual 08](docs/screenshots/actual/08_historial.png)
+
+![Escenario actual 11](docs/screenshots/actual/11_etapas.png)
 
 ## Límites de la evaluación
 

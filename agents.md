@@ -4,7 +4,9 @@ La instrucción actual del usuario sustituye las decisiones anteriores de alcanc
 
 Código cargado: `index.html` → `js/icons.js`, `js/tutor-data.js`, `js/tutor.js`; estilos en `css/style.css`. El resto de JS es histórico y no se carga. La persistencia es localStorage; no hay IA externa. La guía vigente conserva los 71 principios de la matriz: 49 aplicados de diseño (incluidos sus 44 originales), 6 parciales, 3 pendientes, 2 excluidos y 11 no aplicables. No se atribuye validación empírica a estos conteos. Originales previos en `docs/originales/principios-anterior/`.
 
-Verificación vigente: `python3 tools/test_learning_flow.py` y `python3 tools/test_guide_integrity.py`; capturas: `tools/generate_screenshots.py`. Regenerar secuencialmente. Las secciones siguientes conservan el historial del proyecto; sus rutas de prueba, tres actividades y cifras anteriores no describen la implementación vigente.
+Navegación vigente: Conversaciones se muestra como un panel lateral izquierdo de alto completo (dialog.conversation-drawer), con foco modal y cierre por X, Escape o fondo. Cabecera y franja de tarea fijas; indicador de etapa siempre visible y ruta opcional desplegable. Las acciones de apoyo sincronizan etapa y actividad pendiente sin acreditar aprendizaje.
+
+Verificación vigente: `python3 tools/test_navigation_scroll.py`, `python3 tools/test_learning_flow.py` y `python3 tools/test_guide_integrity.py`; capturas: `tools/generate_screenshots.py`. Regenerar secuencialmente. Las secciones siguientes conservan el historial del proyecto; sus rutas de prueba, tres actividades y cifras anteriores no describen la implementación vigente.
 
 ---
 

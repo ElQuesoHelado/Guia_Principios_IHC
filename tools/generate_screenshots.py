@@ -19,7 +19,10 @@ SPECS=[
  ('05_vocabulario.png',VOCAB+"document.querySelector('.word-detail .rule').open=true;document.querySelector('.word-detail').scrollIntoView({block:'center'});",1440,1100),
  ('06_recuperar.png',VOCAB+"click('[data-action=recall]');",1440,1000),
  ('07_aprendizaje.png',VOCAB+"click('[data-action=save-word]');click('[data-action=notebook]');",1440,1000),
- ('08_historial.png',"send(TutorData.examples.email);click('[data-action=new]');"+VOCAB+"click('[data-action=history]');",1440,1000),
+ ('08_historial.png',"send(TutorData.examples.email);click('[data-action=new]');"+VOCAB+"window.scrollTo(0,0);click('[data-action=history]');",1440,1000),
+ ('11_etapas.png',"send(TutorData.examples.review);document.querySelector('#learning-plan').open=true;window.scrollTo(0,0);",1440,1000),
+ ('12_etapas_movil.png',"send(TutorData.examples.vocab);document.querySelector('#learning-plan').open=true;window.scrollTo(0,0);",390,844),
+ ('13_historial_movil.png',"send(TutorData.examples.email);click('[data-action=new]');"+VOCAB+"window.scrollTo(0,0);click('[data-action=history]');",390,844),
  ('09_inicio_movil.png','',390,844),
  ('10_sugerencia_movil.png',"type('Quiero aprender a escribir un correo a mi profesora');",390,844),
 ]

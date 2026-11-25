@@ -16,7 +16,7 @@ if __name__=='__main__':
  for r in rows:
   content += [r'\subsection*{'+tex(r['id']+' -- '+r['title'])+'}',r'\textbf{'+tex('Matriz original: '+r['baseline']+'. Estado actual: '+r['status']+'.')+'}',tex(r['reason']),tex('Localización: '+r['selector'])]
  content += [r'\section*{Evidencias visuales actuales}']
- for name in ['01_inicio.png','02_sugerencia.png','03_comparar.png','04_revision.png','05_vocabulario.png','06_recuperar.png','07_aprendizaje.png','08_historial.png']:
+ for name in ['01_inicio.png','02_sugerencia.png','03_comparar.png','04_revision.png','05_vocabulario.png','06_recuperar.png','07_aprendizaje.png','08_historial.png','11_etapas.png']:
   path=BASE/'docs/screenshots/actual'/name
   if path.exists():content += [r'\clearpage',r'\subsection*{'+tex(name)+'}',r'\includegraphics[width=\linewidth,height=.86\textheight,keepaspectratio]{'+path.as_posix()+'}']
  content += [r'\end{document}']

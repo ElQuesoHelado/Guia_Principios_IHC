@@ -17,7 +17,7 @@
     <span class="header-caption">Un espacio para aprender inglés</span>
     <div class="header-actions">
       <button class="text-btn" data-action="new"><span data-icon="plus"></span><span>Nuevo chat</span></button>
-      <button class="text-btn" id="notebook-button" data-action="notebook" hidden><span data-icon="book"></span><span>Mi aprendizaje</span></button>
+      <button class="text-btn" id="notebook-button" data-action="notebook" aria-label="Mi aprendizaje" title="Mi aprendizaje" hidden><span data-icon="book"></span><span>Mi aprendizaje</span></button>
     </div>
   </header>
   <main id="main" class="home">
@@ -28,16 +28,21 @@
       <p class="intro">Escribe como te salga. Vamos afinándolo juntos.</p>
     </section>
     <section id="conversation" aria-label="Práctica actual" hidden>
-      <div class="conversation-heading">
-        <div><p class="eyebrow" id="task-label"></p><h1 id="chat-title"></h1></div>
-        <button class="text-btn" data-action="change-task">Cambiar tarea</button>
+      <div class="task-navigation">
+        <div class="conversation-heading">
+          <div><p class="eyebrow" id="task-label"></p><h1 id="chat-title"></h1></div>
+          <button class="text-btn" data-action="change-task">Cambiar tarea</button>
+        </div>
+        <div id="task-choice" class="task-choice" hidden></div>
+        <details id="learning-plan" class="learning-plan">
+          <summary><span id="stage-position" aria-live="polite"></span><span class="route-toggle">Ver etapas</span><span class="route-symbol" aria-hidden="true"></span></summary>
+          <div class="route-content">
+            <p class="route-intro">Una ruta posible · Tú eliges por dónde seguir.</p>
+            <nav id="stagebar" aria-label="Etapas de práctica opcionales"></nav>
+            <p class="small">Los aportes guardados muestran lo que practicaste; no certifican dominio del inglés.</p>
+          </div>
+        </details>
       </div>
-      <div id="task-choice" class="task-choice" hidden></div>
-      <details id="learning-plan" class="learning-plan">
-        <summary>Una ruta posible <span>· Tú eliges por dónde seguir</span></summary>
-        <div id="stagebar" aria-label="Sugerencias de práctica"></div>
-        <p class="small">Los aportes guardados muestran lo que practicaste; no certifican dominio del inglés.</p>
-      </details>
       <div id="recall-banner" class="recall-banner" hidden><strong>Un intento sin modelo</strong><p>El material anterior está oculto. Prueba con tus palabras, a tu ritmo.</p><button class="text-btn" data-action="reveal-support">Consultar el apoyo anterior</button></div>
       <div id="chat-messages" role="log" aria-label="Mensajes de la práctica" aria-live="polite" aria-relevant="additions"></div>
     </section>

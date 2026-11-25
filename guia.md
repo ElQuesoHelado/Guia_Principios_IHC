@@ -48,13 +48,15 @@ En **Nuevo chat**, escribe:
 
 ## 4. Recuperar, transferir y retomar después
 
-1. Despliega **Una ruta posible** y elige **Recuperar sin modelo** o **Recordar sin definición**. El material anterior desaparece de la vista y de la navegación accesible.
+1. La etapa actual permanece visible al desplazarte, por ejemplo **Etapa 2 de 4 · Escribir y decidir**. Despliega **Ver etapas** y elige **Recuperar sin modelo** o **Recordar sin definición**. El material anterior desaparece de la vista y de la navegación accesible.
 2. Escribe un intento propio. En correo: `Could I have more time? Elijo un tono cortés para mi profesora.` En vocabulario: `I have a dedicated desk for my homework.`
 3. Si pulsas **Consultar el apoyo anterior**, el aporte registra que se consultó ayuda. No se califica automáticamente la respuesta.
 4. **Probar en otra situación** propone otro destinatario o contexto. Redacta y explica la elección. Volver a consultar queda permitido.
 5. **Mi aprendizaje** muestra producciones, explicaciones, palabras y fechas; abrir etapas no suma aportes. **Cerrar esta práctica** permite dejar una duda y descargar notas como TXT.
-6. Recarga la página. El inicio vuelve a estar vacío; en el botón de conversaciones, arriba a la izquierda, recupera tu chat. El borrador, las versiones, las palabras y el mensaje sin enviar se mantienen en ese navegador.
+6. Recarga la página. El inicio vuelve a estar vacío; en el botón de conversaciones, arriba a la izquierda, abre el panel lateral izquierdo y recupera tu chat. Puedes cerrarlo con la X, Escape o pulsando fuera del panel. El borrador, las versiones, las palabras y el mensaje sin enviar se mantienen en ese navegador.
 7. En otro momento, usa **Mi aprendizaje → Retomar un repaso sin definición**. No hay recordatorios automáticos ni se afirma que el intervalo haya sido suficiente para demostrar retención.
+
+El menú superior, la tarea y el indicador de etapa permanecen accesibles al bajar por un chat largo. La ruta se despliega a petición; en pantallas pequeñas su altura está limitada y permite desplazarse dentro de ella. Volver a comprender o escribir termina la práctica sin modelo y actualiza la actividad pendiente. Navegar no marca etapas como aprendidas.
 
 ## 5. Caso ambiguo y libertad de navegación
 
@@ -70,6 +72,7 @@ Envía `Quiero mejorar mi inglés`. El mensaje no se pierde: la interfaz pide un
 ## Verificación técnica
 
 ```bash
+python3 tools/test_navigation_scroll.py
 python3 tools/test_learning_flow.py
 python3 tools/test_guide_integrity.py
 python3 tools/generate_screenshots.py

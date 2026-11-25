@@ -13,7 +13,7 @@ Las atribuciones y títulos siguientes se conservan como aparecen en el document
 | Kazemitabaar | Mostrar interpretaciones y supuestos | Contexto de tarea indicado junto al mensaje; **Cambiar tarea** permite corregirlo; una oración propia no recibe la acepción de otro ejemplo | C1.2 y V3; `#composer-mode-hint`, `change-task`, `startIntro()` |
 | Kazemitabaar | Permitir intervenir | Usar, conservar o explicar antes de decidir; no se modifica automáticamente el correo | C5.3–C5.4; `accept`, `reject`, `justify` |
 | Kazemitabaar | Mostrar procedimiento y resultado | Original, propuesta, explicación y versiones; el procedimiento técnico del dominio de datos se traduce a evidencia lingüística | C5; `versions()`, `.diff-line` |
-| LightVA: *Lightweight Visual Analytics with LLM Agent-Based Task Planning and Execution* | Plan visible | Ruta desplegable con ubicación y aportes guardados; no abre una ficha obligatoria | C/V; `#stagebar` |
+| LightVA: *Lightweight Visual Analytics with LLM Agent-Based Task Planning and Execution* | Plan visible | Etapa actual visible durante el desplazamiento, ruta desplegable y aportes guardados; no abre una ficha obligatoria | C/V; `#stagebar` |
 | LightVA | Acciones sugeridas y lenguaje natural | Botones contextuales y un único chat; sugerencias mientras se escribe, editables y descartables | C2, C5, V2, V6; `#prompt-assist`, `#chat-input` |
 | LightVA | Aprobar o rechazar acciones | Decisiones de revisión y libertad para saltar la hipótesis o consultar un ejemplo | C5, V3; `accept`, `reject`, `definition` |
 | LightVA | Observar progreso acumulado | Producciones, hipótesis, explicaciones y fechas; palabras guardadas se cuentan aparte | C6–C7, V6–V7; `notebook()` |

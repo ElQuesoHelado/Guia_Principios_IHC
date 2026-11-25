@@ -60,7 +60,7 @@
   function correction(s,m) {
     const accepted = m.status === 'accepted', decided = m.status && m.status !== 'pending';
     if(m.status==='outdated') return `<section class="card correction-card"><span class="badge">Propuesta de una versión anterior</span><div class="diff-line"><small>Fragmento revisado entonces</small><p lang="en">${esc(m.before)}</p></div><p class="small">Recuperaste otro borrador. Puedes solicitar una nueva revisión de la versión actual.</p>${actions([btn('review','Revisar versión actual'),btn('versions','Ver versiones')])}</section>`;
-    return `<section class="card correction-card" aria-label="Propuesta de revisión"><span class="badge ${m.category === 'Gramática' ? 'grammar' : 'tone'}">${m.category === 'Gramática' ? '△ ' : ''}${esc(m.category)}</span><h2 style="margin-top:12px">${m.category === 'Gramática' ? 'Revisemos esta estructura' : 'Una alternativa de cortesía'}</h2><div class="diff-line"><small>Tu frase</small><p lang="en">${esc(m.before)}</p></div><div class="diff-line proposal"><small>Propuesta · tú decides</small><p lang="en">${esc(m.after)}</p></div><details class="rule"><summary>Por qué se propone este cambio</summary><p>${esc(m.reason)}</p></details><p class="inline-help" style="margin-top:12px">Solo se modifica este fragmento. El resto del correo se conserva.</p>${decided ? `<p class="note">${accepted ? 'Sugerencia aplicada' : 'Conservaste tu frase'} · puedes revisar las versiones.</p>${actions([btn('undo-correction','Deshacer decisión',`data-id="${m.id}"`),btn('justify','Explicar mi decisión')])}` : actions([btn('accept','Usar esta sugerencia',`data-id="${m.id}"`,true),btn('reject','Conservar mi frase',`data-id="${m.id}"`),btn('justify','Explicar antes de decidir')])}</section>`;
+    return `<section class="card correction-card" aria-label="Propuesta de revisión"><span class="badge ${m.category === 'Gramática' ? 'grammar' : 'tone'}">${m.category === 'Gramática' ? '△ ' : ''}${esc(m.category)}</span><h2 style="margin-top:12px">${m.category === 'Gramática' ? 'Revisemos esta estructura' : 'Una alternativa de cortesía'}</h2><div class="diff-line"><small>Tu frase</small><p lang="en">${esc(m.before)}</p></div><div class="diff-line proposal"><small>Propuesta · tú decides</small><p lang="en">${esc(m.after)}</p></div><details class="rule"><summary>Por qué se propone este cambio</summary><p>${esc(m.reason)}</p></details><p class="inline-help" style="margin-top:12px">Solo se modifica este fragmento. El resto del correo se conserva.</p>${decided ? `<p class="note">${accepted ? 'Sugerencia aplicada' : 'Conservaste tu frase'} · puedes revisar las versiones.</p>${actions([btn('undo-correction','Deshacer decisión',`data-id="${m.id}"`),btn('justify','Explicar mi decisión','data-stage="1"')])}` : actions([btn('accept','Usar esta sugerencia',`data-id="${m.id}"`,true),btn('reject','Conservar mi frase',`data-id="${m.id}"`),btn('justify','Explicar antes de decidir','data-stage="1"')])}</section>`;
   }
   function wordCard(s, m) {
     const w = D.words[m.word];
@@ -70,7 +70,7 @@
     switch (m.kind) {
       case 'text': return textBlock(m.text) + (m.start ? introActions(s.task) : '');
       case 'choice': return textBlock(m.text) + actions([btn('assign','Aprender con un correo','data-task="email"'),btn('assign','Vocabulario en contexto','data-task="vocab"')]);
-      case 'compare': return `<p>Las dos peticiones buscan lo mismo: recibir unos apuntes. Cambia la relación con quien los recibe.</p><section class="card"><h2>La misma intención, otra relación</h2><div class="comparison"><div><span class="badge">A un compañero</span><blockquote lang="en">Can you send me the notes?</blockquote><small>Cercanía; una petición directa puede encajar.</small></div><div><span class="badge tone">A una profesora</span><blockquote lang="en">Could you please send me the notes?</blockquote><small>Could y please suavizan la petición.</small></div></div><p>Las dos son gramaticales. La segunda ofrece una opción más cortés; usar palabras difíciles no la hace automáticamente más formal.</p><p>¿Qué cambiarías si le escribieras a alguien de confianza? Puedes explicarlo o probar tu frase.</p>${actions([btn('write','Escribir mi petición','',true),btn('justify','Explicar la diferencia'),btn('model','Ver el correo completo')])}</section>`;
+      case 'compare': return `<p>Las dos peticiones buscan lo mismo: recibir unos apuntes. Cambia la relación con quien los recibe.</p><section class="card"><h2>La misma intención, otra relación</h2><div class="comparison"><div><span class="badge">A un compañero</span><blockquote lang="en">Can you send me the notes?</blockquote><small>Cercanía; una petición directa puede encajar.</small></div><div><span class="badge tone">A una profesora</span><blockquote lang="en">Could you please send me the notes?</blockquote><small>Could y please suavizan la petición.</small></div></div><p>Las dos son gramaticales. La segunda ofrece una opción más cortés; usar palabras difíciles no la hace automáticamente más formal.</p><p>¿Qué cambiarías si le escribieras a alguien de confianza? Puedes explicarlo o probar tu frase.</p>${actions([btn('write','Escribir mi petición','',true),btn('justify','Explicar la diferencia','data-stage="0"'),btn('model','Ver el correo completo')])}</section>`;
       case 'model': return `<section class="card"><p class="eyebrow">Modelo de práctica · no es tu borrador</p><h2>Pedir más tiempo para una entrega</h2><div class="doc-text" lang="en">${esc(D.model)}</div><p>“Dear Professor” abre el mensaje con un tratamiento acorde a la relación; “Could I have…” formula una petición cortés; “until Friday” concreta el plazo. El motivo explica la necesidad y “Best regards” cierra el correo con un tono coherente.</p>${actions([btn('write','Probar con mis recursos','',true),btn('recall','Intentar sin el modelo')])}</section>`;
       case 'draft': return `<section class="card"><p class="eyebrow">Tu producción · versión guardada</p><h2>Un punto de partida propio</h2><div class="doc-text" lang="en">${esc(m.text)}</div>${actions([btn('review','Revisar una frase','',true),btn('versions','Comparar versiones'),btn('write','Escribir otra versión')])}</section>`;
       case 'correction': return correction(s,m);
@@ -96,7 +96,9 @@
     if (s) {
       $('#task-label').textContent = D.tasks[s.task]; $('#chat-title').textContent = s.task === 'email' ? 'Encontrar tus palabras para escribir' : s.task === 'vocab' ? 'Del contexto a tus propias palabras' : 'Busquemos un punto de partida';
       $('#learning-plan').hidden = s.task === 'general';
-      $('#stagebar').innerHTML = (D.stages[s.task]||[]).map((title,i)=>`<button class="stage" data-action="stage" data-stage="${i}" ${i===s.stage?'aria-current="step"':''}>${title}<small>${s.stageEvidence.includes(i)?'Aporte guardado':'Por explorar'}</small></button>`).join('');
+      const stages = D.stages[s.task] || [];
+      $('#stage-position').textContent = stages.length ? `Etapa ${s.stage + 1} de ${stages.length} · ${stages[s.stage]}` : '';
+      $('#stagebar').innerHTML = stages.map((title,i)=>`<button class="stage" data-action="stage" data-stage="${i}" ${i===s.stage?'aria-current="step"':''}>${title}<small>${i===s.stage?'Actual · ':''}${s.stageEvidence.includes(i)?'Aporte guardado':'Sin aporte aún'}</small></button>`).join('');
     }
     renderMessages(); renderAssist(); save();
   }
@@ -138,6 +140,8 @@
     evidence(s,'Producción propia',text);message(s,'draft',text);s.stage=1;
   }
   function review(s) {
+    if (s.recall) s.helpUsed = true;
+    s.recall=false;s.pending=null;s.stage=1;
     if(!s.draft){message(s,'text','Comparte tu frase o correo en inglés. Revisaremos solo el fragmento pertinente y conservaremos el resto.');s.pending={type:'draft',label:'Escribe tu frase o correo en inglés'};return;}
     const rules=[
       {re:/\bI am agree\b/i,after:'I agree',category:'Gramática',reason:'Agree ya es un verbo: “I agree”. No necesita am en esta estructura. El significado de estar de acuerdo se mantiene.'},
@@ -149,8 +153,8 @@
     if(!count) message(s,'text','No tengo una revisión automática fiable para este fragmento en la demo. Puedes comparar la intención y la cortesía con los ejemplos, o explicar una elección que quieras contrastar. Tu texto sigue guardado.');
     s.stage=1;
   }
-  function clue(s) {const w=D.words[s.word];message(s,'clue',w.clue,{word:s.word,context:s.context||w.context});s.pending={type:'inference',label:'Tu hipótesis de significado y una pista del contexto'};s.stage=0;}
-  function definition(s,hypothesis='') {const w=D.words[s.word];s.pending=null;s.stage=1;message(s,'definition','',{word:s.word,context:s.context||w.context,hypothesis});}
+  function clue(s) {const w=D.words[s.word];if(s.recall)s.helpUsed=true;s.recall=false;message(s,'clue',w.clue,{word:s.word,context:s.context||w.context});s.pending={type:'inference',label:'Tu hipótesis de significado y una pista del contexto'};s.stage=0;}
+  function definition(s,hypothesis='') {const w=D.words[s.word];if(s.recall)s.helpUsed=true;s.recall=false;s.pending=null;s.stage=1;message(s,'definition','',{word:s.word,context:s.context||w.context,hypothesis});}
   function recall(s,transfer=false) {
     s.pending={type:transfer?'transfer':'recall',label:transfer?'Tu intento en una situación diferente':'Tu intento sin el material anterior'};
     s.stage=transfer?3:2;s.recall=true;s.helpUsed=false;s.recallStart=s.messages.length;
@@ -188,6 +192,7 @@
   function newChat() { persistInput();state.active=null;chosenTask=null;dismissed='';promptUndo=null;input.value='';$('#task-choice').hidden=true;$('#learning-plan').open=false;notice('');render();sizeInput();input.focus(); }
   function openDialog(title,html,type) {
     const dialog=$('#workspace-dialog');if(!dialog.open)returnFocus=document.activeElement;
+    dialog.classList.toggle('conversation-drawer', type === 'history');
     panel=type;$('#dialog-title').textContent=title;$('#dialog-content').innerHTML=html;
     if(!dialog.open)dialog.showModal();$('#dialog-content').scrollTop=0;
   }
@@ -225,7 +230,7 @@
       case 'change-task':$('#task-choice').hidden=!$('#task-choice').hidden;$('#task-choice').innerHTML=`<p>¿Dónde quieres continuar este chat?</p>${actions([btn('assign','Correo en inglés','data-task="email"'),btn('assign','Vocabulario en contexto','data-task="vocab"')])}`;return;
       case 'assign':if(!s)return;s.task=el.dataset.task;s.pending=null;s.recall=false;s.stage=0;s.stageEvidence=[];$('#task-choice').hidden=true;message(s,'text',`Este chat se organizó en ${D.tasks[s.task].toLowerCase()}. Conservé los mensajes y tus aportes.`,{start:true});break;
       case 'compare':if(!s)return;s.recall=false;s.helpUsed=true;s.pending={type:'justify',label:'Explica qué cambia en el tono o prueba una comparación'};s.stage=0;message(s,'compare');break;
-      case 'model':if(!s)return;s.recall=false;s.helpUsed=true;s.pending=null;message(s,'model');break;
+      case 'model':if(!s)return;s.recall=false;s.helpUsed=true;s.pending=null;s.stage=0;message(s,'model');break;
       case 'write':if(!s)return;s.pending={type:'draft',label:'Tu propia frase o correo en inglés'};s.stage=1;s.recall=false;message(s,'text','Escribe una petición o un correo con tus recursos. Puedes incluir a quién te diriges y explicar el tono; no tienes que completar apartados.');break;
       case 'review':if(!s)return;review(s);break;
       case 'accept':case 'reject':{
@@ -242,15 +247,15 @@
           s.draft=m.previous;s.versions.push({id:id(),label:'Decisión deshecha',text:s.draft,date:new Date().toISOString()});
         }m.status='pending';notice('Decisión deshecha; las versiones anteriores siguen disponibles.');break;}
       case 'restore':{if(!s)return;const v=s.versions.find(v=>v.id===el.dataset.id);if(!v)return;s.draft=v.text;s.versions.push({id:id(),label:'Recuperada de '+v.label,text:v.text,date:new Date().toISOString()});s.messages.filter(m=>m.kind==='correction').forEach(m=>m.status='outdated');renderMessages();save();versions();notice('Versión recuperada. Las anteriores se conservan.');return;}
-      case 'justify':case 'vocab-explain':if(!s)return;s.pending={type:'justify',label:action==='justify'?'Tu explicación del cambio o del tono':'Tu explicación del significado y del contexto'};message(s,'text',action==='justify'?'¿Qué efecto tiene la expresión que elegiste en el significado o en el tono? Puedes mantener tu frase si encaja con tu intención.':'Explica con tus palabras qué acepción encaja y qué pista de la oración permite descartar la otra. Puedes añadir un patrón de uso que quieras recordar.');break;
-      case 'reading':if(!s)return;s.task='vocab';s.pending=null;s.recall=false;message(s,'reading');break;
+      case 'justify':case 'vocab-explain':if(!s)return;if(s.recall)s.helpUsed=true;s.recall=false;s.stage=action==='vocab-explain'?1:Number(el.dataset.stage??s.stage);s.pending={type:'justify',label:action==='justify'?'Tu explicación del cambio o del tono':'Tu explicación del significado y del contexto'};message(s,'text',action==='justify'?'¿Qué efecto tiene la expresión que elegiste en el significado o en el tono? Puedes mantener tu frase si encaja con tu intención.':'Explica con tus palabras qué acepción encaja y qué pista de la oración permite descartar la otra. Puedes añadir un patrón de uso que quieras recordar.');break;
+      case 'reading':if(!s)return;s.task='vocab';s.stage=0;s.pending=null;s.recall=false;message(s,'reading');break;
       case 'pick-word':if(!s)return;s.word=el.dataset.word;s.context=D.words[s.word].context;clue(s);break;
       case 'clue':if(!s)return;clue(s);break;
       case 'definition':if(!s)return;if(s.recall)s.helpUsed=true;s.recall=false;definition(s);break;
       case 'save-word':if(!s)return;if(s.words.includes(el.dataset.word)){s.words=s.words.filter(w=>w!==el.dataset.word);notice('Palabra retirada del repaso. Tus producciones siguen guardadas.');}else{s.words.push(el.dataset.word);notice('Palabra guardada para repasar; guardarla no demuestra que ya la dominas.');}break;
       case 'recall':case 'transfer':case 'repaso':if(!s)return;if($('#workspace-dialog').open)closeDialog();if(action==='repaso'&&s.words.length){s.word=s.words[0];s.context=D.words[s.word].context;}recall(s,action==='transfer');break;
       case 'reveal-support':if(!s)return;s.recall=false;s.helpUsed=true;notice('Apoyo visible. Se registrará que lo consultaste durante este intento.');break;
-      case 'stage':if(!s)return;s.stage=Number(el.dataset.stage);if(s.stage>=2)recall(s,s.stage===3);else if(s.stage===0){if(s.task==='email'){message(s,'compare');s.pending={type:'justify',label:'Tu comparación del tono'};}else clue(s);}else{if(s.task==='email'){s.pending={type:'draft',label:'Tu propia frase o correo'};message(s,'text','Prueba tu propia petición. Después puedes contrastar una expresión.');}else definition(s);}break;
+      case 'stage':if(!s)return;if(s.recall)s.helpUsed=true;s.recall=false;s.stage=Number(el.dataset.stage);if(s.stage>=2)recall(s,s.stage===3);else if(s.stage===0){if(s.task==='email'){message(s,'compare');s.pending={type:'justify',label:'Tu comparación del tono'};}else clue(s);}else{if(s.task==='email'){s.pending={type:'draft',label:'Tu propia frase o correo'};message(s,'text','Prueba tu propia petición. Después puedes contrastar una expresión.');}else definition(s);}break;
       case 'finish':if(!s)return;if($('#workspace-dialog').open)closeDialog();s.closed=true;s.recall=false;s.pending=null;message(s,'finish',s.evidence.length?'Para la próxima práctica: intenta recuperar una expresión antes de volver a los ejemplos.':'Aún no hay producciones propias guardadas. Puedes retomar más adelante o dejar una duda pendiente.');break;
       case 'reflection':if(!s)return;s.pending={type:'reflection',label:'Una duda o una idea para tu próxima práctica'};message(s,'text','¿Qué quieres comprobar o intentar la próxima vez? Lo guardaremos junto a esta práctica.');break;
       default:return;
