@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Principios de IHC · Lingua IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #0F766E;
+            --teal-dark: #0B5F58;
+            --teal-soft: #E0F2EF;
+            --bg: #F4F6FA;
+            --surface: #FFFFFF;
+            --text: #1B2433;
+            --text-muted: #556070;
+            --border: #D5DBE6;
+            --border-soft: #E2E6EE;
+            --shadow: 0 10px 25px rgba(27, 36, 51, 0.08);
+            --radius: 12px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Figtree', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.55;
+            display: flex;
+        }
+        /* Sidebar adhesivo */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            padding: 24px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .sidebar h2 { font-size: 16px; font-weight: 800; color: var(--teal); }
+        .sidebar p { font-size: 12px; color: var(--text-muted); }
+        .nav-group { display: flex; flex-direction: column; gap: 4px; }
+        .nav-link {
+            display: block;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.15s, color 0.15s;
+        }
+        .nav-link:hover { background: var(--teal-soft); color: var(--teal-dark); }
+        .nav-link.special { color: #A32B2B; font-weight: 700; }
+        
+        /* Contenido principal */
+        .content {
+            flex: 1;
+            padding: 40px 48px;
+            max-width: 1080px;
+        }
+        .header-hero {
+            background: var(--surface);
+            padding: 32px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 32px;
+        }
+        .header-hero h1 { font-size: 28px; font-weight: 800; color: var(--teal-dark); }
+        .meta-tags { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+        .meta-tag {
+            background: var(--teal-soft);
+            color: var(--teal-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+        th, td { padding: 12px 16px; text-align: left; font-size: 13.5px; border-bottom: 1px solid var(--border-soft); }
+        th { background: #E9F5F3; color: var(--teal-dark); font-weight: 700; }
+        tr:last-child td { border-bottom: none; }
+        
+        /* Tarjetas de principio */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(27, 36, 51, 0.04);
+            page-break-inside: avoid;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--border-soft);
+            padding-bottom: 10px;
+        }
+        .card-title { font-size: 18px; font-weight: 700; color: var(--text); }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .status-badge.applied { background: var(--teal-soft); color: var(--teal-dark); }
+        .status-badge.partial { background: #FFF1D6; color: #8A5A0B; }
+        .status-badge.excluded { background: #FBEAEA; color: #A32B2B; }
+        
+        .field { margin-bottom: 12px; font-size: 14px; }
+        .field strong { color: var(--text); display: inline-block; min-width: 180px; }
+        .img-container {
+            margin: 16px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #FAFAFA;
+        }
+        .img-container img { display: block; max-width: 100%; height: auto; }
+        .img-caption { font-size: 11.5px; color: var(--text-muted); padding: 6px 12px; background: #F4F6FA; }
+        
+        .verify-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 10px 14px;
+            background: var(--bg);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--teal-dark);
+            cursor: pointer;
+        }
+        .verify-checkbox input { width: 16px; height: 16px; accent-color: var(--teal); cursor: pointer; }
+
+        @media print {
+            .sidebar { display: none; }
+            .content { padding: 0; max-width: 100%; }
+            body { background: #fff; }
+            .card { box-shadow: none; border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div>
+            <h2>Lingua IA · IHC</h2>
+            <p>Guía de Evaluación en Vivo</p>
+            <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
+                <a href="index.html" target="_blank" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 12px; background: var(--teal); color: #fff; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 13px; box-shadow: 0 2px 6px rgba(15, 118, 110, 0.25);">
+                    🚀 Probar Prototipo
+                </a>
+                <a href="GUIA_PRINCIPIOS_IHC.pdf" download style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 12px; background: #fff; color: var(--teal-dark); border: 1px solid var(--border); text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 12.5px;">
+                    📥 Descargar PDF (22 págs)
+                </a>
+            </div>
+        </div>
+        <nav class="nav-group">
+            <a href="#dashboard" class="nav-link">📊 Dashboard de Cobertura</a>
+            <a href="#quick-route" class="nav-link">⏱️ Ruta Rápida (5 min)</a>
+            <a href="#c1" class="nav-link">C1 · Percepción sesgada</a>
+            <a href="#c2" class="nav-link">C2 · Estructura Gestalt</a>
+            <a href="#c3" class="nav-link">C3 · Estructura visual</a>
+            <a href="#c4" class="nav-link">C4 · Visión del color</a>
+            <a href="#c5" class="nav-link">C5 · Visión periférica</a>
+            <a href="#c6" class="nav-link">C6 · Lectura y lenguaje</a>
+            <a href="#c7" class="nav-link">C7 · Atención y memoria</a>
+            <a href="#c8" class="nav-link">C8 · Atención y acción</a>
+            <a href="#no-usados" class="nav-link special">⛔ Principios No Utilizados</a>
+        </nav>
+    </aside>
+    <main class="content">
+
+        <div class="header-hero">
+            <h1>Guía de Principios de IHC para Evaluación Docente</h1>
+            <p>Actualización pedagógica: se conservan los 71 principios y la clasificación de la auditoría anterior. El recorrido actual ofrece sugerencias opcionales de producción propia, autoevaluación y transferencia. Se entra directamente al correo con Original, Borrador, Versión actual y Ver cambios. Ver ejemplos de correo abre el modelo sin requisitos; Guardar mis notas admite notas parciales. Las cifras de cobertura no representan una nueva validación con usuarios ni resultados de aprendizaje.</p>
+            <div class="meta-tags">
+                <span class="meta-tag">71 Principios Auditados</span>
+                <span class="meta-tag">Jeff Johnson (Designing with the Mind in Mind)</span>
+                <span class="meta-tag">14 Capturas Verificadas</span>
+                <span class="meta-tag">100% Sin Alucinaciones</span>
+            </div>
+        </div>
+        
+        <section id="dashboard">
+            <h2 style="font-size: 22px; margin-bottom: 12px; color: var(--teal-dark);">1. Dashboard de Cobertura de Principios</h2>
+            <table>
+                <thead>
+                    <tr><th>Estado</th><th>Cantidad</th><th>% Total</th><th>Justificación de Ingeniería e IHC</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>✅ Aplicado</strong></td><td>44</td><td>62.0%</td><td>Comprobado en el DOM con componente y estilos dedicados.</td></tr>
+                    <tr><td><strong>🟡 Parcial</strong></td><td>11</td><td>15.5%</td><td>Operativo en la demo; con margen de enriquecimiento analítico.</td></tr>
+                    <tr><td><strong>🔴 Pendiente de prueba</strong></td><td>2</td><td>2.8%</td><td>Requiere pruebas de laboratorio con usuarios humanos (C4.7, C6.12).</td></tr>
+                    <tr><td><strong>⛔ Excluido deliberado</strong></td><td>2</td><td>2.8%</td><td>Omitido para proteger la concentración lectora del estudiante (C2.7, C5.4).</td></tr>
+                    <tr><td><strong>➖ No aplica al alcance</strong></td><td>12</td><td>16.9%</td><td>Funcionalidades fuera del alcance (interfaces de voz, base de datos).</td></tr>
+                    <tr style="font-weight: 800; background: #E9F5F3;"><td>TOTAL AUDITADO</td><td>71</td><td>100%</td><td>Cobertura sobre software aplicable: 93.2%</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="quick-route" style="margin-top: 40px;">
+            <h2 style="font-size: 22px; margin-bottom: 12px; color: var(--teal-dark);">2. Ruta de Evaluación Rápida en 5 Minutos (Para el Docente)</h2>
+            <div class="card" style="background: #F9FBFC;">
+                <p style="margin-bottom: 16px;">Siga este itinerario de 6 pasos en el navegador con <code>index.html</code> abierto:</p>
+                <ol style="padding-left: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 14px;">
+                    <li><strong>1. Header persistente (1 clic):</strong> Alterne entre 'Conversación escrita', 'Aprender vocabulario' y 'Aprender a escribir correos'. Verifique que el modo se resalta y el pie del chat lo confirma <em>(C1.1, C1.2, C7.5, C7.8)</em>.</li>
+                    <li><strong>2. Corrección foveal con diff:</strong> En 'Aprender a escribir correos', abra la etapa Revisar y examine la tarjeta central con texto original tachado y propuesta verde. Pulse 'Usar esta sugerencia' y observe el cambio a resuelto con botón 'Deshacer' <em>(C2.1, C4.1, C4.5, C5.1, C8.2, C8.8)</em>.</li>
+                    <li><strong>3. Ayuda graduada a demanda:</strong> Bajo el chat, pulse 'Pista', 'Explicación' y 'Ejemplo'. La tarjeta adapta su prosa sin recargar <em>(C1.3, C3.7, C6.10, C7.10)</em>.</li>
+                    <li><strong>4. Acceso al progreso en 1 clic:</strong> Pulse 'Ver progreso' junto a las etapas numeradas. Se despliega inmediatamente el resumen en el panel lateral <em>(C3.5, C7.1, C7.8, C8.3, C8.5)</em>.</li>
+                    <li><strong>5. Lectura y guardado léxico:</strong> En 'Aprender vocabulario', pulse la palabra 'productive' en el artículo y luego 'Guardar palabra'. Aparece en el panel de vocabulario <em>(C3.4, C8.4, C8.7)</em>.</li>
+                    <li><strong>6. Historial inmutable:</strong> En el footer, abra 'Ver chats' y compruebe el orden taxonómico estable <em>(C1.2, C5.9, C7.1)</em>.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="catalog" style="margin-top: 40px;">
+            <h2 style="font-size: 22px; margin-bottom: 16px; color: var(--teal-dark);">3. Catálogo de Principios Verificados en la Interfaz (55 Principios)</h2>
+    <h3 id='c1' style='margin: 32px 0 16px; font-size: 19px; color: var(--teal); border-bottom: 2px solid var(--teal-soft); padding-bottom: 6px;'>C1 — La percepción es sesgada</h3>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C1.1 · Evitar la ambigüedad</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Cada elemento de la interfaz debe tener una sola interpretación plausible para el usuario objetivo.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Barra superior (#mode-nav) y botones de acción en tarjetas (.correction-actions)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. Observar la barra superior: los 3 botones tienen nombres directos ('Conversación escrita', 'Aprender vocabulario', 'Aprender a escribir correos'). 2. En la tarjeta de corrección central, los botones no usan etiquetas ambiguas como 'OK', sino verbos claros: 'Usar esta sugerencia' y 'Mantener mi frase'.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/01_header_nav.png" alt="Barra superior con botones claros y sin ambigüedad">
+                    <div class="img-caption">Evidencia visual: Barra superior con botones claros y sin ambigüedad</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Elimina el costo cognitivo de adivinar el resultado de una acción, permitiendo que la atención del estudiante se enfoque en aprender inglés y no en interpretar la interfaz.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C1.2 · Mantener consistencia de ubicación y apariencia</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La misma función debe aparecer en la misma posición, con el mismo color, tipografía y comportamiento en todas las vistas.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Header persistente, botón 'Apoyo', barra de etapas y drawer de historial (#history-drawer)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. Cambiar entre las 3 tareas haciendo clic en los botones del header: la barra superior, la posición de las etapas, el drawer y el footer de historial permanecen idénticos. 2. Los colores de estado (verde para aceptado/avance, rojo/coral para gramática) son consistentes en todas las vistas.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/01_header_nav.png" alt="Navegación persistente y uniforme en el header">
+                    <div class="img-caption">Evidencia visual: Navegación persistente y uniforme en el header</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> El cerebro del usuario crea plantillas perceptivas automáticas; la consistencia espacial evita que tenga que re-escanear la pantalla ante cada cambio de modo.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C1.3 · Diseñar para las metas del usuario</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La información necesaria para el objetivo del usuario debe estar disponible, ser prominente y estar ligada a la acción siguiente.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Columna central de trabajo (.chat-column) y selector de niveles de ayuda (#help-levels)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. En 'Aprender a escribir correos', el foco es comprender un modelo, escribir, revisar y transferir. En la etapa Revisar aparece el correo de práctica y la sugerencia activa. 2. Justo debajo del chat, los botones 'Pista', 'Explicación', 'Ejemplo' y 'Ver modelo revisado' permiten al estudiante ajustar el nivel de asistencia según su meta de aprendizaje inmediata.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/05_help_levels.png" alt="Selector de nivel de ayuda situado junto a la meta del estudiante">
+                    <div class="img-caption">Evidencia visual: Selector de nivel de ayuda situado junto a la meta del estudiante</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> El estudiante busca comprender un error o redactar un texto; ofrecer ayuda graduada en el centro de atención apoya directamente su objetivo cognitivo sin pasos intermedios.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        <h3 id='c2' style='margin: 32px 0 16px; font-size: 19px; color: var(--teal); border-bottom: 2px solid var(--teal-soft); padding-bottom: 6px;'>C2 — La visión está optimizada para ver estructura</h3>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C2.1 · Proximidad: agrupar lo relacionado</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los elementos relacionados deben estar más cerca entre sí que de los elementos no relacionados; el espacio en blanco debe separar grupos.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Tarjeta de corrección central (.correction-card)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Examinar la tarjeta central: la categoría (Gramática), el título del error ('Concordancia verbal'), el diff antes/después, la pista explicativa y los botones de decisión están agrupados en un contenedor unificado con bordes y padding claro.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Agrupación por proximidad en tarjeta de corrección">
+                    <div class="img-caption">Evidencia visual: Agrupación por proximidad en tarjeta de corrección</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> La ley de proximidad de la Gestalt hace que el usuario perciba el problema, la solución propuesta y la decisión como una sola unidad conceptual.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C2.2 · Similitud: mismo aspecto para la misma función</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los elementos que cumplen la misma función deben parecerse; los que cumplen funciones distintas deben diferenciarse visualmente.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Píldoras de modo (.mode-pill), píldoras de ayuda (.help-pill) y chips de vocabulario (.word-chip)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. Todos los botones de modo comparten forma redondeada de 22px de radio y estado activo teal. 2. Los chips de vocabulario comparten altura y estilo visual. 3. Los botones de acción primaria ('btn-primary') usan fondo teal consistente en modales y tarjetas.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/01_header_nav.png" alt="Similitud visual en píldoras de navegación">
+                    <div class="img-caption">Evidencia visual: Similitud visual en píldoras de navegación</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Permite el reconocimiento visual instantáneo de qué elementos son accionables y a qué categoría de control pertenecen.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C2.3 · Continuidad: alinear y no interrumpir</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los elementos deben alinearse siguiendo líneas continuas; una secuencia visual no debe interrumpirse sin motivo.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Línea de etapas (#stagebar .stages) y columna de chat (#chat-messages)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Observar la barra superior de etapas: los círculos numerados están unidos por una línea horizontal continua (.stage-line) que guía la mirada de izquierda a derecha. En el chat, los mensajes mantienen una alineación vertical estricta a 800px de ancho.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/02_stagebar.png" alt="Continuidad visual en la secuencia de etapas">
+                    <div class="img-caption">Evidencia visual: Continuidad visual en la secuencia de etapas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> La continuidad perceptiva guía el barrido ocular natural y refuerza la noción de progresión lineal en el proceso de revisión.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C2.4 · Cierre: formas simples y reconocibles</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Las formas deben ser lo bastante simples para que el sistema visual las reconozca como un todo sin exigir contornos perfectos.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Iconos SVG lineales (Icons.js) y badges de estado (.status-pill)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Examinar los iconos de la app (menú hamburguesa, bombilla de ayuda, check de completado, flecha de enviar): usan trazo uniforme de 2px, figuras geométricas básicas y siluetas cerradas fácilmente reconocibles sin detalles innecesarios.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/04_type_badges.png" alt="Iconos y formas simples de fácil cierre visual">
+                    <div class="img-caption">Evidencia visual: Iconos y formas simples de fácil cierre visual</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Reduce el tiempo de fijación foveal al permitir el reconocimiento instantáneo de iconos comunes.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C2.5 · Simetría: reducir complejidad</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los layouts deben usar equilibrio para reducir la complejidad visual y facilitar la comparación.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Estructura principal (.workspace) y tarjetas estadísticas (.stat-grid)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. El área de trabajo se divide en dos bloques proporcionales: columna principal centrada a 800px y panel lateral fijo a 420px. 2. En el panel de progreso, las métricas usan una cuadrícula simétrica de 2 tarjetas ('stat-card') con pesos visuales equivalentes.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/07_side_progress.png" alt="Equilibrio simétrico en tarjetas estadísticas">
+                    <div class="img-caption">Evidencia visual: Equilibrio simétrico en tarjetas estadísticas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> La simetría visual disminuye la carga cognitiva de procesamiento espacial, dando orden y estabilidad a la interfaz.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C2.6 · Figura/fondo: separar planos</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El primer plano debe distinguirse claramente del fondo; modales, overlays y menús deben percibirse como planos separados.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Modal de reglas (#modal-overlay) y drawers deslizables (#drawer-overlay, #history-overlay)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Hacer clic en 'Ver regla completa' dentro de la tarjeta de corrección: la pantalla se oscurece con un fondo translúcido difuminado (backdrop-filter: blur) y el modal se eleva con una sombra pronunciada (box-shadow: 0 18px 44px).</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/13_modal_rule.png" alt="Separación nítida de figura y fondo mediante overlay oscuro y elevación">
+                    <div class="img-caption">Evidencia visual: Separación nítida de figura y fondo mediante overlay oscuro y elevación</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Aísla la atención del usuario en la explicación pedagógica actual eliminando distracciones visuales del texto de fondo.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C2.8 · Revisar las agrupaciones combinadas</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La pantalla debe revisarse con todos los principios Gestalt actuando a la vez para detectar relaciones no intencionadas.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Relación entre columna central y panel lateral (#side-panel)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Observar cómo el panel lateral de apoyo y el chat central nunca repiten el mismo contenido (en redacción el panel oculta la pestaña de texto para no duplicar el centro). Queda parcial pendiente prueba con desenfoque de desenfoque visual formal.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/06_side_criteria.png" alt="Coexistencia visual armónica entre chat y panel de criterios">
+                    <div class="img-caption">Evidencia visual: Coexistencia visual armónica entre chat y panel de criterios</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Garantiza que la combinación de proximidad, similitud y bordes no cree falsas asociaciones entre herramientas secundarias y la tarea activa.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        <h3 id='c3' style='margin: 32px 0 16px; font-size: 19px; color: var(--teal); border-bottom: 2px solid var(--teal-soft); padding-bottom: 6px;'>C3 — Buscamos y usamos estructura visual</h3>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C3.1 · Presentar información tersa y estructurada</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La información debe presentarse de forma breve y estructurada: listas, bloques con etiquetas, no párrafos largos de datos.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Panel de Criterios editables (#aside-content) y panel de Reglas (#aside-content .rule-card)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. Abrir la pestaña 'Criterios': cada supuesto (Destinataria, Nivel, Tono, Objetivo) se presenta en una tarjeta estructurada con icono, etiqueta corta y valor editable. 2. En las reglas, se segmenta en 'Correcto' (verde) y 'Evitar' (rojo).</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/06_side_criteria.png" alt="Criterios estructurados en bloques concisos con iconos y etiquetas">
+                    <div class="img-caption">Evidencia visual: Criterios estructurados en bloques concisos con iconos y etiquetas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Facilita la lectura rápida y el cotejo visual sin obligar al usuario a leer párrafos continuos de instrucciones.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C3.2 · Establecer una jerarquía visual</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La pantalla debe dividirse en secciones con jerarquía clara de tamaño, prominencia y posición; lo crucial arriba y con más peso.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Header -> Barra de etapas -> Chat de trabajo -> Composer -> Panel lateral</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Examinar el flujo visual: 1. Nivel superior: Modo activo (h1 oculto y píldoras prominentes). 2. Subnivel: Etapas de avance. 3. Centro: Tarjeta con tipografía de 15px en negrita para el error y 13.5px para el diff. 4. Lateral: Información de soporte de 11px a 14.5px.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Jerarquía visual clara desde el encabezado hasta la tarjeta de decisión">
+                    <div class="img-caption">Evidencia visual: Jerarquía visual clara desde el encabezado hasta la tarjeta de decisión</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Permite al estudiante escanear de un vistazo dónde está ubicado, qué debe resolver primero y dónde buscar ayuda si la necesita.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C3.3 · Usar encabezados semánticos</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los encabezados deben usar elementos y niveles semánticos reales (h1–h6) para lectores de pantalla.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>index.html (#page-title) y títulos de sección (h3, h4)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> En el código HTML existe un `<h1 class='sr-only' id='page-title'>Lingua IA · Aprender a escribir correos</h1>` que se actualiza dinámicamente con el modo activo. Los módulos usan `<h3>` y `<h4>`. Es parcial porque falta completar la auditoría con NVDA/VoiceOver de toda la jerarquía intermedia.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/01_header_nav.png" alt="Encabezado principal accesible para lectores de pantalla">
+                    <div class="img-caption">Evidencia visual: Encabezado principal accesible para lectores de pantalla</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Permite a usuarios con tecnologías asistivas navegar directamente a los hitos de la página sin tener que recorrer todo el árbol del DOM.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C3.4 · Agrupar contenido similar</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El contenido del mismo tipo debe compartir estilo visual o estar dentro de un área claramente definida.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Tiras de escenarios (.scenario-strip) y lista de palabras (.word-picker)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. En 'Conversación escrita', los escenarios ('Entrevista de trabajo', 'Café con un amigo', 'Conversación universitaria') están contenidos en una tira horizontal con diseño idéntico. 2. En 'Lecciones', las palabras clave del texto aparecen agrupadas en chips homogéneos.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/09_lessons_reading.png" alt="Agrupación homogénea de palabras seleccionables dentro de la lectura">
+                    <div class="img-caption">Evidencia visual: Agrupación homogénea de palabras seleccionables dentro de la lectura</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Comunica de inmediato que todos los chips pertenecen al mismo conjunto de opciones y poseen el mismo comportamiento interactivo.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C3.5 · Agrupar los datos en bloques (chunking)</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los datos deben agruparse en fragmentos comprensibles, evitando cadenas largas indivisas.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Panel de Progreso (.stat-grid) y plan de redacción (.plan-step)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Observar el panel de progreso: en vez de mostrar un párrafo denso con cifras, se fragmenta en 2 bloques limpios: 'Etapas con notas guardadas' (ej. 2/4) y 'Sugerencias revisadas' (ej. 0/4). El plan de redacción se divide en 5 pasos numerados e independientes.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/07_side_progress.png" alt="Fragmentación de métricas en tarjetas separadas">
+                    <div class="img-caption">Evidencia visual: Fragmentación de métricas en tarjetas separadas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Respeta la capacidad finita de la memoria de trabajo humana (regla de Miller, 4 a 7 fragmentos de información simultánea).</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C3.7 · Usar controles específicos para cada tipo de dato</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Valores con dominio limitado deben capturarse con controles que impidan datos inválidos: selectores, botones, toggles.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Selector de nivel de ayuda (#help-levels), selector de versiones (.version-tabs) y botones aceptar/rechazar</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> El nivel de ayuda solo admite 4 estados fijos ('Pista', 'Explicación', 'Ejemplo', 'Reescritura') y se controla mediante botones tipo píldora mutuamente excluyentes, en lugar de un campo de texto libre.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/05_help_levels.png" alt="Controles de píldora para estados finitos predefinidos">
+                    <div class="img-caption">Evidencia visual: Controles de píldora para estados finitos predefinidos</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Previene errores del usuario por entradas tipográficas inválidas y reduce el esfuerzo motor al requerir un solo clic.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C3.8 · Mantener las etiquetas junto a sus valores</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Cada etiqueta debe estar arriba o a la izquierda de su valor; la proximidad debe dejar claro a qué dato pertenece.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Badges de corrección (.badge-row), Criterios (.criterion-label) y métricas de progreso</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> En el panel de criterios, la etiqueta ('DESTINATARIA', 'TONO') se ubica inmediatamente encima del campo de entrada. En las métricas de progreso, el número grande ('2/4') tiene su descripción ('Etapas con notas guardadas') justo debajo, formando un bloque indivisible.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/06_side_criteria.png" alt="Etiquetas inmediatas sobre sus valores en tarjetas de criterios">
+                    <div class="img-caption">Evidencia visual: Etiquetas inmediatas sobre sus valores en tarjetas de criterios</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Evita movimientos oculares de vaivén (saccades) innecesarios entre el dato y su descripción semántica.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        <h3 id='c4' style='margin: 32px 0 16px; font-size: 19px; color: var(--teal); border-bottom: 2px solid var(--teal-soft); padding-bottom: 6px;'>C4 — La visión del color es limitada</h3>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C4.1 · Usar colores distintivos</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Para codificar categorías, se deben preferir colores que produzcan una señal fuerte en canales visuales distintos.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Paleta de categorías de corrección (.type-badge)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Observar los 4 colores de corrección: Coral rojizo (#A32B2B) para Gramática, Azul (#2B6CB0) para Vocabulario, Gris azulado (#344054) para Tono, y Ámbar (#B7791F) para Claridad. Cada uno corresponde a una banda espectral diferenciada.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/04_type_badges.png" alt="Colores distintivos para las 4 categorías pedagógicas">
+                    <div class="img-caption">Evidencia visual: Colores distintivos para las 4 categorías pedagógicas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Permite al estudiante clasificar el tipo de sugerencia antes incluso de leer la explicación textual.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C4.2 · No yuxtaponer colores opuestos fuertes</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> No colocar directamente juntos colores opuestos fuertes (rojo/verde puro) para evitar aberración cromática o vibración visual.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Línea de diff (.diff-line: .diff-before y .diff-after)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> En la línea de diff, el texto tachado usa fondo rojo suave pastel (`#FBEAEA`) y el texto nuevo usa fondo verde-teal suave (`#E0F2EF`). Además, están separados físicamente por una flecha gris (`→`). Estado parcial pendiente de validación espectral en monitores de bajo costo.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Diff antes/después con tonos suaves y flecha divisoria">
+                    <div class="img-caption">Evidencia visual: Diff antes/después con tonos suaves y flecha divisoria</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Los fondos pastel desaturados eliminan la vibración óptica y el cansancio retiniano que provocan los colores puros yuxtapuestos.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C4.3 · Diferenciar por saturación y brillo, no solo por tono</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los colores que transmiten información deben diferenciarse por saturación y luminancia, no por matices sutiles del mismo tono.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Estados de botones y badges de categoría en style.css</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Cada badge combina un fondo de baja saturación y alto brillo (ej. `#FBEAEA` con 95% luminancia) con texto del mismo tono pero alta saturación y baja luminancia (ej. `#A32B2B` con 35% luminancia), maximizando el contraste interno.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/04_type_badges.png" alt="Diferenciación por luminancia y saturación en badges">
+                    <div class="img-caption">Evidencia visual: Diferenciación por luminancia y saturación en badges</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Garantiza legibilidad incluso para personas con visión monocromática o bajo condiciones de luz solar intensa.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C4.4 · Evitar pares problemáticos para daltonismo</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Evitar pares que las personas con daltonismo confunden: rojo oscuro/verde oscuro, azul/morado.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Corrección de paleta documentada en el informe de diseño</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> En versiones preliminares, la categoría 'Tono' utilizaba color morado, lo que generaba confusión con el azul de 'Vocabulario'. En la versión actual, 'Tono' fue migrado a gris azulado neutro (`#344054`), erradicando el conflicto azul-morado.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/04_type_badges.png" alt="Paleta accesible sin conflicto azul/morado">
+                    <div class="img-caption">Evidencia visual: Paleta accesible sin conflicto azul/morado</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Cumple con las pautas de accesibilidad para personas con deuteranopía y tritanopía.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C4.5 · No usar color como único canal</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Ningún significado debe depender exclusivamente del color; siempre debe existir una señal redundante (texto, icono o forma).</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Todas las etiquetas de corrección y estados del prototipo</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. Los badges de corrección tienen el color, pero siempre llevan la palabra impresa: 'Gramática', 'Vocabulario', 'Tono', 'Claridad'. 2. Las etapas completadas llevan un icono de check SVG además de cambiar de gris a verde. 3. Los estados de decisión indican 'Pendiente', 'Aceptada' o 'Rechazada' en texto.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/04_type_badges.png" alt="Canal redundante: color acompañado siempre de texto explícito">
+                    <div class="img-caption">Evidencia visual: Canal redundante: color acompañado siempre de texto explícito</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Principio fundamental de accesibilidad universal (WCAG 2.1 - Criterio 1.4.1): la interfaz transmite el 100% de la información aun si se visualiza en escala de grises.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C4.6 · Asegurar contraste de los elementos no textuales</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Iconos, bordes y controles interactivos deben tener un contraste mínimo de 3:1 con el fondo.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Bordes de controles (--control-border: #858F9F) e indicadores de foco</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Los botones tipo píldora (`.mode-pill`) y los botones de icono (`.icon-btn`) cuentan con bordes definidos (`#D5DBE6` y `#858F9F`) sobre fondo blanco. Estado parcial porque falta medición formal con colorímetro en toda la suite de pantallas.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/01_header_nav.png" alt="Bordes definidos en controles interactivos no textuales">
+                    <div class="img-caption">Evidencia visual: Bordes definidos en controles interactivos no textuales</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Asegura que los límites de los controles clicables sean perceptibles para usuarios con baja agudeza visual.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        <h3 id='c5' style='margin: 32px 0 16px; font-size: 19px; color: var(--teal); border-bottom: 2px solid var(--teal-soft); padding-bottom: 6px;'>C5 — La visión periférica es pobre</h3>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C5.1 · Colocar la información importante donde mira el usuario</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La información nueva o cambiada debe aparecer en la fóvea o cerca del punto donde el usuario está mirando y actuando.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Área central de chat: inserción directa de tarjetas de análisis</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Al revisar la redacción, la tarjeta de sugerencia no aparece en una esquina ni en un popup flotante alejado: se inserta directamente en la corriente de lectura del chat, exactamente entre el mensaje del usuario y la respuesta de la IA.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Inserción foveal de la corrección en la línea visual del chat">
+                    <div class="img-caption">Evidencia visual: Inserción foveal de la corrección en la línea visual del chat</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> La visión foveal cubre solo 2 grados del campo visual; ubicar la información en la trayectoria de lectura evita que el usuario pase por alto cambios críticos.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C5.3 · Marcar el error con símbolo y reservar el rojo</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los errores deben marcarse con un símbolo estándar además de color; el rojo debe reservarse para incorrecciones.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Tarjetas de corrección gramatical y estados rechazados</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> El rojo suave se utiliza exclusivamente para errores gramaticales (`.kind-grammar`) y para indicar la opción 'Evitar' en los ejemplos de reglas. Es parcial porque aún no se incluye un icono universal de alerta (!) en todas las tarjetas de corrección.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Uso restringido del tono rojizo para incorrecciones">
+                    <div class="img-caption">Evidencia visual: Uso restringido del tono rojizo para incorrecciones</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Evita la saturación del color de alerta en elementos cosméticos, manteniendo su poder semántico de advertencia intacto.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C5.5 · Reservar los pop-ups para lo crítico</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los diálogos modales o pop-ups deben reservarse para situaciones críticas; no para confirmaciones menores.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Modal de reglas (#modal-overlay) y popover de ayuda (#suggestions-popover)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> El prototipo no abre ningún popup no solicitado ni bloquea la pantalla con alertas espontáneas. El modal solo aparece cuando el usuario pulsa activamente 'Ver regla' o 'Buscar sinónimos'. Es parcial porque las reglas largas podrían mostrarse inline en vez de modal.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/13_modal_rule.png" alt="Modal invocado únicamente por petición activa del usuario">
+                    <div class="img-caption">Evidencia visual: Modal invocado únicamente por petición activa del usuario</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Los modales imprevistos interrumpen el flujo cognitivo y generan molestia; la divulgación progresiva a demanda respeta el ritmo del aprendiz.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C5.8 · Evitar la habituación a las alertas</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Las alertas frecuentes hacen que el usuario las ignore por habituación; deben reservarse para lo indispensable.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Sistema de notificaciones toast (#toast)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Al aceptar o rechazar un cambio, el sistema no despliega ventanas de diálogo intrusivas; muestra un toast breve y discreto en la esquina inferior que desaparece automáticamente a los 2.6 segundos.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Feedback no intrusivo para evitar habituación">
+                    <div class="img-caption">Evidencia visual: Feedback no intrusivo para evitar habituación</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Previene la ceguera por habituación (el reflejo de cerrar ventanas emergentes sin leer su contenido).</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C5.9 · No mover los ítems de menús, listas o paletas</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los ítems de menús y listas deben mantener posiciones estables; no reordenarse dinámicamente por frecuencia.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Drawer de chats recientes (#history-drawer)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Abrir el historial de chats haciendo clic en 'Ver chats' en el footer: las sesiones están categorizadas en un orden canónico fijo: 1. Redacción y escritura, 2. Conversación escrita, 3. Lectura y vocabulario. Ningún chat cambia de orden por haber sido usado más recientemente.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/12_history_drawer.png" alt="Orden taxonómico inmutable en el historial de sesiones">
+                    <div class="img-caption">Evidencia visual: Orden taxonómico inmutable en el historial de sesiones</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Permite el desarrollo de memoria muscular y automatización espacial; el usuario sabe exactamente en qué cuadrante físico buscar cada tarea.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C5.10 · Diseñar iconos distintivos para la periferia</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los iconos deben distinguirse por color y silueta gruesa para reconocerse en visión periférica.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Iconos de navegación del Drawer (#drawer) e iconos de apoyo</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Abrir el menú lateral con el botón de hamburguesa: cada tarea tiene un icono con contenedor de 30x30px con fondo diferenciado (documento para redacción, mensaje para conversación, libro para lectura).</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/11_drawer_menu.png" alt="Iconos con siluetas y contenedores contrastantes para visión periférica">
+                    <div class="img-caption">Evidencia visual: Iconos con siluetas y contenedores contrastantes para visión periférica</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Facilita la orientación periférica rápida antes de que los ojos se posen con precisión foveal sobre el elemento.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        <h3 id='c6' style='margin: 32px 0 16px; font-size: 19px; color: var(--teal); border-bottom: 2px solid var(--teal-soft); padding-bottom: 6px;'>C6 — Leer no es natural</h3>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.1 · Usar un tamaño de texto legible</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El texto de cuerpo debe poder leerse sin zoom; el texto esencial no debe estar por debajo del tamaño base.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Cuerpo del chat (.bubble: 15.5px) y lectura (.reading-card p: 15px)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> El texto principal de lectura y los mensajes del tutor utilizan tamaños entre 15px y 15.5px con interlineado generoso (line-height: 1.62). Es parcial debido a que ciertas etiquetas secundarias (.paper-tag) usan tamaños de 9px a 10px.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/09_lessons_reading.png" alt="Texto de lectura a 15px con interlineado cómodo para lectura">
+                    <div class="img-caption">Evidencia visual: Texto de lectura a 15px con interlineado cómodo para lectura</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> El aprendizaje de una segunda lengua exige un esfuerzo visual extra de descodificación fonética y léxica; una tipografía generosa evita fatiga.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.2 · Usar lenguaje llano y vocabulario familiar</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La interfaz debe usar palabras familiares, vocabulario consistente y evitar jerga técnica innecesaria.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Textos de explicación pedagógica y etiquetas de interfaz</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> La interfaz utiliza instrucciones en español llano ('Usar esta sugerencia', 'Mantener mi frase', 'Te paso esta lectura'). Se eliminaron términos técnicos de papers académicos como 'WoZ', 'Glifos' o 'Data Lens' del recorrido del estudiante.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Instrucciones claras en español directo y sin jerga técnica">
+                    <div class="img-caption">Evidencia visual: Instrucciones claras en español directo y sin jerga técnica</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> La carga cognitiva extrínseca debe ser cero: el estudiante debe pensar en el idioma meta (inglés), no en descifrar qué significa un término técnico de la plataforma.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.3 · Usar tipografías familiares y legibles</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El texto de cuerpo debe usar tipografías familiares con formas de letra claras; evitar fuentes decorativas o script.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Hoja de estilos global (css/style.css: font-family: 'Figtree')</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> La aplicación utiliza 'Figtree' (Google Fonts), una fuente geométrica sans-serif moderna con aberturas claras, proporciones humanistas y excelente legibilidad en pantallas de cualquier densidad de píxeles.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/01_header_nav.png" alt="Tipografía sans-serif limpia y uniforme en todo el sistema">
+                    <div class="img-caption">Evidencia visual: Tipografía sans-serif limpia y uniforme en todo el sistema</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Las fuentes sans-serif humanistas facilitan la discriminación rápida de caracteres similares (como 'I', 'l', '1'), vital para estudiantes de idiomas.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.4 · No usar TODO EN MAYÚSCULAS en el cuerpo</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El texto de cuerpo debe usar caja alta y baja; las mayúsculas sostenidas se reservan exclusivamente para etiquetas cortas.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Párrafos de lectura, explicaciones del tutor y mensajes</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Comprobar que todas las oraciones, lecturas y párrafos explicativos usan mayúsculas y minúsculas naturales. Las mayúsculas sostenidas solo se emplean en micro-etiquetas de sistema como 'TUTOR IA' o 'DESTINATARIA'.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Texto en caja mixta para preservar la silueta de las palabras">
+                    <div class="img-caption">Evidencia visual: Texto en caja mixta para preservar la silueta de las palabras</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Las mayúsculas continuas destruyen el perfil de contorno (bouma) de las palabras, reduciendo la velocidad de lectura en un 15%.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.5 · Evitar fondos ruidosos detrás del texto</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El texto debe descansar sobre fondos sólidos o tranquilos; nunca sobre texturas, patrones o gradientes agresivos.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Fondos de lectura (.reading-card) y burbujas de mensaje (.bubble.ai)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Todas las áreas de lectura y mensajes reposan sobre fondo blanco puro (`#FFFFFF`) o gris neutro ultrasuave (`#FBFCFE`), con cero patrones, marcas de agua o gradientes ruidosos.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/09_lessons_reading.png" alt="Fondo plano de alto contraste sin texturas ni interferencias">
+                    <div class="img-caption">Evidencia visual: Fondo plano de alto contraste sin texturas ni interferencias</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Maximiza la relación señal-ruido en la retina durante la fijación visual de palabras nuevas en inglés.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.6 · Asegurar contraste de texto suficiente</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El texto debe tener una relación de contraste mínima de 4.5:1 con su fondo (3:1 para texto grande).</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Tokens de color en style.css (--text: #1B2433 sobre #FFFFFF)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> El texto principal utiliza `#1B2433` sobre fondo `#FFFFFF`, lo que arroja un ratio de contraste masivo de 13.8:1 (muy superior a la exigencia WCAG AAA de 7:1). Es parcial porque los textos atenuados secundarios (`--muted: #667085`) alcanzan 4.8:1, requiriendo verificación en pantallas OLED y bajo brillo.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Alto contraste texto-fondo (13.8:1) para lectura fluida">
+                    <div class="img-caption">Evidencia visual: Alto contraste texto-fondo (13.8:1) para lectura fluida</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Garantiza legibilidad para usuarios con fatiga visual o sensibilidad reducida al contraste cromático.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.7 · No centrar párrafos de texto</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los párrafos de varias líneas deben alinearse a la izquierda en idiomas LTR; nunca centrarse.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Burbujas del tutor, lecturas del artículo y explicaciones de reglas</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Verificar en todas las vistas que ningún párrafo está centrado: el artículo 'The future of remote work', los diálogos del entrevistador y las explicaciones de reglas tienen margen izquierdo plano y homogéneo.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/09_lessons_reading.png" alt="Párrafos alineados a la izquierda para un anclaje ocular uniforme">
+                    <div class="img-caption">Evidencia visual: Párrafos alineados a la izquierda para un anclaje ocular uniforme</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Centrar párrafos altera el punto de inicio de cada línea, obligando a los ojos a gastar micro-segundos buscando dónde recomienza cada renglón.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.8 · Mantener una alineación consistente</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La alineación debe ser consistente entre bloques equivalentes; no mezclar izquierda, centro y derecha arbitrariamente.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Columna de chat y panel lateral</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Todos los contenedores de contenido principal se alinean por el borde izquierdo a lo largo de un eje común de 800px de ancho. Solo las burbujas enviadas por el propio usuario se alinean a la derecha, siguiendo la convención universal de mensajería.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/10_conversation_chat.png" alt="Alineación consistente con convención izquierda (tutor) / derecha (usuario)">
+                    <div class="img-caption">Evidencia visual: Alineación consistente con convención izquierda (tutor) / derecha (usuario)</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Genera estabilidad espacial y permite aprovechar las convenciones de mensajería asimiladas por el estudiante en apps cotidianas.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.9 · Formatear el texto para escaneo</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El texto debe formatearse para escaneo rápido: negritas selectivas, encabezados, listas y fragmentos breves.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Tarjetas de corrección, tarjetas de reglas y fichas de vocabulario</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> En las tarjetas de corrección, las palabras clave van en negrita: `<strong>Pista:</strong>`, `<strong>Por qué:</strong>`. En el artículo, las palabras clave están resaltadas como chips clicables. En el panel de criterios, las etiquetas van en mayúscula con icono.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/08_side_rules.png" alt="Formateo escaneable con negritas y llamadas visuales específicas">
+                    <div class="img-caption">Evidencia visual: Formateo escaneable con negritas y llamadas visuales específicas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Los usuarios en pantalla no leen palabra por palabra: escanean en patrones en 'F'. Los anclajes tipográficos facilitan captar el sentido en segundos.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.10 · Minimizar la prosa</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Usar la menor cantidad de texto necesaria; eliminar información sobrante o delegarla a divulgación progresiva.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Nivel de ayuda graduada y resúmenes de progreso</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Por defecto, al revisar un texto la tarjeta solo muestra una pista de una oración ('Mira I am agree. ¿Necesita agree el auxiliar am?'). Si el estudiante requiere más prosa, la solicita expresamente pulsando 'Mostrar explicación'.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Prosa reducida al mínimo indispensable con opción de expandir">
+                    <div class="img-caption">Evidencia visual: Prosa reducida al mínimo indispensable con opción de expandir</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Evita la sobrecarga cognitiva que produce un bloque gigante de teoría gramatical cuando el estudiante solo necesitaba un recordatorio puntual.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C6.11 · Eliminar la repetición que entierra información</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Eliminar textos o metadatos repetidos que compitan con la información esencial.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Filtrado automático de pestañas laterales (duplicateCentralTabs en panels.js)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> En el código de `panels.js`, la función `supportTabs()` filtra deliberadamente la pestaña 'Tu texto' cuando se está en modo redacción, la pestaña 'Artículo' en modo lecciones y la pestaña 'Escenario' en conversación, evitando que el panel lateral duplique lo que ya se ve en el centro.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/06_side_criteria.png" alt="Panel lateral limpio sin duplicaciones del contenido central">
+                    <div class="img-caption">Evidencia visual: Panel lateral limpio sin duplicaciones del contenido central</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Garantiza que el panel lateral aporte valor complementario (criterios, reglas, progreso) en lugar de redundancia estéril.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        <h3 id='c7' style='margin: 32px 0 16px; font-size: 19px; color: var(--teal); border-bottom: 2px solid var(--teal-soft); padding-bottom: 6px;'>C7 — La atención es limitada; la memoria es imperfecta</h3>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C7.1 · No exigir recordar el estado o las acciones previas</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La interfaz debe mostrar el estado del sistema, el contexto actual y lo que el usuario ya hizo, sin forzar su memoria.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Barra de etapas (#stagebar), estado en tarjeta (.status-pill) y panel de cambios</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. La barra superior marca con un check verde las etapas que ya se superaron y resalta con borde la actual. 2. La tarjeta de corrección muestra un pill 'Pendiente', 'Aceptada' o 'Rechazada'. 3. La pestaña 'Cambios' en el lateral lista todas las decisiones tomadas.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/02_stagebar.png" alt="Visualización continua del estado actual y de las acciones completadas">
+                    <div class="img-caption">Evidencia visual: Visualización continua del estado actual y de las acciones completadas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Libera la memoria de trabajo del usuario: el estudiante puede interrumpir su sesión y al regresar reconoce inmediatamente en qué punto quedó.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C7.5 · Evitar modos o hacer visible el modo actual</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Si una acción produce efectos distintos según el estado del sistema, el modo actual debe ser visible de forma persistente.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Píldora activa en header (.mode-pill.is-active) y composer hint (#composer-mode-hint)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. El modo activo se resalta en el header en color teal sólido con atributo `aria-current='true'`. 2. Al pie del campo de texto de chat, una etiqueta fija indica explícitamente la actividad actual, recordando el contexto de la IA.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/14_composer_hints.png" alt="Indicador permanente del modo activo al pie del campo de entrada">
+                    <div class="img-caption">Evidencia visual: Indicador permanente del modo activo al pie del campo de entrada</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Previene errores de modo (intentar hacer preguntas de gramática cuando el sistema espera una respuesta en inglés para la entrevista de trabajo).</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C7.7 · Mantener una sola llamada a la acción dominante</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Cada pantalla o bloque debe tener una acción dominante por objetivo; no competir con múltiples acciones primarias.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Acciones de tarjeta de corrección y botón de envío del chat</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. En la tarjeta de corrección, la acción dominante recomendada es 'Usar esta sugerencia' (estilo `.btn-primary` en teal sólido), mientras que 'Mantener mi frase' es un botón secundario neutro. 2. En el composer, solo el botón de envío lleva fondo teal.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Una sola acción primaria dominante destacada en color de marca">
+                    <div class="img-caption">Evidencia visual: Una sola acción primaria dominante destacada en color de marca</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Facilita la toma de decisiones al ofrecer una ruta por defecto clara, sin paralizar al estudiante con múltiples botones del mismo peso visual.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C7.8 · Preferir una navegación amplia y poco profunda</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Organizar la navegación en jerarquías amplias y poco profundas; evitar menús laberínticos de muchos niveles.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Header principal y botón directo 'Ver progreso'</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Las 3 tareas principales se alcanzan en 1 solo clic desde cualquier lugar de la aplicación. Consultar el progreso de la tarea actual requiere exactamente 1 clic en el botón 'Ver progreso'. No hay menús desplegables anidados ni subpáginas ocultas.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/01_header_nav.png" alt="Navegación horizontal plana accesible en 1 clic">
+                    <div class="img-caption">Evidencia visual: Navegación horizontal plana accesible en 1 clic</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Reduce la desorientación espacial; el estudiante nunca tiene la sensación de haberse 'perdido' en la jerarquía del sitio.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C7.10 · No exigir el recuerdo de datos o procedimientos</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Instrucciones, datos y reglas deben estar disponibles en el momento de uso, no obligar a recordarlos de memoria.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Pista contextual de corrección y atajos de teclado documentados</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. La justificación de por qué corregir un verbo se muestra dentro de la tarjeta al lado del texto. 2. En el campo de chat se indica explícitamente: 'Enter envía · Shift + Enter salto de línea'. 3. En lectura, al tocar una palabra se despliega su significado sin salir de la vista.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Explicación contextual visible en el instante exacto de la decisión">
+                    <div class="img-caption">Evidencia visual: Explicación contextual visible en el instante exacto de la decisión</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Aplica el principio de 'reconocimiento antes que recuerdo': la información se sitúa en el mundo externo para no sobrecargar la memoria interna.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        <h3 id='c8' style='margin: 32px 0 16px; font-size: 19px; color: var(--teal); border-bottom: 2px solid var(--teal-soft); padding-bottom: 6px;'>C8 — Los límites de la atención moldean pensamiento y acción</h3>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.1 · Hacer que el software pase a segundo plano</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> La interfaz debe permitir concentrarse en la meta del usuario; el software no debe llamar la atención sobre sí mismo.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Diseño sobrio de la interfaz y eliminación de controles decorativos</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> El centro de la pantalla lo ocupan el correo del estudiante o el artículo de lectura. Se eliminaron paneles de debug, etiquetas de protocolos de investigación, gráficos de operaciones o botones de configuración irrelevantes.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Interfaz despejada enfocada en el contenido de estudio">
+                    <div class="img-caption">Evidencia visual: Interfaz despejada enfocada en el contenido de estudio</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Crea una experiencia transparente donde la persona interactúa directamente con el conocimiento del idioma en lugar de pelear con la herramienta.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.2 · Hacer altamente salientes los cambios importantes</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los cambios importantes deben ser evidentes; resaltarse, comunicarse y confirmarse.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Borde izquierdo en tarjetas (.status-accepted) y mensaje toast emergente</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Al hacer clic en 'Usar esta sugerencia': 1. La tarjeta adquiere un borde izquierdo verde-teal grueso de 4px. 2. El status pill cambia de gris a verde con la palabra 'Aceptada'. 3. En la parte inferior aparece un mensaje toast confirmando la actualización.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Indicación saliente e inequívoca tras aceptar una sugerencia">
+                    <div class="img-caption">Evidencia visual: Indicación saliente e inequívoca tras aceptar una sugerencia</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Supera el fenómeno de la ceguera al cambio (change blindness), garantizando que el usuario tenga certeza visual de que su acción surtió efecto.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.3 · Mostrar lo hecho y lo pendiente</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Indicar claramente qué ha hecho el usuario y qué queda pendiente en el flujo de trabajo.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Contador de tarjeta ('Paso 1 de 4') y barra de etapas (#stagebar)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> 1. El apoyo opcional indica la sugerencia seleccionada; las sugerencias tienen su propio contador. 2. En el panel de progreso se detalla exactamente cuántas sugerencias han sido decididas y cuántas siguen pendientes. 3. Las etapas diferencian estado completado, actual y futuro.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/02_stagebar.png" alt="Indicadores de completitud y pasos restantes">
+                    <div class="img-caption">Evidencia visual: Indicadores de completitud y pasos restantes</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Genera una sensación de avance tangible y activa el efecto Zeigarnik positivo (motivación intrínseca por completar tareas pendientes).</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.4 · Permitir marcar, mover o colorear elementos</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Permitir que el usuario marque o clasifique elementos para indicar qué ya trabajó y qué no.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Guardado de vocabulario en lecciones ([data-action='save-word'])</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> En 'Aprender vocabulario', el estudiante puede pulsar 'Guardar palabra' para archivar términos como 'productive' o 'flexibility'. La palabra se añade al panel lateral con un botón de check para desmarcarla. Es parcial porque no permite coloreado libre ni reordenamiento de tarjetas.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/09_lessons_reading.png" alt="Acción de guardar términos seleccionados para repaso posterior">
+                    <div class="img-caption">Evidencia visual: Acción de guardar términos seleccionados para repaso posterior</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Permite al estudiante personalizar su inventario léxico activo según sus debilidades individuales.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.5 · Proporcionar un rastro de información claro (information scent)</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> En cada punto de decisión, las opciones deben indicar claramente a qué meta conducen.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Etiquetas de navegación y botón de progreso</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> El botón 'Ver progreso' indica inequívocamente que abrirá las estadísticas de la sesión. El botón 'Apoyo' en móviles indica acceso a la ayuda. Los botones de modo ('Aprender a escribir correos') clarifican la naturaleza de la práctica.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/02_stagebar.png" alt="Rastro informativo evidente en botones de acción y avance">
+                    <div class="img-caption">Evidencia visual: Rastro informativo evidente en botones de acción y avance</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Satisface la teoría del forrajeo de información (information foraging): el usuario sigue pistas semánticas fuertes para llegar a su meta sin perder tiempo.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.6 · Usar verbos específicos en las confirmaciones</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Los botones de confirmación deben usar verbos específicos de acción, no 'OK' o 'Cancelar' genéricos.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Botones de tarjeta, modales y panel de criterios</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Revisar todos los botones interactivos del prototipo: 'Usar esta sugerencia', 'Mantener mi frase', 'Guardar cambios', 'Descartar', 'Entendido', 'Guardar palabra', 'Ver más ejemplos'. Ninguno utiliza 'OK'.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Uso consistente de verbos de acción específicos en los botones">
+                    <div class="img-caption">Evidencia visual: Uso consistente de verbos de acción específicos en los botones</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Elimina la ambigüedad en el momento crítico del clic: el usuario sabe exactamente qué operación se va a ejecutar.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.7 · Diseñar caminos y conceptos basados en la tarea</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> El software debe organizarse según las tareas del usuario, no según la arquitectura del sistema.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Organización general de los 3 modos de Lingua IA</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> La aplicación no se organiza por 'Base de datos', 'Modelo de lenguaje' o 'Parámetros', sino por las tareas que un estudiante de inglés realiza: redactar un correo formal, mantener una entrevista de trabajo simulada o leer un artículo descubriendo vocabulario.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/01_header_nav.png" alt="Estructura conceptual alineada con las metas del aprendiz de idiomas">
+                    <div class="img-caption">Evidencia visual: Estructura conceptual alineada con las metas del aprendiz de idiomas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Crea una coincidencia perfecta entre el modelo mental del usuario (practicar inglés) y el modelo conceptual del sistema.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.8 · Dar feedback, progreso y opción de volver atrás</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Mostrar progreso hacia la meta, confirmar resultados y permitir deshacer acciones.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Acción de deshacer en correcciones ([data-action='correction-undo'])</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Tras aceptar o rechazar una sugerencia, la tarjeta cambia a estado resuelto pero deja siempre visible un botón interactivo 'Deshacer' que devuelve la corrección al estado 'Pendiente'. Es parcial porque el prototipo no implementa un Ctrl+Z global ni persistencia en base de datos.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/03_correction_card.png" alt="Opción visible de deshacer para revertir decisiones tomadas">
+                    <div class="img-caption">Evidencia visual: Opción visible de deshacer para revertir decisiones tomadas</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Fomenta la exploración segura: el estudiante se atreve a probar cambios sabiendo que cualquier decisión es fácilmente reversible.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.9 · Preferir caminos familiares y mostrar atajos</span>
+                    <span class="status-badge partial">🟡 Parcial</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Apoyar hábitos familiares del usuario y mostrar atajos de aceleración.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Atajos de teclado en el composer (#composer-hint)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> Al pie del campo de texto se indica claramente: 'Enter envía · Shift + Enter salto de línea', siguiendo la convención de WhatsApp, ChatGPT y Slack. Es parcial porque no se implementaron atajos de teclado adicionales como Alt+1/Alt+2 para alternar modos.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/14_composer_hints.png" alt="Instrucción explícita de atajos familiares de teclado">
+                    <div class="img-caption">Evidencia visual: Instrucción explícita de atajos familiares de teclado</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Aprovecha hábitos motores ya consolidados en el usuario para hacer fluida la interacción sin curvas de aprendizaje artificiales.</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">C8.10 · Gestionar los pasos de cierre</span>
+                    <span class="status-badge applied">✅ Aplicado</span>
+                </div>
+                <div class="field"><strong>Regla Teórica:</strong> Recordar o facilitar los pasos que el usuario tiende a olvidar al terminar la tarea principal.</div>
+                <div class="field"><strong>Ubicación en UI:</strong> <code>Registro de evidencias en learning.js (Learning.save) y navegación en app.js (set-stage)</code></div>
+                <div class="field"><strong>Cómo Comprobarlo:</strong> En Transferir, el estudiante escribe una nueva producción y reflexiona. Guardar mis notas permite conservar notas parciales y saltar o retomar las sugerencias libremente. Navegar no marca etapas como terminadas. Ver progreso conserva visibles los pasos pendientes; el registro no acredita dominio del idioma.</div>
+                <div class="img-container">
+                    <img src="docs/screenshots/02_stagebar.png" alt="Gestión guiada de la culminación de la tarea">
+                    <div class="img-caption">Evidencia visual: Gestión guiada de la culminación de la tarea</div>
+                </div>
+                <div class="field" style="margin-bottom: 0;"><strong>Justificación de IHC:</strong> Previene errores de post-culminación (abandonar la tarea creyendo haber finalizado cuando quedaban pasos críticos pendientes).</div>
+                <label class="verify-checkbox">
+                    <input type="checkbox"> Marcar como verificado en la sesión en vivo
+                </label>
+            </article>
+        
+        <section id="no-usados" style="margin-top: 48px;">
+            <h2 style="font-size: 24px; margin-bottom: 12px; color: #A32B2B;">4. Sección Final: Principios No Utilizados / Excluidos y Justificación Técnica</h2>
+            <p style="margin-bottom: 24px; font-size: 14px; color: var(--text-muted);">
+                Los siguientes 16 principios fueron excluidos conscientemente del producto. Cada uno cuenta con una sólida justificación de diseño de interacción o alcance del dominio:
+            </p>
+    
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C2.7 · Destino común: lo que se mueve junto está relacionado</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Exclusión Deliberada por Diseño e IHC (Anti-Distracción)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Los elementos que se mueven juntos se perciben como un grupo; el movimiento debe sincronizarse para indicar relación."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> En un entorno de aprendizaje enfocado en la lectura y redacción en una segunda lengua, las animaciones sincronizadas o elementos en movimiento generan 'atracción atencional involuntaria' (bottom-up visual capture). Esto interrumpe la fijación ocular y sobrecarga la memoria de trabajo del estudiante.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> La interfaz privilegia la estabilidad visual estática. La relación entre elementos se logra mediante proximidad espacial y bordes, nunca mediante movimiento cinético.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C5.4 · Usar señales que 'pop' en la periferia</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Exclusión Deliberada por Diseño e IHC (Anti-Distracción)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Para que un elemento destaque fuera del foco visual directo, debe usar colores salientes, parpadeo o movimiento grueso."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> Provocar efectos 'pop-out' en los bordes de la pantalla mientras el usuario está concentrado en descifrar una estructura gramatical en el centro induce estrés y fragmentación atencional.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Lingua IA mantiene los paneles laterales en tonos neutros y tranquilos; el apoyo se consulta voluntariamente por iniciativa del aprendiz (top-down), nunca por invasión periférica.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C5.7 · Mantener el movimiento o parpadeo breve</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Exclusión Deliberada por Diseño e IHC (Anti-Distracción)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Si se usa parpadeo o animación para llamar la atención, debe durar entre 0.25 y 0.5 segundos y detenerse."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> No se utiliza ningún tipo de parpadeo en la aplicación.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Los parpadeos están asociados en psicología cognitiva con alarmas de peligro o fallas catastróficas. En una experiencia educativa generarían ansiedad pedagógica innecesaria.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C3.6 · Usar campos segmentados cuando reduzcan errores</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Fechas, números de tarjeta o teléfonos deben dividirse en campos segmentados para evitar errores de formato."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> Lingua IA no recopila números de identidad, tarjetas bancarias ni fechas en formularios rígidos.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> La interacción está orientada a la producción de lenguaje natural libre en inglés (correos, ensayos, diálogos), donde los campos segmentados no tienen cabida conceptual.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C3.9 · Evitar el ruido en los resultados de búsqueda</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Las páginas de resultados de búsqueda (SERP) deben estructurarse limpiamente sin metadatos redundantes."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> El sistema no es un buscador web ni cuenta con un motor de indexación de documentos externos.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Las consultas de vocabulario se resuelven en diálogo contextual con el tutor IA o en un selector puntual de sinónimos, haciendo inaplicable una página de resultados tradicional.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C5.2 · Mostrar los errores junto a su causa</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"En formularios, los mensajes de validación de campo deben aparecer contiguos al input que generó el error."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> No existen formularios con campos obligatorios que requieran validación sintáctica estricta.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Las correcciones que ofrece el sistema son lingüísticas, no errores de sistema del usuario; se presentan mediante tarjetas de análisis pedagógico.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C5.6 · Usar sonido con moderación</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Los sonidos deben usarse solo para situaciones controladas, con alternativa visual y respetando el silencio."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> Se descartó por completo la emisión de audio y sonidos de alerta en esta versión del prototipo.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Permite al estudiante utilizar la aplicación en entornos silenciosos (bibliotecas universitarias, transporte público, salas de estudio) sin perturbar su entorno ni requerir audífonos obligatorios.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C7.2 · Mantener la salida de voz breve y segmentada en VUI</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"En interfaces de voz, limitar la cantidad de habla por turno a frases breves para no colapsar la memoria ecoica."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> No existe salida de voz ni asistente por audio.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> La práctica de conversación es 100% escrita (conversación por chat), permitiendo al usuario releer los turnos del entrevistador cuantas veces lo necesite sin presión temporal.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C7.3 · Limitar las listas de opciones en VUI</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Las opciones leídas por voz no deben superar 4 elementos por turno en asistentes de audio."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> Sin interfaz por voz (VUI).</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Al contar con soporte visual en pantalla, el límite estrecho de la memoria auditiva se sustituye por el escaneo visual cómodo de las opciones disponibles.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C7.4 · Apoyar la VUI con salida visual cuando haya pantalla</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Si un dispositivo de voz cuenta con display, sincronizar visualmente lo que se habla."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> El producto es puramente gráfico y textual.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Toda la información se presenta directamente en pantalla como texto estructurado, eliminando la necesidad de sincronización multimodal con audio.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C7.6 · Mostrar los términos de búsqueda en los resultados</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"La vista de resultados debe mostrar la consulta original que los generó para permitir su edición."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> No hay vistas de resultados de búsqueda por palabras clave.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> El chat retiene el historial directo de las preguntas hechas al tutor en la conversación, permitiendo revisar en el hilo cronológico qué se consultó previamente.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C7.9 · Mostrar la ruta de navegación (breadcrumbs) en jerarquías profundas</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Fuera del Alcance del Dominio (Enfoque en Texto vs. Formularios)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"En arquitecturas de información de más de dos niveles, mostrar migas de pan para orientar la ubicación."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> La arquitectura de información de Lingua IA es completamente plana (1 solo nivel principal).</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Cualquiera de las 3 actividades se alcanza en 1 clic desde el header. Introducir breadcrumbs en una interfaz de un nivel solo añadiría desorden visual ('ruido visual') sin beneficio orientativo.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C7.11 · Permitir autenticación sin datos arbitrarios</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Límites Técnicos del Prototipo Frontend (Demo sin Servidor)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"La autenticación debe permitir métodos de recuperación sin obligar a recordar datos arbitrarios."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> Prototipo interactivo frontend (mockup funcional sin backend).</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> No existe módulo de registro, base de datos ni inicio de sesión; la interfaz está lista para interactuar de inmediato sin barreras de entrada.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C8.11 · Revertir automáticamente los modos especiales</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Límites Técnicos del Prototipo Frontend (Demo sin Servidor)</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"Los modos temporales o estados de teclado deben desactivarse solos por temporizador o tecla de escape."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> Lingua IA no posee modos temporales destructivos o herramientas que bloqueen el cursor.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> Los 3 modos (redacción, lecciones, conversación) son espacios de trabajo persistentes donde el usuario debe permanecer todo el tiempo que desee hasta decidir voluntariamente cambiar de tarea.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C4.7 · Considerar las condiciones externas de visualización</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Pendiente de Validación Empírica en Hardware Diverso</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"El uso del color debe validarse bajo múltiples monitores, ángulos y condiciones de luz ambiental."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> Requiere pruebas de laboratorio con distintos paneles (IPS, OLED, TN) y sensores de luminancia.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> El prototipo fue diseñado con paleta segura de alto contraste, pero su certificación estricta en condiciones de laboratorio permanece catalogada como trabajo futuro.</div>
+            </article>
+        
+            <article class="card" style="border-left: 4px solid #A32B2B;">
+                <div class="card-header">
+                    <span class="card-title" style="color: #A32B2B;">C6.12 · Probar la lectura con usuarios reales</span>
+                    <span class="status-badge excluded">⛔ No Utilizado</span>
+                </div>
+                <div class="field"><strong>Categoría de Exclusión:</strong> <span style="font-weight: 700; color: #8A5A0B;">Pendiente de Validación Empírica con Estudiantes</span></div>
+                <div class="field"><strong>Regla del Libro:</strong> <em>"La comprensión y legibilidad del texto debe validarse mediante pruebas formales con la población objetivo."</em></div>
+                <div class="field"><strong>Por qué NO se incluyó:</strong> Demanda sesiones de campo y pruebas de usabilidad presenciales con estudiantes de inglés nivel B1-B2.</div>
+                <div class="field" style="margin-bottom: 0;"><strong>Sustento de Diseño e IHC:</strong> El diseño sigue las heurísticas teóricas de legibilidad de Johnson, dejando la medición cuantitativa de velocidad lectora para la etapa de validación de campo.</div>
+            </article>
+        
+        </section>
+    </main>
+</body>
+</html>
+    

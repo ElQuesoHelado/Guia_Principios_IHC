@@ -1,3 +1,13 @@
+# Estado vigente · 25/11/2026
+
+La instrucción actual del usuario sustituye las decisiones anteriores de alcance: **correo y vocabulario**, chat inicial vacío, sugerencias durante la escritura y apoyo opcional sin fichas. Leer `README.md`, `guia.md`, `docs/REVISION_HTA_Y_TRAZABILIDAD.md` y `guiaPapers.md` antes de editar.
+
+Código cargado: `index.html` → `js/icons.js`, `js/tutor-data.js`, `js/tutor.js`; estilos en `css/style.css`. El resto de JS es histórico y no se carga. La persistencia es localStorage; no hay IA externa. La guía vigente conserva los 71 principios de la matriz: 49 aplicados de diseño (incluidos sus 44 originales), 6 parciales, 3 pendientes, 2 excluidos y 11 no aplicables. No se atribuye validación empírica a estos conteos. Originales previos en `docs/originales/principios-anterior/`.
+
+Verificación vigente: `python3 tools/test_learning_flow.py` y `python3 tools/test_guide_integrity.py`; capturas: `tools/generate_screenshots.py`. Regenerar secuencialmente. Las secciones siguientes conservan el historial del proyecto; sus rutas de prueba, tres actividades y cifras anteriores no describen la implementación vigente.
+
+---
+
 # Contexto del Proyecto para Agentes · Lingua IA
 
 Este documento (`agents.md`) sirve como fuente de verdad y memoria técnica para cualquier agente de IA o desarrollador que trabaje en este repositorio. Describe la arquitectura del software, las decisiones de diseño de Interacción Humano-Computador (IHC), los artefactos generados y las pautas para mantener la integridad del proyecto.

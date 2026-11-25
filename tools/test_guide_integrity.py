@@ -1,53 +1,55 @@
-import os
-import re
-import glob
+"""Verifica catálogo, evidencias y selectores de la app cargada, sin código histórico."""
+from pathlib import Path
+import re,json,tempfile
+from build_guides import BASE,get_rows,APPLIED
+from browser_capture import capture
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-GUIDE_MD = os.path.join(BASE_DIR, "GUIA_PRINCIPIOS_IHC.md")
-GUIDE_HTML = os.path.join(BASE_DIR, "GUIA_PRINCIPIOS_IHC.html")
+def static_checks():
+    md=(BASE/'GUIA_PRINCIPIOS_IHC.md').read_text()
+    html=(BASE/'GUIA_PRINCIPIOS_IHC.html').read_text()
+    rows=get_rows()
+    expected={f'C{c}.{i}' for c,n in enumerate([3,8,9,7,10,12,11,11],1) for i in range(1,n+1)}
+    assert {r['id'] for r in rows}==expected
+    assert len(re.findall(r'^#### C[1-8]\.\d+ ',md,re.M))==71
+    assert all(f'id="{code}"' in html for code in expected)
+    assert len(APPLIED)==44
+    assert all(r['status']=='Aplicado' for r in rows if r['baseline']=='Cumple')
+    for rel in re.findall(r'\]\((docs/screenshots/actual/[^)]+)\)',md):
+        assert (BASE/rel).is_file(),rel
+    for rel in re.findall(r'(?:src|href)="((?:js|css)/[^\"]+)"',(BASE/'index.html').read_text()):
+        assert (BASE/rel).is_file(),rel
+    print('71 reglas presentes; 44 aplicaciones originales conservadas; archivos actuales referenciados existen.',flush=True)
+    return rows
 
-def test_screenshots_exist():
-    print("1. Verificando capturas de pantalla...")
-    with open(GUIDE_MD, "r", encoding="utf-8") as f:
-        content = f.read()
-    images = re.findall(r'!\[.*?\]\((docs/screenshots/.*?)\)', content)
-    assert len(images) >= 14, f"Se esperaban al menos 14 imágenes, encontradas: {len(images)}"
-    for img_rel in images:
-        full_path = os.path.join(BASE_DIR, img_rel)
-        assert os.path.exists(full_path), f"ERROR: Imagen no encontrada: {full_path}"
-    print(f"   -> {len(images)} referencias a imágenes verificadas físicamente en disco.")
+def browser_checks(rows):
+    selectors=sorted({r['selector'] for r in rows})
+    script='const selectors='+json.dumps(selectors)+';'+r'''
+const seen=new Set();
+const scan=()=>selectors.forEach(s=>{if(document.querySelector(s))seen.add(s);});
+const click=q=>{const e=document.querySelector(q);if(!e)throw Error(q);e.click();scan();};
+const send=t=>{const e=document.querySelector('#chat-input');e.value=t;e.dispatchEvent(new Event('input',{bubbles:true}));scan();click('#send-btn');};
+try{
+ Lingua.reset();scan();
+ send(TutorData.examples.email);click('[data-action="compare"]');click('[data-action="new"]');
+ send(TutorData.examples.review);
+ click('[data-action="accept"]');
+ click('[data-action="undo-correction"]');
+ click('[data-action="notebook"]');click('[data-action="close-dialog"]');
+ click('[data-action="stage"][data-stage="2"]');
+ scan();
+ click('[data-action="new"]');send(TutorData.examples.vocab);
+ send('Reservado para una función, por la pista space.');scan();
+ click('[data-action="save-word"]');click('[data-action="reading"]');
+ click('[data-action="history"]');
+ const missing=selectors.filter(s=>!seen.has(s));
+ if(missing.length)throw Error('Selectores sin evidencia: '+missing.join(', '));
+ for(const el of document.querySelectorAll('[aria-controls]'))for(const target of el.getAttribute('aria-controls').split(' '))if(!document.getElementById(target))throw Error('aria-controls inexistente: '+target);
+ dump('LINGUA_GUIDE_PASS '+seen.size+' selectores reales\n');
+}catch(e){dump('LINGUA_GUIDE_FAIL '+e.message+' '+e.stack+'\n');}
+'''
+    log=capture(script,Path(tempfile.gettempdir())/'lingua-guide-check.png')
+    lines=[l for l in log.splitlines() if 'LINGUA_GUIDE_' in l]
+    print('\n'.join(lines),flush=True)
+    assert any('LINGUA_GUIDE_PASS' in l for l in lines),log[-3000:]
 
-def test_selectors_exist_in_code():
-    print("2. Verificando veracidad de selectores en código (Anti-Alucinación)...")
-    with open(os.path.join(BASE_DIR, "index.html"), "r", encoding="utf-8") as f:
-        codebase = f.read()
-    for js_path in glob.glob(os.path.join(BASE_DIR, "js", "*.js")):
-        with open(js_path, "r", encoding="utf-8") as f:
-            codebase += "\n" + f.read()
-    for css_path in glob.glob(os.path.join(BASE_DIR, "css", "*.css")):
-        with open(css_path, "r", encoding="utf-8") as f:
-            codebase += "\n" + f.read()
-
-    selectors = [
-        "mode-nav", "stagebar", "stages", "correction-card", "diff-line",
-        "type-badge", "help-levels", "data-criterion", "aside-content",
-        "word-chip", "history-drawer", "modal-overlay", "toast",
-        "composer-mode-hint", "save-word", "correction-undo"
-    ]
-    for sel in selectors:
-        assert sel in codebase, f"ERROR DE ALUCINACIÓN: Selector '{sel}' no existe en el código real!"
-    print(f"   -> {len(selectors)} selectores auditados existen exactamente en la app.")
-
-def test_principles_count():
-    print("3. Verificando conteo de principios...")
-    with open(GUIDE_MD, "r", encoding="utf-8") as f:
-        content = f.read()
-    found_ids = set(re.findall(r'C[1-8]\.[0-9]+', content))
-    assert len(found_ids) == 71, f"ERROR: Se esperaban 71 principios únicos, encontrados: {len(found_ids)}"
-    print(f"   -> Los 71 principios (C1.1 a C8.11) están catalogados sin omisiones.")
-
-if __name__ == "__main__":
-    test_screenshots_exist()
-    test_selectors_exist_in_code()
-    test_principles_count()
-    print("¡TODAS LAS PRUEBAS DE INTEGRIDAD PASARON CON ÉXITO!")
+if __name__=='__main__':browser_checks(static_checks())
