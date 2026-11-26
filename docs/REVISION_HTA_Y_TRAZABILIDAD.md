@@ -1,11 +1,5 @@
 # Revisión del HTA y traducción a la interfaz
 
-## Integración de consultas, fragmentos y contextos
-
-Se conservan las aportaciones remotas de consulta vinculada y retorno al borrador, revisión de una aparición de un fragmento, registro de respuestas externas no verificadas y repaso por palabra y oración. Se integran con los apoyos por tema y los ejemplos separados de esta revisión. La fuente vigente mantiene títulos de una sola acción y los nombres de ambos alumnos.
-
-La [correspondencia por nodo](HTA_V8_COBERTURA.md) se deriva de `hta_v8/contenido.json` y distingue el proceso general de los escenarios ilustrativos. Las pruebas de los escenarios anteriores no acreditan automáticamente cobertura completa de los nuevos descendientes del HTA. Los originales trasladados por el trabajo remoto permanecen íntegros en `originales/previo-v8/`.
-
 ## Acciones del HTA e infinitivos · 26/11/2026
 
 Por instrucción del usuario, cada título del HTA v8 empieza con un verbo en infinitivo y nombra una sola acción. Las operaciones antes reunidas en una frase se descomponen en hijos con un plan específico. Por ejemplo, la reformulación de una interpretación comprende ahora comparar la hipótesis, explicar el significado y conservar las incertidumbres en subtareas distintas. Las condiciones y decisiones de recorrido se expresan en los planes.

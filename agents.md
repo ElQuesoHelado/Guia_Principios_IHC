@@ -14,13 +14,149 @@ Por instrucción del usuario, los ejemplos de correo y vocabulario se muestran e
 
 La instrucción actual del usuario sustituye las decisiones anteriores de alcance: **correo y vocabulario**, chat inicial vacío, sugerencias durante la escritura y apoyo opcional sin fichas. Leer `README.md`, `guia.md`, `docs/REVISION_HTA_Y_TRAZABILIDAD.md` y `guiaPapers.md` antes de editar.
 
-Código cargado: `index.html` → `js/icons.js`, `js/tutor-data.js`, `js/tutor-hta.js`, `js/tutor.js`; estilos en `css/style.css`. El resto de JS es histórico y no se carga. La persistencia es localStorage v2 con migración de sesiones v1; no hay IA externa. La guía se genera desde las 71 condiciones completas de Matriz_reglas_condicion_Lingua_IA.docx. La clasificación original permanece en 44 Cumple y 27 No cumple; la evaluación de la interfaz actual es independiente: 45 aplicados de diseño, 9 parciales, 3 pendientes, 2 excluidos y 12 no aplicables. No forzar que una regla marcada Cumple en la matriz conserve ese estado si su condición no está representada por la interfaz. No se atribuye validación empírica a estos conteos. Originales previos en `docs/originales/principios-anterior/`.
+Código cargado: `index.html` → `js/icons.js`, `js/tutor-data.js`, `js/tutor.js`; estilos en `css/style.css`. El resto de JS es histórico y no se carga. La persistencia es localStorage; no hay IA externa. La guía se genera desde las 71 condiciones completas de Matriz_reglas_condicion_Lingua_IA.docx. La clasificación original permanece en 44 Cumple y 27 No cumple; la evaluación de la interfaz actual es independiente: 45 aplicados de diseño, 9 parciales, 3 pendientes, 2 excluidos y 12 no aplicables. No forzar que una regla marcada Cumple en la matriz conserve ese estado si su condición no está representada por la interfaz. No se atribuye validación empírica a estos conteos. Originales previos en `docs/originales/principios-anterior/`.
 
 Navegación vigente: Conversaciones se muestra como un panel lateral izquierdo de alto completo (dialog.conversation-drawer), con foco modal y cierre por X, Escape o fondo. Cabecera y franja de tarea fijas; indicador de etapa siempre visible y ruta opcional desplegable. Las acciones de apoyo sincronizan etapa y actividad pendiente sin acreditar aprendizaje.
 
 Verificación vigente: `python3 tools/test_navigation_scroll.py`, `python3 tools/test_learning_flow.py` y `python3 tools/test_guide_integrity.py`; capturas: `tools/generate_screenshots.py`. Regenerar secuencialmente. Las secciones siguientes conservan el historial del proyecto; sus rutas de prueba, tres actividades y cifras anteriores no describen la implementación vigente.
 
+---
 
-Integración del trabajo remoto: `js/tutor-hta.js` añade consultas con retorno al punto de origen, selección de una aparición del fragmento, recursos externos registrados como no verificados y repaso por palabra y contexto. Se conservan los apoyos locales por tema, los ejemplos separados, el correo pegado, los nombres y el HTA de una acción por nodo. Las copias previas permanecen en `docs/originales/previo-v8/`; el original del HTA se consulta allí sin alterar su SHA-256.
+# Contexto del Proyecto para Agentes · Lingua IA
 
-Comprobaciones adicionales: `python3 tools/test_hta_complete.py` verifica los escenarios preparados; `python3 tools/test_hta_v8.py` contrasta los documentos actuales y la migración. `python3 tools/build_hta_coverage.py` deriva la correspondencia desde la fuente actual. La correspondencia es ilustrativa: no equiparar identificadores de escenarios anteriores con cobertura completa de cada acción general nueva.
+Este documento (`agents.md`) sirve como fuente de verdad y memoria técnica para cualquier agente de IA o desarrollador que trabaje en este repositorio. Describe la arquitectura del software, las decisiones de diseño de Interacción Humano-Computador (IHC), los artefactos generados y las pautas para mantener la integridad del proyecto.
+
+> **Feedback docente recibido el 24/11/2026:** antes de revisar el HTA o proponer cambios de interfaz, consultar las [tres transcripciones y la guía de la siguiente mejora](docs/feedback_docente/2026-11-24/README.md). Las descripciones de alcance y diseño de este archivo documentan el estado o las decisiones previas del prototipo; no acreditan aprobación docente ni prevalecen sobre ese feedback y las instrucciones actuales del usuario.
+
+---
+
+## 1. Visión General del Proyecto
+
+- **Nombre:** Lingua IA
+- **Propósito:** Prototipo interactivo de nivel medio de un tutor de inglés asistido por IA generativa para estudiantes universitarios (nivel B1–B2).
+- **Asignatura / Contexto:** Curso de Interacción Humano-Computador (IHC), basado en el libro *Designing with the Mind in Mind* de Jeff Johnson (71 principios de diseño divididos en los capítulos C1 a C8).
+- **Naturaleza técnica:** Prototipo **100% frontend** (mock interactivo con estado local reactivo en JavaScript). **No cuenta con backend, servidor ni llamadas a APIs de LLM externas**. Todo el contenido, sugerencias y respuestas son datos simulados situados en `js/data.js`.
+
+---
+
+## 2. Decisiones Clave de Alcance y Diseño (Lo que NO se debe alterar)
+
+1. **Tres actividades principales exclusivas:**
+   - **Redacción asistida (`writing`):** Revisar un correo formal, comparar fragmento original con propuesta (diff), leer pista/explicación y aceptar o rechazar la sugerencia.
+   - **Lecciones y repaso (`lessons`):** Leer un artículo, tocar palabras resaltadas para ver significado y ejemplos en contexto, y guardarlas en el panel de vocabulario.
+   - **Conversación escrita (`conversation`):** Simulación de entrevista de trabajo o charla por chat en turnos breves, con solicitud de pistas.
+2. **Exclusiones deliberadas del alcance (Decisión pedagógica e IHC):**
+   - **Sin audio ni voz:** No hay micrófono, reconocimiento de voz ni evaluación de pronunciación. La interacción es exclusivamente por texto para reducir la fricción y la ansiedad del estudiante.
+   - **Sin árboles de análisis complejos:** Se retiraron gráficos de operaciones, glifos de datos, ramas y etiquetas metodológicas de papers de investigación (WaitGPT, LightVA, WoZ) para no sobrecargar cognitivamente al aprendiz.
+   - **Sin persistencia en base de datos:** El estado se gestiona en memoria (`js/state.js`).
+
+---
+
+## 3. Estructura de Archivos del Repositorio
+
+```
+/home/josealva/Projects/IHC/interfazIdioma/
+├── index.html                   # Shell principal de la aplicación y layout
+├── css/
+│   └── style.css                # Sistema de diseño (Tokens, Figtree, Teal #0F766E, componentes)
+├── js/
+│   ├── icons.js                 # Biblioteca de iconos SVG inline (Icons.*)
+│   ├── data.js                  # Datos mock: textos, correcciones, reglas, escenarios, artículos
+│   ├── state.js                 # Gestor de estado reactivo mínimo (DemoState: get, set, subscribe)
+│   ├── corrections.js           # Renderizado de tarjetas de corrección y diffs
+│   ├── panels.js                # Renderizado de pestañas laterales, drawer, footer y popover
+│   ├── chat.js                  # Lógica de renderizado de mensajes de chat y respuestas simuladas
+│   └── app.js                   # Bootstrap, orquestación global y delegación de eventos [data-action]
+├── docs/
+│   ├── screenshots/             # 14 miniaturas recortadas para la documentación y guía
+│   └── screenshots/principles/  # 44 capturas dedicadas y precisas para cada principio de diseño cumplido
+├── tools/
+│   ├── generate_screenshots.py  # Script automatizado con Firefox Headless y Pillow
+│   ├── build_doc_with_precise_screenshots.py # Generador del DOCX con las 44 capturas precisas insertadas
+│   └── test_guide_integrity.py  # Test automatizado de integridad referencial y anti-alucinación
+├── GUIA_PRINCIPIOS_IHC.md       # Guía de evaluación docente en Markdown (71 principios)
+├── GUIA_PRINCIPIOS_IHC.html     # Guía interactiva/imprimible con sidebar adhesivo y checklist
+├── Evaluacion_detallada_reglas_Lingua_IA.docx # Documento original de evaluación de las 71 reglas (intacto)
+├── Evaluacion_detallada_reglas_Lingua_IA_con_capturas.docx # Copia oficial con las 44 capturas insertadas en los que cumplen
+├── Informe_principios_Lingua_IA (1).docx # Informe original previo (auditoría base)
+├── usuarios.md                  # Análisis de usuarios objetivo y especificación de tareas (HTA)
+├── guia.md / guiaPapers.md / plan.md / reference.md # Documentación interna de alcance
+└── agents.md                    # Este documento de contexto para agentes
+```
+
+---
+
+## 4. Estado de Cobertura de los 71 Principios de IHC
+
+La auditoría técnica real del prototipo clasifica los 71 principios en:
+
+| Categoría | Total | Detalle |
+|---|:---:|---|
+| **✅ Aplicados** | **44** | Comprobables directamente en el DOM y en las interacciones (ej. C1.1, C1.2, C2.1, C4.1, C4.5, C7.5, C8.2, etc.). |
+| **🟡 Parciales** | **11** | Operativos en la demo pero con margen de extensión analítica o de hardware (ej. C2.8, C3.3, C4.2, C4.6, C5.3, C6.1, C6.6, C8.4, C8.8, C8.9). |
+| **🔴 Pendientes** | **2** | Requieren pruebas de laboratorio con usuarios humanos reales (C4.7 calibración de monitores, C6.12 pruebas de lectura). |
+| **⛔ Excluidos deliberados** | **2** | Descartados conscientemente por criterio anti-distracción (C2.7 movimiento/animación cinemática, C5.4 pop-out periférico). |
+| **➖ Fuera de alcance** | **12** | Funcionalidades de voz VUI (C7.2–C7.4), formularios rígidos (C3.6, C5.2), búsqueda web (C3.9, C7.6), breadcrumbs (C7.9), cuentas (C7.11) o temporizadores destructivos (C8.11). |
+
+**Métrica clave:** La cobertura sobre principios aplicables al software es del **93.2%** (55 de 59).
+
+---
+
+## 5. Herramientas y Scripts del Repositorio
+
+### A. Generador de Capturas de Pantalla (`tools/generate_screenshots.py`)
+Genera 14 capturas recortadas de alta resolución en `docs/screenshots/` utilizando Firefox en modo headless y Pillow (PIL).  
+Ejecución:
+```bash
+python3 tools/generate_screenshots.py
+```
+*Nota técnica:* Crea un archivo temporal `harness_temp.html` en la raíz para resolver correctamente las rutas relativas de CSS y JS, inyecta el estado deseado y recorta la caja delimitadora (bounding box) exacta.
+
+### B. Suite de Pruebas de Integridad y Anti-Alucinación (`tools/test_guide_integrity.py`)
+Valida de forma automatizada que:
+1. Las 14 capturas referenciadas existan físicamente en disco y no estén rotas.
+2. Cada selector DOM citado en la guía (`#mode-nav`, `#stagebar`, `.correction-card`, `.type-badge`, `#help-levels`, etc.) exista estrictamente en el código de `index.html` o `js/*.js`.
+3. Los 71 principios (C1.1 al C8.11) estén presentes sin omisiones.
+
+Ejecución:
+```bash
+python3 tools/test_guide_integrity.py
+```
+
+### C. Generador de Guías (`tools/build_guides.py`)
+Si se requiere actualizar el contenido o la redacción de las guías, este script compila sincronizadamente tanto `GUIA_PRINCIPIOS_IHC.md` como `GUIA_PRINCIPIOS_IHC.html`.
+```bash
+python3 tools/build_guides.py
+```
+
+---
+
+## 6. Reglas Críticas para Futuros Agentes
+
+1. **Protocolo Anti-Alucinación:**
+   - Nunca afirmes que la interfaz tiene funcionalidades que no están en el código (ej. no digas que graba audio, que evalúa pronunciación, que guarda en backend o que hay login).
+   - Si citas un principio en la interfaz, indica siempre el selector CSS o la acción `[data-action]` que lo respalda.
+2. **Defensa de Principios Excluidos:**
+   - Si te preguntan por qué no se implementó un principio como C2.7 (movimiento) o C7.2 (salida de voz), defiende la decisión en términos de **carga cognitiva, reducción de distracciones y delimitación de alcance** según se documenta en la Sección 4 de `GUIA_PRINCIPIOS_IHC.md`.
+3. **Mantenimiento de Imágenes:**
+   - Si realizas cambios visuales en el CSS o HTML que alteren la posición de componentes, vuelve a ejecutar `python3 tools/generate_screenshots.py` y `python3 tools/test_guide_integrity.py` para asegurar que las capturas sigan alineadas con el código.
+
+
+## Actualización del enfoque pedagógico · 22/11/2026
+
+La instrucción del usuario prioriza construir conocimiento. Las tres actividades ahora son aprender a escribir correos, conversación escrita y aprender vocabulario. `js/learning.js` incorpora modelos, planificación, producción propia, autoevaluación, explicación y transferencia. Las cuatro etapas del correo son Comprender, Escribir, Revisar y Transferir; las sugerencias del correo de práctica y las vistas de original/cambios están disponibles desde cualquier etapa. El borrador libre se conserva aparte y no recibe evaluación automática.
+
+`completedStages` registra etapas con notas opcionales mediante `Learning.save`; navegar no completa pasos. `stageByMode` conserva la ubicación y `learning` conserva las notas en memoria. Los indicadores no acreditan aprendizaje. La clasificación de 71 principios se conserva de la auditoría anterior, sin afirmar una nueva validación empírica.
+
+El documento DOCX se revisó para describir exactamente tres tareas sin IA y separar las adaptaciones de papers. El original se conserva en `docs/originales/`. Las capturas usan Firefox con perfil temporal y recorte por selector mediante ImageMagick (`tools/browser_capture.py` y `tools/generate_screenshots.py`), sin requerir Pillow. La prueba funcional `python3 tools/test_learning_flow.py` verifica en escritorio y móvil navegación libre, notas opcionales y vistas de original y cambios. Ejecutar las capturas y la prueba secuencialmente porque comparten `harness_temp.html`.
+
+
+El apoyo pedagógico es opcional: se accede directamente a correo, lectura o conversación. Las sugerencias están inicialmente ocultas y pueden abrirse u ocultarse en cualquier momento. En el correo, “Ver ejemplos de correo” abre el modelo directamente; Original, Borrador, Versión actual, Ver cambios, Versiones y Deshacer siguen accesibles al cambiar de sugerencia.
+
+## Feedback docente y próxima revisión · recibido el 24/11/2026
+
+Se incorporaron las transcripciones completas proporcionadas por el usuario en [docs/feedback_docente/2026-11-24/](docs/feedback_docente/2026-11-24/README.md). La fecha es de recepción; no se conoce la fecha de grabación. El Audio 1 contiene el feedback directo sobre correos; los Audios 2 y 3 desarrollan criterios de HTA y de la interacción con IA. Las fuentes conservan sus hablantes y tiempos. La síntesis y el trabajo pendiente se presentan por separado en el índice.
+
+La siguiente mejora debe revisar el aprendizaje lingüístico concreto, una raíz y una descomposición coherentes, dependencias y planes condicionales, y la ayuda contextual para formular y afinar prompts. El análisis debe partir de cómo trabaja actualmente el usuario con sus recursos habituales y luego derivar la interfaz. No reconstruir las tareas solo para hacerlas coincidir con el prototipo existente.
+
+La reducción del alcance hacia correos y el rediseño de la interacción se registran como propuestas pendientes. Este cambio documental no los implementa. Al retomar el trabajo, distinguir instrucciones explícitas de la profesora, evidencia de usuarios e hipótesis de diseño; citar audio y tiempo para cada observación. No tratar los documentos anteriores como fuente de verdad que invalide este feedback ni atribuir al prototipo predicción, persistencia o evaluación de aprendizaje que el código no demuestre.

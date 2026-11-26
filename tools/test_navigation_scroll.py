@@ -80,14 +80,6 @@ try{
  click('[data-action="history"]');click('[data-action="resume"][data-id="'+vocabId+'"]');stage(1);
  check(active().task==='vocab','Retoma la etapa de su conversación');
  check(document.documentElement.scrollWidth<=innerWidth,'Sin desbordamiento horizontal');
- click('[data-action="new"]');send('Quiero escribir un correo a mi profesora');click('[data-action="write"]');
- send('Dear Professor,\nA dedicated space helps you focus on your work.\nBest regards,\nAlex');
- click('[data-action="hta-consult"]');send('A dedicated space helps you focus on your work.');
- for(let i=0;i<8;i++)send('Aporte de continuación '+i+': por ahora quiero contrastar mi interpretación. '.repeat(4));
- window.scrollTo(0,document.documentElement.scrollHeight);
- check(reachable('#context-return [data-action="hta-return"]'),'Retorno de consulta accesible al final del chat');
- check(reachable('[data-action="history"]'),'Menú sigue accesible con franja de retorno');
- check(document.documentElement.scrollWidth<=innerWidth,'Consulta vinculada sin desbordamiento horizontal');
  dump('LINGUA_NAV_PASS '+results.length+'\n');
 }catch(e){dump('LINGUA_NAV_FAIL '+e.message+' '+e.stack+'\n');}
 '''

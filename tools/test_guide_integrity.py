@@ -39,7 +39,6 @@ try{
  click('[data-action="accept"]');
  click('[data-action="undo-correction"]');
  click('[data-action="notebook"]');click('[data-action="close-dialog"]');
- click('[data-action="hta-consult"]');send('I am agree with the deadline.');scan();click('[data-action="hta-return"]');scan();
  click('[data-action="stage"][data-stage="2"]');
  scan();
  click('[data-action="new"]');send(TutorData.examples.subject);scan();

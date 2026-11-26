@@ -68,7 +68,7 @@ En **Nuevo chat**, escribe:
 3. Prueba **Guardar palabra** y **Quitar del repaso**. **Explicar con mis palabras** recoge una explicación en el chat.
 4. Puedes usar **Ver significado ahora** para saltar la inferencia. El apoyo es opcional.
 5. **Ver otra lectura** ofrece *dedicated*, *productive* y *deadline*. Cada palabra tiene su propio contexto y ficha.
-6. Para mostrar el límite de la demo, prueba en un chat nuevo `¿Qué significa dedicated en “She is a dedicated teacher”?`. Se ofrece una pista y una acepción propias de la referencia a una persona; no se aplica la definición de un espacio. Otros contextos sin ficha, como una dedicación de libro, quedan pendientes de contraste.
+6. Para mostrar el límite de la demo, prueba en un chat nuevo `¿Qué significa dedicated en “She is a dedicated teacher”?`. Se conserva ese contexto y se pide una hipótesis; no se aplica la definición preparada para un espacio.
 
 ## 4. Recuperar, transferir y retomar después
 
@@ -103,13 +103,3 @@ python3 tools/generate_screenshots.py
 ```
 
 Las pruebas funcionales ejecutan Firefox real en 1440, 390 y 320 píxeles. El capturador usa Firefox y perfiles temporales. Ejecútalos secuencialmente: comparten un archivo de captura temporal. No son un estudio con usuarios ni una auditoría completa de accesibilidad.
-
-## Consultar una expresión y volver al correo
-
-1. En correo, conserva un borrador propio y abre **Consultar esta expresión**. Indica una oración exacta del borrador; la consulta mantiene el punto de origen.
-2. Si contiene vocabulario preparado, contrasta la acepción de esa misma oración. Para otros fragmentos, precisa si la duda es de significado, construcción o registro. Los recursos disponibles son ejemplos, o respuestas externas que tú aportas y quedan sin verificar.
-3. **Volver al correo** recupera el borrador, la actividad y el mensaje sin enviar; la respuesta consultada no modifica el correo por sí sola. Puede quedar una duda pendiente.
-4. **Revisar un fragmento** permite elegir una aparición cuando se repite. El cambio conserva el resto y puede deshacerse o recuperarse mediante versiones.
-5. En vocabulario, guarda cada palabra con su oración. **Mi aprendizaje** permite repasar entradas de contextos distintos, incluida la acepción de persona de dedicated. Para una oración sin ficha, la demo conserva la hipótesis sin asignarle una acepción ajena.
-
-La correspondencia de estos escenarios con el HTA general está en [HTA_V8_COBERTURA.md](docs/HTA_V8_COBERTURA.md). Es una ilustración técnica y no una prueba de cobertura total o de aprendizaje.

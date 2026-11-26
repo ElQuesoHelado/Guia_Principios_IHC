@@ -10,7 +10,7 @@ Fuente principal: Matriz_reglas_condicion_Lingua_IA.docx y su PDF de referencia.
 
 Aplicado significa una decisión de diseño inspeccionable que responde a la condición de la matriz; no acredita aprobación docente ni validación experimental. Parcial indica cobertura incompleta, Pendiente una comprobación necesaria, Excluido una decisión de alcance y No aplica la ausencia de la situación descrita. Estas categorías no se cuentan como cumplimiento total.
 
-El HTA v8 describe el proceso general ante contenido o expresiones desconocidos. La interfaz lo ilustra con ejemplos preparados de correo y vocabulario en grupos separados, revisión directa de correos pegados y apoyos de asunto, saludo, petición, razón/finalidad y cierre. Los intentos propios, recuperación y transferencia se registran sin calificar su corrección. Se añaden consultas con retorno al punto de origen, revisión de una aparición del fragmento y repaso por palabra y oración; los ejemplos no acreditan cobertura total del proceso general.
+El HTA v8 describe el proceso general ante contenido o expresiones desconocidos. La interfaz lo ilustra con ejemplos preparados de correo y vocabulario en grupos separados, revisión directa de correos pegados y apoyos de asunto, saludo, petición, razón/finalidad y cierre. Los intentos propios, recuperación y transferencia se registran sin calificar su corrección.
 
 Se corrigieron valoraciones que no respondían a la condición exacta: C3.5 se refiere a números largos y no aplica a esta tarea; C4.3, C6.1 y C7.7 quedan parciales por límites de color, tamaño de texto y competencia entre acciones. Se conserva la clasificación original para que la diferencia sea visible.
 
@@ -622,14 +622,6 @@ La matriz original conserva 44 Cumple y 27 No cumple. La valoración actual no m
 ![Escenario actual 16](docs/screenshots/actual/16_sugerencia_ingles.png)
 
 ![Escenario actual 17](docs/screenshots/actual/17_ejemplos_separados.png)
-
-![Escenario actual 18](docs/screenshots/actual/15_expresiones.png)
-
-![Escenario actual 19](docs/screenshots/actual/16_consulta_retorno.png)
-
-![Escenario actual 20](docs/screenshots/actual/17_repaso_contextos.png)
-
-![Escenario actual 21](docs/screenshots/actual/18_consulta_movil.png)
 
 ## Límites de la evaluación
 
