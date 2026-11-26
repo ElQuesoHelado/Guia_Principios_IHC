@@ -825,6 +825,15 @@ dialog.conversation-drawer[open] {
   color:var(--muted);
   font-size:.875rem
 }
+.demo-card h4 {
+  font-size:1rem;
+  font-weight:600;
+  margin:0 0 8px;
+  line-height:1.4
+}
+.demo-group + .demo-group {
+  margin-top:28px
+}
 .finish-summary {
   border-left:3px solid var(--teal);
   padding-left:18px

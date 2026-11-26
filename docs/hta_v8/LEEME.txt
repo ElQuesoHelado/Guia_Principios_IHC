@@ -1,0 +1,19 @@
+HTA v8 — Correo y vocabulario, formato del documento v7
+
+Enfoque revisado el 26/11/2026: aprender inglés mediante tareas comunicativas. El correo sirve para practicar vocabulario, estructuras y registro; la lectura permite estudiar vocabulario inglés en contexto. Completar el correo no es el criterio de aprendizaje: se requieren comprensión, explicación, producción propia y reutilización con la ayuda identificada.
+
+Generalización solicitada por el usuario: el HTA describe el proceso ante un contenido o expresión que puede desconocerse. No fija correos, vocabulario, errores ni soluciones. Incluye entradas desde una necesidad propia, un correo recibido, una consigna o un borrador; rutas de consulta según recursos; falta de contexto, respuestas no comprendidas y dudas sin resolver. Los casos preparados permanecen en la interfaz como ilustraciones del proceso. Las vías proceden del perfil previo; sus secuencias y frecuencia requieren validación con usuarios. La recuperación y transferencia son propuestas de comprobación del aprendizaje, no hábitos universales observados.
+
+Redacción solicitada por el usuario: cada tarea y subtarea empieza con un único verbo en infinitivo y nombra una acción. Las acciones compuestas se descomponen en descendientes al nivel correspondiente; cada nueva descomposición tiene su plan. Las condiciones, criterios, secuencias, alternativas y retornos están en los planes. Se conservan los identificadores previos para mantener la trazabilidad. La misma regla se aplica a las dos tareas raíz.
+
+Entregables: HTA_correo_vocabulario_v8.pdf y HTA_correo_vocabulario_v8.docx, en la raíz del proyecto.
+Incluir siempre de forma visible: Alumnos: Misael Palomino Rivadeneyra, Jose Alva Cornejo. El campo authors conserva los nombres introducidos por el usuario y el generador los mantiene en PDF y Word.
+Fuente de contenido: contenido.json.
+Regeneración: desde la raíz, ejecutar python3 tools/build_hta_v8.py. Requiere pdflatex.
+Formato: caracterización de usuarios con apartados a–i; Tarea 1 y Tarea 2; objetivo; precondiciones; frecuencia; restricciones; excepciones; árbol numérico; planes al final; evidencias. No se añaden portada, tablas ni gráficos.
+Los prefijos C/V son identificadores internos de la fuente. En los documentos cada tarea comienza en 0 y las referencias a otra tarea la identifican por su número.
+El PDF conserva las familias de fuente Computer Modern y los colores del documento anterior. La maquetación del Word editable depende de las fuentes y del procesador de texto.
+La validación comprueba dos raíces, identificadores únicos, planes por cada nodo descompuesto, referencias existentes, cobertura de los hijos, numeración y planes del PDF y estructura ZIP/XML del DOCX.
+El archivo v7 se conserva sin cambios; verificacion.json contiene su SHA-256.
+Editar el DOCX no actualiza automáticamente contenido.json.
+Los arbol_*.dot/pdf/png/svg corresponden al diseño previo y no se incorporan en estos entregables.

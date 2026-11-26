@@ -1,0 +1,16 @@
+{
+  "roots": [
+    "C0",
+    "V0"
+  ],
+  "display_numbering": "0, 1, 1.1, 1.1.1 por tarea",
+  "nodes": 265,
+  "plans": 85,
+  "format_reference": "HTA_unificado_sin_IA_v7.pdf",
+  "original_sha256": "64aab6eff718b71117635c1051c8020c74c79f42dc3d63f661929f5c9d82e2d3",
+  "original_unchanged": true,
+  "pdf_content_verified": true,
+  "docx_zip_xml_and_content_verified": true,
+  "docx_external_render_verified": false,
+  "layout": "Usuarios; ficha de tarea; árbol numerado; planes al final; evidencias. Sin portada, gráficos ni tablas."
+}

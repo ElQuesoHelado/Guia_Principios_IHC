@@ -115,6 +115,85 @@ try{
   click('[data-action="pick-word"][data-word="productive"]');
   click('[data-action="definition"]');
   check(document.querySelector('.word-detail').textContent.includes('productive'),'Permite saltar la hipótesis y consultar directamente');
+  // HTA v8: las consultas abren el apoyo pertinente; producir y explicar no
+  // sustituye el borrador, y la recuperación conserva el tema practicado.
+  for(const [topic,query,attempt] of [
+    ['subject',TutorData.examples.subject,'Request for project notes. Solicito apuntes del proyecto; request for introduce lo que pido.'],
+    ['greeting',TutorData.examples.greeting,'Hi Sam, lo elijo para alguien de confianza y Dear introduce otro saludo.'],
+    ['request',TutorData.examples.request,'Could you send me the slides? You es quien envía y send va en forma base.'],
+    ['reason',TutorData.examples.reason,'I need the notes to study. To study expresa la finalidad, no una razón con because.'],
+    ['closing',TutorData.examples.closing,'Thanks, expresa agradecimiento y encaja con mi petición a Sam.']
+  ]){
+    click('[data-action="new"]');type(query);
+    check(!document.querySelector('#prompt-assist').hidden,'Sugerencia de inglés para '+topic);
+    const suggestion=document.querySelector('.assist-suggestion').textContent;
+    check(suggestion.includes('Compara'),'Propone contraste lingüístico para '+topic);
+    const queryBefore=document.querySelector('#chat-input').value;
+    click('[data-action="use-prompt"]');
+    check(document.querySelector('#chat-input').value.startsWith(queryBefore)&&!active(),'Añadir no envía ni sustituye la consulta '+topic);
+    click('[data-action="undo-prompt"]');click('#send-btn');
+    check(active().task==='email'&&document.querySelector('.language-lesson')?.dataset.topic===topic,'Abre el apoyo solicitado '+topic);
+    check(active().evidence.length===0,'Consultar ejemplos no acredita aprendizaje '+topic);
+    check(document.querySelectorAll('textarea').length===1&&!document.querySelector('form'),'Práctica en el mismo chat '+topic);
+    send(attempt);
+    check(active().evidence.at(-1).text===attempt&&active().evidence.at(-1).topic===topic,'Conserva producción y explicación '+topic);
+    check(active().draft===''&&active().versions.length===0,'La práctica de una expresión no reemplaza el correo '+topic);
+    last('.language-attempt [data-action="recall"]');
+    check(active().recall&&active().pending.topic===topic,'Recuperación del recurso elegido '+topic);
+    check([...document.querySelectorAll('.language-lesson')].every(e=>e.closest('.message').classList.contains('recall-hidden')),'Modelos ocultos al recuperar '+topic);
+    send(attempt);
+    check(active().evidence.at(-1).kind==='Intento de recuperación'&&!active().evidence.at(-1).help,'Registra recuperación sin apoyo '+topic);
+    last('[data-action="transfer"]');
+    check(active().pending.topic===topic&&active().stage===3,'Transferencia del mismo recurso '+topic);
+    click('[data-action="reveal-support"]');send(attempt);
+    check(active().evidence.at(-1).help&&active().evidence.at(-1).topic===topic,'Identifica ayuda al transferir '+topic);
+    document.querySelector('#learning-plan').open=true;
+    click('[data-action="stage"][data-stage="0"]');
+    check(active().emailTopic===topic&&active().pending.topic===topic,'Retorno al apoyo mantiene el recurso '+topic);
+    fits();
+  }
+  click('[data-action="new"]');send(TutorData.examples.review);
+  const preserved=active().draft;
+  send('Quiero aprender a expresar una razón con because.');
+  check(active().emailTopic==='reason'&&active().draft===preserved,'Abre consulta lingüística sin perder borrador');
+  send('I need more time because I have two exams. Because introduce sujeto y verbo.');
+  last('.language-attempt [data-action="recall"]');
+  send('I need the notes to study. To study expresa finalidad.');
+  const topicSession=active().id;
+  click('[data-action="new"]');click('[data-action="history"]');
+  click('[data-action="resume"][data-id="'+topicSession+'"]');
+  check(active().emailTopic==='reason'&&active().draft===preserved,'Retoma recurso lingüístico y borrador conservado');
+  // Una consulta explícita puede cambiar el apoyo mientras hay un intento pendiente.
+  send('Quiero comparar Dear y Hi.');
+  check(active().emailTopic==='greeting','Consulta nueva interrumpe el apoyo sin registrarse como producción');
+  const oldLesson=[...document.querySelectorAll('.language-lesson')].find(e=>e.dataset.topic==='reason');
+  oldLesson.querySelector('[data-action="recall"]').click();
+  check(active().pending.topic==='reason','Recuperar desde un mensaje anterior usa su tema');
+  click('[data-action="new"]');send(TutorData.examples.subject);
+  const pastedMail='Subject: Request for notes\nDear Professor,\nI want you to send me the notes.\nI am agree with the deadline.\nBest regards,\nAlex';
+  send(pastedMail);
+  check(active().draft===pastedMail,'Pegar un correo durante un apoyo abre el borrador completo');
+  check(active().messages.filter(m=>m.kind==='correction'&&m.status==='pending').length===2,'Pegar el correo muestra correcciones aunque hubiera una práctica pendiente');
+  send(pastedMail);
+  check(active().messages.filter(m=>m.kind==='correction'&&m.status==='pending').length===2,'Volver a pegar presenta propuestas de la versión actual');
+  check(active().messages.filter(m=>m.kind==='correction'&&m.status==='outdated').length===2,'Las propuestas anteriores quedan identificadas');
+  click('[data-action="new"]');
+  send('Quiero aprender de las correcciones de este correo:\n'+pastedMail);
+  check(active().task==='email'&&active().draft===pastedMail,'El correo pegado se revisa antes de interpretar la petición de aprendizaje');
+  check(active().messages.filter(m=>m.kind==='correction').length===2,'Chat nuevo muestra gramática y tono del correo pegado');
+  click('[data-action="stage"][data-stage="2"]');send(TutorData.model);
+  check(active().evidence.at(-1).kind==='Intento de recuperación','Un correo producido sin modelo conserva el intento de recuperación');
+  click('[data-action="stage"][data-stage="2"]');send('Revisa este correo:\n'+pastedMail);
+  check(!active().recall&&active().stage===1&&active().draft===pastedMail,'Pedir revisión explícita abre correcciones incluso durante recuperación');
+  const reviewedSession=active().id;
+  click('[data-action="demo"]');
+  check(document.querySelector('[data-example-group="email"] [data-example="review"]')&&!document.querySelector('[data-example-group="email"] [data-example="vocab"]'),'Correo y vocabulario tienen grupos de ejemplos separados');
+  check(document.querySelector('[data-example-group="vocab"] [data-example="vocab"]'),'Ejemplo léxico dentro de su grupo');
+  click('[data-example-group="vocab"] [data-action="load-demo"]');
+  check(!active()&&document.querySelector('#chat-input').value===TutorData.examples.vocab,'Elegir vocabulario prepara otro chat sin enviar el mensaje');
+  click('#send-btn');
+  check(active().task==='vocab'&&active().id!==reviewedSession,'Ejemplo léxico usa su propia conversación');
+  check(Lingua.getState().sessions.find(s=>s.id===reviewedSession).draft===pastedMail,'Ejemplo léxico conserva el correo en su conversación');
   click('[data-action="new"]');send('<img src=x onerror="window.injected=true"> Quiero un correo');
   check(!window.injected&&!document.querySelector('#chat-messages img'),'Escapa el texto del usuario');
   type('Prueba');

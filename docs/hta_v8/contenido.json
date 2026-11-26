@@ -1,0 +1,1591 @@
+{
+  "title": "Lingua IA · Análisis jerárquico de tareas",
+  "subtitle": "Versión 8 · Correo y vocabulario · Dos raíces relacionadas",
+  "date": "26 de noviembre de 2026",
+  "original": "HTA_unificado_sin_IA_v7.pdf",
+  "original_sha256": "64aab6eff718b71117635c1051c8020c74c79f42dc3d63f661929f5c9d82e2d3",
+  "authors": "Misael Palomino Rivadeneyra, Jose Alva Cornejo",
+  "intro": [
+    "El objetivo es aprender inglés al comprender y producir correos y al estudiar vocabulario en contexto. El análisis parte de una necesidad real, un texto recibido, un borrador propio o una expresión cuyo significado o uso puede desconocerse; no presupone un correo concreto, sus palabras, sus errores ni una respuesta correcta ya identificada. Se describen acciones y decisiones reutilizables: reconocer lo que se sabe, delimitar la dificultad, recuperar o buscar información, contrastarla, intentar un uso propio y revisar lo que todavía no se comprende. Las rutas de consulta se apoyan en los recursos declarados por el perfil del v7; sus secuencias y frecuencia requieren contraste con usuarios. La explicación, recuperación y transferencia se proponen para examinar aprendizaje y no se presentan como hábitos universales observados. Los ejemplos de la interfaz ilustran estas tareas y no determinan el árbol.",
+    "Esta versión conserva el documento v7 sin modificaciones y desarrolla únicamente correo y vocabulario. Se presentan dos árboles con una raíz propia, C0 y V0, conforme al alcance solicitado para esta entrega; sus dependencias y puntos de retorno se explicitan en los planes.",
+    "El modelo describe acciones y decisiones del estudiante, con los recursos que puede tener disponibles. No describe botones ni impone etapas de la interfaz futura. Incluye diccionario, traductor, apuntes, modelos, personas e IA existente cuando corresponda a la práctica del estudiante.",
+    "La revisión responde al feedback sobre conocimiento lingüístico, alternativas, planes y continuidad. La estructura de dos raíces es la decisión de alcance de esta versión; no se presenta como aprobación docente del requisito anterior de una sola raíz.",
+    "Cada tarea o subtarea empieza con un único verbo en infinitivo y expresa una acción. Las operaciones adicionales se descomponen en hijos con un plan propio. Las condiciones, criterios, secuencias, alternativas y retornos se expresan en los planes."
+  ],
+  "users": [
+    [
+      "Edad, cultura e idioma",
+      "Perfil de referencia del v7: estudiante universitario de 18 a 25 años, hispanohablante, que aprende inglés como idioma adicional. No se infiere que represente a todos los estudiantes."
+    ],
+    [
+      "Educación y conocimientos",
+      "Estudios superiores y nivel de referencia B1–B2. Comprende ideas generales y escribe borradores, pero puede necesitar apoyo para significado contextual, construcción de peticiones, registro y revisión."
+    ],
+    [
+      "Experiencia tecnológica",
+      "El v7 declara uso de diccionarios, traductores, herramientas de IA y copia de textos entre aplicaciones. Esta versión contempla esas vías sin afirmar que todos las utilicen igual o con la misma frecuencia."
+    ],
+    [
+      "Motivación y actitud",
+      "Se delimita a quien busca comprender, comprobar y reutilizar lo que obtiene. Resolver una tarea con rapidez no lo excluye; entregar un resultado sin revisarlo no constituye la evidencia de aprendizaje buscada."
+    ],
+    [
+      "Aprendizaje del inglés",
+      "Puede reconocer una regla sin aplicarla con seguridad. Interesan las diferencias entre error gramatical, cambio de significado y elección de registro, y entre recordar una traducción y saber usar una palabra."
+    ],
+    [
+      "Accesibilidad y limitaciones",
+      "No se dispone de evidencia suficiente para caracterizar limitaciones físicas, perceptivas o cognitivas. No se presupone ausencia de necesidades de accesibilidad."
+    ],
+    [
+      "Ambiente y continuidad",
+      "El v7 plantea estudio en casa o universidad y sesiones interrumpidas. Horarios, dispositivos y condiciones concretas no están verificados para todo el grupo; se contempla recuperar contexto, notas y dudas entre sesiones."
+    ],
+    [
+      "Relaciones y comunicación",
+      "Intercambio escrito con docentes, compañeros y equipos académicos. Se consideran diferente confianza, disponibilidad del nombre o tratamiento y convenciones del contexto."
+    ],
+    [
+      "Límites de la caracterización",
+      "Las afirmaciones sobre entrevistas proceden de la síntesis del v7, no de una nueva validación. Los casos, decisiones y expresiones del presente documento son propuestas de análisis por contrastar con usuarios."
+    ]
+  ],
+  "evidence": [
+    [
+      "Perfil y recursos",
+      "HTA v7, p. 1",
+      "Caracterización declarada. No acredita la frecuencia de cada ruta ni toda la secuencia de aprendizaje."
+    ],
+    [
+      "Criterios docentes",
+      "Audios 1–3 de la carpeta feedback_docente/2026-11-24",
+      "Transcripciones proporcionadas; sus tiempos se conservan como referencias. No son observaciones de hábitos individuales."
+    ],
+    [
+      "Casos y expresiones",
+      "Decisiones de esta revisión",
+      "Material didáctico para detallar opciones y condiciones; no son citas de entrevistas ni de un diccionario consultado en vivo."
+    ]
+  ],
+  "cases": [
+    [
+      "Correo",
+      "Se parte de una necesidad propia, un texto recibido o una consigna, sin contenido o respuesta predefinidos. El grado de comprensión y los datos disponibles determinan la ruta."
+    ],
+    [
+      "Vocabulario",
+      "Se parte de una expresión encontrada en un texto o necesaria para una producción. No se conoce de antemano qué palabra será, qué acepciones tendrá ni cuál encajará."
+    ]
+  ],
+  "roots": [
+    {
+      "node": {
+        "id": "C0",
+        "title": "Aprender inglés mediante correos académicos",
+        "children": [
+          {
+            "id": "C1",
+            "title": "Determinar la necesidad de aprendizaje del inglés",
+            "children": [
+              {
+                "id": "C1.1",
+                "title": "Establecer la intención comunicativa",
+                "children": [
+                  {
+                    "id": "C1.1.1",
+                    "title": "Definir la intención de un mensaje propio"
+                  },
+                  {
+                    "id": "C1.1.2",
+                    "title": "Interpretar la intención de un correo ajeno",
+                    "children": [
+                      {
+                        "id": "C1.1.2.1",
+                        "title": "Leer el correo de origen"
+                      },
+                      {
+                        "id": "C1.1.2.2",
+                        "title": "Identificar la intención del remitente"
+                      },
+                      {
+                        "id": "C1.1.2.3",
+                        "title": "Localizar fragmentos de comprensión incierta"
+                      }
+                    ],
+                    "plan": "Realizar C1.1.2.1, C1.1.2.2 y C1.1.2.3. Si la intención no se reconoce, acudir a C4 con el fragmento incierto y volver a C1.1.2.2; no completar el mensaje por suposición."
+                  },
+                  {
+                    "id": "C1.1.3",
+                    "title": "Interpretar la consigna de una actividad",
+                    "children": [
+                      {
+                        "id": "C1.1.3.1",
+                        "title": "Examinar la consigna de la actividad"
+                      },
+                      {
+                        "id": "C1.1.3.2",
+                        "title": "Distinguir instrucciones explícitas y datos ausentes"
+                      },
+                      {
+                        "id": "C1.1.3.3",
+                        "title": "Registrar ambigüedades de la consigna"
+                      }
+                    ],
+                    "plan": "Realizar C1.1.3.1, C1.1.3.2 y C1.1.3.3. Comprobar las ambigüedades con la fuente cuando sea posible; conservar como pendiente lo que no tenga confirmación."
+                  }
+                ],
+                "plan": "Realizar C1.1.1, C1.1.2 o C1.1.3 según el origen de la necesidad; combinar las rutas cuando el caso lo requiera. Si no puede reconocer la intención del texto, delimitar en C4 qué impide comprenderla y volver a esta tarea. Si la consigna sigue siendo ambigua, comprobarla con la fuente o conservar la duda, sin completar por suposición lo que se espera comunicar."
+              },
+              {
+                "id": "C1.2",
+                "title": "Determinar el contexto del destinatario",
+                "children": [
+                  {
+                    "id": "C1.2.1",
+                    "title": "Identificar la relación con el destinatario"
+                  },
+                  {
+                    "id": "C1.2.2",
+                    "title": "Distinguir datos conocidos y datos inciertos"
+                  },
+                  {
+                    "id": "C1.2.3",
+                    "title": "Comprobar los datos inciertos del contexto"
+                  }
+                ],
+                "plan": "Realizar C1.2.1 y C1.2.2. Realizar C1.2.3 solo ante información incierta; si no se obtiene confirmación, conservarla como pendiente en C7.1. No suponer nombres, títulos o grados de confianza."
+              },
+              {
+                "id": "C1.3",
+                "title": "Reconocer el punto de partida lingüístico",
+                "children": [
+                  {
+                    "id": "C1.3.1",
+                    "title": "Recuperar una expresión de conocimientos previos"
+                  },
+                  {
+                    "id": "C1.3.2",
+                    "title": "Proponer un intento inicial en inglés"
+                  },
+                  {
+                    "id": "C1.3.3",
+                    "title": "Localizar la dificultad de significado o uso"
+                  }
+                ],
+                "plan": "Realizar C1.3.1 si dispone de una expresión conocida o C1.3.2 si puede elaborar un intento. Continuar con C1.3.3. Si no puede comenzar en inglés, expresar la intención con sus recursos habituales y acudir a C2 o C4; no exigir una producción inventada."
+              }
+            ],
+            "plan": "Realizar C1.1 y C1.2; en C1.3 reconocer el punto de partida lingüístico. Si no puede formular nada en inglés, expresar la intención con sus recursos habituales y acudir a C2 o C4; no exigir un intento inventado. Si faltan datos de la situación, buscarlos o mantenerlos pendientes. Elegir la siguiente tarea según necesite comprender un texto, encontrar una expresión o revisar un borrador."
+          },
+          {
+            "id": "C2",
+            "title": "Examinar referencias de uso del inglés",
+            "children": [
+              {
+                "id": "C2.1",
+                "title": "Obtener una referencia pertinente",
+                "children": [
+                  {
+                    "id": "C2.1.1",
+                    "title": "Localizar una referencia pertinente"
+                  },
+                  {
+                    "id": "C2.1.2",
+                    "title": "Leer la referencia de uso"
+                  },
+                  {
+                    "id": "C2.1.3",
+                    "title": "Señalar fragmentos de comprensión incierta"
+                  }
+                ],
+                "plan": "Realizar C2.1.1, C2.1.2 y C2.1.3. Elegir una referencia de intención y relación comparables. Si no hay ninguna disponible o no se comprende, acudir a C4; no asumir que existe un modelo preparado para el caso."
+              },
+              {
+                "id": "C2.2",
+                "title": "Comparar formulaciones de intención equivalente"
+              },
+              {
+                "id": "C2.3",
+                "title": "Explicar las diferencias entre formulaciones",
+                "children": [
+                  {
+                    "id": "C2.3.1",
+                    "title": "Explicar diferencias de significado o registro"
+                  },
+                  {
+                    "id": "C2.3.2",
+                    "title": "Identificar límites de la explicación propia"
+                  }
+                ],
+                "plan": "Realizar C2.3.1 y C2.3.2 sobre las alternativas de C2.2. Si la explicación carece de respaldo o solo existe una referencia, consultar C4 sin inventar otra formulación."
+              }
+            ],
+            "plan": "Realizar C2.1. Si necesita elegir entre formulaciones, buscar una alternativa pertinente y realizar C2.2; comprobar mediante C2.3 qué puede explicar de la comparación. Si solo encuentra una referencia, estudiar su significado y uso sin inventar otra. Acudir a C4 ante información no comprendida o fuentes contradictorias. Si el recurso ya se conoce y resulta pertinente, continuar en C3 o C5 sin comparar por obligación."
+          },
+          {
+            "id": "C3",
+            "title": "Seleccionar recursos lingüísticos para el correo",
+            "children": [
+              {
+                "id": "C3.1",
+                "title": "Formular un asunto en inglés",
+                "children": [
+                  {
+                    "id": "C3.1.1",
+                    "title": "Precisar la intención del asunto"
+                  },
+                  {
+                    "id": "C3.1.2",
+                    "title": "Obtener recursos lingüísticos para el asunto",
+                    "children": [
+                      {
+                        "id": "C3.1.2.1",
+                        "title": "Recuperar una expresión de asunto conocida"
+                      },
+                      {
+                        "id": "C3.1.2.2",
+                        "title": "Consultar alternativas para el asunto"
+                      },
+                      {
+                        "id": "C3.1.2.3",
+                        "title": "Interpretar el significado de una alternativa"
+                      }
+                    ],
+                    "plan": "Elegir C3.1.2.1 si dispone de una expresión pertinente; de lo contrario realizar C3.1.2.2. Realizar C3.1.2.3 sobre la opción disponible, con ayuda de C4 si fuera necesaria. No asumir palabras de antemano."
+                  },
+                  {
+                    "id": "C3.1.3",
+                    "title": "Elaborar un asunto propio",
+                    "children": [
+                      {
+                        "id": "C3.1.3.1",
+                        "title": "Redactar un asunto propio"
+                      },
+                      {
+                        "id": "C3.1.3.2",
+                        "title": "Contrastar el asunto con la intención"
+                      }
+                    ],
+                    "plan": "Realizar C3.1.3.1 y C3.1.3.2. Si la formulación cambia la intención o incorpora información sin respaldo, volver a C3.1.1 o C3.1.2."
+                  }
+                ],
+                "plan": "Realizar C3.1.1. En C3.1.2 recuperar una expresión que conoce o consultar si no dispone de ella; no suponer que el vocabulario ya está identificado en inglés. Continuar con C3.1.3 cuando pueda explicar lo que propone. Si no entiende la referencia o la adaptación cambia el sentido, volver a C4 o C3.1.1. Si el asunto existente ya expresa la intención y no plantea una dificultad, conservarlo."
+              },
+              {
+                "id": "C3.2",
+                "title": "Formular un saludo en inglés",
+                "children": [
+                  {
+                    "id": "C3.2.1",
+                    "title": "Obtener fórmulas de saludo",
+                    "children": [
+                      {
+                        "id": "C3.2.1.1",
+                        "title": "Recuperar una fórmula de saludo conocida"
+                      },
+                      {
+                        "id": "C3.2.1.2",
+                        "title": "Consultar alternativas de saludo"
+                      },
+                      {
+                        "id": "C3.2.1.3",
+                        "title": "Interpretar la función de una fórmula de saludo"
+                      }
+                    ],
+                    "plan": "Elegir C3.2.1.1 si dispone de una fórmula pertinente o C3.2.1.2 si necesita una referencia. Realizar C3.2.1.3 antes de la comparación; consultar C4 si no comprende el uso."
+                  },
+                  {
+                    "id": "C3.2.2",
+                    "title": "Comparar fórmulas de saludo por significado y uso"
+                  },
+                  {
+                    "id": "C3.2.3",
+                    "title": "Elaborar un saludo propio",
+                    "children": [
+                      {
+                        "id": "C3.2.3.1",
+                        "title": "Redactar un saludo propio"
+                      },
+                      {
+                        "id": "C3.2.3.2",
+                        "title": "Justificar la apertura y el tratamiento"
+                      }
+                    ],
+                    "plan": "Realizar C3.2.3.1 y C3.2.3.2. Si la justificación depende de datos desconocidos, volver a C3.2.4; si depende de un significado incierto, acudir a C4."
+                  },
+                  {
+                    "id": "C3.2.4",
+                    "title": "Resolver los datos inciertos del destinatario",
+                    "children": [
+                      {
+                        "id": "C3.2.4.1",
+                        "title": "Comprobar los datos del destinatario"
+                      },
+                      {
+                        "id": "C3.2.4.2",
+                        "title": "Buscar una fórmula independiente del dato incierto"
+                      },
+                      {
+                        "id": "C3.2.4.3",
+                        "title": "Registrar la incertidumbre del destinatario"
+                      }
+                    ],
+                    "plan": "Realizar C3.2.4.1. Si no hay confirmación, intentar C3.2.4.2 sin inventar información. Realizar C3.2.4.3 si el dato continúa incierto; suspender la elección de tratamiento si depende de ese dato."
+                  }
+                ],
+                "plan": "Realizar C3.2.1 y C3.2.2 sobre las alternativas disponibles. Si faltan datos del destinatario o de la relación, realizar C3.2.4 antes de decidir. Continuar con C3.2.3 cuando pueda justificar una opción. Si solo conoce una fórmula y no sabe si encaja, consultar C4 en lugar de atribuirle un registro. Si el dato o el uso siguen sin confirmarse, mantener la elección pendiente."
+              },
+              {
+                "id": "C3.3",
+                "title": "Construir el mensaje principal en inglés",
+                "children": [
+                  {
+                    "id": "C3.3.1",
+                    "title": "Definir el contenido del mensaje principal",
+                    "children": [
+                      {
+                        "id": "C3.3.1.1",
+                        "title": "Precisar la acción o información del mensaje"
+                      },
+                      {
+                        "id": "C3.3.1.2",
+                        "title": "Identificar los participantes del mensaje"
+                      },
+                      {
+                        "id": "C3.3.1.3",
+                        "title": "Localizar la dificultad de formulación"
+                      }
+                    ],
+                    "plan": "Realizar C3.3.1.1, C3.3.1.2 y C3.3.1.3 en ese orden, sobre el mismo fragmento o contexto."
+                  },
+                  {
+                    "id": "C3.3.2",
+                    "title": "Obtener una construcción para la intención comunicativa",
+                    "children": [
+                      {
+                        "id": "C3.3.2.1",
+                        "title": "Recuperar una construcción conocida"
+                      },
+                      {
+                        "id": "C3.3.2.2",
+                        "title": "Consultar construcciones de intención equivalente"
+                      },
+                      {
+                        "id": "C3.3.2.3",
+                        "title": "Interpretar el significado y uso de una construcción"
+                      }
+                    ],
+                    "plan": "Elegir C3.3.2.1 si dispone de una construcción pertinente o C3.3.2.2 si la desconoce. Realizar C3.3.2.3 sobre la opción disponible; si la explicación no se comprende, acudir a C4 antes de la adaptación."
+                  },
+                  {
+                    "id": "C3.3.3",
+                    "title": "Elaborar un intento del mensaje principal",
+                    "children": [
+                      {
+                        "id": "C3.3.3.1",
+                        "title": "Adaptar la construcción al contenido propio"
+                      },
+                      {
+                        "id": "C3.3.3.2",
+                        "title": "Redactar un intento del mensaje"
+                      },
+                      {
+                        "id": "C3.3.3.3",
+                        "title": "Anotar dudas lingüísticas del intento"
+                      }
+                    ],
+                    "plan": "Realizar C3.3.3.1, C3.3.3.2 y C3.3.3.3 en ese orden, sobre el mismo fragmento o contexto."
+                  },
+                  {
+                    "id": "C3.3.4",
+                    "title": "Contrastar el intento con una referencia pertinente"
+                  }
+                ],
+                "plan": "Realizar C3.3.1 y elegir en C3.3.2 entre recuperar una construcción conocida o consultar cómo expresar la intención. Si no comprende la estructura, realizar C4 antes de adaptarla. Elaborar C3.3.3 y contrastar mediante C3.3.4; si el significado o la construcción no se pueden justificar, volver a C3.3.1 o C4. Repetir solo sobre la dificultad pendiente; no sustituir por defecto todo el mensaje."
+              },
+              {
+                "id": "C3.4",
+                "title": "Expresar relaciones de razón o finalidad",
+                "children": [
+                  {
+                    "id": "C3.4.1",
+                    "title": "Precisar la relación entre las ideas"
+                  },
+                  {
+                    "id": "C3.4.2",
+                    "title": "Consultar una construcción para esa relación"
+                  },
+                  {
+                    "id": "C3.4.3",
+                    "title": "Redactar una frase explicativa"
+                  },
+                  {
+                    "id": "C3.4.4",
+                    "title": "Contrastar el significado de la frase"
+                  }
+                ],
+                "plan": "Realizar C3.4.1 cuando la intención requiera una razón o finalidad. Realizar C3.4.2 solo si desconoce una construcción pertinente; acudir a C4 si no comprende la referencia. Continuar con C3.4.3 y C3.4.4. Si la relación cambia, volver a C3.4.1. Omitir esta rama cuando no sea necesaria."
+              },
+              {
+                "id": "C3.5",
+                "title": "Formular el cierre del mensaje en inglés",
+                "children": [
+                  {
+                    "id": "C3.5.1",
+                    "title": "Obtener fórmulas de cierre",
+                    "children": [
+                      {
+                        "id": "C3.5.1.1",
+                        "title": "Identificar la función del cierre"
+                      },
+                      {
+                        "id": "C3.5.1.2",
+                        "title": "Buscar fórmulas de cierre pertinentes"
+                      },
+                      {
+                        "id": "C3.5.1.3",
+                        "title": "Interpretar el significado y uso de las fórmulas"
+                      }
+                    ],
+                    "plan": "Realizar C3.5.1.1. Si no dispone de una fórmula pertinente, realizar C3.5.1.2; continuar con C3.5.1.3 sobre las fórmulas disponibles. Consultar C4 ante un significado o uso desconocidos."
+                  },
+                  {
+                    "id": "C3.5.2",
+                    "title": "Elegir un cierre para el contexto",
+                    "children": [
+                      {
+                        "id": "C3.5.2.1",
+                        "title": "Comparar las alternativas de cierre"
+                      },
+                      {
+                        "id": "C3.5.2.2",
+                        "title": "Redactar un cierre propio"
+                      },
+                      {
+                        "id": "C3.5.2.3",
+                        "title": "Justificar la coherencia del cierre"
+                      }
+                    ],
+                    "plan": "Realizar C3.5.2.1 cuando existan alternativas. Continuar con C3.5.2.2 y C3.5.2.3. Si solo existe una referencia, justificar su pertinencia sin inventar otra. Volver a C4 si el uso sigue incierto."
+                  }
+                ],
+                "plan": "Realizar C3.5.1 y después C3.5.2. Si desconoce la función o el uso de una fórmula, consultar C4 antes de elegir. Si las referencias no permiten distinguir opciones o contradicen la relación, ampliar el contexto en C1.2 o conservar la duda. No añadir una despedida diferente solo porque existe otra alternativa."
+              }
+            ],
+            "plan": "Elegir las partes necesarias: C3.1 si no sabe expresar el asunto; C3.2 si necesita un saludo; C3.3 para el mensaje principal; C3.4 si requiere una razón o finalidad; C3.5 si necesita un cierre. Se pueden abordar en el orden en que aparezcan las dificultades y revisar unas después de otras. Intercalar C4 si desconoce el significado o uso de una opción. Reunir lo comprendido en C5; no se exige estudiar todas las partes ni conocer de antemano las fórmulas que aparecerán."
+          },
+          {
+            "id": "C4",
+            "title": "Resolver una dificultad del inglés",
+            "children": [
+              {
+                "id": "C4.1",
+                "title": "Delimitar la dificultad lingüística",
+                "children": [
+                  {
+                    "id": "C4.1.1",
+                    "title": "Localizar el fragmento dudoso"
+                  },
+                  {
+                    "id": "C4.1.2",
+                    "title": "Conservar la oración y su contexto"
+                  },
+                  {
+                    "id": "C4.1.3",
+                    "title": "Precisar la dificultad de comprensión o producción"
+                  }
+                ],
+                "plan": "Realizar C4.1.1, C4.1.2 y C4.1.3. Si no puede clasificar la dificultad como vocabulario, gramática o registro, conservar su descripción abierta antes de C4.2; no imponer una categoría."
+              },
+              {
+                "id": "C4.2",
+                "title": "Elegir un recurso de consulta",
+                "children": [
+                  {
+                    "id": "C4.2.1",
+                    "title": "Consultar un diccionario, apuntes o modelos",
+                    "children": [
+                      {
+                        "id": "C4.2.1.1",
+                        "title": "Localizar una entrada o ejemplo pertinente"
+                      },
+                      {
+                        "id": "C4.2.1.2",
+                        "title": "Examinar el significado y la construcción"
+                      },
+                      {
+                        "id": "C4.2.1.3",
+                        "title": "Relacionar los ejemplos con la dificultad"
+                      }
+                    ],
+                    "plan": "Realizar C4.2.1.1, C4.2.1.2 y C4.2.1.3 en la fuente disponible. Si la dificultad exige comparar acepciones, acudir a V0 con la oración de origen. Si no existe una entrada pertinente, elegir otra ruta de C4.2."
+                  },
+                  {
+                    "id": "C4.2.2",
+                    "title": "Consultar un traductor",
+                    "children": [
+                      {
+                        "id": "C4.2.2.1",
+                        "title": "Aportar el fragmento y el contexto al traductor"
+                      },
+                      {
+                        "id": "C4.2.2.2",
+                        "title": "Obtener una traducción del fragmento"
+                      },
+                      {
+                        "id": "C4.2.2.3",
+                        "title": "Comparar la traducción con la intención"
+                      },
+                      {
+                        "id": "C4.2.2.4",
+                        "title": "Señalar equivalencias inciertas"
+                      }
+                    ],
+                    "plan": "Realizar C4.2.2.1, C4.2.2.2, C4.2.2.3 y C4.2.2.4. Si el nivel de inglés no permite comprobar una equivalencia, conservar la duda y contrastar otra vía de C4.2; no considerar una traducción aislada como explicación suficiente."
+                  },
+                  {
+                    "id": "C4.2.3",
+                    "title": "Consultar una herramienta de IA existente",
+                    "children": [
+                      {
+                        "id": "C4.2.3.1",
+                        "title": "Formular una consulta con el fragmento y la dificultad"
+                      },
+                      {
+                        "id": "C4.2.3.2",
+                        "title": "Solicitar una explicación de las alternativas"
+                      },
+                      {
+                        "id": "C4.2.3.3",
+                        "title": "Contrastar la respuesta con el contexto o una fuente"
+                      }
+                    ],
+                    "plan": "Realizar C4.2.3.1 y C4.2.3.2 cuando esta herramienta forme parte de los recursos disponibles. Realizar C4.2.3.3 antes de la incorporación de una respuesta. Si la explicación es insuficiente o contradictoria, acudir a C4.4."
+                  },
+                  {
+                    "id": "C4.2.4",
+                    "title": "Consultar la ayuda de otra persona",
+                    "children": [
+                      {
+                        "id": "C4.2.4.1",
+                        "title": "Presentar el fragmento y la duda"
+                      },
+                      {
+                        "id": "C4.2.4.2",
+                        "title": "Solicitar una explicación o un ejemplo"
+                      },
+                      {
+                        "id": "C4.2.4.3",
+                        "title": "Contrastar la explicación con el contexto"
+                      }
+                    ],
+                    "plan": "Realizar C4.2.4.1, C4.2.4.2 y C4.2.4.3 si esa ayuda está disponible. Si no se comprende la explicación o persiste una duda, acudir a C4.4 o conservar el pendiente en C7.1."
+                  }
+                ],
+                "plan": "Elegir una vía disponible de C4.2.1–C4.2.4 según la dificultad y los recursos habituales; no son pasos acumulativos obligatorios. Si desconoce qué buscar, aportar la oración y describir qué no comprende. Si la respuesta no permite comprobar el uso, consultar otra vía o precisar la pregunta. Si no hay acceso a una fuente suficiente, registrar el pendiente en C7. La disponibilidad y preferencia por estas vías deben contrastarse con usuarios."
+              },
+              {
+                "id": "C4.3",
+                "title": "Valorar la respuesta de una consulta",
+                "children": [
+                  {
+                    "id": "C4.3.1",
+                    "title": "Relacionar la respuesta con el fragmento de origen"
+                  },
+                  {
+                    "id": "C4.3.2",
+                    "title": "Comprobar el respaldo de la explicación"
+                  },
+                  {
+                    "id": "C4.3.3",
+                    "title": "Explicar el hallazgo con palabras propias"
+                  },
+                  {
+                    "id": "C4.3.4",
+                    "title": "Identificar dudas persistentes"
+                  }
+                ],
+                "plan": "Realizar C4.3.1, C4.3.2, C4.3.3 y C4.3.4. Si el respaldo falta o no se comprende, continuar en C4.4. Si hay una explicación suficiente, volver a la tarea de origen con el hallazgo y sus límites."
+              },
+              {
+                "id": "C4.4",
+                "title": "Reformular una consulta insuficiente",
+                "children": [
+                  {
+                    "id": "C4.4.1",
+                    "title": "Precisar el contexto faltante"
+                  },
+                  {
+                    "id": "C4.4.2",
+                    "title": "Solicitar una explicación alternativa"
+                  },
+                  {
+                    "id": "C4.4.3",
+                    "title": "Contrastar otra fuente"
+                  },
+                  {
+                    "id": "C4.4.4",
+                    "title": "Registrar la duda persistente"
+                  }
+                ],
+                "plan": "Realizar C4.4.1 cuando falte contexto. Elegir C4.4.2 si la explicación es insuficiente o C4.4.3 si necesita otro respaldo; se pueden combinar ambas rutas. Repetir C4.2 y C4.3 cuando haya nueva información. Realizar C4.4.4 si no hay una resolución suficiente, con cierre parcial en C7.1."
+              }
+            ],
+            "plan": "Realizar C4.1. Si la dificultad exige determinar el significado o uso de vocabulario, acudir a V0 con la oración y el punto de origen; al obtener una interpretación o una duda explícita, continuar en C4.3. Para otras dificultades elegir una vía de C4.2 y contrastar en C4.3. Si no se comprende la respuesta, realizar C4.4 y repetir la consulta o cambiar de recurso. Volver a la tarea de origen solo con lo que pueda justificar; conservar en C7 lo que no se resuelva."
+          },
+          {
+            "id": "C5",
+            "title": "Revisar una producción propia en inglés",
+            "children": [
+              {
+                "id": "C5.1",
+                "title": "Preparar el borrador para la revisión",
+                "children": [
+                  {
+                    "id": "C5.1.1",
+                    "title": "Redactar un borrador propio"
+                  },
+                  {
+                    "id": "C5.1.2",
+                    "title": "Conservar la versión original del borrador"
+                  },
+                  {
+                    "id": "C5.1.3",
+                    "title": "Identificar fragmentos de revisión"
+                  }
+                ],
+                "plan": "Realizar C5.1.1 si no existe un borrador; si ya existe, comenzar en C5.1.2. Continuar con C5.1.3 según las dudas del estudiante o una revisión disponible, sin asumir un error específico. Acudir a C2, C3 o C4 ante dificultades de redacción."
+              },
+              {
+                "id": "C5.2",
+                "title": "Examinar las diferencias lingüísticas",
+                "children": [
+                  {
+                    "id": "C5.2.1",
+                    "title": "Contrastar una construcción gramatical",
+                    "children": [
+                      {
+                        "id": "C5.2.1.1",
+                        "title": "Recuperar una regla gramatical conocida"
+                      },
+                      {
+                        "id": "C5.2.1.2",
+                        "title": "Consultar la regla gramatical pertinente"
+                      },
+                      {
+                        "id": "C5.2.1.3",
+                        "title": "Comparar la regla con el fragmento"
+                      }
+                    ],
+                    "plan": "Elegir C5.2.1.1 cuando conozca la regla o C5.2.1.2 cuando necesite una explicación. Continuar con C5.2.1.3. Si la regla o su aplicación no se comprenden, acudir a C4 y conservar la clasificación como incierta."
+                  },
+                  {
+                    "id": "C5.2.2",
+                    "title": "Evaluar la pertinencia del registro",
+                    "children": [
+                      {
+                        "id": "C5.2.2.1",
+                        "title": "Comparar el efecto de las alternativas"
+                      },
+                      {
+                        "id": "C5.2.2.2",
+                        "title": "Distinguir una elección de uso de un error gramatical"
+                      }
+                    ],
+                    "plan": "Realizar C5.2.2.1 y C5.2.2.2 para una misma relación e intención. Si no puede justificar la diferencia, consultar C4; no considerar toda alternativa más cortés como una corrección obligatoria."
+                  },
+                  {
+                    "id": "C5.2.3",
+                    "title": "Comprobar la fidelidad del significado",
+                    "children": [
+                      {
+                        "id": "C5.2.3.1",
+                        "title": "Comparar participantes, acciones, condiciones y datos"
+                      },
+                      {
+                        "id": "C5.2.3.2",
+                        "title": "Señalar alteraciones de la intención"
+                      }
+                    ],
+                    "plan": "Realizar C5.2.3.1 y C5.2.3.2. Si una propuesta altera el sentido o incorpora datos sin respaldo, conservar la formulación anterior o solicitar aclaración mediante C5.3."
+                  }
+                ],
+                "plan": "Comparar el fragmento y la alternativa. Aplicar C5.2.1 para una posible diferencia gramatical, C5.2.2 para una elección de uso y C5.2.3 para comprobar que se conserva el significado; pueden concurrir varias. Si no puede determinar qué cambió, consultar C4 sin clasificarlo a la fuerza. No presuponer qué errores contiene el borrador ni dar por correcta toda propuesta recibida."
+              },
+              {
+                "id": "C5.3",
+                "title": "Decidir sobre el fragmento de revisión",
+                "children": [
+                  {
+                    "id": "C5.3.1",
+                    "title": "Incorporar una alternativa pertinente"
+                  },
+                  {
+                    "id": "C5.3.2",
+                    "title": "Conservar la formulación propia"
+                  },
+                  {
+                    "id": "C5.3.3",
+                    "title": "Solicitar una aclaración de la propuesta"
+                  }
+                ],
+                "plan": "Elegir C5.3.1 o C5.3.2 después de C5.2 según la pertinencia de la propuesta. Si falta comprensión, realizar C5.3.3 y volver a C4 o C5.2. Comparar con la versión previa; si la alternativa perjudica el sentido, recuperar la formulación anterior. La decisión debe poder explicarse en C5.4."
+              },
+              {
+                "id": "C5.4",
+                "title": "Documentar una decisión lingüística",
+                "children": [
+                  {
+                    "id": "C5.4.1",
+                    "title": "Explicar la razón de la decisión lingüística"
+                  },
+                  {
+                    "id": "C5.4.2",
+                    "title": "Conservar la comparación de versiones"
+                  }
+                ],
+                "plan": "Realizar C5.4.1 y C5.4.2 en ese orden, sobre el mismo fragmento o contexto."
+              }
+            ],
+            "plan": "Si ya existe un borrador, conservarlo en C5.1; si no existe, producirlo con lo comprendido en C1–C3 y la ayuda necesaria de C4. Revisar los fragmentos dudosos mediante C5.2, decidir en C5.3 y explicar en C5.4. Si no reconoce una dificultad, contrastar con una referencia o solicitar revisión sin asumir un error concreto. Volver a C2, C3 o C4 si no comprende una propuesta. Pasar a C6 con el recurso que pueda explicar; terminar el correo no resuelve por sí solo el aprendizaje pendiente."
+          },
+          {
+            "id": "C6",
+            "title": "Reutilizar recursos del inglés en otra situación",
+            "children": [
+              {
+                "id": "C6.1",
+                "title": "Recuperar una expresión sin modelo",
+                "children": [
+                  {
+                    "id": "C6.1.1",
+                    "title": "Apartar las referencias de apoyo"
+                  },
+                  {
+                    "id": "C6.1.2",
+                    "title": "Formular un intento de memoria"
+                  },
+                  {
+                    "id": "C6.1.3",
+                    "title": "Identificar lagunas de recuperación"
+                  }
+                ],
+                "plan": "Realizar C6.1.1, C6.1.2 y C6.1.3. Si necesita ayuda, consultar la referencia pertinente y señalarla en C6.2.2. Un intento con ayuda conserva ese carácter; no se supone independiente por el cierre de esta tarea."
+              },
+              {
+                "id": "C6.2",
+                "title": "Explicar el uso de la expresión del intento",
+                "children": [
+                  {
+                    "id": "C6.2.1",
+                    "title": "Explicar el significado y la adecuación del intento"
+                  },
+                  {
+                    "id": "C6.2.2",
+                    "title": "Registrar las ayudas del intento"
+                  }
+                ],
+                "plan": "Realizar C6.2.1 y C6.2.2 en ese orden, sobre el mismo fragmento o contexto."
+              },
+              {
+                "id": "C6.3",
+                "title": "Transferir un recurso a otra situación",
+                "children": [
+                  {
+                    "id": "C6.3.1",
+                    "title": "Elegir una situación de transferencia"
+                  },
+                  {
+                    "id": "C6.3.2",
+                    "title": "Adaptar la expresión al nuevo contexto"
+                  },
+                  {
+                    "id": "C6.3.3",
+                    "title": "Producir un mensaje propio"
+                  }
+                ],
+                "plan": "Realizar C6.3.1, C6.3.2 y C6.3.3 cuando haya un recurso comprendido y pertinente. Si el nuevo contexto exige otra construcción o acepción, volver a C2, C3 o C4; no forzar el recurso."
+              },
+              {
+                "id": "C6.4",
+                "title": "Contrastar los usos del recurso",
+                "children": [
+                  {
+                    "id": "C6.4.1",
+                    "title": "Comparar el significado entre situaciones"
+                  },
+                  {
+                    "id": "C6.4.2",
+                    "title": "Explicar la adaptación del recurso"
+                  },
+                  {
+                    "id": "C6.4.3",
+                    "title": "Identificar dudas de transferencia"
+                  }
+                ],
+                "plan": "Realizar C6.4.1, C6.4.2 y C6.4.3 en ese orden, sobre el mismo fragmento o contexto."
+              }
+            ],
+            "plan": "Intentar C6.1 y explicar el resultado en C6.2, identificando cualquier consulta. Realizar C6.3 cuando haya un recurso comprendido que pueda utilizar en otra situación; comprobar el nuevo uso mediante C6.4. Si no recuerda o no puede adaptarlo, volver a C2, C3 o C4 y conservar la dificultad. La recuperación y transferencia se proponen como actividades de aprendizaje, no como hábitos ya observados en todos los usuarios."
+          },
+          {
+            "id": "C7",
+            "title": "Retomar el aprendizaje del inglés",
+            "children": [
+              {
+                "id": "C7.1",
+                "title": "Conservar la intención, relación, versión, explicación y dudas de la práctica"
+              },
+              {
+                "id": "C7.2",
+                "title": "Priorizar una duda de la sesión anterior",
+                "children": [
+                  {
+                    "id": "C7.2.1",
+                    "title": "Identificar aprendizajes previos"
+                  },
+                  {
+                    "id": "C7.2.2",
+                    "title": "Seleccionar una dificultad de continuidad"
+                  }
+                ],
+                "plan": "Realizar C7.2.1 y C7.2.2 a partir de la información de C7.1. Priorizar una duda de significado, construcción o registro; si cambia la necesidad comunicativa, volver a C1."
+              },
+              {
+                "id": "C7.3",
+                "title": "Recuperar una expresión en otra sesión",
+                "children": [
+                  {
+                    "id": "C7.3.1",
+                    "title": "Formular una expresión de memoria"
+                  },
+                  {
+                    "id": "C7.3.2",
+                    "title": "Registrar la fecha y las ayudas del intento"
+                  }
+                ],
+                "plan": "Realizar C7.3.1 antes de la relectura del modelo; continuar con C7.3.2. Se permite ayuda y debe quedar identificada. Si la recuperación no resulta suficiente, volver a C4 o C6 sin reiniciar todo el análisis."
+              },
+              {
+                "id": "C7.4",
+                "title": "Valorar la continuidad del aprendizaje",
+                "children": [
+                  {
+                    "id": "C7.4.1",
+                    "title": "Contrastar el intento con referencias pertinentes"
+                  },
+                  {
+                    "id": "C7.4.2",
+                    "title": "Elegir la siguiente práctica"
+                  }
+                ],
+                "plan": "Realizar C7.4.1 y C7.4.2 según significado, adecuación y necesidad de ayuda. El cierre de una sesión o un intento aislado no certifican dominio; conservar cualquier pendiente mediante C7.1."
+              }
+            ],
+            "plan": "Al terminar realizar C7.1. En otro momento realizar C7.2 y C7.3; elegir C4 si persiste una duda, C6 si se necesita otra recuperación o C1 si cambia la situación. Realizar C7.4 después de contrastar el intento. Una actividad interrumpida conserva su punto de retorno; no se marca dominada por cerrar la sesión."
+          }
+        ],
+        "plan": "Realizar C1 para establecer el punto de partida. Si necesita comprender o encontrar expresiones, realizar C2 y las partes pertinentes de C3; si ya dispone de un borrador, comenzar su contraste en C5 y volver a C2 o C3 donde falte comprensión. Intercalar C4 cuando desconozca una expresión, una construcción o un criterio de elección, y volver al punto de origen. Intentar C6 para recuperar y reutilizar lo comprendido; conservar y retomar lo pendiente mediante C7. No se presupone un contenido, una corrección ni una secuencia idénticos para todos los casos."
+      },
+      "short": "Correo",
+      "objective": "Aprender recursos lingüísticos del inglés mediante el análisis, la producción, la revisión y la reutilización de correos académicos, con atención al significado, la construcción y el registro.",
+      "preconditions": "Una necesidad comunicativa, un texto recibido, una consigna o un borrador como punto de partida. Puede desconocer cómo expresarse en inglés o carecer de información del destinatario; esas carencias se resuelven o registran durante la tarea. Recursos de consulta según disponibilidad.",
+      "frequency": "Según necesidades académicas y sesiones de práctica; puede continuar en otra sesión.",
+      "exceptions": "Intención o destinatario inciertos; imposibilidad de iniciar una formulación; texto parcialmente comprendido; falta de referencias pertinentes; respuestas contradictorias; propuesta que altera el sentido; dificultad que continúa sin resolverse.",
+      "closure": "Intención y dificultad identificadas; fragmento propio o interpretación con una explicación respaldada; dudas y ayuda utilizadas registradas. Los intentos de recuperación o reutilización permiten comprobar qué sigue necesitando consulta. Un correo completado, una traducción recibida o una propuesta aceptada no bastan para afirmar aprendizaje."
+    },
+    {
+      "node": {
+        "id": "V0",
+        "title": "Aprender vocabulario inglés en contexto académico",
+        "children": [
+          {
+            "id": "V1",
+            "title": "Contextualizar una dificultad de vocabulario",
+            "children": [
+              {
+                "id": "V1.1",
+                "title": "Interpretar el fragmento de lectura",
+                "children": [
+                  {
+                    "id": "V1.1.1",
+                    "title": "Leer el fragmento disponible"
+                  },
+                  {
+                    "id": "V1.1.2",
+                    "title": "Identificar el tema y la situación"
+                  },
+                  {
+                    "id": "V1.1.3",
+                    "title": "Señalar información contextual faltante"
+                  }
+                ],
+                "plan": "Realizar V1.1.1, V1.1.2 y V1.1.3. Si no se reconoce siquiera el tema, ampliar el contexto o solicitar ayuda mediante V3.1 antes de atribuir un significado."
+              },
+              {
+                "id": "V1.2",
+                "title": "Priorizar una expresión relevante"
+              },
+              {
+                "id": "V1.3",
+                "title": "Delimitar la duda de vocabulario",
+                "children": [
+                  {
+                    "id": "V1.3.1",
+                    "title": "Conservar la oración de origen"
+                  },
+                  {
+                    "id": "V1.3.2",
+                    "title": "Describir la dificultad de significado o uso"
+                  }
+                ],
+                "plan": "Realizar V1.3.1 y V1.3.2. Si la consulta procede de C4.1, conservar también ese punto de retorno. Si falta contexto, ampliar el fragmento en V1.1 antes de la elección de una acepción."
+              }
+            ],
+            "plan": "Realizar V1.1 para reconocer lo que comprende y V1.2 para priorizar una dificultad; conservar el fragmento y la duda en V1.3. Si no reconoce siquiera el tema, ampliar el contexto, buscar una referencia comprensible o pedir ayuda antes de atribuir un significado. Si no hay una palabra relevante para la necesidad actual, dejarla anotada y continuar. Si procede de C4.1, conservar el punto de retorno al correo."
+          },
+          {
+            "id": "V2",
+            "title": "Inferir un significado provisional",
+            "children": [
+              {
+                "id": "V2.1",
+                "title": "Examinar la función contextual de la expresión",
+                "children": [
+                  {
+                    "id": "V2.1.1",
+                    "title": "Observar la posición de la expresión"
+                  },
+                  {
+                    "id": "V2.1.2",
+                    "title": "Relacionar la expresión con palabras próximas"
+                  },
+                  {
+                    "id": "V2.1.3",
+                    "title": "Proponer una función gramatical"
+                  }
+                ],
+                "plan": "Realizar V2.1.1 y V2.1.2; intentar V2.1.3 con esas pistas. Si no puede reconocer la función, mantenerla como incierta para V3 en lugar de imponer una categoría."
+              },
+              {
+                "id": "V2.2",
+                "title": "Localizar pistas de significado",
+                "children": [
+                  {
+                    "id": "V2.2.1",
+                    "title": "Relacionar la expresión con acciones y referentes de la oración"
+                  },
+                  {
+                    "id": "V2.2.2",
+                    "title": "Reconocer reformulaciones o contrastes del fragmento"
+                  },
+                  {
+                    "id": "V2.2.3",
+                    "title": "Relacionar componentes o combinaciones con conocimientos previos"
+                  }
+                ],
+                "plan": "Aplicar V2.2.1, V2.2.2 o V2.2.3 según las pistas presentes; se pueden combinar. La pista debe proceder de la oración, el contexto o un conocimiento previo pertinente, sin asumirla como prueba definitiva. Justificar su relación con la hipótesis en V2.3. Si no hay respaldo suficiente, ampliar V1.3 o continuar en V3 con la incertidumbre."
+              },
+              {
+                "id": "V2.3",
+                "title": "Formular una hipótesis de significado",
+                "children": [
+                  {
+                    "id": "V2.3.1",
+                    "title": "Proponer un significado provisional"
+                  },
+                  {
+                    "id": "V2.3.2",
+                    "title": "Justificar la hipótesis con una pista"
+                  },
+                  {
+                    "id": "V2.3.3",
+                    "title": "Registrar límites de la hipótesis"
+                  }
+                ],
+                "plan": "Intentar V2.3.1 y V2.3.2 cuando existan pistas. Realizar V2.3.3 si la evidencia es limitada; si no hay una inferencia posible, continuar en V3 con esa incertidumbre, sin inventar una hipótesis."
+              }
+            ],
+            "plan": "Realizar V2.1 y V2.2 antes de V2.3. Mantener separadas hipótesis y explicación consultada. Si la persona ya conoce una acepción o decide consultar directamente, registrar ese punto de partida y pasar a V3; no presentar una hipótesis reconstruida después como si fuera inicial."
+          },
+          {
+            "id": "V3",
+            "title": "Contrastar la interpretación del vocabulario",
+            "children": [
+              {
+                "id": "V3.1",
+                "title": "Elegir un recurso de contraste",
+                "children": [
+                  {
+                    "id": "V3.1.1",
+                    "title": "Consultar las acepciones y ejemplos del diccionario"
+                  },
+                  {
+                    "id": "V3.1.2",
+                    "title": "Comparar la traducción con la oración de origen"
+                  },
+                  {
+                    "id": "V3.1.3",
+                    "title": "Consultar acepciones mediante una IA existente",
+                    "children": [
+                      {
+                        "id": "V3.1.3.1",
+                        "title": "Aportar la oración y el contexto"
+                      },
+                      {
+                        "id": "V3.1.3.2",
+                        "title": "Solicitar diferencias entre acepciones"
+                      }
+                    ],
+                    "plan": "Realizar V3.1.3.1 y V3.1.3.2 si la herramienta está disponible. Contrastar en V3.2 y V3.3 la respuesta obtenida; no denominar diccionario a una respuesta generada ni asumir su exactitud."
+                  },
+                  {
+                    "id": "V3.1.4",
+                    "title": "Solicitar una explicación léxica de otra persona"
+                  }
+                ],
+                "plan": "Elegir una ruta disponible de V3.1.1–V3.1.4. Registrar de dónde procede la explicación; no llamar diccionario a una respuesta generada. Si solo se obtiene una traducción aislada o una afirmación sin apoyo contextual, pedir un ejemplo o contrastar con otra vía antes de V3.3."
+              },
+              {
+                "id": "V3.2",
+                "title": "Relacionar las acepciones con el contexto",
+                "children": [
+                  {
+                    "id": "V3.2.1",
+                    "title": "Comparar las acepciones con la oración y los ejemplos"
+                  },
+                  {
+                    "id": "V3.2.2",
+                    "title": "Conservar la referencia de consulta"
+                  }
+                ],
+                "plan": "Realizar V3.2.1 y V3.2.2 en ese orden, sobre el mismo fragmento o contexto."
+              },
+              {
+                "id": "V3.3",
+                "title": "Determinar la interpretación contextual",
+                "children": [
+                  {
+                    "id": "V3.3.1",
+                    "title": "Justificar una interpretación con respaldo contextual"
+                  },
+                  {
+                    "id": "V3.3.2",
+                    "title": "Diferenciar interpretaciones compatibles",
+                    "children": [
+                      {
+                        "id": "V3.3.2.1",
+                        "title": "Comparar diferencias entre acepciones"
+                      },
+                      {
+                        "id": "V3.3.2.2",
+                        "title": "Localizar pistas discriminantes"
+                      }
+                    ],
+                    "plan": "Realizar V3.3.2.1 y V3.3.2.2 cuando varias acepciones sigan siendo posibles. Si no hay una pista suficiente, ampliar contexto en V1.3 o consultar V3.1 antes de una nueva decisión."
+                  },
+                  {
+                    "id": "V3.3.3",
+                    "title": "Investigar la falta de respaldo contextual",
+                    "children": [
+                      {
+                        "id": "V3.3.3.1",
+                        "title": "Ampliar el fragmento de origen"
+                      },
+                      {
+                        "id": "V3.3.3.2",
+                        "title": "Consultar una explicación alternativa"
+                      },
+                      {
+                        "id": "V3.3.3.3",
+                        "title": "Registrar el significado pendiente"
+                      }
+                    ],
+                    "plan": "Realizar V3.3.3.1 si falta contexto o V3.3.3.2 si necesita otra explicación; se pueden combinar ambas. Volver a V3.3 con la información nueva. Realizar V3.3.3.3 si la incertidumbre persiste, con continuidad en V7."
+                  }
+                ],
+                "plan": "Elegir V3.3.1 cuando una interpretación tenga apoyo suficiente; realizar V3.3.2 si varias siguen siendo compatibles y V3.3.3 si ninguna se puede justificar. En los dos últimos casos volver a V1.3 o V3.1 con la información que falta y repetir el contraste. Si la incertidumbre continúa, registrarla en V7 sin afirmar una acepción. No se presupone la palabra, el conjunto de acepciones ni la respuesta correcta."
+              },
+              {
+                "id": "V3.4",
+                "title": "Reformular la interpretación del vocabulario",
+                "children": [
+                  {
+                    "id": "V3.4.1",
+                    "title": "Comparar la hipótesis con la interpretación contextual"
+                  },
+                  {
+                    "id": "V3.4.2",
+                    "title": "Explicar el significado con palabras propias"
+                  },
+                  {
+                    "id": "V3.4.3",
+                    "title": "Conservar incertidumbres restantes"
+                  }
+                ],
+                "plan": "Realizar V3.4.1 si existe una hipótesis previa; no reconstruirla después de la consulta. Continuar con V3.4.2 y V3.4.3. Volver a V3.1 o V3.3 si no hay respaldo suficiente."
+              }
+            ],
+            "plan": "Realizar V3.1, V3.2 y V3.3 antes de V3.4. Si varias interpretaciones siguen siendo compatibles, obtener más contexto y repetir el contraste. Si no hay evidencia suficiente, registrar la duda en V7 en vez de afirmar una acepción. Pasar a V4 cuando se pueda explicar la relación entre el significado elegido y su oración."
+          },
+          {
+            "id": "V4",
+            "title": "Caracterizar el uso del vocabulario",
+            "children": [
+              {
+                "id": "V4.1",
+                "title": "Comparar usos de una misma acepción"
+              },
+              {
+                "id": "V4.2",
+                "title": "Determinar el registro con respaldo de la fuente",
+                "children": [
+                  {
+                    "id": "V4.2.1",
+                    "title": "Relacionar la etiqueta de uso con la acepción y el ejemplo"
+                  },
+                  {
+                    "id": "V4.2.2",
+                    "title": "Describir la situación de uso sin etiqueta de registro"
+                  }
+                ],
+                "plan": "Elegir V4.2.1 únicamente cuando exista esa información en la fuente; en caso contrario realizar V4.2.2. Si dos fuentes discrepan, conservar sus referencias y la duda. No deducir formalidad del tamaño de la palabra ni confundir la cortesía de toda la oración con una etiqueta de la palabra aislada."
+              },
+              {
+                "id": "V4.3",
+                "title": "Deducir un patrón de uso contextual",
+                "children": [
+                  {
+                    "id": "V4.3.1",
+                    "title": "Localizar combinaciones de la expresión"
+                  },
+                  {
+                    "id": "V4.3.2",
+                    "title": "Examinar la construcción de los ejemplos"
+                  },
+                  {
+                    "id": "V4.3.3",
+                    "title": "Contrastar coincidencias entre los usos"
+                  },
+                  {
+                    "id": "V4.3.4",
+                    "title": "Formular un patrón provisional"
+                  }
+                ],
+                "plan": "Realizar V4.3.1, V4.3.2 y V4.3.3 sobre ejemplos de la misma acepción. Intentar V4.3.4 solo con respaldo suficiente; consultar V3 ante discrepancias o conservar la generalización como pendiente."
+              },
+              {
+                "id": "V4.4",
+                "title": "Documentar el aprendizaje léxico",
+                "children": [
+                  {
+                    "id": "V4.4.1",
+                    "title": "Redactar una nota de significado y uso"
+                  },
+                  {
+                    "id": "V4.4.2",
+                    "title": "Conservar el contexto y la fuente"
+                  },
+                  {
+                    "id": "V4.4.3",
+                    "title": "Registrar dudas de la expresión"
+                  }
+                ],
+                "plan": "Realizar V4.4.1, V4.4.2 y V4.4.3 en ese orden, sobre el mismo fragmento o contexto."
+              }
+            ],
+            "plan": "Realizar V4.1 y V4.2 sobre la acepción elegida; continuar con V4.3 y V4.4. Si los ejemplos no sostienen un patrón, buscar otro en V3 antes de generalizar. Si se necesita volver al correo de inmediato, devolver la explicación de V4.4 a C4.3 y dejar V5–V7 pendientes de práctica; no dar por completado V0. Comparar ejemplos de la misma acepción; si la diferencia exige otro significado, volver a V3. Un cambio de acepción no demuestra por sí solo una diferencia de registro."
+          },
+          {
+            "id": "V5",
+            "title": "Practicar vocabulario en una producción propia",
+            "children": [
+              {
+                "id": "V5.1",
+                "title": "Elaborar una oración propia",
+                "children": [
+                  {
+                    "id": "V5.1.1",
+                    "title": "Elegir una idea para la expresión"
+                  },
+                  {
+                    "id": "V5.1.2",
+                    "title": "Formular una oración de significado pertinente"
+                  },
+                  {
+                    "id": "V5.1.3",
+                    "title": "Señalar necesidades de apoyo"
+                  }
+                ],
+                "plan": "Realizar V5.1.1, V5.1.2 y V5.1.3. Si la expresión no corresponde a la idea, elegir otra en V5.3.3. Si necesita un modelo, identificar ese apoyo en lugar de presentar una copia como recuperación independiente."
+              },
+              {
+                "id": "V5.2",
+                "title": "Contrastar la oración con ejemplos de la misma acepción"
+              },
+              {
+                "id": "V5.3",
+                "title": "Decidir la formulación de la oración",
+                "children": [
+                  {
+                    "id": "V5.3.1",
+                    "title": "Mantener una formulación pertinente",
+                    "children": [
+                      {
+                        "id": "V5.3.1.1",
+                        "title": "Conservar la oración propia"
+                      },
+                      {
+                        "id": "V5.3.1.2",
+                        "title": "Justificar una coincidencia con el ejemplo"
+                      }
+                    ],
+                    "plan": "Realizar V5.3.1.1 y V5.3.1.2 en ese orden, sobre el mismo fragmento o contexto."
+                  },
+                  {
+                    "id": "V5.3.2",
+                    "title": "Reformular la construcción de la oración"
+                  },
+                  {
+                    "id": "V5.3.3",
+                    "title": "Sustituir una expresión inadecuada"
+                  }
+                ],
+                "plan": "Elegir V5.3.1, V5.3.2 o V5.3.3 después de V5.2. Si no se comprende el motivo de la revisión, volver a V3 o V4. Tras reformular, repetir V5.2 sobre la nueva frase. Conservar la producción previa para explicar qué cambió."
+              }
+            ],
+            "plan": "Realizar V5.1, V5.2 y V5.3. Si no se puede producir sin copiar, usar un ejemplo como apoyo y declararlo; la recuperación sin definición se intentará después en V6. Pasar a V6 cuando haya una producción propia y una explicación de al menos una decisión de uso."
+          },
+          {
+            "id": "V6",
+            "title": "Transferir vocabulario a otro contexto",
+            "children": [
+              {
+                "id": "V6.1",
+                "title": "Recuperar una expresión sin definición",
+                "children": [
+                  {
+                    "id": "V6.1.1",
+                    "title": "Apartar la definición y los apuntes"
+                  },
+                  {
+                    "id": "V6.1.2",
+                    "title": "Explicar el significado de memoria"
+                  },
+                  {
+                    "id": "V6.1.3",
+                    "title": "Producir una frase de memoria"
+                  }
+                ],
+                "plan": "Intentar V6.1.1, V6.1.2 y V6.1.3. Si necesita ayuda, consultar la referencia pertinente y registrar esa ayuda en V6.4.3. La falta de recuerdo orienta una nueva práctica y no se sustituye por una respuesta inventada."
+              },
+              {
+                "id": "V6.2",
+                "title": "Definir el contexto de transferencia",
+                "children": [
+                  {
+                    "id": "V6.2.1",
+                    "title": "Elegir una situación diferente"
+                  },
+                  {
+                    "id": "V6.2.2",
+                    "title": "Precisar el significado de la nueva producción"
+                  }
+                ],
+                "plan": "Realizar V6.2.1 y V6.2.2 en ese orden, sobre el mismo fragmento o contexto."
+              },
+              {
+                "id": "V6.3",
+                "title": "Aplicar la expresión en un nuevo contexto",
+                "children": [
+                  {
+                    "id": "V6.3.1",
+                    "title": "Producir un texto con la expresión"
+                  },
+                  {
+                    "id": "V6.3.2",
+                    "title": "Explicar el significado contextual"
+                  },
+                  {
+                    "id": "V6.3.3",
+                    "title": "Sustituir una expresión improcedente"
+                  },
+                  {
+                    "id": "V6.3.4",
+                    "title": "Consultar otra acepción"
+                  }
+                ],
+                "plan": "Realizar V6.3.1 y V6.3.2. Si la expresión no comunica la intención, realizar V6.3.3 o V6.3.4 según se necesite otra palabra o una acepción distinta; en este último caso volver a V3. No forzar el uso de la palabra de la práctica anterior."
+              },
+              {
+                "id": "V6.4",
+                "title": "Contrastar el resultado de transferencia",
+                "children": [
+                  {
+                    "id": "V6.4.1",
+                    "title": "Comparar el nuevo uso con el contexto original"
+                  },
+                  {
+                    "id": "V6.4.2",
+                    "title": "Registrar el contenido de memoria"
+                  },
+                  {
+                    "id": "V6.4.3",
+                    "title": "Registrar las ayudas del intento"
+                  }
+                ],
+                "plan": "Realizar V6.4.1, V6.4.2 y V6.4.3 en ese orden, sobre el mismo fragmento o contexto."
+              }
+            ],
+            "plan": "Intentar V6.1 apartando los apoyos; si necesita consultarlos, identificarlo. Precisar otra situación mediante V6.2, producir V6.3 y contrastar el resultado en V6.4. Si la nueva situación exige otra acepción o patrón, volver a V3–V5; no forzar la expresión. Si el texto propio es un correo que requiere revisar la relación o el registro, acudir a C1.2 y C5.2. La práctica posterior se propone para comprobar reutilización, no se presume realizada por todos los usuarios."
+          },
+          {
+            "id": "V7",
+            "title": "Retomar el aprendizaje del vocabulario",
+            "children": [
+              {
+                "id": "V7.1",
+                "title": "Conservar el contexto del aprendizaje léxico",
+                "children": [
+                  {
+                    "id": "V7.1.1",
+                    "title": "Guardar la palabra, la oración, el significado y la producción"
+                  },
+                  {
+                    "id": "V7.1.2",
+                    "title": "Registrar dudas y estado de la práctica"
+                  }
+                ],
+                "plan": "Realizar V7.1.1 y V7.1.2 en ese orden, sobre el mismo fragmento o contexto."
+              },
+              {
+                "id": "V7.2",
+                "title": "Recuperar el contexto de la sesión anterior",
+                "children": [
+                  {
+                    "id": "V7.2.1",
+                    "title": "Recordar el propósito de la práctica anterior"
+                  },
+                  {
+                    "id": "V7.2.2",
+                    "title": "Evocar la expresión desde una pista"
+                  }
+                ],
+                "plan": "Realizar V7.2.1 y V7.2.2 sin mostrar primero la definición. Si la actividad quedó parcial, retomar el punto pendiente de V3, V4 o V5 antes de una comprobación de recuerdo."
+              },
+              {
+                "id": "V7.3",
+                "title": "Practicar el recuerdo del vocabulario",
+                "children": [
+                  {
+                    "id": "V7.3.1",
+                    "title": "Explicar el significado de memoria"
+                  },
+                  {
+                    "id": "V7.3.2",
+                    "title": "Producir una oración de memoria"
+                  },
+                  {
+                    "id": "V7.3.3",
+                    "title": "Anotar la fecha y las ayudas del intento"
+                  }
+                ],
+                "plan": "Intentar V7.3.1 y V7.3.2 antes del contraste con los apuntes; continuar con V7.3.3. Se permite apoyo y debe quedar identificado. Pasar a V7.4 para la decisión de continuidad."
+              },
+              {
+                "id": "V7.4",
+                "title": "Decidir la siguiente práctica de vocabulario"
+              }
+            ],
+            "plan": "Al terminar o interrumpir realizar V7.1. En otro momento realizar V7.2 y V7.3, después V7.4. Si la actividad quedó tras V4, retomar V5 antes de valorar la recuperación. Volver a V3 ante dudas de acepción, a V4 ante dudas de patrón o a V6 si se necesita otro intento. Guardar una palabra o abrir una nota no demuestra aprendizaje; el intervalo de repaso no se considera eficaz sin evaluar los intentos."
+          }
+        ],
+        "plan": "Realizar V1 y V2 para situar la oración y reconocer el punto de partida; continuar con V3 y V4 para contrastar significado y uso. Si la consulta directa es necesaria, pasar de V1 a V3 sin inventar una hipótesis. Continuar con V5 y V6 para producción, recuperación y transferencia; cerrar o retomar mediante V7. Si se inició desde C4 y hay que volver al correo después de V4, devolver una explicación o una duda explícita y dejar el resto pendiente. No declarar terminada la raíz por haber consultado una definición."
+      },
+      "short": "Vocabulario",
+      "objective": "Aprender vocabulario inglés en contexto académico mediante inferencia, contraste, producción propia y recuperación, con atención al significado, al patrón de uso y a la ayuda necesaria.",
+      "preconditions": "Un texto o situación de producción con una expresión desconocida o de uso incierto. La comprensión global puede ser parcial y el contexto insuficiente; ampliarlos forma parte de la tarea. Acceso a un recurso de contraste o posibilidad de conservar una duda pendiente.",
+      "frequency": "Durante lecturas o redacción, con intentos posteriores de recuperación.",
+      "exceptions": "Contexto insuficiente; varias acepciones compatibles; ausencia de etiqueta de registro; traducción aislada; patrón no respaldado; palabra forzada en otro contexto; uso dependiente del modelo.",
+      "closure": "Interpretación explicada con una pista, contraste con fuente o ejemplo, producción propia y estado de ayuda o pendiente. Guardar la palabra no demuestra que ya pueda recuperarse."
+    }
+  ],
+  "links": [
+    [
+      "C4.1 → V0",
+      "Duda léxica que afecta al correo",
+      "Llevar oración completa, intención, fragmento incierto y punto de origen C1–C6. Si hay poco contexto, volver a precisarlo antes de elegir acepción."
+    ],
+    [
+      "V4.4 → C4.3",
+      "Se comprende una acepción y hay que retomar el correo",
+      "Devolver explicación, contexto, patrón y dudas. C4.3 contrasta el resultado y vuelve al punto de origen. V5–V7 pueden quedar expresamente pendientes."
+    ],
+    [
+      "V6 → C1.2 y C5.2",
+      "La transferencia léxica produce un correo que requiere revisar relación o registro",
+      "Conservar la producción y revisar solo lo necesario; volver al vocabulario si aparece otra duda de acepción."
+    ],
+    [
+      "C7 y V7",
+      "Interrupción o nueva sesión",
+      "Recuperar propósito, producción, explicación, ayuda y duda anterior; retomar el paso pertinente, sin comenzar todo de nuevo ni dar por terminada la práctica parcial."
+    ]
+  ],
+  "suggestions": [
+    [
+      "C1.2; C3.2",
+      "La consulta de correo no identifica la relación",
+      "“Podemos comparar un saludo para un docente con uno para alguien de confianza”.",
+      "Se propone enriquecer el mensaje; no se inventan nombre, título ni relación."
+    ],
+    [
+      "C3.1; C3.3",
+      "La intención está identificada y falta una expresión en inglés",
+      "Proponer que la consulta incluya qué quiere comunicar y qué parte no sabe expresar, para buscar y explicar alternativas pertinentes.",
+      "No anticipar el contenido del mensaje ni completar datos desconocidos."
+    ],
+    [
+      "C5.2–C5.3",
+      "El usuario pide revisar una frase concreta",
+      "“Comparemos solo esta expresión y conserva el resto del correo”.",
+      "El cambio se verifica y se puede mantener la versión propia."
+    ],
+    [
+      "V1.3; V3.3",
+      "Se pregunta una palabra sin oración",
+      "“Comparte la oración para distinguir qué significado encaja”.",
+      "No elegir por defecto la acepción de un ejemplo distinto."
+    ],
+    [
+      "V2; V3.4",
+      "Hay contexto y el estudiante quiere comprender",
+      "“Puedo darte una pista antes de contrastar tu interpretación”.",
+      "La inferencia es opcional; consultar directamente sigue permitido."
+    ],
+    [
+      "C6; V6; C7; V7",
+      "Ya hay una explicación y una producción",
+      "“Prueba con otro destinatario o recupéralo después sin mirar el modelo”.",
+      "Registrar ayuda y evidencia, sin afirmar que disminuyeron las consultas o que se adquirió dominio."
+    ]
+  ],
+  "feedback": [
+    [
+      "Aprendizaje de inglés, no solo partes del correo",
+      "Audio 1, 00:11–02:06; Audio 3, 10:33",
+      "C1–C6 describen cómo reconocer y resolver dificultades del inglés sin fijar el texto ni el recurso lingüístico que se encontrará."
+    ],
+    [
+      "Jerarquía y relaciones",
+      "Audio 1, 06:50; Audio 2, 00:31–03:21",
+      "Dos árboles por alcance solicitado; jerarquía explícita, planes por nodo descompuesto y enlaces entre raíces. No se afirma que dos raíces equivalgan al pedido anterior de una sola."
+    ],
+    [
+      "Planes y alternativas condicionadas",
+      "Audio 2, 04:00–08:23; Audio 3, 12:38 y 21:40",
+      "Cada nodo con hijos tiene un plan que identifica secuencia, selección, repetición o retorno pertinentes."
+    ],
+    [
+      "Práctica y tecnología actuales",
+      "Audio 2, 10:32–11:19 y 13:47",
+      "C4 y V3 incorporan rutas de consulta existentes; su disponibilidad y frecuencia quedan por verificar."
+    ],
+    [
+      "Alternativas concretas del caso",
+      "Audio 1, 02:35–05:36; Audio 2, 17:15–19:08; Audio 3, 20:32",
+      "C3 distingue las decisiones lingüísticas del asunto, saludo, mensaje principal, razón/finalidad y cierre. V2–V5 explicitan cómo buscar pistas y contrastar acepciones y patrones sin dar su resultado por conocido."
+    ],
+    [
+      "Sugerir mientras se construye la consulta",
+      "Audio 3, 07:00–12:38",
+      "La derivación posterior relaciona tarea y condición con una sugerencia opcional; no convierte el HTA en un formulario."
+    ],
+    [
+      "Continuidad y construcción de conocimiento",
+      "Audio 3, 00:00–03:21",
+      "C6–C7 y V6–V7 distinguen producción, ayuda, transferencia y recuperación en otra sesión."
+    ]
+  ],
+  "limits": [
+    "La generalidad corresponde al proceso y sus condiciones, no a afirmar que todos los estudiantes actúan igual. Las alternativas de consulta proceden del perfil previo; las secuencias completas, elecciones y actividades de comprobación requieren observación y validación con usuarios.",
+    "No se presenta el nuevo modelo como una secuencia observada en todos los estudiantes ni como una aprobación docente. Deben contrastarse casos, recursos, alternativas y criterios con usuarios y con la docente.",
+    "El árbol establece descomposición; la posición de sus ramas no fija por sí sola el orden. Los planes contienen las secuencias y condiciones. Cada hoja es una acción o decisión terminal para este alcance, no una obligación de crear un control de interfaz.",
+    "La prueba de conocimiento debe examinar significado, adecuación al contexto, explicación de decisiones y recuperación con ayuda identificada. No se establece un porcentaje de dominio ni una reducción medida de mensajes, tiempo o tokens.",
+    "La propuesta de sugerencias es una traducción posterior del análisis; no añade requisitos de implementación a los árboles ni afirma que todas las alternativas estén implementadas en el prototipo actual."
+  ],
+  "sources": [
+    "HTA_unificado_sin_IA_v7.pdf: p. 1, usuarios; pp. 2–4, correo; pp. 8–10, vocabulario. Documento anterior conservado.",
+    "docs/feedback_docente/2026-11-24/01_feedback_hta_correos.md: transcripción del Audio 1.",
+    "docs/feedback_docente/2026-11-24/02_jerarquia_planes_y_contexto.md: transcripción del Audio 2.",
+    "docs/feedback_docente/2026-11-24/03_conocimiento_prompts_y_prediccion.md: transcripción del Audio 3."
+  ],
+  "users_legacy_format": [
+    [
+      "Edad, cultura e idioma",
+      "Tiene entre 18 y 25 años y estudia en un contexto universitario hispanohablante. Su idioma principal es el español y aprende inglés como idioma adicional. Puede comprender textos generales en inglés, aunque algunas palabras, expresiones o estructuras todavía le generan dudas."
+    ],
+    [
+      "Educación",
+      "Cursa estudios superiores y tiene experiencia leyendo y escribiendo en español para fines académicos. Está familiarizado con redactar correos y textos para sus cursos. Su escritura en inglés está en desarrollo y puede variar según el tema y el tipo de texto."
+    ],
+    [
+      "Conocimientos específicos",
+      "Cuenta con conocimientos básicos e intermedios de gramática inglesa, próximos al nivel B1–B2. Puede comprender una idea general y elaborar borradores, pero necesita comprobar vocabulario contextual, combinaciones de palabras, formalidad y claridad. Debe distinguir una elección de registro de un error gramatical y de un cambio de significado."
+    ],
+    [
+      "Limitaciones físicas y mentales",
+      "La información disponible no permite afirmar que todos los estudiantes carecen de limitaciones o necesidades de accesibilidad. No se presupone que todos perciban, lean o interactúen de la misma manera."
+    ],
+    [
+      "Experiencia con la tecnología",
+      "El perfil anterior declara consultas a traductores, diccionarios y herramientas de IA para comprender vocabulario o redactar en inglés. Puede copiar textos entre aplicaciones, escribir consultas y revisar respuestas. Las rutas de esta revisión consideran esos recursos cuando están disponibles; su elección y frecuencia por caso requieren validación."
+    ],
+    [
+      "Motivación y actitud",
+      "Busca mejorar su inglés para resolver actividades académicas y desenvolverse con mayor seguridad. El alcance se centra en quien quiere comprender, comprobar y reutilizar lo obtenido. Puede trabajar con rapidez, pero recibir o entregar un texto sin revisarlo no demuestra aprendizaje. Puede frustrarse ante explicaciones ambiguas o cambios que perjudican partes que ya funcionaban."
+    ],
+    [
+      "Experiencia en el aprendizaje del inglés",
+      "Combina sus conocimientos con modelos, apuntes, fuentes de consulta y ayuda de otras personas. Puede conocer una regla sin aplicarla con seguridad. Necesita explicar sus elecciones, producir expresiones propias, recuperarlas sin el modelo y transferirlas a otra situación."
+    ],
+    [
+      "Ambiente y contexto de estudio",
+      "Puede estudiar en casa, en la universidad u otros espacios y alternar lectura, redacción y consulta de recursos. Los horarios, dispositivos y condiciones de estudio no están confirmados para todos los estudiantes. Se consideran sesiones interrumpidas y la recuperación del contexto, las notas y las dudas al retomar."
+    ],
+    [
+      "Relaciones y patrones de comunicación",
+      "Intercambia mensajes escritos con docentes, compañeros o equipos académicos. Necesita adecuar las expresiones a la confianza, la intención y los datos conocidos del destinatario. Esta caracterización toma como referencia el v7; los casos, expresiones y recorridos revisados son propuestas de análisis pendientes de contraste con usuarios."
+    ]
+  ],
+  "legacy_format": {
+    "header_left": "Lingua IA · Análisis de tareas",
+    "header_right": "HTA · Correo y vocabulario",
+    "task_titles": [
+      "Aprender inglés mediante correos académicos",
+      "Aprender vocabulario inglés en contexto académico"
+    ],
+    "preconditions": [
+      [
+        "Una necesidad de comunicación, un correo recibido, una consigna o un borrador, sin contenido predefinido.",
+        "Conocimientos previos de inglés variables dentro del perfil de referencia; puede no saber formular o interpretar una expresión.",
+        "Posibilidad de recuperar información propia o consultar recursos disponibles. Si faltan contexto, datos o acceso a fuentes, se comprueban o registran durante la tarea."
+      ],
+      [
+        "Una expresión desconocida o de uso incierto encontrada en un texto o necesaria para una producción propia.",
+        "Un fragmento inicial y una necesidad de comprensión o uso; no se exige conocer ya el tema, la función gramatical o la acepción.",
+        "Posibilidad de ampliar contexto, consultar un recurso o mantener la duda pendiente si no hay información suficiente."
+      ]
+    ],
+    "restrictions": [
+      "El correo sitúa el aprendizaje del inglés y su envío real queda fuera del análisis. No se fijan palabras, errores, fórmulas ni destinatarios de antemano. Cada persona elige las rutas necesarias según sus conocimientos y recursos. Las secuencias son propuestas por contrastar con usuarios; completar el correo no basta como evidencia de aprendizaje.",
+      "No se fija una palabra ni su significado antes de analizar el contexto. Una traducción aislada o una primera acepción no confirman el uso. Se puede declarar que no se pudo inferir o resolver la duda. Los patrones se contrastan con fuentes y la reutilización con otro contexto."
+    ],
+    "evidences": [
+      "Necesidad y punto de partida identificados; dificultad expresada; interpretación o intento propio; recurso de consulta utilizado; comparación justificada de significado, construcción o registro; decisión de mantener o reformular un fragmento; duda restante y, cuando se realice, intento de recuperación o reutilización con la ayuda identificada.",
+      "Hipótesis justificada o incertidumbre inicial explícita; acepción contrastada; diferencia entre significado y registro; patrón con ejemplos; anotación propia; oración producida y revisada; transferencia a otro contexto y resultado de un repaso posterior con la ayuda identificada."
+    ]
+  },
+  "learning_focus": "El objetivo es aprender inglés al comprender y producir correos y al estudiar vocabulario en contexto. El análisis parte de una necesidad real, un texto recibido, un borrador propio o una expresión cuyo significado o uso puede desconocerse; no presupone un correo concreto, sus palabras, sus errores ni una respuesta correcta ya identificada. Se describen acciones y decisiones reutilizables: reconocer lo que se sabe, delimitar la dificultad, recuperar o buscar información, contrastarla, intentar un uso propio y revisar lo que todavía no se comprende. Las rutas de consulta se apoyan en los recursos declarados por el perfil del v7; sus secuencias y frecuencia requieren contraste con usuarios. La explicación, recuperación y transferencia se proponen para examinar aprendizaje y no se presentan como hábitos universales observados. Los ejemplos de la interfaz ilustran estas tareas y no determinan el árbol.",
+  "label_rule": "Cada tarea o subtarea empieza con un único verbo en infinitivo y expresa una acción. Las operaciones adicionales se descomponen en hijos con un plan propio. Las condiciones, criterios, secuencias, alternativas y retornos se expresan en los planes."
+}

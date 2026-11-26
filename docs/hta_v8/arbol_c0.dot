@@ -1,0 +1,20 @@
+digraph HTA {
+graph [rankdir=LR, bgcolor="white", nodesep="0.23", ranksep="0.55", pad="0.2"];
+node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11, color="#0B665D", fillcolor="#EDF5F3", margin="0.14,0.10"];
+edge [color="#6B8F85", arrowhead=none, penwidth=1.2];
+C0 [label="C0\nAprender a comprender y\nredactar peticiones en\ncorreos académicos en inglés", fillcolor="#0B665D", fontcolor="white"];
+C1 [label="C1\nPrecisar la intención, la relación y\nlas dudas iniciales"];
+C0 -> C1;
+C2 [label="C2\nComprender y comparar expresiones de\nmodelos"];
+C0 -> C2;
+C3 [label="C3\nElegir expresiones según intención y\ndestinatario"];
+C0 -> C3;
+C4 [label="C4\nResolver una duda mediante los\nrecursos disponibles"];
+C0 -> C4;
+C5 [label="C5\nRedactar un correo propio y comprender\nsu revisión"];
+C0 -> C5;
+C6 [label="C6\nRecuperar expresiones y transferirlas\na otro destinatario"];
+C0 -> C6;
+C7 [label="C7\nCerrar y retomar el aprendizaje del\ncorreo"];
+C0 -> C7;
+}

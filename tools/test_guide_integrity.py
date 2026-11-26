@@ -1,7 +1,8 @@
 """Verifica catálogo, evidencias y selectores de la app cargada, sin código histórico."""
 from pathlib import Path
-import re,json,tempfile
-from build_guides import BASE,get_rows,APPLIED
+import re,json,tempfile,html as html_lib
+from collections import Counter
+from build_guides import BASE,get_rows,AUTHORS
 from browser_capture import capture
 
 def static_checks():
@@ -12,13 +13,15 @@ def static_checks():
     assert {r['id'] for r in rows}==expected
     assert len(re.findall(r'^#### C[1-8]\.\d+ ',md,re.M))==71
     assert all(f'id="{code}"' in html for code in expected)
-    assert len(APPLIED)==44
-    assert all(r['status']=='Aplicado' for r in rows if r['baseline']=='Cumple')
+    assert Counter(r['baseline'] for r in rows)=={'Cumple':44,'No cumple':27}
+    assert all(r['condition'] in md and html_lib.escape(r['condition']) in html for r in rows)
+    assert AUTHORS in md and html_lib.escape(AUTHORS) in html
+    assert (BASE/'guia.html').read_text()==html
     for rel in re.findall(r'\]\((docs/screenshots/actual/[^)]+)\)',md):
         assert (BASE/rel).is_file(),rel
     for rel in re.findall(r'(?:src|href)="((?:js|css)/[^\"]+)"',(BASE/'index.html').read_text()):
         assert (BASE/rel).is_file(),rel
-    print('71 reglas presentes; 44 aplicaciones originales conservadas; archivos actuales referenciados existen.',flush=True)
+    print('71 condiciones de la matriz presentes; clasificación original 44/27 conservada; autoría y referencias verificadas.',flush=True)
     return rows
 
 def browser_checks(rows):
@@ -30,13 +33,15 @@ const click=q=>{const e=document.querySelector(q);if(!e)throw Error(q);e.click()
 const send=t=>{const e=document.querySelector('#chat-input');e.value=t;e.dispatchEvent(new Event('input',{bubbles:true}));scan();click('#send-btn');};
 try{
  Lingua.reset();scan();
- send(TutorData.examples.email);click('[data-action="compare"]');click('[data-action="new"]');
+ click('[data-action="demo"]');scan();click('[data-action="close-dialog"]');
+ send(TutorData.examples.email);click('[data-action="change-task"]');scan();click('[data-action="change-task"]');click('[data-action="compare"]');click('[data-action="new"]');
  send(TutorData.examples.review);
  click('[data-action="accept"]');
  click('[data-action="undo-correction"]');
  click('[data-action="notebook"]');click('[data-action="close-dialog"]');
  click('[data-action="stage"][data-stage="2"]');
  scan();
+ click('[data-action="new"]');send(TutorData.examples.subject);scan();
  click('[data-action="new"]');send(TutorData.examples.vocab);
  send('Reservado para una función, por la pista space.');scan();
  click('[data-action="save-word"]');click('[data-action="reading"]');

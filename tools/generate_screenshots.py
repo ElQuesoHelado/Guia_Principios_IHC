@@ -14,7 +14,7 @@ VOCAB="send(TutorData.examples.vocab);send('Creo que significa reservado para tr
 SPECS=[
  ('01_inicio.png','',1440,1000),
  ('02_sugerencia.png',"type('Quiero aprender a escribir un correo a mi profesora');",1440,1000),
- ('03_comparar.png',"send(TutorData.examples.email);click('[data-action=compare]');",1440,1000),
+ ('03_comparar.png',"send('Quiero aprender a escribir un correo a mi profesora');click('[data-action=compare]');",1440,1000),
  ('04_revision.png',"send(TutorData.examples.review);document.querySelector('.correction-card').scrollIntoView({block:'start'});window.scrollBy(0,-20);",1440,1000),
  ('05_vocabulario.png',VOCAB+"document.querySelector('.word-detail .rule').open=true;document.querySelector('.word-detail').scrollIntoView({block:'center'});",1440,1100),
  ('06_recuperar.png',VOCAB+"click('[data-action=recall]');",1440,1000),
@@ -25,12 +25,16 @@ SPECS=[
  ('13_historial_movil.png',"send(TutorData.examples.email);click('[data-action=new]');"+VOCAB+"window.scrollTo(0,0);click('[data-action=history]');",390,844),
  ('09_inicio_movil.png','',390,844),
  ('10_sugerencia_movil.png',"type('Quiero aprender a escribir un correo a mi profesora');",390,844),
+ ('14_expresiones.png',"send(TutorData.examples.subject);document.querySelector('.language-lesson .rule').open=true;",1440,1600),
+ ('15_razon_finalidad_movil.png',"send(TutorData.examples.reason);window.scrollTo(0,0);",390,844),
+ ('16_sugerencia_ingles.png',"type('Quiero aprender a expresar una razón con because');",1440,1000),
+ ('17_ejemplos_separados.png',"click('[data-action=demo]');document.querySelector('[data-example-group=vocab]').scrollIntoView({block:'center'});",1440,1000),
 ]
 if __name__=='__main__':
  OUT.mkdir(parents=True,exist_ok=True)
  for name,script,width,height in SPECS:
   if sys.argv[1:] and name not in sys.argv[1:]:continue
-  selectors={'03_comparar.png':'.comparison','04_revision.png':'.correction-card','05_vocabulario.png':'.word-detail'}
+  selectors={'03_comparar.png':'.comparison','04_revision.png':'.correction-card','05_vocabulario.png':'.word-detail','14_expresiones.png':'.language-lesson'}
   crop=selectors.get(name)
   if crop:
    height=3400

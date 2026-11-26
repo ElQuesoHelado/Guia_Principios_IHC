@@ -1,0 +1,20 @@
+digraph HTA {
+graph [rankdir=LR, bgcolor="white", nodesep="0.23", ranksep="0.55", pad="0.2"];
+node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=11, color="#0B665D", fillcolor="#EDF5F3", margin="0.14,0.10"];
+edge [color="#6B8F85", arrowhead=none, penwidth=1.2];
+V0 [label="V0\nAprender a comprender y\nreutilizar vocabulario en\ncontexto académico", fillcolor="#0B665D", fontcolor="white"];
+V1 [label="V1\nSituar la lectura y seleccionar una\ndificultad relevante"];
+V0 -> V1;
+V2 [label="V2\nProponer una hipótesis mediante pistas\ndel contexto"];
+V0 -> V2;
+V3 [label="V3\nContrastar acepciones y corregir la\ninterpretación"];
+V0 -> V3;
+V4 [label="V4\nDistinguir significado, registro y\npatrones de uso"];
+V0 -> V4;
+V5 [label="V5\nProducir una oración propia y\ncomprender su revisión"];
+V0 -> V5;
+V6 [label="V6\nRecuperar la expresión y transferirla\na otro contexto escrito"];
+V0 -> V6;
+V7 [label="V7\nRegistrar y retomar el vocabulario en\notro momento"];
+V0 -> V7;
+}
