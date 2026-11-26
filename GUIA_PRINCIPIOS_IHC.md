@@ -2,7 +2,9 @@
 
 Revisión técnica: 25/11/2026 · Correo y vocabulario · Prototipo local
 
-La guía conserva los 71 principios y sus nombres de la matriz original. La columna de origen mantiene su clasificación binaria (44 cumplen y 27 no cumplen). El estado actual se revisa contra el prototipo conversacional: aplicado significa una decisión de diseño inspeccionable, no aprobación docente ni validación experimental. Parcial, pendiente, excluido y no aplica explican límites distintos; ninguno se cuenta como cumplimiento total.
+Referencia de tareas vigente: HTA_correo_vocabulario_v8.pdf (C0 y V0). La guía conserva los 71 principios y sus nombres de la matriz original. La columna de origen mantiene su clasificación binaria (44 cumplen y 27 no cumplen). El estado actual se revisa contra el prototipo conversacional: aplicado significa una decisión de diseño inspeccionable, no aprobación docente ni validación experimental. Parcial, pendiente, excluido y no aplica explican límites distintos; ninguno se cuenta como cumplimiento total.
+
+La cobertura por nodo está en docs/HTA_V8_COBERTURA.md. Las vías de recursos son ejemplos preparados o aportes externos no verificados; no servicios conectados.
 
 Los originales anteriores al rediseño se conservan en docs/originales/principios-anterior/. El PDF y DOCX de la matriz de entrada permanecen intactos. Las capturas actuales se generan con tools/generate_screenshots.py; los recorridos completos están en guia.md y la correspondencia con el HTA en docs/REVISION_HTA_Y_TRAZABILIDAD.md.
 
@@ -321,9 +323,9 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 
 #### C7.1 · No exigir recordar el estado o las acciones previas
 - Matriz original: **Cumple**. Estado actual: **Aplicado**.
-- Evidencia / razón: Contexto, mensajes, borrador y versiones se conservan por conversación y se recuperan desde el historial local.
-- Localización real: `.session-link`.
-- Captura del escenario: [08_historial.png](docs/screenshots/actual/08_historial.png).
+- Evidencia / razón: Las consultas conservan fragmento, versión, actividad y mensaje pendiente; el retorno sigue disponible al desplazar y tras recargar. Las prácticas v1 se migran al estado v2.
+- Localización real: `[data-action="hta-return"]`.
+- Captura del escenario: [16_consulta_retorno.png](docs/screenshots/actual/16_consulta_retorno.png).
 
 #### C7.2 · Mantener la salida de voz breve y segmentada
 - Matriz original: **No cumple**. Estado actual: **No aplica**.
@@ -418,9 +420,9 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 
 #### C8.7 · Diseñar caminos y conceptos basados en la tarea
 - Matriz original: **Cumple**. Estado actual: **Aplicado**.
-- Evidencia / razón: Las rutas responden a comparar registro, inferir, contrastar, recuperar y transferir expresiones del HTA seleccionado.
-- Localización real: `#learning-plan`.
-- Captura del escenario: [06_recuperar.png](docs/screenshots/actual/06_recuperar.png).
+- Evidencia / razón: Los tres casos de correo y los apoyos léxicos ejecutan las alternativas y retornos de la v8; la matriz vincula 29 planes y 80 hojas sin imponer un formulario.
+- Localización real: `[data-action="hta-parts"]`.
+- Captura del escenario: [15_expresiones.png](docs/screenshots/actual/15_expresiones.png).
 
 #### C8.8 · Dar feedback, progreso y opción de volver atrás
 - Matriz original: **No cumple**. Estado actual: **Parcial**.
@@ -462,6 +464,14 @@ Se mantienen los 44 principios aplicados de la matriz original, con evidencia nu
 ![Escenario actual 08](docs/screenshots/actual/08_historial.png)
 
 ![Escenario actual 11](docs/screenshots/actual/11_etapas.png)
+
+![Escenario actual 15](docs/screenshots/actual/15_expresiones.png)
+
+![Escenario actual 16](docs/screenshots/actual/16_consulta_retorno.png)
+
+![Escenario actual 17](docs/screenshots/actual/17_repaso_contextos.png)
+
+![Escenario actual 18](docs/screenshots/actual/18_consulta_movil.png)
 
 ## Límites de la evaluación
 

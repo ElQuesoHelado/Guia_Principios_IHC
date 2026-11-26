@@ -6,8 +6,10 @@ from docx.shared import Inches, Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-SRC_DOCX = os.path.join(BASE_DIR, "Evaluacion_detallada_reglas_Lingua_IA.docx")
-OUT_DOCX = os.path.join(BASE_DIR, "Evaluacion_detallada_reglas_Lingua_IA_con_capturas.docx")
+ARCHIVE_DIR = os.path.join(BASE_DIR, "docs", "originales", "previo-v8")
+# Herramienta histórica: no genera la guía vigente del prototipo.
+SRC_DOCX = os.path.join(ARCHIVE_DIR, "Evaluacion_detallada_reglas_Lingua_IA.docx")
+OUT_DOCX = os.path.join(ARCHIVE_DIR, "Evaluacion_detallada_reglas_Lingua_IA_con_capturas_regenerada.docx")
 IMG_DIR = os.path.join(BASE_DIR, "docs", "screenshots", "principles")
 
 # Catálogo completo de las 44 capturas precisas y sus pies de figura

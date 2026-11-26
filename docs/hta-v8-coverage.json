@@ -1,0 +1,988 @@
+{
+  "source": "HTA_correo_vocabulario_v8.pdf",
+  "plans": 29,
+  "actions": 80,
+  "nodes": [
+    {
+      "id": "C0",
+      "kind": "plan",
+      "source_excerpt": "Aprender a comprender y redactar peticiones en correos académicos en inglés",
+      "behavior": "Correo completo y consulta con retorno",
+      "scenario": "email-link",
+      "selector": "[data-action=\"hta-return\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C1",
+      "kind": "plan",
+      "source_excerpt": "Precisar la intención, la relación y",
+      "behavior": "Intención, relación, datos y dudas",
+      "scenario": "email-context",
+      "selector": "[data-action=\"hta-situation\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C1.1",
+      "kind": "plan",
+      "source_excerpt": "Delimitar qué respuesta se necesita del destinatario",
+      "behavior": "Intención, relación, datos y dudas",
+      "scenario": "email-context",
+      "selector": "[data-action=\"hta-situation\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C1.1.1",
+      "kind": "action",
+      "source_excerpt": "Pedir apuntes o material: identificar exactamente el material que se necesita.",
+      "behavior": "Intención, relación, datos y dudas",
+      "scenario": "email-context",
+      "selector": "[data-action=\"hta-situation\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C1.1.2",
+      "kind": "action",
+      "source_excerpt": "Pedir más tiempo: distinguir la fecha vigente de la fecha que se quiere proponer.",
+      "behavior": "Intención, relación, datos y dudas",
+      "scenario": "email-context",
+      "selector": "[data-action=\"hta-situation\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C1.1.3",
+      "kind": "action",
+      "source_excerpt": "Aclarar una entrega: precisar la duda concreta sobre fecha o forma de presentación.",
+      "behavior": "Intención, relación, datos y dudas",
+      "scenario": "email-context",
+      "selector": "[data-action=\"hta-situation\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C1.2",
+      "kind": "action",
+      "source_excerpt": "Distinguir compañero de confianza, docente o persona de relación desconocida; comprobar",
+      "behavior": "Intención, relación, datos y dudas",
+      "scenario": "email-context",
+      "selector": "[data-action=\"hta-situation\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C1.3",
+      "kind": "action",
+      "source_excerpt": "Recuperar una expresión conocida y señalar qué no se sabe expresar: asunto, saludo, petición,",
+      "behavior": "Intención, relación, datos y dudas",
+      "scenario": "email-context",
+      "selector": "[data-action=\"hta-situation\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C2",
+      "kind": "plan",
+      "source_excerpt": "Comprender y comparar expresiones de",
+      "behavior": "Modelos de igual intención y explicación propia",
+      "scenario": "email-models",
+      "selector": "[data-action=\"compare\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C2.1",
+      "kind": "action",
+      "source_excerpt": "Localizar qué se solicita y qué información expresa motivo, material o plazo en un modelo del",
+      "behavior": "Modelos de igual intención y explicación propia",
+      "scenario": "email-models",
+      "selector": "[data-action=\"compare\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C2.2",
+      "kind": "action",
+      "source_excerpt": "Alinear peticiones de igual intención a un compañero y a un docente para localizar diferencias",
+      "behavior": "Modelos de igual intención y explicación propia",
+      "scenario": "email-models",
+      "selector": "[data-action=\"compare\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C2.3",
+      "kind": "action",
+      "source_excerpt": "Explicar con palabras propias qué aportan can, could y please a la petición, sin confundir",
+      "behavior": "Modelos de igual intención y explicación propia",
+      "scenario": "email-models",
+      "selector": "[data-action=\"compare\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3",
+      "kind": "plan",
+      "source_excerpt": "Elegir expresiones según intención y",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.1",
+      "kind": "plan",
+      "source_excerpt": "Formular un asunto informativo en inglés",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.1.1",
+      "kind": "action",
+      "source_excerpt": "Expresar el material solicitado: “Request for lecture notes”.",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.1.2",
+      "kind": "action",
+      "source_excerpt": "Expresar la solicitud de plazo: “Request for an extension until Friday”.",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.1.3",
+      "kind": "action",
+      "source_excerpt": "Expresar la duda de entrega: “Question about the submission deadline”.",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.2",
+      "kind": "plan",
+      "source_excerpt": "Elegir un saludo acorde con la relación y la información disponible",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.2.1",
+      "kind": "action",
+      "source_excerpt": "Usar “Dear Professor Rivera,” si se conoce que ese es el tratamiento y apellido pertinentes.",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.2.2",
+      "kind": "action",
+      "source_excerpt": "Usar “Dear Alex Rivera,” como opción con nombre completo conocido, sin atribuir un",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.2.3",
+      "kind": "action",
+      "source_excerpt": "Usar “Hi Alex,” cuando la cercanía y el uso habitual de nombres lo permiten.",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.2.4",
+      "kind": "action",
+      "source_excerpt": "Comprobar cómo se identifica el destinatario si no se conoce su nombre o tratamiento;",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.3",
+      "kind": "plan",
+      "source_excerpt": "Elegir una petición comprensible que conserve la intención",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.3.1",
+      "kind": "action",
+      "source_excerpt": "Pedir material con una fórmula directa entre personas de confianza: “Can you send me",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.3.2",
+      "kind": "action",
+      "source_excerpt": "Pedir el mismo material con una alternativa más cortés: “Could you please send me the",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.3.3",
+      "kind": "action",
+      "source_excerpt": "Pedir permiso para otro plazo: “Could I have an extension until Friday?”.",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.3.4",
+      "kind": "action",
+      "source_excerpt": "Aclarar una fecha: “Could you please confirm the submission deadline?”.",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.4",
+      "kind": "action",
+      "source_excerpt": "Conectar motivo y petición mediante una razón pertinente: “I need more time to review my",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.5",
+      "kind": "plan",
+      "source_excerpt": "Elegir un cierre coherente con el resto del correo",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.5.1",
+      "kind": "action",
+      "source_excerpt": "Considerar “Best regards,” como despedida habitual en correspondencia académica o pro-",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C3.5.2",
+      "kind": "action",
+      "source_excerpt": "Considerar “Thanks,” cuando el agradecimiento breve encaja con la relación y la petición.",
+      "behavior": "Alternativas de asunto, saludo, petición, motivo y cierre",
+      "scenario": "email-parts",
+      "selector": "[data-action=\"hta-parts\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4",
+      "kind": "plan",
+      "source_excerpt": "Resolver una duda mediante los recursos disponibles",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4.1",
+      "kind": "action",
+      "source_excerpt": "Aislar la frase dudosa, conservar su contexto y precisar si la duda afecta al significado, a la",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4.2",
+      "kind": "plan",
+      "source_excerpt": "Elegir una vía de consulta ya disponible para el estudiante",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4.2.1",
+      "kind": "action",
+      "source_excerpt": "Consultar un diccionario o un modelo para comprobar significado, construcción y ejemplos.",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4.2.2",
+      "kind": "action",
+      "source_excerpt": "Contrastar una traducción con la oración original para detectar pérdidas de intención o",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4.2.3",
+      "kind": "action",
+      "source_excerpt": "Si utiliza una IA existente, consultar sobre el fragmento y pedir explicación de significado",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4.2.4",
+      "kind": "action",
+      "source_excerpt": "Solicitar a un docente o compañero una explicación del fragmento si se dispone de esa",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4.3",
+      "kind": "action",
+      "source_excerpt": "Comparar la explicación o acepción obtenida con la intención original, identificando qué se",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C4.4",
+      "kind": "action",
+      "source_excerpt": "Reformular solo la duda que continúa abierta: añadir contexto, pedir otra acepción o pedir un",
+      "behavior": "Fragmento, vías de consulta y retorno",
+      "scenario": "resources",
+      "selector": "[data-action=\"hta-resources\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5",
+      "kind": "plan",
+      "source_excerpt": "Redactar un correo propio y comprender",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.1",
+      "kind": "action",
+      "source_excerpt": "Redactar una versión propia con asunto, saludo, petición, motivo pertinente y cierre; conservar",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.2",
+      "kind": "plan",
+      "source_excerpt": "Clasificar una diferencia entre el fragmento propio y una alternativa",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.2.1",
+      "kind": "action",
+      "source_excerpt": "Comprobar una construcción gramatical, por ejemplo “I am agree” frente a “I agree”,",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.2.2",
+      "kind": "action",
+      "source_excerpt": "Distinguir una elección de registro, por ejemplo “I want you to send me. . . ” frente a",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.2.3",
+      "kind": "action",
+      "source_excerpt": "Detectar cambios de significado o datos, como confundir Friday con Monday o una solicitud",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.3",
+      "kind": "plan",
+      "source_excerpt": "Decidir sobre el fragmento sin perder las partes que funcionan",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.3.1",
+      "kind": "action",
+      "source_excerpt": "Incorporar una alternativa comprendida cuando conserva la intención y mejora el aspecto",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.3.2",
+      "kind": "action",
+      "source_excerpt": "Mantener la frase propia cuando es pertinente o la alternativa altera la intención.",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.3.3",
+      "kind": "action",
+      "source_excerpt": "Pedir una explicación o una segunda alternativa cuando todavía no se entiende el efecto",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C5.4",
+      "kind": "action",
+      "source_excerpt": "Explicar una decisión con palabras propias y conservar el antes, el después y la razón de cambiar",
+      "behavior": "Revisión localizada, datos, decisión y explicación",
+      "scenario": "email-review",
+      "selector": "[data-action=\"hta-review-fragment\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C6",
+      "kind": "plan",
+      "source_excerpt": "Recuperar expresiones y transferirlas",
+      "behavior": "Recuperación, otra relación y comparación",
+      "scenario": "email-transfer",
+      "selector": "[data-action=\"hta-productions\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C6.1",
+      "kind": "action",
+      "source_excerpt": "Apartar modelo y apuntes y formular una petición para una intención conocida.",
+      "behavior": "Recuperación, otra relación y comparación",
+      "scenario": "email-transfer",
+      "selector": "[data-action=\"hta-productions\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C6.2",
+      "kind": "action",
+      "source_excerpt": "Explicar por qué la fórmula recuperada corresponde al destinatario y señalar cualquier ayuda",
+      "behavior": "Recuperación, otra relación y comparación",
+      "scenario": "email-transfer",
+      "selector": "[data-action=\"hta-productions\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C6.3",
+      "kind": "action",
+      "source_excerpt": "Componer otro correo con una relación distinta, cambiando por ejemplo de docente a com-",
+      "behavior": "Recuperación, otra relación y comparación",
+      "scenario": "email-transfer",
+      "selector": "[data-action=\"hta-productions\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C6.4",
+      "kind": "action",
+      "source_excerpt": "Comparar las dos producciones y explicar qué cambió en el tono, qué significado se conservó y",
+      "behavior": "Recuperación, otra relación y comparación",
+      "scenario": "email-transfer",
+      "selector": "[data-action=\"hta-productions\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C7",
+      "kind": "plan",
+      "source_excerpt": "Cerrar y retomar el aprendizaje del",
+      "behavior": "Cierre parcial, dudas y continuidad",
+      "scenario": "continuity",
+      "selector": "[data-action=\"hta-resume-plan\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C7.1",
+      "kind": "action",
+      "source_excerpt": "Conservar intención, relación, versión propia, explicación comprendida y una duda pendiente",
+      "behavior": "Cierre parcial, dudas y continuidad",
+      "scenario": "continuity",
+      "selector": "[data-action=\"hta-resume-plan\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C7.2",
+      "kind": "action",
+      "source_excerpt": "Al retomar, identificar lo ya comprendido y priorizar una duda que afecte al sentido, a la",
+      "behavior": "Cierre parcial, dudas y continuidad",
+      "scenario": "continuity",
+      "selector": "[data-action=\"hta-resume-plan\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C7.3",
+      "kind": "action",
+      "source_excerpt": "Intentar recuperar una expresión en otra sesión antes de releer su modelo y registrar el apoyo",
+      "behavior": "Cierre parcial, dudas y continuidad",
+      "scenario": "continuity",
+      "selector": "[data-action=\"hta-resume-plan\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "C7.4",
+      "kind": "action",
+      "source_excerpt": "Valorar el intento mediante comprensión del significado, adecuación al destinatario y uso propio;",
+      "behavior": "Cierre parcial, dudas y continuidad",
+      "scenario": "continuity",
+      "selector": "[data-action=\"hta-resume-plan\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V0",
+      "kind": "plan",
+      "source_excerpt": "Aprender a comprender y reutilizar vocabulario en contexto académico",
+      "behavior": "Vocabulario completo y regreso al correo",
+      "scenario": "vocab-link",
+      "selector": "[data-action=\"hta-return\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V1",
+      "kind": "plan",
+      "source_excerpt": "Situar la lectura y seleccionar una",
+      "behavior": "Lectura, relevancia y oración exacta",
+      "scenario": "reading",
+      "selector": "[data-action=\"hta-reading-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V1.1",
+      "kind": "action",
+      "source_excerpt": "Reconocer fuente, destinatario e idea general de una lectura o de un correo breve.",
+      "behavior": "Lectura, relevancia y oración exacta",
+      "scenario": "reading",
+      "selector": "[data-action=\"hta-reading-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V1.2",
+      "kind": "action",
+      "source_excerpt": "Priorizar una expresión desconocida si impide comprender la idea principal, cambia la petición",
+      "behavior": "Lectura, relevancia y oración exacta",
+      "scenario": "reading",
+      "selector": "[data-action=\"hta-reading-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V1.3",
+      "kind": "action",
+      "source_excerpt": "Conservar la oración exacta y explicar qué no se comprende, distinguiendo una palabra de-",
+      "behavior": "Lectura, relevancia y oración exacta",
+      "scenario": "reading",
+      "selector": "[data-action=\"hta-reading-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V2",
+      "kind": "plan",
+      "source_excerpt": "Proponer una hipótesis mediante pistas",
+      "behavior": "Pistas reales, hipótesis opcional y contexto insuficiente",
+      "scenario": "inference",
+      "selector": "[data-action=\"hta-lexical-tools\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V2.1",
+      "kind": "action",
+      "source_excerpt": "Examinar la función gramatical: por ejemplo, reconocer que dedicated modifica space en “a",
+      "behavior": "Pistas reales, hipótesis opcional y contexto insuficiente",
+      "scenario": "inference",
+      "selector": "[data-action=\"hta-lexical-tools\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V2.2",
+      "kind": "plan",
+      "source_excerpt": "Buscar pistas que sostengan una interpretación",
+      "behavior": "Pistas reales, hipótesis opcional y contexto insuficiente",
+      "scenario": "inference",
+      "selector": "[data-action=\"hta-lexical-tools\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V2.2.1",
+      "kind": "action",
+      "source_excerpt": "Relacionar una finalidad o resultado con la palabra: “space” y “focus on your work”",
+      "behavior": "Pistas reales, hipótesis opcional y contexto insuficiente",
+      "scenario": "inference",
+      "selector": "[data-action=\"hta-lexical-tools\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V2.2.2",
+      "kind": "action",
+      "source_excerpt": "Aprovechar una reformulación, ejemplo o contraste explícito en las oraciones próximas, si",
+      "behavior": "Pistas reales, hipótesis opcional y contexto insuficiente",
+      "scenario": "inference",
+      "selector": "[data-action=\"hta-lexical-tools\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V2.2.3",
+      "kind": "action",
+      "source_excerpt": "Relacionar una combinación conocida o un componente de la palabra con el contexto,",
+      "behavior": "Pistas reales, hipótesis opcional y contexto insuficiente",
+      "scenario": "inference",
+      "selector": "[data-action=\"hta-lexical-tools\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V2.3",
+      "kind": "action",
+      "source_excerpt": "Expresar un significado provisional y justificarlo con una pista; si no se puede inferir, explicitar",
+      "behavior": "Pistas reales, hipótesis opcional y contexto insuficiente",
+      "scenario": "inference",
+      "selector": "[data-action=\"hta-lexical-tools\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3",
+      "kind": "plan",
+      "source_excerpt": "Contrastar acepciones y corregir la",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.1",
+      "kind": "plan",
+      "source_excerpt": "Elegir un recurso para contrastar el significado en la oración",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.1.1",
+      "kind": "action",
+      "source_excerpt": "Consultar las acepciones y los ejemplos de un diccionario disponible.",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.1.2",
+      "kind": "action",
+      "source_excerpt": "Comparar una traducción con la oración, comprobando si conserva la relación entre sus",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.1.3",
+      "kind": "action",
+      "source_excerpt": "Si se utiliza una IA existente, aportar la oración y pedir acepciones posibles y pistas para",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.1.4",
+      "kind": "action",
+      "source_excerpt": "Solicitar una explicación o un ejemplo a un docente o compañero cuando ese recurso esté",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.2",
+      "kind": "action",
+      "source_excerpt": "Relacionar cada acepción plausible con un ejemplo y con la oración propia; conservar la refer-",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.3",
+      "kind": "plan",
+      "source_excerpt": "Decidir qué interpretación tiene apoyo contextual",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.3.1",
+      "kind": "action",
+      "source_excerpt": "En “A dedicated space helps you focus on your work”, contrastar la acepción reservado",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.3.2",
+      "kind": "action",
+      "source_excerpt": "En “She is a dedicated teacher”, contrastar la acepción comprometida con la referencia a",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.3.3",
+      "kind": "action",
+      "source_excerpt": "Mantener abiertas varias acepciones cuando la oración no permite distinguirlas y buscar",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V3.4",
+      "kind": "action",
+      "source_excerpt": "Comparar la hipótesis inicial con la interpretación contrastada y reformularla con palabras",
+      "behavior": "Fuentes, acepciones e interpretación propia",
+      "scenario": "senses",
+      "selector": "[data-action=\"hta-interpret\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V4",
+      "kind": "plan",
+      "source_excerpt": "Distinguir significado, registro y patrones de uso",
+      "behavior": "Registro, patrón y anotación",
+      "scenario": "lexical-note",
+      "selector": "[data-action=\"hta-register-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V4.1",
+      "kind": "action",
+      "source_excerpt": "Comparar ejemplos de una misma acepción en situaciones diferentes, evitando llamar diferencia",
+      "behavior": "Registro, patrón y anotación",
+      "scenario": "lexical-note",
+      "selector": "[data-action=\"hta-register-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V4.2",
+      "kind": "plan",
+      "source_excerpt": "Determinar qué puede afirmarse del registro a partir de la fuente",
+      "behavior": "Registro, patrón y anotación",
+      "scenario": "lexical-note",
+      "selector": "[data-action=\"hta-register-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V4.2.1",
+      "kind": "action",
+      "source_excerpt": "Si hay una nota explícita de uso formal, informal o neutro, relacionarla con la acepción y",
+      "behavior": "Registro, patrón y anotación",
+      "scenario": "lexical-note",
+      "selector": "[data-action=\"hta-register-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V4.2.2",
+      "kind": "action",
+      "source_excerpt": "Si no hay una nota fiable, dejar el registro sin determinar y describir solo la situación de",
+      "behavior": "Registro, patrón y anotación",
+      "scenario": "lexical-note",
+      "selector": "[data-action=\"hta-register-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V4.3",
+      "kind": "action",
+      "source_excerpt": "Reconocer combinaciones y estructuras pertinentes: dedicated + sustantivo y dedicated to +",
+      "behavior": "Registro, patrón y anotación",
+      "scenario": "lexical-note",
+      "selector": "[data-action=\"hta-register-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V4.4",
+      "kind": "action",
+      "source_excerpt": "Redactar una nota propia que conecte significado, oración de origen, patrón, situación de uso",
+      "behavior": "Registro, patrón y anotación",
+      "scenario": "lexical-note",
+      "selector": "[data-action=\"hta-register-note\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V5",
+      "kind": "plan",
+      "source_excerpt": "Producir una oración propia y",
+      "behavior": "Producción, conservación, reformulación o sustitución",
+      "scenario": "vocab-production",
+      "selector": "[data-action=\"hta-vocab-write\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V5.1",
+      "kind": "action",
+      "source_excerpt": "Elegir una idea personal y expresarla con la palabra: por ejemplo, describir un espacio reservado",
+      "behavior": "Producción, conservación, reformulación o sustitución",
+      "scenario": "vocab-production",
+      "selector": "[data-action=\"hta-vocab-write\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V5.2",
+      "kind": "action",
+      "source_excerpt": "Contrastar la oración con ejemplos de la misma acepción y revisar referente, combinación",
+      "behavior": "Producción, conservación, reformulación o sustitución",
+      "scenario": "vocab-production",
+      "selector": "[data-action=\"hta-vocab-write\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V5.3",
+      "kind": "plan",
+      "source_excerpt": "Decidir cómo conservar la intención de la oración",
+      "behavior": "Producción, conservación, reformulación o sustitución",
+      "scenario": "vocab-production",
+      "selector": "[data-action=\"hta-vocab-write\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V5.3.1",
+      "kind": "action",
+      "source_excerpt": "Mantener el uso cuando la acepción y el patrón son pertinentes, explicando una coinci-",
+      "behavior": "Producción, conservación, reformulación o sustitución",
+      "scenario": "vocab-production",
+      "selector": "[data-action=\"hta-vocab-write\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V5.3.2",
+      "kind": "action",
+      "source_excerpt": "Reformular la construcción cuando la idea es pertinente pero el patrón no encaja.",
+      "behavior": "Producción, conservación, reformulación o sustitución",
+      "scenario": "vocab-production",
+      "selector": "[data-action=\"hta-vocab-write\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V5.3.3",
+      "kind": "action",
+      "source_excerpt": "Elegir otra palabra si la acepción estudiada no expresa la intención, en vez de incorporarla",
+      "behavior": "Producción, conservación, reformulación o sustitución",
+      "scenario": "vocab-production",
+      "selector": "[data-action=\"hta-vocab-write\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V6",
+      "kind": "plan",
+      "source_excerpt": "Recuperar la expresión y transferirla",
+      "behavior": "Recuperación, transferencia y correo vinculado",
+      "scenario": "vocab-transfer",
+      "selector": "[data-action=\"hta-transfer-email\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V6.1",
+      "kind": "action",
+      "source_excerpt": "Apartar definición y apuntes; explicar el significado y producir una frase recordando solo la",
+      "behavior": "Recuperación, transferencia y correo vinculado",
+      "scenario": "vocab-transfer",
+      "selector": "[data-action=\"hta-transfer-email\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V6.2",
+      "kind": "action",
+      "source_excerpt": "Elegir un contexto distinto y pertinente: proponer un espacio para el proyecto, una reunión",
+      "behavior": "Recuperación, transferencia y correo vinculado",
+      "scenario": "vocab-transfer",
+      "selector": "[data-action=\"hta-transfer-email\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V6.3",
+      "kind": "action",
+      "source_excerpt": "Incorporar la expresión a un correo breve y justificar su significado y adecuación al destinatario;",
+      "behavior": "Recuperación, transferencia y correo vinculado",
+      "scenario": "vocab-transfer",
+      "selector": "[data-action=\"hta-transfer-email\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V6.4",
+      "kind": "action",
+      "source_excerpt": "usando otra situación, no copiando la frase inicial. Si el nuevo significado o patrón no encaja, volver a V3–V5.",
+      "behavior": "Recuperación, transferencia y correo vinculado",
+      "scenario": "vocab-transfer",
+      "selector": "[data-action=\"hta-transfer-email\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V7",
+      "kind": "plan",
+      "source_excerpt": "Registrar y retomar el vocabulario en",
+      "behavior": "Entrada por contexto, repaso elegido y pendientes",
+      "scenario": "review",
+      "selector": "[data-action=\"hta-entry-recall\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V7.1",
+      "kind": "action",
+      "source_excerpt": "Conservar palabra, oración de origen, significado explicado, producción propia disponible y",
+      "behavior": "Entrada por contexto, repaso elegido y pendientes",
+      "scenario": "review",
+      "selector": "[data-action=\"hta-entry-recall\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V7.2",
+      "kind": "action",
+      "source_excerpt": "En una sesión posterior, recuperar la palabra o situación sin mostrar primero la definición y",
+      "behavior": "Entrada por contexto, repaso elegido y pendientes",
+      "scenario": "review",
+      "selector": "[data-action=\"hta-entry-recall\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V7.3",
+      "kind": "action",
+      "source_excerpt": "Intentar una explicación y una oración propias antes de contrastarlas; anotar la fecha y el apoyo",
+      "behavior": "Entrada por contexto, repaso elegido y pendientes",
+      "scenario": "review",
+      "selector": "[data-action=\"hta-entry-recall\"]",
+      "test": "tools/test_hta_complete.py"
+    },
+    {
+      "id": "V7.4",
+      "kind": "action",
+      "source_excerpt": "Decidir si se necesita repetir el contraste, el patrón o la recuperación, según el significado y uso",
+      "behavior": "Entrada por contexto, repaso elegido y pendientes",
+      "scenario": "review",
+      "selector": "[data-action=\"hta-entry-recall\"]",
+      "test": "tools/test_hta_complete.py"
+    }
+  ]
+}

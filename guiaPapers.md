@@ -1,6 +1,6 @@
 # Ideas de los papers incorporadas
 
-Fuente exclusiva para esta selección: **Anexo D — Papers** de `LINGUA IA PLUS (1).docx`, incluidos los aportes de edición localizada y versiones al final del anexo. Los usuarios y las tareas proceden del HTA unificado v7, no de la propuesta anterior de Lingua IA Plus.
+Fuente exclusiva para esta selección: **Anexo D — Papers** de [LINGUA IA PLUS (1).docx](<docs/originales/previo-v8/LINGUA IA PLUS (1).docx>), incluidos los aportes de edición localizada y versiones al final del anexo. Los usuarios y las tareas proceden del HTA de correo y vocabulario v8, no de la propuesta anterior de Lingua IA Plus.
 
 Las atribuciones y títulos siguientes se conservan como aparecen en el documento del equipo. Se adaptan sus ideas al prototipo; **no se han verificado aquí las publicaciones originales, sus citas, páginas, fechas ni resultados**. No se reproducen como citas científicas comprobadas ni se atribuye eficacia experimental a esta entrega.
 
@@ -10,20 +10,20 @@ Las atribuciones y títulos siguientes se conservan como aparecen en el document
 | Gu | Conectar resultado con material original | Hipótesis junto a la acepción del ejemplo; contexto visible | Vocabulario V2–V3; `.word-detail` |
 | Gu | Localizar aquello que requiere verificación | Revisiones solo de fragmentos reconocidos del borrador; no se inventa una corrección global | Correo C5; `review()` |
 | Kazemitabaar y colaboradores: *Improving Steering and Verification in AI-Assisted Data Analysis with Interactive Task Decomposition* | Descomponer en objetivos comprensibles | Cuatro sugerencias de ruta agrupan los siete grupos de cada tarea; acceso libre | C1–C7 y V1–V7; `#learning-plan`, `#stagebar` |
-| Kazemitabaar | Mostrar interpretaciones y supuestos | Contexto de tarea indicado junto al mensaje; **Cambiar tarea** permite corregirlo; una oración propia no recibe la acepción de otro ejemplo | C1.2 y V3; `#composer-mode-hint`, `change-task`, `startIntro()` |
+| Kazemitabaar | Mostrar interpretaciones y supuestos | Contexto de tarea y retorno indicado junto al mensaje; **Cambiar tarea** permite corregirlo; una oración propia no recibe la acepción de otro ejemplo | C1.2 y V3; `#composer-mode-hint`, `change-task`, `startIntro()` |
 | Kazemitabaar | Permitir intervenir | Usar, conservar o explicar antes de decidir; no se modifica automáticamente el correo | C5.3–C5.4; `accept`, `reject`, `justify` |
 | Kazemitabaar | Mostrar procedimiento y resultado | Original, propuesta, explicación y versiones; el procedimiento técnico del dominio de datos se traduce a evidencia lingüística | C5; `versions()`, `.diff-line` |
 | LightVA: *Lightweight Visual Analytics with LLM Agent-Based Task Planning and Execution* | Plan visible | Etapa actual visible durante el desplazamiento, ruta desplegable y aportes guardados; no abre una ficha obligatoria | C/V; `#stagebar` |
-| LightVA | Acciones sugeridas y lenguaje natural | Botones contextuales y un único chat; sugerencias mientras se escribe, editables y descartables | C2, C5, V2, V6; `#prompt-assist`, `#chat-input` |
+| LightVA | Acciones sugeridas y lenguaje natural | Botones contextuales y un único chat; sugerencias mientras se escribe, editables y descartables | C1–C3, C5, V2, V6; `#prompt-assist`, `#chat-input` |
 | LightVA | Aprobar o rechazar acciones | Decisiones de revisión y libertad para saltar la hipótesis o consultar un ejemplo | C5, V3; `accept`, `reject`, `definition` |
 | LightVA | Observar progreso acumulado | Producciones, hipótesis, explicaciones y fechas; palabras guardadas se cuentan aparte | C6–C7, V6–V7; `notebook()` |
 | LightVA y descomposición interactiva | Volver a un estado anterior | Recuperar un borrador conserva todas las versiones y crea otra; deshacer un cambio evita borrar modificaciones posteriores | C5; `restore`, `undo-correction` |
 | WaitGPT, adaptación de refinamiento granular consignada en el anexo | Cambiar solo la sección pertinente | Sustitución de un fragmento exacto; resto conservado; antes/después visible | C5.1–C5.4; `review()`, `accept` |
 | Yang y colaboradores: *Mapping the Wizards' Path: A Systematic Review of Wizard-of-Oz in HCI* | Transparencia de la simulación | Identificación visible de respuestas de ejemplo; no se finge conexión a un LLM | Ambas tareas; `.app-footer`, `demo()` |
-| Yang | Escenarios acotados | Profesora y compañero; tres palabras con fichas preparadas. El ejemplo contextual no se presenta como interpretación general de cualquier texto | C2/C7 y V2/V7; `TutorData`, `startIntro()` |
+| Yang | Escenarios acotados | Profesora y compañero; tres palabras con fichas preparadas. El ejemplo contextual no se presenta como interpretación general de cualquier texto | C2/C6 y V2/V7; `TutorData`, `startIntro()` |
 | Yang | Control de ritmo y comunicación | Enviar es decisión del estudiante; no hay turnos automáticos, cuenta regresiva ni voz | Ambas; `#send-btn`, teclado |
-| Yang | Ayuda situada y graduada | Pista, significado, explicación o modelo se abren bajo demanda; se puede recuperar sin material y volver a consultarlo | C3/C6 y V2/V6; `clue`, `definition`, `model`, `reveal-support` |
-| Yang | Evitar perder contexto entre superficies | Original y propuesta dentro del chat; ficha contextual con hipótesis; historial local conserva la práctica | Ambas; `.word-detail`, `history()`, localStorage |
+| Yang | Ayuda situada y graduada | Pista, significado, explicación o modelo se abren bajo demanda; se puede recuperar sin material y volver a consultarlo | C4/C6 y V2/V6; `clue`, `definition`, `model`, `reveal-support` |
+| Yang | Evitar perder contexto entre superficies | Original y propuesta dentro del chat; ficha contextual con hipótesis inicial o punto de partida; consulta con retorno y registro local conserva la práctica | Ambas; `.word-detail`, `history()`, localStorage |
 
 ## Ideas con cobertura parcial o excluidas
 

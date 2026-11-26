@@ -37,7 +37,7 @@ APPLIED={
 'C6.9':('Títulos reales, rótulos, separación y detalles facilitan recorrer original, alternativa y razón.','.correction-card','04'),
 'C6.10':('El inicio contiene una invitación, un compositor y dos ideas; la ruta y las explicaciones extensas se despliegan a petición.','#welcome','01'),
 'C6.11':('No hay panel lateral permanente que repita texto o progreso; la información auxiliar se consulta cuando se necesita.','#learning-plan','01'),
-'C7.1':('Contexto, mensajes, borrador y versiones se conservan por conversación y se recuperan desde el historial local.','.session-link','08'),
+'C7.1':('Las consultas conservan fragmento, versión, actividad y mensaje pendiente; el retorno sigue disponible al desplazar y tras recargar. Las prácticas v1 se migran al estado v2.','[data-action="hta-return"]','16'),
 'C7.5':('La tarea y la etapa actual permanecen en una franja fija bajo el menú; Cambiar tarea permite corregir la ubicación. No hay cambios silenciosos entre actividades al escribir.','#task-label','03'),
 'C7.7':('Enviar es la acción principal del compositor; cada propuesta distingue su opción de uso de las alternativas secundarias.','#send-btn','04'),
 'C7.8':('Dos ideas de inicio y acceso directo al historial, ruta y notas; no hay un asistente secuencial obligatorio.','#starter-actions','01'),
@@ -47,7 +47,7 @@ APPLIED={
 'C8.3':('El indicador siempre visible muestra Etapa actual de cuatro. La ruta distingue Actual, Aporte guardado y Sin aporte aún. Cambiar de actividad actualiza la etapa; abrirla no registra una producción ni certifica dominio.','#stagebar','11'),
 'C8.5':('Las opciones nombran el resultado: Comparar dos peticiones, Ver significado ahora y Probar sin definición.','[data-action="definition"]','05'),
 'C8.6':('Confirmaciones y decisiones usan verbos concretos, incluida la acción de deshacer o usar una versión.','[data-action="undo-correction"]','04'),
-'C8.7':('Las rutas responden a comparar registro, inferir, contrastar, recuperar y transferir expresiones del HTA seleccionado.','#learning-plan','06'),
+'C8.7':('Los tres casos de correo y los apoyos léxicos ejecutan las alternativas y retornos de la v8; la matriz vincula 29 planes y 80 hojas sin imponer un formulario.','[data-action="hta-parts"]','15'),
 'C8.10':('El cierre es una acción explícita en Mi aprendizaje: resume actividad, permite descargar notas y dejar una duda para retomar. No declara una tarea dominada por navegar hasta el final.','[data-action="finish"]','07'),
 }
 OTHER={
@@ -79,8 +79,10 @@ OTHER={
 'C8.9':('Aplicado','Se usan Enter para enviar, Shift+Enter para otra línea y Escape nativo para cerrar dialog. El compositor muestra los atajos familiares.','.composer-footnote'),
 'C8.11':('Parcial','La práctica sin modelo se indica de forma explícita y permite salir con Consultar el apoyo anterior. No expira por tiempo: una salida automática interrumpiría la recuperación al ritmo del estudiante.','#recall-banner'),
 }
-CAPTURES={'01':'01_inicio.png','02':'02_sugerencia.png','03':'03_comparar.png','04':'04_revision.png','05':'05_vocabulario.png','06':'06_recuperar.png','07':'07_aprendizaje.png','08':'08_historial.png','11':'11_etapas.png'}
-INTRO='''La guía conserva los 71 principios y sus nombres de la matriz original. La columna de origen mantiene su clasificación binaria (44 cumplen y 27 no cumplen). El estado actual se revisa contra el prototipo conversacional: aplicado significa una decisión de diseño inspeccionable, no aprobación docente ni validación experimental. Parcial, pendiente, excluido y no aplica explican límites distintos; ninguno se cuenta como cumplimiento total.
+CAPTURES={'01':'01_inicio.png','02':'02_sugerencia.png','03':'03_comparar.png','04':'04_revision.png','05':'05_vocabulario.png','06':'06_recuperar.png','07':'07_aprendizaje.png','08':'08_historial.png','11':'11_etapas.png','15':'15_expresiones.png','16':'16_consulta_retorno.png','17':'17_repaso_contextos.png','18':'18_consulta_movil.png'}
+INTRO='''Referencia de tareas vigente: HTA_correo_vocabulario_v8.pdf (C0 y V0). La guía conserva los 71 principios y sus nombres de la matriz original. La columna de origen mantiene su clasificación binaria (44 cumplen y 27 no cumplen). El estado actual se revisa contra el prototipo conversacional: aplicado significa una decisión de diseño inspeccionable, no aprobación docente ni validación experimental. Parcial, pendiente, excluido y no aplica explican límites distintos; ninguno se cuenta como cumplimiento total.
+
+La cobertura por nodo está en docs/HTA_V8_COBERTURA.md. Las vías de recursos son ejemplos preparados o aportes externos no verificados; no servicios conectados.
 
 Los originales anteriores al rediseño se conservan en docs/originales/principios-anterior/. El PDF y DOCX de la matriz de entrada permanecen intactos. Las capturas actuales se generan con tools/generate_screenshots.py; los recorridos completos están en guia.md y la correspondencia con el HTA en docs/REVISION_HTA_Y_TRAZABILIDAD.md.'''
 
