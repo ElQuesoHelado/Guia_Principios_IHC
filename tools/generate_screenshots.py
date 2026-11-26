@@ -11,7 +11,12 @@ const type=t=>{const e=document.querySelector('#chat-input');e.value=t;e.dispatc
 const send=t=>{type(t);click('#send-btn');};
 '''
 VOCAB="send(TutorData.examples.vocab);send('Creo que significa reservado para trabajar, porque habla de space y focus.');"
+LINK="send('Quiero escribir un correo a mi profesora');click('[data-action=write]');send("+json.dumps("Dear Professor,\nA dedicated space helps you focus on your work.\nBest regards,\nAlex")+");document.querySelectorAll('[data-action=hta-consult]')[0].click();send('A dedicated space helps you focus on your work.');"
 SPECS=[
+ ('15_expresiones.png',"send('Quiero pedir una prórroga a mi profesora en inglés');click('[data-action=hta-parts]');const last=document.querySelector('#chat-messages').lastElementChild;last.querySelectorAll('details').forEach(d=>d.open=true);window.scrollTo(0,last.offsetTop);",1440,1500),
+ ('16_consulta_retorno.png',LINK+"send('Creo que significa reservado para una finalidad, por space y focus.');window.scrollTo(0,0);",1440,1000),
+ ('17_repaso_contextos.png',VOCAB+"click('[data-action=save-word]');click('[data-action=reading]');click('[data-action=pick-word][data-word=deadline]');[...document.querySelectorAll('[data-action=definition]')].at(-1).click();[...document.querySelectorAll('[data-action=save-word]')].at(-1).click();click('[data-action=notebook]');click('[data-action=repaso]');",1440,1000),
+ ('18_consulta_movil.png',LINK+"window.scrollTo(0,0);",390,844),
  ('01_inicio.png','',1440,1000),
  ('02_sugerencia.png',"type('Quiero aprender a escribir un correo a mi profesora');",1440,1000),
  ('03_comparar.png',"send('Quiero aprender a escribir un correo a mi profesora');click('[data-action=compare]');",1440,1000),
@@ -36,9 +41,12 @@ if __name__=='__main__':
   if sys.argv[1:] and name not in sys.argv[1:]:continue
   selectors={'03_comparar.png':'.comparison','04_revision.png':'.correction-card','05_vocabulario.png':'.word-detail','14_expresiones.png':'.language-lesson'}
   crop=selectors.get(name)
+  if name=='15_expresiones.png':crop='[data-message]:last-child .card'
   if crop:
    height=3400
    script+='window.scrollTo(0,0);const boxes=[...document.querySelectorAll('+json.dumps(crop)+')].map(e=>e.getBoundingClientRect());const left=Math.min(...boxes.map(b=>b.left)),top=Math.min(...boxes.map(b=>b.top)),right=Math.max(...boxes.map(b=>b.right)),bottom=Math.max(...boxes.map(b=>b.bottom));dump("LINGUA_BOX "+JSON.stringify([Math.floor(left),Math.floor(top),Math.ceil(right-left),Math.ceil(bottom-top)])+"\\n");'
+  # Firefox headless omite capas fijas en algunas capturas con desplazamiento.
+  if not crop:script+="if(document.querySelector('#workspace-dialog').open)window.scrollTo(0,0);"
   log=capture(SETUP+script,OUT/name,width,height)
   if crop:
    line=next(l for l in log.splitlines() if l.startswith('LINGUA_BOX '))

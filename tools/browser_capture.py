@@ -7,10 +7,12 @@ import time
 
 BASE = Path(__file__).resolve().parent.parent
 
-def capture(code, output, width=1440, height=1000):
+def capture(code, output, width=1440, height=1000, before_script=""):
     html = (BASE / 'index.html').read_text()
     # Evita depender de la red para la tipografía en las capturas locales.
     html = '\n'.join(line for line in html.splitlines() if 'fonts.googleapis.com' not in line and 'fonts.gstatic.com' not in line)
+    if before_script:
+        html = html.replace('</head>', '<script>' + before_script + '</script></head>')
     injection = "<script>document.addEventListener('DOMContentLoaded', () => {" + code + "});</script>"
     harness = BASE / 'harness_temp.html'
     harness.write_text(html.replace('</body>', injection + '</body>'))

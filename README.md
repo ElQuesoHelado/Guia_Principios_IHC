@@ -21,7 +21,7 @@ Puedes preguntar por asuntos (`request for`, `question about`), saludos (`Dear`,
 
 ## Código activo
 
-`index.html` carga `js/icons.js`, `js/tutor-data.js` y `js/tutor.js`; el diseño está en `css/style.css`. Los demás archivos JS corresponden a la implementación anterior y no se cargan. Las respuestas y reglas son material didáctico preparado. La revisión de texto arbitrario, evaluación automática de aprendizaje, diccionario en vivo y predicción generativa quedan fuera del prototipo.
+`index.html` carga `js/icons.js`, `js/tutor-data.js`, `js/tutor-hta.js` y `js/tutor.js`; el diseño está en `css/style.css`. Los demás archivos JS corresponden a la implementación anterior y no se cargan. Las respuestas y reglas son material didáctico preparado. La revisión de texto arbitrario, evaluación automática de aprendizaje, diccionario en vivo y predicción generativa quedan fuera del prototipo.
 
 ## Comprobación y regeneración
 
@@ -35,3 +35,12 @@ python3 tools/build_pdf.py
 ```
 
 Ejecutar secuencialmente: las comprobaciones de navegador comparten un archivo temporal. Requieren Firefox; el PDF usa pdflatex. Las pruebas recorren la app real a 1440, 390 y 320 px. No sustituyen una evaluación con estudiantes.
+
+## Consultas y revisión por contexto
+
+Puedes consultar una expresión desde una versión del correo y volver al borrador y a la actividad de origen. La revisión permite escoger una aparición de un fragmento repetido. El vocabulario guarda palabra y oración para distinguir acepciones y repasarlas por separado. Las sesiones v1 se conservan y se migran a v2. Las respuestas siguen siendo material preparado; los aportes externos se registran sin validación automática.
+
+- [Correspondencia ilustrativa del HTA](docs/HTA_V8_COBERTURA.md)
+- [Originales preservados](docs/originales/previo-v8/README.md)
+
+Comprobaciones adicionales: `python3 tools/test_hta_v8.py` y `python3 tools/test_hta_complete.py`. Regenerar la correspondencia con `python3 tools/build_hta_coverage.py`.

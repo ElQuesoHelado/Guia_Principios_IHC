@@ -107,14 +107,41 @@ try{
   click('[data-action="resume"][data-id="'+emailId+'"]');
   check(active().draft===original&&document.querySelector('#chat-input').value==='Una duda sin enviar','Retoma texto y mensaje pendiente por conversación');
   check(active().evidence.some(e=>e.kind==='Producción en otra situación'),'Retoma evidencias');
-  const stored=JSON.parse(localStorage.getItem('lingua-tutor-v1'));
+  const stored=JSON.parse(localStorage.getItem('lingua-tutor-v2'));
   check(stored.sessions.some(s=>s.id===vocabId&&s.words.includes('dedicated')),'Persistencia real de palabras y sesiones');
   click('[data-action="new"]');send('¿Qué significa dedicated en “She is a dedicated teacher”?');
-  check(!document.querySelector('.word-detail')&&active().pending.type==='custom-inference','No asigna acepción de espacio a un contexto propio');
-  send('Creo que describe a alguien comprometido.');
+  check(active().pending.type==='inference','La acepción de persona tiene una pista propia');
+  const teacherClue=document.querySelectorAll('[data-action="definition"]');
+  teacherClue[teacherClue.length-1].click();
+  check(document.querySelector('.word-detail .proposal').textContent.includes('Comprometida'),'Consulta directa muestra compromiso personal');
+  click('[data-action="stage"][data-stage="1"]');
+  check([...document.querySelectorAll('.word-detail .proposal')].every(e=>e.textContent.includes('Comprometida')),'Las etapas respetan la acepción de persona');
+  click('[data-action="save-word"]');
+  click('[data-action="notebook"]');click('[data-action="repaso"]');
+  check(active().context==='She is a dedicated teacher','El repaso conserva la oración guardada');
+  send('Una persona comprometida con su trabajo.');
+  click('[data-action="reading"]');
   click('[data-action="pick-word"][data-word="productive"]');
-  click('[data-action="definition"]');
-  check(document.querySelector('.word-detail').textContent.includes('productive'),'Permite saltar la hipótesis y consultar directamente');
+  const teacherDefinition=document.querySelector('[data-action="definition"][data-context="She is a dedicated teacher"]');
+  teacherDefinition.click();
+  check(active().word==='dedicated'&&active().context==='She is a dedicated teacher','Una tarjeta anterior recupera su propio contexto');
+  check([...document.querySelectorAll('.word-detail')].at(-1).querySelector('.proposal').textContent.includes('Comprometida'),'La tarjeta anterior no consulta la última palabra seleccionada');
+  click('[data-action="reading"]');click('[data-action="pick-word"][data-word="deadline"]');
+  check(active().context===TutorData.words.deadline.context&&active().context.startsWith('Set a deadline'),'Deadline conserva la oración de la lectura');
+  check(active().messages.at(-1).text.includes('when to finish'),'La pista de deadline corresponde a la oración seleccionada');
+  last('[data-action="definition"]');
+  check([...document.querySelectorAll('.word-detail')].at(-1).querySelector('blockquote').textContent===active().context,'La definición conserva la misma oración');
+  click('[data-action="new"]');send('¿Qué significa dedicated en “He dedicated the book to his mother”?');
+  check(active().pending.type==='custom-inference','Otro contexto queda pendiente de contraste');
+  for(const stage of [0,1,2,3]){
+    click('[data-action="stage"][data-stage="'+stage+'"]');
+    check(!document.querySelector('.word-detail')&&active().pending.type==='custom-inference','La etapa '+stage+' no aplica una ficha de otro contexto');
+  }
+  send('Quizá es ofrecer una obra a alguien.');
+  check(active().evidence.at(-1).kind==='Hipótesis propia por contrastar','Conserva una hipótesis desconocida sin aprobarla');
+  click('[data-action="pick-word"][data-word="productive"]');
+  last('[data-action="definition"]');
+  check(document.querySelector('.word-detail').textContent.includes('productive'),'Permite elegir explícitamente un ejemplo preparado');
   // HTA v8: las consultas abren el apoyo pertinente; producir y explicar no
   // sustituye el borrador, y la recuperación conserva el tema practicado.
   for(const [topic,query,attempt] of [

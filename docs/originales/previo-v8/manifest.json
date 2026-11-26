@@ -1,0 +1,57 @@
+[
+  {
+    "origen": "HTA_unificado_sin_IA_v7.pdf",
+    "archivo": "HTA_unificado_sin_IA_v7.pdf",
+    "sha256": "64aab6eff718b71117635c1051c8020c74c79f42dc3d63f661929f5c9d82e2d3"
+  },
+  {
+    "origen": "Evaluacion_detallada_reglas_Lingua_IA.docx",
+    "archivo": "Evaluacion_detallada_reglas_Lingua_IA.docx",
+    "sha256": "81241af059e0c67ee15f1e18a6992c3c48df5f0615967a1909ab71da63ab242e"
+  },
+  {
+    "origen": "Evaluacion_detallada_reglas_Lingua_IA_con_capturas.docx",
+    "archivo": "Evaluacion_detallada_reglas_Lingua_IA_con_capturas.docx",
+    "sha256": "e1d29b6ab7ca39016a9eb143f0c58d8e43b9689ea0151ccf344834d548fb7158"
+  },
+  {
+    "origen": "Informe_principios_Lingua_IA (1).docx",
+    "archivo": "Informe_principios_Lingua_IA (1).docx",
+    "sha256": "b760f46b5968a0b4c00e8862aa8ce8e4bb3e0df23874db3290e6691afe209533"
+  },
+  {
+    "origen": "Informe_principios_Lingua_IA (2).docx",
+    "archivo": "Informe_principios_Lingua_IA (2).docx",
+    "sha256": "733a1c59b7eb0f40b8a8cdb1adef4b705229f74e52c9878375e776521f1c6d9a"
+  },
+  {
+    "origen": "LINGUA IA PLUS (1).docx",
+    "archivo": "LINGUA IA PLUS (1).docx",
+    "sha256": "e368c10b3d842cf2b7e0ce138b4da3f0cd72f9339700ef45c5aee0fa2176f1da"
+  },
+  {
+    "origen": "usuarios.md",
+    "archivo": "usuarios.md",
+    "sha256": "9f2ea173d4c875d41b404d08ebfd6ab7d2a7a4aa1b12a2fd0dd528b338c13990"
+  },
+  {
+    "origen": "plan.md",
+    "archivo": "plan.md",
+    "sha256": "0cf0411890bba07dc0d32dc4a4e818983463df9bd91519e4b2b83203c8d2e68e"
+  },
+  {
+    "origen": "reference.md",
+    "archivo": "reference.md",
+    "sha256": "2f7d25bd22c105aad24385bf66a0b03e7d2bb86ff33e1ab6b0dd20583638d6f7"
+  },
+  {
+    "origen": "agents.md",
+    "archivo": "agents.md",
+    "sha256": "4d9338c1e412afc383528c03a5a72ee876f253fb2273945326c016dbc563aa9c"
+  },
+  {
+    "origen": "docs/REVISION_HTA_Y_TRAZABILIDAD.md",
+    "archivo": "docs/REVISION_HTA_Y_TRAZABILIDAD.md",
+    "sha256": "86ff847b96ef73fca5416e9861f3ebb65f58f3eed7573c2d3bf24a84d33c49bf"
+  }
+]

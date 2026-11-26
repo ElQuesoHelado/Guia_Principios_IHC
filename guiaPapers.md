@@ -1,6 +1,6 @@
 # Ideas de los papers incorporadas
 
-Fuente exclusiva para esta selección: **Anexo D — Papers** de `LINGUA IA PLUS (1).docx`, incluidos los aportes de edición localizada y versiones al final del anexo. Los usuarios y tareas parten del HTA unificado v7 y se concretan en el HTA v8 de correo y vocabulario; no proceden de la propuesta anterior de Lingua IA Plus.
+Fuente exclusiva para esta selección: **Anexo D — Papers** de `docs/originales/previo-v8/LINGUA IA PLUS (1).docx`, incluidos los aportes de edición localizada y versiones al final del anexo. Los usuarios y tareas parten del HTA unificado v7 y se concretan en el HTA v8 de correo y vocabulario; no proceden de la propuesta anterior de Lingua IA Plus.
 
 Ampliación del 26/11/2026: los contrastes de asunto, saludo, petición, razón/finalidad y cierre se consultan dentro del chat. Cada recurso ofrece significado y estructura, producción explicada, recuperación y transferencia del mismo tema. Esta es una adaptación didáctica de verificabilidad y ayuda graduada; no atribuye un resultado experimental nuevo a los papers. Ver la correspondencia y límites actuales en `docs/REVISION_HTA_Y_TRAZABILIDAD.md`.
 
