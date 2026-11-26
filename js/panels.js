@@ -529,17 +529,33 @@
 
     function renderSuggestions() {
         const st = S.get();
-        const tip = Learning.currentTip();
+        if (st.detailsLevel < 3) {
+            return `
+                <div class="popover-head">
+                    <h4>Una forma de avanzar</h4>
+                    <button class="icon-btn tiny" data-action="toggle-suggestions" aria-label="Cerrar ayuda">${I.close(15)}</button>
+                </div>
+                <div class="learner-tip">
+                    <span class="suggestion-icon">${I.lightbulb(16)}</span>
+                    <div><strong>Piensa antes de aceptar.</strong><p>Lee la pista, intenta explicar el cambio con tus propias palabras y luego decide.</p></div>
+                </div>
+                <button class="btn btn-ghost full" data-action="set-help" data-help="explicacion">Mostrar explicación</button>
+            `;
+        }
         return `
             <div class="popover-head">
-                <h4>${D.modes[st.mode].stages[st.activeStage]}</h4>
-                <button class="icon-btn tiny" data-action="toggle-suggestions" aria-label="Cerrar ayuda">${I.close(15)}</button>
+                
+                <button class="icon-btn tiny" data-action="toggle-suggestions" aria-label="Cerrar sugerencias">${I.close(15)}</button>
             </div>
-            <div class="learner-tip">
-                <span class="suggestion-icon">${I.lightbulb(16)}</span>
-                <div><strong>${tip.title}</strong><p>${tip.text}</p></div>
+            <h4>Sugerencias para este paso</h4>
+            <div class="suggestions-list">
+                ${D.suggestions.map((s) => `
+                    <div class="suggestion-item">
+                        <span class="suggestion-icon">${(I[s.icon] || I.info)(16)}</span>
+                        <div><strong>${s.title}</strong><p>${s.text}</p></div>
+                    </div>
+                `).join('')}
             </div>
-            <button class="btn btn-ghost full" data-action="learning-go" data-target="${tip.destination.target}">${tip.destination.label}</button>
         `;
     }
 

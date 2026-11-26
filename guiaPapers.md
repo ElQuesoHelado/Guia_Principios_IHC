@@ -1,50 +1,40 @@
-# Lingua IA: alcance del prototipo y relación con las lecturas
+# Ideas de los papers incorporadas
 
-## Actividades principales
+Fuente exclusiva para esta selección: **Anexo D — Papers** de `LINGUA IA PLUS (1).docx`, incluidos los aportes de edición localizada y versiones al final del anexo. Los usuarios y las tareas proceden del HTA unificado v7, no de la propuesta anterior de Lingua IA Plus.
 
-1. **Redacción y revisión:** el estudiante aporta un texto, recibe una corrección localizada con una explicación y decide si la acepta.
-2. **Lectura y vocabulario:** puede usar el texto de ejemplo o pegar una lectura propia, consultar una palabra en su contexto, ver ejemplos y guardarla.
-3. **Conversación escrita:** practica por chat en un escenario breve, responde a su ritmo y puede pedir una pista.
+Las atribuciones y títulos siguientes se conservan como aparecen en el documento del equipo. Se adaptan sus ideas al prototipo; **no se han verificado aquí las publicaciones originales, sus citas, páginas, fechas ni resultados**. No se reproducen como citas científicas comprobadas ni se atribuye eficacia experimental a esta entrega.
 
-Las dudas puntuales se envían en el chat de la actividad correspondiente. La conversación se realiza por texto; este prototipo no incluye micrófono, grabación ni evaluación de pronunciación.
+| Referencia identificada en el anexo | Idea seleccionada | Adaptación implementada | Tarea y evidencia real |
+|---|---|---|---|
+| Gu y colaboradores: *How Do Analysts Understand and Verify AI-Assisted Data Analyses?* | Hacer verificable una respuesta | Regla y motivo junto a original y propuesta; distinción entre error y opción de cortesía | Correo C5; `.correction-card`, `.rule`, `.diff-line` |
+| Gu | Conectar resultado con material original | Hipótesis junto a la acepción del ejemplo; contexto visible | Vocabulario V2–V3; `.word-detail` |
+| Gu | Localizar aquello que requiere verificación | Revisiones solo de fragmentos reconocidos del borrador; no se inventa una corrección global | Correo C5; `review()` |
+| Kazemitabaar y colaboradores: *Improving Steering and Verification in AI-Assisted Data Analysis with Interactive Task Decomposition* | Descomponer en objetivos comprensibles | Cuatro sugerencias de ruta agrupan los siete grupos de cada tarea; acceso libre | C1–C7 y V1–V7; `#learning-plan`, `#stagebar` |
+| Kazemitabaar | Mostrar interpretaciones y supuestos | Contexto de tarea indicado junto al mensaje; **Cambiar tarea** permite corregirlo; una oración propia no recibe la acepción de otro ejemplo | C1.2 y V3; `#composer-mode-hint`, `change-task`, `startIntro()` |
+| Kazemitabaar | Permitir intervenir | Usar, conservar o explicar antes de decidir; no se modifica automáticamente el correo | C5.3–C5.4; `accept`, `reject`, `justify` |
+| Kazemitabaar | Mostrar procedimiento y resultado | Original, propuesta, explicación y versiones; el procedimiento técnico del dominio de datos se traduce a evidencia lingüística | C5; `versions()`, `.diff-line` |
+| LightVA: *Lightweight Visual Analytics with LLM Agent-Based Task Planning and Execution* | Plan visible | Etapa actual visible durante el desplazamiento, ruta desplegable y aportes guardados; no abre una ficha obligatoria | C/V; `#stagebar` |
+| LightVA | Acciones sugeridas y lenguaje natural | Botones contextuales y un único chat; sugerencias mientras se escribe, editables y descartables | C2, C5, V2, V6; `#prompt-assist`, `#chat-input` |
+| LightVA | Aprobar o rechazar acciones | Decisiones de revisión y libertad para saltar la hipótesis o consultar un ejemplo | C5, V3; `accept`, `reject`, `definition` |
+| LightVA | Observar progreso acumulado | Producciones, hipótesis, explicaciones y fechas; palabras guardadas se cuentan aparte | C6–C7, V6–V7; `notebook()` |
+| LightVA y descomposición interactiva | Volver a un estado anterior | Recuperar un borrador conserva todas las versiones y crea otra; deshacer un cambio evita borrar modificaciones posteriores | C5; `restore`, `undo-correction` |
+| WaitGPT, adaptación de refinamiento granular consignada en el anexo | Cambiar solo la sección pertinente | Sustitución de un fragmento exacto; resto conservado; antes/después visible | C5.1–C5.4; `review()`, `accept` |
+| Yang y colaboradores: *Mapping the Wizards' Path: A Systematic Review of Wizard-of-Oz in HCI* | Transparencia de la simulación | Identificación visible de respuestas de ejemplo; no se finge conexión a un LLM | Ambas tareas; `.app-footer`, `demo()` |
+| Yang | Escenarios acotados | Profesora y compañero; tres palabras con fichas preparadas. El ejemplo contextual no se presenta como interpretación general de cualquier texto | C2/C7 y V2/V7; `TutorData`, `startIntro()` |
+| Yang | Control de ritmo y comunicación | Enviar es decisión del estudiante; no hay turnos automáticos, cuenta regresiva ni voz | Ambas; `#send-btn`, teclado |
+| Yang | Ayuda situada y graduada | Pista, significado, explicación o modelo se abren bajo demanda; se puede recuperar sin material y volver a consultarlo | C3/C6 y V2/V6; `clue`, `definition`, `model`, `reveal-support` |
+| Yang | Evitar perder contexto entre superficies | Original y propuesta dentro del chat; ficha contextual con hipótesis; historial local conserva la práctica | Ambas; `.word-detail`, `history()`, localStorage |
 
-## Principios de los artículos que sí se conservan
+## Ideas con cobertura parcial o excluidas
 
-| Aporte de lectura | Uso en Lingua IA | Por qué ayuda al aprendizaje |
-|---|---|---|
-| Gu et al., CHI 2024: hacer verificables las respuestas de la IA | Mostrar desde el inicio texto original y propuesta, añadir explicación según el nivel de ayuda y permitir aceptar o rechazar | El estudiante compara, comprende el cambio y conserva la decisión. |
-| Kazemitabaar et al., UIST 2024: dividir tareas y permitir intervención del usuario | Etapas breves y ayuda gradual en la tarea actual | Orienta el siguiente paso sin exponer un proceso técnico innecesario. |
-| LightVA: representar el avance y hacer visibles los pasos relevantes | Una secuencia breve de etapas y un botón “Ver progreso” que abre directamente el avance de la tarea; en lectura, el resumen incluye palabras guardadas | Ayuda a saber dónde está el estudiante y qué puede hacer después. |
-| WaitGPT: facilitar el control de cambios y versiones | Correcciones por fragmento e historial de versiones cuando se necesita | Permite recuperar una opción y revisar cómo cambió el texto. |
-| Yang et al., CHI 2026: control de la interacción y transparencia | Escenarios acotados, conversación escrita, turnos y pistas | Reduce la presión de responder de inmediato y mantiene al estudiante activo. |
+- **Ramas de versiones completas:** se implementa recuperación no destructiva y una lista lineal de versiones; no un árbol de ramas con fusión. Es suficiente para demostrar comparar, conservar y recuperar un fragmento sin introducir un editor de análisis de datos.
+- **Supuestos y plan arbitrarios editables:** se permite corregir la clasificación, escribir restricciones y elegir la ruta; no hay un editor genérico de suposiciones ni replanificación con un agente real.
+- **Verificación externa:** las fichas son didácticas; no se conecta un diccionario ni se verifica una producción arbitraria. Otros contextos quedan pendientes de contraste, en vez de recibir evidencia inventada.
+- **Porcentaje de dominio:** se excluye. Que un agente marque una tarea como realizada o que alguien descarte una propuesta no demuestra aprendizaje. Se muestran aportes y actividad.
+- **Voz, control de turnos orales y WoZ con una persona operadora:** fuera de las tareas seleccionadas. Se conserva transparencia, ritmo voluntario y ayuda graduada en texto.
+- **Código generado, gráficos analíticos, glifos, tablas de frecuencia y controles de investigación:** pertenecen al dominio de los artículos. La adaptación pertinente es comparar expresiones, explicar elecciones y recuperar versiones.
+- **Predicción generativa:** no se incorpora un servicio externo. Las reglas locales demuestran cuándo podría sugerirse una mejora de consulta; el efecto sobre cantidad de prompts y aprendizaje necesita evaluación.
 
-## Elementos retirados o fuera del alcance
+## Demostración
 
-- El modo independiente **Dudas rápidas**, porque duplicaba el chat; las consultas se escriben en la actividad activa.
-- Micrófono, grabación y práctica por audio; no son necesarios para demostrar las tareas y complican la implementación.
-- Gráfico de operaciones, glifos de datos, ramas y controles de análisis de datos; responden al dominio de los papers y no al aprendizaje de inglés.
-- Etiquetas de papers, protocolo WoZ, debriefing y controles de reproducción en la interfaz del estudiante; son material de documentación o evaluación.
-- La tarjeta de pasos que repetía la secuencia de la barra superior y la tarjeta que repetía el texto de ayuda para pegar una lectura.
-- La ruta intermedia “Ver proceso” y el modal común de herramientas; “Ver progreso” abre el resumen en un paso. El plan sigue disponible como pestaña contextual en Redacción asistida.
-
-## Criterio de diseño
-
-La interfaz conserva las ideas de verificación, control del estudiante, ejemplos contextuales y progreso. Cada una aparece cuando es pertinente para la actividad. El progreso refleja el estado local de la sesión (etapas, respuestas, sugerencias o palabras), no estadísticas semanales de uso. La literatura guía el diseño, pero las etiquetas y mecanismos propios del análisis de datos no se presentan como herramientas de aprendizaje de idiomas.
-
-
-## Adaptación a construcción de conocimiento (22 de noviembre de 2026)
-
-Las ideas se conservan y se sitúan en las tres tareas del HTA. El análisis sin IA describe acciones con modelos, diccionario, apuntes y otras personas; los papers informan el diseño posterior de la ayuda.
-
-| Aporte conservado | Interacción verificable | Evidencia que produce el estudiante |
-|---|---|---|
-| Gu: comparar y verificar con evidencias | `.diff-line`, `correction-rule`, significado contextual | Explicación de un cambio; contraste entre hipótesis y significado |
-| Kazemitabaar: pasos, criterios e intervención | `#stagebar`, `[data-criterion]`, `[data-plan]`, decisiones de corrección | Plan, autoevaluación y decisión razonada |
-| LightVA: plan visible y avance | `learning-save`, `open-progress-view` | Etapas con notas opcionales, diferenciadas de dominio del idioma |
-| WaitGPT y análisis de versiones: edición localizada y recuperación | `correction-undo`, `set-version`, `open-version-history` | Comparación reversible del ejemplo; borrador y revisión propios en campos separados |
-| Yang: escenarios, transparencia y turnos | `select-scenario`, `next-prompt`, `#chat-form` | Preparación, mensajes, respuesta reformulada y diálogo de transferencia |
-
-El título de Kazemitabaar recogido en el documento del equipo es *Improving Steering and Verification in AI-Assisted Data Analysis with Interactive Task Decomposition*. Se usa ese análisis como referencia interna; no se verificaron aquí las citas o resultados de los papers. El progreso cuantifica evidencias y actividad, no adquisición demostrada. El prototipo no ofrece evaluación de textos libres, audio, ramas completas de versiones ni persistencia entre recargas.
-
-
-El apoyo pedagógico es opcional: se accede directamente a correo, lectura o conversación. Las sugerencias están inicialmente ocultas y pueden abrirse u ocultarse en cualquier momento. En el correo, “Ver ejemplos de correo” abre el modelo directamente; Original, Borrador, Versión actual, Ver cambios, Versiones y Deshacer siguen accesibles al cambiar de sugerencia.
+Los recorridos reproducibles están en `guia.md`: afinar consulta, revisar sin perder partes del correo, inferir/contrastar una palabra, recuperar con material oculto y retomar otro día. Los aportes se guardan en el mismo navegador; no hay métricas semanales ficticias ni una cuenta de dominio.

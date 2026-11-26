@@ -1,3 +1,15 @@
+# Estado vigente · 25/11/2026
+
+La instrucción actual del usuario sustituye las decisiones anteriores de alcance: **correo y vocabulario**, chat inicial vacío, sugerencias durante la escritura y apoyo opcional sin fichas. Leer `README.md`, `guia.md`, `docs/REVISION_HTA_Y_TRAZABILIDAD.md` y `guiaPapers.md` antes de editar.
+
+Código cargado: `index.html` → `js/icons.js`, `js/tutor-data.js`, `js/tutor.js`; estilos en `css/style.css`. El resto de JS es histórico y no se carga. La persistencia es localStorage; no hay IA externa. La guía vigente conserva los 71 principios de la matriz: 49 aplicados de diseño (incluidos sus 44 originales), 6 parciales, 3 pendientes, 2 excluidos y 11 no aplicables. No se atribuye validación empírica a estos conteos. Originales previos en `docs/originales/principios-anterior/`.
+
+Navegación vigente: Conversaciones se muestra como un panel lateral izquierdo de alto completo (dialog.conversation-drawer), con foco modal y cierre por X, Escape o fondo. Cabecera y franja de tarea fijas; indicador de etapa siempre visible y ruta opcional desplegable. Las acciones de apoyo sincronizan etapa y actividad pendiente sin acreditar aprendizaje.
+
+Verificación vigente: `python3 tools/test_navigation_scroll.py`, `python3 tools/test_learning_flow.py` y `python3 tools/test_guide_integrity.py`; capturas: `tools/generate_screenshots.py`. Regenerar secuencialmente. Las secciones siguientes conservan el historial del proyecto; sus rutas de prueba, tres actividades y cifras anteriores no describen la implementación vigente.
+
+---
+
 # Contexto del Proyecto para Agentes · Lingua IA
 
 Este documento (`agents.md`) sirve como fuente de verdad y memoria técnica para cualquier agente de IA o desarrollador que trabaje en este repositorio. Describe la arquitectura del software, las decisiones de diseño de Interacción Humano-Computador (IHC), los artefactos generados y las pautas para mantener la integridad del proyecto.
@@ -44,13 +56,18 @@ Este documento (`agents.md`) sirve como fuente de verdad y memoria técnica para
 │   ├── chat.js                  # Lógica de renderizado de mensajes de chat y respuestas simuladas
 │   └── app.js                   # Bootstrap, orquestación global y delegación de eventos [data-action]
 ├── docs/
-│   └── screenshots/             # 14 miniaturas recortadas para la documentación y guía
+│   ├── screenshots/             # 14 miniaturas recortadas para la documentación y guía
+│   └── screenshots/principles/  # 44 capturas dedicadas y precisas para cada principio de diseño cumplido
 ├── tools/
 │   ├── generate_screenshots.py  # Script automatizado con Firefox Headless y Pillow
+│   ├── build_doc_with_precise_screenshots.py # Generador del DOCX con las 44 capturas precisas insertadas
 │   └── test_guide_integrity.py  # Test automatizado de integridad referencial y anti-alucinación
 ├── GUIA_PRINCIPIOS_IHC.md       # Guía de evaluación docente en Markdown (71 principios)
 ├── GUIA_PRINCIPIOS_IHC.html     # Guía interactiva/imprimible con sidebar adhesivo y checklist
+├── Evaluacion_detallada_reglas_Lingua_IA.docx # Documento original de evaluación de las 71 reglas (intacto)
+├── Evaluacion_detallada_reglas_Lingua_IA_con_capturas.docx # Copia oficial con las 44 capturas insertadas en los que cumplen
 ├── Informe_principios_Lingua_IA (1).docx # Informe original previo (auditoría base)
+├── usuarios.md                  # Análisis de usuarios objetivo y especificación de tareas (HTA)
 ├── guia.md / guiaPapers.md / plan.md / reference.md # Documentación interna de alcance
 └── agents.md                    # Este documento de contexto para agentes
 ```
@@ -123,8 +140,6 @@ El documento DOCX se revisó para describir exactamente tres tareas sin IA y sep
 
 
 El apoyo pedagógico es opcional: se accede directamente a correo, lectura o conversación. Las sugerencias están inicialmente ocultas y pueden abrirse u ocultarse en cualquier momento. En el correo, “Ver ejemplos de correo” abre el modelo directamente; Original, Borrador, Versión actual, Ver cambios, Versiones y Deshacer siguen accesibles al cambiar de sugerencia.
-
-La pantalla inicial vuelve a ser el selector sencillo «Inicio», accesible también desde la navegación. La ayuda superior se oculta en Inicio y usa `Learning.currentTip()` para mostrar una indicación breve de la tarea y etapa actuales. `learning-go` lleva al control existente: criterios, correcciones del ejemplo, selector de escenario, chat, palabras de la lectura o palabras guardadas. Solo abre notas para producción propia o reflexión; no hay formularios adicionales para conversar, consultar significados o guardar palabras. Revisar conversación muestra la última respuesta del chat sin exigir copiarla. El borrador propio está rotulado como escritura libre sin corrección automática y separado del correo de ejemplo. Las doce etapas conservan navegación libre y notas opcionales, sin el bloque repetido «Aprende a tu ritmo».
 
 ## Feedback docente y próxima revisión · recibido el 24/11/2026
 

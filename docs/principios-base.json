@@ -1,0 +1,357 @@
+[
+  {
+    "id": "C1.1",
+    "title": "Evitar la ambigüedad",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C1.2",
+    "title": "Mantener consistencia de ubicación y apariencia",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C1.3",
+    "title": "Diseñar para las metas del usuario",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C2.1",
+    "title": "Proximidad: agrupar lo relacionado",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C2.2",
+    "title": "Similitud: mismo aspecto para la misma función",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C2.3",
+    "title": "Continuidad: alinear y no interrumpir",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C2.4",
+    "title": "Cierre: formas simples y reconocibles",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C2.5",
+    "title": "Simetría: reducir complejidad",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C2.6",
+    "title": "Figura/fondo: separar planos",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C2.7",
+    "title": "Destino común: lo que se mueve junto está relacionado",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C2.8",
+    "title": "Revisar las agrupaciones combinadas",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C3.1",
+    "title": "Presentar información tersa y estructurada",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C3.2",
+    "title": "Establecer una jerarquía visual",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C3.3",
+    "title": "Usar encabezados semánticos",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C3.4",
+    "title": "Agrupar contenido similar",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C3.5",
+    "title": "Agrupar los datos en bloques (chunking)",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C3.6",
+    "title": "Usar campos segmentados cuando reduzcan errores",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C3.7",
+    "title": "Usar controles específicos para cada tipo de dato",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C3.8",
+    "title": "Mantener las etiquetas junto a sus valores",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C3.9",
+    "title": "Evitar el ruido en los resultados de búsqueda",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C4.1",
+    "title": "Usar colores distintivos",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C4.2",
+    "title": "No yuxtaponer colores opuestos fuertes",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C4.3",
+    "title": "Diferenciar por saturación y brillo, no solo por tono",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C4.4",
+    "title": "Evitar pares problemáticos para daltonismo",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C4.5",
+    "title": "No usar color como único canal",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C4.6",
+    "title": "Asegurar contraste de los elementos no textuales",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C4.7",
+    "title": "Considerar las condiciones externas de visualización",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C5.1",
+    "title": "Colocar la información importante donde mira el usuario",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C5.2",
+    "title": "Mostrar los errores junto a su causa",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C5.3",
+    "title": "Marcar el error con símbolo y reservar el rojo",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C5.4",
+    "title": "Usar señales que “pop” en la periferia",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C5.5",
+    "title": "Reservar los pop-ups para lo crítico",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C5.6",
+    "title": "Usar sonido con moderación",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C5.7",
+    "title": "Mantener el movimiento o parpadeo breve",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C5.8",
+    "title": "Evitar la habituación a las alertas",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C5.9",
+    "title": "No mover los ítems de menús, listas o paletas",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C5.10",
+    "title": "Diseñar iconos distintivos para la periferia",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.1",
+    "title": "Usar un tamaño de texto legible",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C6.2",
+    "title": "Usar lenguaje llano y vocabulario familiar",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.3",
+    "title": "Usar tipografías familiares y legibles",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.4",
+    "title": "No usar TODO EN MAYÚSCULAS en el cuerpo",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.5",
+    "title": "Evitar fondos ruidosos detrás del texto",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.6",
+    "title": "Asegurar contraste de texto suficiente",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C6.7",
+    "title": "No centrar párrafos de texto",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.8",
+    "title": "Mantener una alineación consistente",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.9",
+    "title": "Formatear el texto para escaneo",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.10",
+    "title": "Minimizar la prosa",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.11",
+    "title": "Eliminar la repetición que entierra información",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C6.12",
+    "title": "Probar la lectura con usuarios reales",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C7.1",
+    "title": "No exigir recordar el estado o las acciones previas",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C7.2",
+    "title": "Mantener la salida de voz breve y segmentada",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C7.3",
+    "title": "Limitar las listas de opciones en VUI",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C7.4",
+    "title": "Apoyar la VUI con salida visual cuando haya pantalla",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C7.5",
+    "title": "Evitar modos o hacer visible el modo actual",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C7.6",
+    "title": "Mostrar los términos de búsqueda en los resultados",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C7.7",
+    "title": "Mantener una sola llamada a la acción dominante",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C7.8",
+    "title": "Preferir una navegación amplia y poco profunda",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C7.9",
+    "title": "Mostrar la ruta de navegación (breadcrumbs) en jerarquías profundas",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C7.10",
+    "title": "No exigir el recuerdo de datos o procedimientos",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C7.11",
+    "title": "Permitir autenticación sin datos arbitrarios",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C8.1",
+    "title": "Hacer que el software pase a segundo plano",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C8.2",
+    "title": "Hacer altamente salientes los cambios importantes",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C8.3",
+    "title": "Mostrar lo hecho y lo pendiente",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C8.4",
+    "title": "Permitir marcar, mover o colorear elementos",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C8.5",
+    "title": "Proporcionar un rastro de información claro (information scent)",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C8.6",
+    "title": "Usar verbos específicos en las confirmaciones",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C8.7",
+    "title": "Diseñar caminos y conceptos basados en la tarea",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C8.8",
+    "title": "Dar feedback, progreso y opción de volver atrás",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C8.9",
+    "title": "Preferir caminos familiares y mostrar atajos",
+    "baseline": "No cumple"
+  },
+  {
+    "id": "C8.10",
+    "title": "Gestionar los pasos de cierre",
+    "baseline": "Cumple"
+  },
+  {
+    "id": "C8.11",
+    "title": "Revertir automáticamente los modos especiales",
+    "baseline": "No cumple"
+  }
+]

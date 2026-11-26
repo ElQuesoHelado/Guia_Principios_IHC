@@ -16,7 +16,7 @@
         chevronRight: (s = 18) => svg('<path d="M9 6l6 6-6 6"/>', s),
         chevronDown: (s = 16) => svg('<path d="M6 9l6 6 6-6"/>', s),
         close: (s = 18) => svg('<path d="M6 6l12 12M18 6L6 18"/>', s),
-        send: (s = 20) => svg('<path d="M5 12h14M13 6l6 6-6 6"/>', s),
+        send: (s = 20) => svg('<path d="m21 3-7 18-4-7-7-4 18-7ZM10 14 21 3"/>', s),
         doc: (s = 16) => svg('<path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>', s),
         scan: (s = 16) => svg('<path d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"/><path d="M8 10h8M8 14h5"/>', s),
         tag: (s = 16) => svg('<path d="M20 13l-7 7-9-9V4h7l9 9z"/><circle cx="8.5" cy="8.5" r="1.2"/>', s),

@@ -1,3 +1,5 @@
+> Documento anterior al rediseño del 25/11/2026. El alcance vigente deriva del HTA unificado v7: correo y vocabulario. Ver `README.md` y `docs/REVISION_HTA_Y_TRAZABILIDAD.md`; no usar este documento para atribuir funciones al prototipo actual.
+
 # Alcance y tareas de Lingua IA
 
 ## Usuario y propósito

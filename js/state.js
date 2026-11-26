@@ -9,7 +9,7 @@
 
     const initial = {
         mode: 'writing',
-        homeOpen: true,
+        homeOpen: false,
         quickstartFeedback: '',
         quickstartDraft: '',
         help: 'pista',                 // pista | explicacion | ejemplo | reescritura
